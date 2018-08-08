@@ -545,20 +545,6 @@
       <script>scripts\ini_GetValue.gml</script>
       <script>scripts\ini_Check.gml</script>
     </scripts>
-    <scripts name="mergeme">
-      <scripts name="DownloadManager">
-        <script>scripts\DM_Init.gml</script>
-        <script>scripts\DM_CreateDownload.gml</script>
-        <script>scripts\DM_StartDownload.gml</script>
-        <script>scripts\DM_GetSpeed.gml</script>
-        <script>scripts\DM_GetProgress.gml</script>
-        <script>scripts\DM_CloseDownload.gml</script>
-        <script>scripts\DM_StopDownload.gml</script>
-        <script>scripts\DM_DownloadStatus.gml</script>
-        <script>scripts\DM_GetContentType.gml</script>
-        <script>scripts\DM_GetCompleted.gml</script>
-      </scripts>
-    </scripts>
     <script>scripts\draw_percentage_bar.gml</script>
     <scripts name="Data Handling">
       <script>scripts\int2bin.gml</script>
