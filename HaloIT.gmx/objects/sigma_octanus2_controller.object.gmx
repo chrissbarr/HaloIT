@@ -27,7 +27,7 @@
             <kind>1</kind>
             <string>sound_play(message_snd)
 io_clear()
-show_image('Resources\level3_intro1.jpg',true,room_speed*60*100)
+//show_image('Resources\level3_intro1.jpg',true,room_speed*60*100)
 sound_play(message_end_snd)
 paused=false
 </string>

@@ -156,7 +156,7 @@ give_points(pointstogive)
 //room_restart()
 //if a=2
 room_goto(menu)
-//}
+}
 
 if instance_number(covenant_2_par)&lt;20{
 if dif=1

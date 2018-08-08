@@ -26,8 +26,8 @@
           <argument>
             <kind>1</kind>
             <string>sound_play(message_snd)
-show_image('Resources\levelX_intro1.jpg',true,room_speed*60*100)
-show_image('Resources\levelX_intro2.jpg',true,room_speed*60*100)
+//show_image('Resources\levelX_intro1.jpg',true,room_speed*60*100)
+//show_image('Resources\levelX_intro2.jpg',true,room_speed*60*100)
 sound_play(message_end_snd)
 leftcamp=false
 contin=true
@@ -204,7 +204,7 @@ alarm[3]=5</string>
             <kind>1</kind>
             <string>sound_stop(level2_backgroundmusic_snd)
 sound_play(message_snd)
-show_image('level2finish.jpg',true,room_speed*60*100)
+//show_image('level2finish.jpg',true,room_speed*60*100)
 sound_play(message_end_snd)
 room_goto_next()
 </string>

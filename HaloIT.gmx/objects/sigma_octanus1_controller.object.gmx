@@ -27,7 +27,7 @@
             <kind>1</kind>
             <string>sound_play(message_snd)
 io_clear()
-show_image('Resources\level2_intro1.jpg',true,room_speed*60*100)
+//show_image('Resources\level2_intro1.jpg',true,room_speed*60*100)
 sound_play(message_end_snd)
 paused=false
 sound_loop(level2_backgroundmusic_snd)
@@ -57,7 +57,7 @@ finished=false
             <string>give_points(10)
 sound_play(message_snd)
 io_clear()
-show_image('Resources\level2_finish1.jpg',true,room_speed*60*100000)
+//show_image('Resources\level2_finish1.jpg',true,room_speed*60*100000)
 sound_play(message_end_snd)
 level_set_done("Level2",true)
 room_goto_next()
