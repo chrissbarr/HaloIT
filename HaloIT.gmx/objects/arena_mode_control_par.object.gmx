@@ -25,17 +25,17 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>time=get_integer('How many seconds do you wish to spend in the arena?',120)
-dif=show_message_ext('Please select a difficulty:','Easy','Normal','Heroic')
-shieldskull=string(ini_GetValue(global.file_name,"CONFIG",string_encrypt("shieldskull", "199718")))
-shieldskull=string_decrypt(shieldskull,"199718")
-shieldskull=real(string(shieldskull))
-if shieldskull=1
-shieldbash=show_message_ext('Would you like to enable the Black Eye Skull?','Yes','','No')
-else
+            <string>time=120;//get_integer('How many seconds do you wish to spend in the arena?',120)
+dif=1;//show_message_ext('Please select a difficulty:','Easy','Normal','Heroic')
+//shieldskull=string(ini_GetValue(global.file_name,"CONFIG",string_encrypt("shieldskull", "199718")))
+//shieldskull=string_decrypt(shieldskull,"199718")
+//shieldskull=real(string(shieldskull))
+//if shieldskull=1
+//shieldbash=show_message_ext('Would you like to enable the Black Eye Skull?','Yes','','No')
+//else
 shieldbash=0
-weaponspawn=show_message_ext('Would you like to enable weapon spawning?','Yes','','No')
-powerups=show_message_ext('Would you like to enable powerups?','Yes','','No')
+weaponspawn=1;//show_message_ext('Would you like to enable weapon spawning?','Yes','','No')
+powerups=1;//show_message_ext('Would you like to enable powerups?','Yes','','No')
 if powerups=1
 powerups=true
 if powerups=2
@@ -54,7 +54,8 @@ instance_create(spawnlocater_obj.x,spawnlocater_obj.y,obj_mc)
 if shieldbash=1{
 obj_mc.recharge=false
 obj_mc.stealshields=true
-}</string>
+}
+</string>
           </argument>
         </arguments>
       </action>
@@ -132,16 +133,16 @@ alarm[0]=room_speed*2+random(room_speed*6)</string>
 if paused=false{
 time-=1
 if time=0{
-show_message('Congratulations, you survived ' + string(round(totaltime/30)) + ' seconds in the arena!')
+//show_message('Congratulations, you survived ' + string(round(totaltime/30)) + ' seconds in the arena!')
 oldsurvivetime=ini_GetValue(global.file_name,"CONFIG",string_encrypt("LONGESTARENA", "199718"))
 oldsurvivetime=string_decrypt(oldsurvivetime,"199718");
 oldsurvivetime=real(oldsurvivetime)
 if totaltime/30&gt;oldsurvivetime{
 timetoaddtoini=totaltime/30
 ini_Set(global.file_name, "CONFIG", string_encrypt("LONGESTARENA", "199718"), string_encrypt(string(timetoaddtoini), "199718")); 
-show_message('Congratulations, you beat your old hi-score for the arena! Your new score is ' + string(timetoaddtoini) + ' seconds!')
+//show_message('Congratulations, you beat your old hi-score for the arena! Your new score is ' + string(timetoaddtoini) + ' seconds!')
 }
-show_message('You killed ' + string(deadenemies) + ' enemies!')
+//show_message('You killed ' + string(deadenemies) + ' enemies!')
 if dif=1
 pointstogive=round(totaltime/30/100*deadenemies)
 if dif=2
@@ -149,13 +150,13 @@ pointstogive=round(totaltime/30/100*deadenemies*1.2)
 if dif=3
 pointstogive=round(totaltime/30/100*deadenemies*1.4)
 give_points(pointstogive)
-show_message('You earned ' + string(pointstogive) + ' points!')
-a=show_message_ext("Would you like to play again?",'Yes','No','')
-if a=1
-room_restart()
-if a=2
+//show_message('You earned ' + string(pointstogive) + ' points!')
+//a=show_message_ext("Would you like to play again?",'Yes','No','')
+//if a=1
+//room_restart()
+//if a=2
 room_goto(menu)
-}
+//}
 
 if instance_number(covenant_2_par)&lt;20{
 if dif=1
@@ -215,7 +216,8 @@ instance_create(room_width+25+random(100),random(room_height),elite_2_obj)
 if c=4
 instance_create(room_width+25+random(100),random(room_height),grunt_2_obj)
 }}}
-}</string>
+}
+</string>
           </argument>
         </arguments>
       </action>

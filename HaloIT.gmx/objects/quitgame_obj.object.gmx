@@ -143,9 +143,10 @@ sound_play(menu_button_snd)</string>
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>a=show_message_ext("Do you wish to quit?",'Yes','','No')
-if a=1
-game_end()</string>
+            <string>//a=show_message_ext("Do you wish to quit?",'Yes','','No')
+//if a=1
+game_end()
+</string>
           </argument>
         </arguments>
       </action>

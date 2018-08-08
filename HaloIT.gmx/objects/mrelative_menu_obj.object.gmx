@@ -28,17 +28,18 @@
             <string>move=ini_GetValue(global.file_name,"CONFIG",string_encrypt("MRELATIVE", "199718"))
 move=string_decrypt(move,"199718");
 if string(move)==string("0"){
-a=show_message_ext("The movement system is currently set to mouse-relative. Would you like to change it to non mouse-relative?(aka 8 direction movement)","Yes","No","Later")
-if a=1{
+//a=show_message_ext("The movement system is currently set to mouse-relative. Would you like to change it to non mouse-relative?(aka 8 direction movement)","Yes","No","Later")
+//if a=1{
 ini_Set(global.file_name, "CONFIG", string_encrypt("MRELATIVE", "199718"), string_encrypt(string("1"), "199718"));
-show_message("The movement system has been set to non-mouse relative.")
-}}
-if string(move)==string("1"){
-a=show_message_ext("The movement system is currently set to non mouse-relative. Would you like to change it to mouse-relative?","Yes","No","Later")
-if a=1{
+//show_message("The movement system has been set to non-mouse relative.")
+}//}
+else if string(move)==string("1"){
+//a=show_message_ext("The movement system is currently set to non mouse-relative. Would you like to change it to mouse-relative?","Yes","No","Later")
+//if a=1{
 ini_Set(global.file_name, "CONFIG", string_encrypt("MRELATIVE", "199718"), string_encrypt(string("0"), "199718"));
-show_message("The movement system has been set to mouse relative.")
-}}</string>
+//show_message("The movement system has been set to mouse relative.")
+}//}
+</string>
           </argument>
         </arguments>
       </action>

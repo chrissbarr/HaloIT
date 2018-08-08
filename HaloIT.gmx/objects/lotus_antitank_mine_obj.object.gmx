@@ -49,21 +49,22 @@
 lotus=string_decrypt(LOTUS,"199718")
 lotus=real(lotus)
 
-a=show_message_ext('Do you want the mine to explode on proximity, or by remote?','Proximity','Remote','Never Mind')
-if a=1{
+//a=show_message_ext('Do you want the mine to explode on proximity, or by remote?','Proximity','Remote','Never Mind')
+//if a=1{
 proximity=true
 manual=false
 lotus-=1
-ini_Set(global.file_name,"WEAPONS",string_encrypt("LOTUS","199718"), string_encrypt(string(lotus),"199718"))}
-if a=2{
-proximity=false
-manual=true
-instance_create(0,0,button_explode_obj)
-lotus-=1
-ini_Set(global.file_name,"WEAPONS",string_encrypt("LOTUS","199718"), string_encrypt(string(lotus),"199718"))}
-if a=3
-instance_destroy()
-explode=false
+ini_Set(global.file_name,"WEAPONS",string_encrypt("LOTUS","199718"), string_encrypt(string(lotus),"199718"))
+//}
+//if a=2{
+//proximity=false
+//manual=true
+//instance_create(0,0,button_explode_obj)
+//lotus-=1
+//ini_Set(global.file_name,"WEAPONS",string_encrypt("LOTUS","199718"), string_encrypt(string(lotus),"199718"))}
+//if a=3
+//instance_destroy()
+//explode=false
 
 con=true
 alarm[1]=2

@@ -28,17 +28,18 @@
             <string>drawblood=ini_GetValue(global.file_name,"CONFIG",string_encrypt("DRAWBLOOD", "199718"))
 drawblood=string_decrypt(drawblood,"199718");
 if string(drawblood)==string("true"){
-a=show_message_ext("The game is currently set to draw enemy, ally and player blood. Would you like to set it to not draw the blood?","Yes","No","Later")
-if a=1{
+//a=show_message_ext("The game is currently set to draw enemy, ally and player blood. Would you like to set it to not draw the blood?","Yes","No","Later")
+//if a=1{
 ini_Set(global.file_name, "CONFIG", string_encrypt("DRAWBLOOD", "199718"), string_encrypt(string("false"), "199718"));
-show_message("Blood drawing has been set to off.")
-}}
-if string(drawblood)==string("false"){
-a=show_message_ext("The game is currently set not to draw enemy, ally and player blood. Would you like to set it to draw the blood?","Yes","No","Later")
-if a=1{
+//show_message("Blood drawing has been set to off.")
+}//}
+else if string(drawblood)==string("false"){
+//a=show_message_ext("The game is currently set not to draw enemy, ally and player blood. Would you like to set it to draw the blood?","Yes","No","Later")
+//if a=1{
 ini_Set(global.file_name, "CONFIG", string_encrypt("DRAWBLOOD", "199718"), string_encrypt(string("true"), "199718"));
-show_message("Blood drawing has been set to on.")
-}}</string>
+//show_message("Blood drawing has been set to on.")
+}//}
+</string>
           </argument>
         </arguments>
       </action>

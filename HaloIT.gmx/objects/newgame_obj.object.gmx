@@ -356,15 +356,15 @@ sound_play(menu_button_snd)</string>
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>crtnew=show_message_ext('Do you wish to create a new account?','Yes','','No')
-if crtnew=1{
-global.user_name=get_string('Please enter your username:','')
-global.password=get_string('Please enter your password:','')
-dif=show_message_ext('What difficulty do you wish to play on?','Easy','Normal','Heroic')
-number=3
+            <string>//crtnew=show_message_ext('Do you wish to create a new account?','Yes','','No')
+//if crtnew=1{
+global.user_name='default'; //get_string('Please enter your username:','')
+global.password='password'; //get_string('Please enter your password:','')
+//dif=show_message_ext('What difficulty do you wish to play on?','Easy','Normal','Heroic')
+//number=3
 new_user()
 room_goto(loading1)
-}
+//}
 </string>
           </argument>
         </arguments>

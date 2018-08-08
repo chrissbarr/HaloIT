@@ -25,14 +25,15 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>a=show_message_ext('Do you wish to quit?','Yes','','No')
-if a=1{
+            <string>//a=show_message_ext('Do you wish to quit?','Yes','','No')
+//if a=1{
 room_goto(menu)
-}
-else{
-instance_destroy()
-instance_create(x,y,quit_menu_obj)
-}</string>
+//}
+//else{
+//instance_destroy()
+//instance_create(x,y,quit_menu_obj)
+//}
+</string>
           </argument>
         </arguments>
       </action>
