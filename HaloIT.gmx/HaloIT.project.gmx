@@ -916,12 +916,6 @@
     <object>objects\cursor_obj</object>
     <object>objects\cursor_normal_obj</object>
     <object>objects\spawnlocater_obj</object>
-    <objects name="multiplayer">
-      <object>objects\p1_pistol_bullet</object>
-      <object>objects\p2_pistol_bullet</object>
-      <object>objects\obj_mc_multiplay_p1</object>
-      <object>objects\obj_mc_multiplay_p2</object>
-    </objects>
   </objects>
   <rooms name="rooms">
     <room>rooms\menu</room>
@@ -942,9 +936,6 @@
     <room>rooms\room404</room>
     <room>rooms\roomtest</room>
     <room>rooms\arenaroom</room>
-    <room>rooms\multiplayer_loading_room</room>
-    <room>rooms\multiplayer_setup_room</room>
-    <room>rooms\multiplayer_room_1</room>
     <room>rooms\pelicanchasescene_room</room>
   </rooms>
   <constants number="1">
