@@ -576,6 +576,7 @@
     <script>scripts\sc_button.gml</script>
     <script>scripts\cool_message1.gml</script>
     <script>scripts\string_wrap.gml</script>
+    <script>scripts\string_wordwrap_width.gml</script>
     <scripts name="textinputscripts">
       <script>scripts\text_scr.gml</script>
       <script>scripts\get_text_out_marker_step_event.gml</script>
