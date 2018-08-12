@@ -59,7 +59,7 @@ sound_play(message_snd)
 io_clear()
 //show_image('Resources\level2_finish1.jpg',true,room_speed*60*100000)
 sound_play(message_end_snd)
-level_set_done("Level2",true)
+level_set_done("Level2")
 room_goto_next()
 </string>
           </argument>

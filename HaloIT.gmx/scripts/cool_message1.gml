@@ -52,7 +52,7 @@ button3y=yy+height/2-25
 }
 
 text=string_wrap(argument7,width-20,true)
-alpha=1
+alpha=argument10
 buttonalpha=alpha-alpha+.1
 if mouse_x>buttonx-argument8/2
 if mouse_x<buttonx+argument8/2{
