@@ -215,8 +215,9 @@ alarm[9]=room_speed*4</string>
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>global.advice=string_wrap('When youre done with shooting the targets, follow the path to the east. Test out your energy shields against the turrets.',advicewidth,true)
-alarm[7]=room_speed*10</string>
+            <string>global.advice=string_wrap("When you're done with shooting the targets, follow the path to the east. Test out your energy shields against the turrets.",advicewidth,true)
+alarm[7]=room_speed*10
+</string>
           </argument>
         </arguments>
       </action>

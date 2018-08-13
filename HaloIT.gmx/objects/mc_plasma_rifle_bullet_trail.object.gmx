@@ -25,26 +25,13 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>direction=instance_nearest(x,y,mc_plasma_rifle_bullet_obj).direction
-alarm[0]=10</string>
+            <string>decayRate = 0.1;
+
+direction=instance_nearest(x,y,mc_plasma_rifle_bullet_obj).direction
+image_angle=direction
+</string>
           </argument>
         </arguments>
-      </action>
-    </event>
-    <event eventtype="2" enumb="0">
-      <action>
-        <libid>1</libid>
-        <id>203</id>
-        <kind>0</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>1</exetype>
-        <functionname>action_kill_object</functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
       </action>
     </event>
     <event eventtype="3" enumb="0">
@@ -64,8 +51,12 @@ alarm[0]=10</string>
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>image_angle=direction
-image_alpha-=0.1</string>
+            <string>image_alpha -= decayRate;
+
+if (image_alpha &lt; decayRate) {
+    instance_destroy();
+}
+</string>
           </argument>
         </arguments>
       </action>
