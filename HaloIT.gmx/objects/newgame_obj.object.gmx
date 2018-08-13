@@ -288,7 +288,7 @@ alarm[4]=room_speed*10</string>
 //text_scr(16)
 //get_text_out_marker_step_event()
 //}
-//lvl_select_mouse_over_scr(newgame_obj,.5)
+lvl_select_mouse_over_scr(newgame_obj,.5)
 </string>
           </argument>
         </arguments>

@@ -54,7 +54,8 @@
     <instance objName="keycontrols_obj" x="320" y="64" name="inst_AC96CDEF" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="drawblood_obj" x="320" y="144" name="inst_F97A6864" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="mrelative_menu_obj" x="320" y="224" name="inst_AAFFF17E" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="return_to_menu_obj" x="336" y="448" name="inst_9B964B89" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="return_to_menu_obj" x="320" y="448" name="inst_9B964B89" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="difficulty_obj" x="320" y="304" name="inst_53051A92" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
   </instances>
   <tiles/>
   <PhysicsWorld>0</PhysicsWorld>

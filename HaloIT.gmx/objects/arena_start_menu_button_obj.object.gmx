@@ -177,22 +177,10 @@ else
 depth=1
 
 
-if ask=true
-{
-if global.user_name=string('')
-{
-if number=0
-a=cool_message1(view_xview+640/2,view_yview+480/2,300,150,c_blue,c_gray,c_ltgray,'You are not currently logged in. You must be logged in to play. If you do not have an account, you can create one by pressing the New Game button.',75,30,.6,1,'Ok','','')
-if a=1{
-number=1
-ask=false
+if (ask=true) {
+    room_goto(arenaroom);
 }
-mouse_clear(mb_left)
-}
-else{
-room_goto(arenaroom)
-}
-}</string>
+</string>
           </argument>
         </arguments>
       </action>

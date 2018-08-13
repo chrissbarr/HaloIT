@@ -29,7 +29,7 @@
 draw_set_color(global.textcolor)
 draw_set_font(denmark)
 draw_text(x+15,y+35,"General:")
-draw_text(x+15,y+50,"Player: " + string(global.user_name))
+//draw_text(x+15,y+50,"Player: " + string(global.user_name))
 cp=get_points()
 draw_text(x+15,y+65,"Points: " + string(round(cp)))
 draw_text(x+15,y+90,"Tech:")
@@ -55,7 +55,7 @@ draw_text(x+15,y+145,"Kills:")
 grunts = global.kills_grunt;
 draw_text(x+15,y+160,"Grunts: " + string(grunts))
 
-jackals = global.kills_jackel;
+jackals = global.kills_jackal;
 draw_text(x+15,y+175,"Jackals: " + string(jackals))
 
 elites = global.kills_elite;

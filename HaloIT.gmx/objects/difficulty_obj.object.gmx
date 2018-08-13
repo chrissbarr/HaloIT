@@ -8,7 +8,7 @@
   <parentName>&lt;undefined&gt;</parentName>
   <maskName>&lt;undefined&gt;</maskName>
   <events>
-    <event eventtype="6" enumb="0">
+    <event eventtype="6" enumb="4">
       <action>
         <libid>1</libid>
         <id>603</id>
@@ -64,7 +64,19 @@ if (difficulty == "legendary") {
         <arguments>
           <argument>
             <kind>1</kind>
-            <string></string>
+            <string>text = global.difficulty;
+
+draw_sprite(level_select_spr,-1,x,y);
+draw_set_colour(c_white);
+draw_set_halign(fa_center);
+draw_set_valign(fa_middle);
+draw_text(x,y,text);
+
+draw_set_colour(c_black);
+draw_set_halign(fa_left);
+draw_set_valign(fa_top);
+
+</string>
           </argument>
         </arguments>
       </action>

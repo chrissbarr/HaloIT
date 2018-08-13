@@ -38,7 +38,7 @@ global.points = 0;
 global.drawblood = true;
 
 global.kills_grunt = 0;
-global.kills_jackel = 0;
+global.kills_jackal = 0;
 global.kills_elite = 0;
 global.kills_hunter = 0;
 
