@@ -5,7 +5,7 @@ switch (argument1)
     case "Grunts":
         global.kills_grunt += 1;
         break;
-    case "Jackels":
+    case "Jackals":
         global.kills_jackal += 1;
         break;
     case "Elites":

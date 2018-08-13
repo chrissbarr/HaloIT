@@ -112,7 +112,7 @@ rocket_launcher_have=false
 rocket_launcher_ammo=0
 
 reload=pistol_shoot_speed
-can_shoot=true
+can_shoot=false
 try_optimise=false
 draw=false
 laseron=false
@@ -196,7 +196,7 @@ if LASERSIGHT == 1
 else
     laser=false
 
-
+alarm[0]=5 // small delay before we can shoot to debounce mouse on level start
 alarm[8]=1
 
 instance_create(x,y,cursor_obj)
@@ -1982,8 +1982,9 @@ else{
 hp-=1*hurt
 repeat random(5)
 a=instance_create(x,y,red_blood_drop_obj)
-a.direction=other.direction+180+random(30)-15}
-alarm[1]=recharge_speed</string>
+}
+alarm[1]=recharge_speed
+</string>
           </argument>
         </arguments>
       </action>
@@ -2394,7 +2395,6 @@ else{
 hp-=10*hurt
 repeat random(5)
 a=instance_create(x,y,red_blood_drop_obj)
-a.direction=other.direction+180+random(30)-15
 }
 alarm[1]=recharge_speed
 </string>

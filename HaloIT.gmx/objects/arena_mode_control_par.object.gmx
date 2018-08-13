@@ -44,6 +44,7 @@ time=time*30
 totaltime=time
 deadenemies=0
 alarm[0]=room_speed*6+random(60)
+sound_stop_all();
 sound_loop(arenabattle_music)
 ask=true
 number=1
@@ -55,6 +56,15 @@ if shieldbash=1{
 obj_mc.recharge=false
 obj_mc.stealshields=true
 }
+
+spawnable_enemies = ds_list_create();
+ds_list_add(spawnable_enemies, grunt_2_obj);
+ds_list_add(spawnable_enemies, grunt_2_obj);
+ds_list_add(spawnable_enemies, grunt_2_obj);
+ds_list_add(spawnable_enemies, grunt_2_obj);
+ds_list_add(spawnable_enemies, jackal_2_obj);
+ds_list_add(spawnable_enemies, jackal_2_obj);
+ds_list_add(spawnable_enemies, elite_2_obj);
 </string>
           </argument>
         </arguments>
@@ -128,92 +138,42 @@ alarm[0]=room_speed*2+random(room_speed*6)</string>
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>
+            <string>if (paused == false) {
+    time -= 1;
+    if (time == 0) {
+        room_goto(menu);
+    }
 
-if paused=false{
-time-=1
-if time=0{
-//show_message('Congratulations, you survived ' + string(round(totaltime/30)) + ' seconds in the arena!')
-oldsurvivetime=global.arena_hitime;
-if totaltime/30&gt;oldsurvivetime{
-global.arena_hitime=totaltime/30
-//show_message('Congratulations, you beat your old hi-score for the arena! Your new score is ' + string(timetoaddtoini) + ' seconds!')
-}
-//show_message('You killed ' + string(deadenemies) + ' enemies!')
-if dif=1
-pointstogive=round(totaltime/30/100*deadenemies)
-if dif=2
-pointstogive=round(totaltime/30/100*deadenemies*1.2)
-if dif=3
-pointstogive=round(totaltime/30/100*deadenemies*1.4)
-give_points(pointstogive)
-//show_message('You earned ' + string(pointstogive) + ' points!')
-//a=show_message_ext("Would you like to play again?",'Yes','No','')
-//if a=1
-//room_restart()
-//if a=2
-room_goto(menu)
+
+    if (instance_number(covenant_2_par) &lt; 10) {
+        ds_list_shuffle(spawnable_enemies);
+        var spawnSide = irandom(3);
+        
+        if (spawnSide == 0) {
+            var spawnX = random(room_width);
+            var spawnY = -25-random(100);
+        }
+        
+        if (spawnSide == 1) {
+            var spawnX = random(room_width);
+            var spawnY = room_height+25+random(100);
+        }
+        
+        if (spawnSide == 2) {
+            var spawnX = -25-random(100);
+            var spawnY = random(room_height);
+        }
+        
+        if (spawnSide == 3) {
+            var spawnX = room_width+25+random(100);
+            var spawnY = random(room_height);
+        }
+        
+        instance_create(spawnX, spawnY, spawnable_enemies[| 0]);
+    }
+
 }
 
-if instance_number(covenant_2_par)&lt;20{
-if dif=1
-a=round(random(room_speed*4))
-if dif=2
-a=round(random(room_speed*3))
-if dif=3
-a=round(random(room_speed*2))
-if a=1
-{
-b=round(random(4))
-if b=1
-{
-c=round(random(4))
-if c=1
-instance_create(random(room_width),-25-random(100),grunt_2_obj)
-if c=2
-instance_create(random(room_width),-25-random(100),jackal_2_obj)
-if c=3
-instance_create(random(room_width),-25-random(100),elite_2_obj)
-if c=4
-instance_create(random(room_width),-25-random(100),grunt_2_obj)
-}
-if b=2
-{
-c=round(random(4))
-if c=1
-instance_create(random(room_width),room_height+25+random(100),grunt_2_obj)
-if c=2
-instance_create(random(room_width),room_height+25+random(100),jackal_2_obj)
-if c=3
-instance_create(random(room_width),room_height+25+random(100),elite_2_obj)
-if c=4
-instance_create(random(room_width),room_height+25+random(100),grunt_2_obj)
-}
-if b=3
-{
-c=round(random(4))
-if c=1
-instance_create(-25-random(100),random(room_height),grunt_2_obj)
-if c=2
-instance_create(-25-random(100),random(room_height),jackal_2_obj)
-if c=3
-instance_create(-25-random(100),random(room_height),elite_2_obj)
-if c=4
-instance_create(-25-random(100),random(room_height),grunt_2_obj)
-}
-if b=4
-{
-c=round(random(4))
-if c=1
-instance_create(room_width+25+random(100),random(room_height),grunt_2_obj)
-if c=2
-instance_create(room_width+25+random(100),random(room_height),jackal_2_obj)
-if c=3
-instance_create(room_width+25+random(100),random(room_height),elite_2_obj)
-if c=4
-instance_create(room_width+25+random(100),random(room_height),grunt_2_obj)
-}}}
-}
 </string>
           </argument>
         </arguments>
@@ -237,10 +197,19 @@ instance_create(room_width+25+random(100),random(room_height),grunt_2_obj)
           <argument>
             <kind>1</kind>
             <string>oldsurvivetime = global.arena_hitime;
-if time/30 &gt; oldsurvivetime{
-    global.arena_hitime = time/30; 
-    show_message('Congratulations, you beat your old hi-score for the arena! Your new score is ' + string(timetoaddtoini) + ' seconds!')
+newsurvivetime = (totaltime - time)/30; 
+if newsurvivetime &gt; oldsurvivetime{
+    global.arena_hitime = newsurvivetime;
+    show_message('Congratulations, you beat your old hi-score for the arena! Your new score is ' + string(newsurvivetime) + ' seconds!')
 }
+
+if dif=1
+    pointstogive=round(newsurvivetime/30/100*deadenemies)
+if dif=2
+    pointstogive=round(newsurvivetime/30/100*deadenemies*1.2)
+if dif=3
+    pointstogive=round(newsurvivetime/30/100*deadenemies*1.4)
+give_points(pointstogive)
 </string>
           </argument>
         </arguments>
