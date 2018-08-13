@@ -25,8 +25,9 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if instance_number(level_select_background_obj)&lt;6000/sprite_width*20
-instance_create(x+sprite_width,y,level_select_background_obj)</string>
+            <string>if instance_number(level_select_background_obj)&lt; 20
+instance_create(x+sprite_width,y,level_select_background_obj)
+</string>
           </argument>
         </arguments>
       </action>
