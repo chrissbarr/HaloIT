@@ -28,15 +28,15 @@
             <string>cost=200
 version=string('Linear Accelerator Upgrade V1')
 v=2
-v2=ini_GetValue(global.file_name,"ARMOUR",string_encrypt("RECHARGE","199718"))
-v2=string_decrypt(v2,"199718")
-v2=real(v2)
-if v2&gt;=v{
-instance_create(x,y,ShieldRecharge2_obj)
-instance_destroy()}
+
+if global.recharge &gt;= v {
+    instance_create(x,y,ShieldRecharge2_obj)
+    instance_destroy()
+}
 tell=false
 text='This Linear Accelerator will decrease shield recharge speed by 33.33%.###Cost: ' + string(cost) + ' points.'
-textcolor=make_color_rgb(50,139,250)</string>
+textcolor=make_color_rgb(50,139,250)
+</string>
           </argument>
         </arguments>
       </action>
@@ -102,21 +102,17 @@ textcolor=make_color_rgb(50,139,250)</string>
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>v2=ini_GetValue(global.file_name,"ARMOUR",string_encrypt("RECHARGE","199718"))
-v2=string_decrypt(v2,"199718")
-v2=real(v2)
-if v&gt;v2{
-
-cp=convert_points_to_value()
-if cp&gt;cost{
-ini_Set(global.file_name, "CONFIG", string_encrypt("Points","199718"), string_encrypt(string(cp-cost),"199718")); 
-ini_Set(global.file_name, "ARMOUR", string_encrypt("RECHARGE","199718"), string_encrypt("2","199718")); 
-show_message('You have succesfully purchased ' + version + ', at the cost of ' + string(cost) +' points.')
+            <string>if global.recharge &lt; v {
+    if cost &lt;= get_points() {
+        give_points(-cost);
+        global.recharge = v;
+        show_message('You have succesfully purchased ' + version + ', at the cost of ' + string(cost) +' points.')
+    } else {
+        show_message('You do not have enough points.')
+    }
+} else {
+    show_message('You already have this linear accelerator upgrade, or a higher model.')
 }
-else
-show_message('You do not have enough points.')}
-else
-show_message('You already have this Linear Accelerator Uprgade, or a higher model.')
 </string>
           </argument>
         </arguments>

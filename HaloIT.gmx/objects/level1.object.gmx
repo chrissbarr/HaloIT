@@ -381,7 +381,7 @@ alarm[1]=room_speed*6</string>
 
 if countdown=0{
 give_points(10)
-level_set_done("Level1")
+level_set_done(1)
 sound_play(message_snd)
 io_clear()
 //show_image('Resources\level1_finish1.jpg',true,room_speed*60*100)

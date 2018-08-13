@@ -34,8 +34,7 @@ alarm[1]=room_speed*8+random(60)
 c_shoot=true
 charge=0
 charging=false
-difficulty=string(ini_GetValue(global.file_name,"CONFIG",string_encrypt("DIFFICULTY", "199718")))
-difficulty=string_decrypt(difficulty, "199718")
+difficulty = global.difficulty;
 if difficulty=string("easy")
 hp=50*1
 if difficulty=string("normal")
@@ -43,7 +42,8 @@ hp=50*1.5
 if difficulty=string("heroic")
 hp=50*2
 if difficulty=string("legendary")
-hp=50*2.5</string>
+hp=50*2.5
+</string>
           </argument>
         </arguments>
       </action>

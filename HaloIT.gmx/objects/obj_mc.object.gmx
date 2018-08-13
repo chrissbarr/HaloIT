@@ -49,8 +49,8 @@ global.enemyspeed=1.75
 friction=0.3
 bullettype=pistol_bullet_obj
 dec=1
-difficulty=string(ini_GetValue(global.file_name,"CONFIG",string_encrypt("DIFFICULTY", "199718")))
-difficulty=string_decrypt(difficulty, "199718")
+
+difficulty=global.difficulty;
 if difficulty=string("easy")
 hurt=1.4
 if difficulty=string("normal")
@@ -121,79 +121,80 @@ camomaxtime=room_speed*30
 overshield=false
 flash=0
 instance_create(x,y,health_obj)
-MJOLNIR=ini_GetValue(global.file_name,"ARMOUR",string_encrypt("MJOLNIR", "199718"))
-MJOLNIR=string_decrypt(MJOLNIR,"199718");
-if MJOLNIR=string(1){
+
+MJOLNIR = global.mjolnir;
+if MJOLNIR == 1 {
 shield=100
 shield_max=100
 hp=100
 hp_max=100
 }
-if MJOLNIR=string(2){
+if MJOLNIR == 2 {
 shield=150
 shield_max=150
 hp=125
 hp_max=125
 }
-if MJOLNIR=string(3){
+if MJOLNIR == 3 {
 shield=175
 shield_max=175
 hp=150
 hp_max=150
 }
-if MJOLNIR=string(4){
+if MJOLNIR == 4 {
 shield=200
 shield_max=200
 hp=175
 hp_max=175
 }
-RECHARGE=ini_GetValue(global.file_name,"ARMOUR",string_encrypt("RECHARGE", "199718"))
-RECHARGE=string_decrypt(RECHARGE,"199718");
-if RECHARGE=string(1){
+
+RECHARGE = global.recharge;
+if RECHARGE == 1 {
 recharge_speed=room_speed*3
 }
-if RECHARGE=string(2){
+if RECHARGE == 2 {
 recharge_speed=room_speed*2
 }
-if RECHARGE=string(3){
+if RECHARGE == 3 {
 recharge_speed=room_speed*1
 }
 
-PISTOLCAP=ini_GetValue(global.file_name,"WEAPONS",string_encrypt("PISTOLCAP", "199718"))
-PISTOLCAP=string_decrypt(PISTOLCAP,"199718");
-if PISTOLCAP=string(1){
+PISTOLCAP = global.pistolcap; 
+if PISTOLCAP == 1 {
 pistolcap=48
 pistolammo=48
 }
-if PISTOLCAP=string(2){
+if PISTOLCAP == 2 {
 pistolcap=60
 pistolammo=60
 }
-if PISTOLCAP=string(3){
+if PISTOLCAP == 3 {
 pistolcap=72
 pistolammo=72
 }
 
-ARCAP=ini_GetValue(global.file_name,"WEAPONS",string_encrypt("ARCAP", "199718"))
-ARCAP=string_decrypt(ARCAP,"199718");
-if ARCAP=string(1){
+
+
+ARCAP = global.arcap;
+if ARCAP == 1 {
 ARcap=600
 assaultrifleammo=600
 }
-if ARCAP=string(2){
+if ARCAP == 2 {
 ARcap=800
 assaultrifleammo=800
 }
-if ARCAP=string(3){
+if ARCAP == 3 {
 ARcap=1000
 assaultrifleammo=1000
 }
-LASERSIGHT=ini_GetValue(global.file_name,"WEAPONS",string_encrypt("LASER", "199718"))
-LASERSIGHT=string_decrypt(LASERSIGHT,"199718");
-if LASERSIGHT=string(1)
-laser=true
+
+LASERSIGHT = global.lasersight
+
+if LASERSIGHT == 1
+    laser=true
 else
-laser=false
+    laser=false
 
 
 alarm[8]=1
@@ -838,12 +839,11 @@ if hp&lt;1
 instance_destroy()
 
 if keyboard_check(vk_shift){
-move=ini_GetValue(global.file_name,"CONFIG",string_encrypt("MRELATIVE", "199718"))
-move=string_decrypt(move,"199718");
-if string(move)==string("0")
-ms=room_speed*.18
-else
-ms=room_speed*.15
+    movement = global.movement;
+    if movement == "0" 
+        ms=room_speed*.18
+    else
+        ms=room_speed*.15
 }
 else
 ms=room_speed*.1
@@ -853,7 +853,8 @@ direction=point_direction(x,y,cursor_obj.x,cursor_obj.y)
 if instance_exists(tank_obj){
 if distance_to_object(instance_nearest(x,y,tank_obj))&lt;10{
 can_shoot=false
-alarm[0]=2}}</string>
+alarm[0]=2}}
+</string>
           </argument>
         </arguments>
       </action>
@@ -1059,9 +1060,9 @@ alarm[4]=room_speed*1/2</string>
           <argument>
             <kind>1</kind>
             <string>if keyboard_check_pressed(ord('E')){
-ini_Set(global.file_name, "CONFIG", string_encrypt("shieldskull", "199718"), string_encrypt("1", "199718"));
+global.shieldskull = "1";
 with other
-instance_destroy()
+    instance_destroy()
 global.advice='You found the Black Eye Skull! You can use this skull next time you play arena mode!'
 alarm[4]=room_speed*5
 }
@@ -1488,8 +1489,7 @@ alarm[4]=room_speed*1/2</string>
             <string>if keyboard_check_pressed(ord('E')){
 create=weapon_drop_scr(pistol_bullet_obj)
 pistol_have=true
-PISTOLCAP=ini_GetValue(global.file_name,"WEAPONS",string_encrypt("PISTOLCAP", "199718"))
-PISTOLCAP=string_decrypt(PISTOLCAP,"199718");
+PISTOLCAP = global.pistolcap;
 if PISTOLCAP=string(1){
 pistolcap=48
 pistolammo=other.ammo
@@ -1791,8 +1791,7 @@ alarm[4]=room_speed*1/2</string>
             <string>if keyboard_check_pressed(ord('E')){
 create=weapon_drop_scr(assaultrifle_bullet_obj)
 assault_rifle_have=true
-ARCAP=ini_GetValue(global.file_name,"WEAPONS",string_encrypt("ARCAP", "199718"))
-ARCAP=string_decrypt(ARCAP,"199718");
+ARCAP = global.arcap;
 if ARCAP=string(1){
 ARcap=600
 assaultrifleammo=other.ammo
@@ -2395,8 +2394,10 @@ else{
 hp-=10*hurt
 repeat random(5)
 a=instance_create(x,y,red_blood_drop_obj)
-a.direction=other.direction+180+random(30)-15}
-alarm[1]=recharge_speed</string>
+a.direction=other.direction+180+random(30)-15
+}
+alarm[1]=recharge_speed
+</string>
           </argument>
         </arguments>
       </action>
@@ -3096,18 +3097,19 @@ alarm[1]=recharge_speed</string>
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>keycontrol=ini_GetValue(global.file_name,"CONFIG",string_encrypt("KEYS", "199718"))
-keycontrol=string_decrypt(keycontrol,"199718");
-if string(keycontrol)==string("WASD"){
-move=ini_GetValue(global.file_name,"CONFIG",string_encrypt("MRELATIVE", "199718"))
-move=string_decrypt(move,"199718");
-if string(move)==string("0"){
-speed+=1
+            <string>keycontrol = global.controls;
+movement = global.movement;
+
+if keycontrol == "WASD" {
+    if movement == "0" {
+        speed+=1
+    }
+    else
+    {
+        y-=ms-dec
+    }
 }
-if string(move)==string("1"){
-y-=ms-dec
-}
-}</string>
+</string>
           </argument>
         </arguments>
       </action>
@@ -3129,18 +3131,19 @@ y-=ms-dec
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>keycontrol=ini_GetValue(global.file_name,"CONFIG",string_encrypt("KEYS", "199718"))
-keycontrol=string_decrypt(keycontrol,"199718");
-if string(keycontrol)==string("WASD"){
-move=ini_GetValue(global.file_name,"CONFIG",string_encrypt("MRELATIVE", "199718"))
-move=string_decrypt(move,"199718");
-if string(move)==string("0"){
-speed-=.6
+            <string>keycontrol = global.controls;
+movement = global.movement;
+
+if keycontrol == "WASD" {
+    if movement == "0" {
+        speed -= 0.6;
+    }
+    else
+    {
+        y += ms-dec;
+    }
 }
-if string(move)==string("1"){
-y+=ms-dec
-}
-}</string>
+</string>
           </argument>
         </arguments>
       </action>
@@ -3184,18 +3187,19 @@ y+=ms-dec
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>keycontrol=ini_GetValue(global.file_name,"CONFIG",string_encrypt("KEYS", "199718"))
-keycontrol=string_decrypt(keycontrol,"199718");
-if string(keycontrol)==string("WASD"){
-move=ini_GetValue(global.file_name,"CONFIG",string_encrypt("MRELATIVE", "199718"))
-move=string_decrypt(move,"199718");
-if string(move)==string("0"){
-x += lengthdir_x(1.5,image_angle+90)
-y += lengthdir_y(1.5,image_angle+90)
+            <string>keycontrol = global.controls;
+movement = global.movement;
+
+if keycontrol == "WASD" {
+    if movement == "0" {
+        x += lengthdir_x(1.5,image_angle+90);
+        y += lengthdir_y(1.5,image_angle+90);
+    }
+    else
+    {
+        x+=ms-dec;
+    }
 }
-if string(move)==string("1"){
-x+=ms-dec
-}}
 </string>
           </argument>
         </arguments>
@@ -3218,18 +3222,19 @@ x+=ms-dec
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>keycontrol=ini_GetValue(global.file_name,"CONFIG",string_encrypt("KEYS", "199718"))
-keycontrol=string_decrypt(keycontrol,"199718");
-if string(keycontrol)==string("WASD"){
-move=ini_GetValue(global.file_name,"CONFIG",string_encrypt("MRELATIVE", "199718"))
-move=string_decrypt(move,"199718");
-if string(move)==string("0"){
-x += lengthdir_x(1.5,image_angle-90)
-y += lengthdir_y(1.5,image_angle-90)
+            <string>keycontrol = global.controls;
+movement = global.movement;
+
+if keycontrol == "WASD" {
+    if movement == "0" {
+        x += lengthdir_x(1.5,image_angle-90);
+        y += lengthdir_y(1.5,image_angle-90);
+    }
+    else
+    {
+        x-=ms-dec;
+    }
 }
-if string(move)==string("1"){
-x-=ms-dec
-}}
 </string>
           </argument>
         </arguments>
@@ -3252,18 +3257,19 @@ x-=ms-dec
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>keycontrol=ini_GetValue(global.file_name,"CONFIG",string_encrypt("KEYS", "199718"))
-keycontrol=string_decrypt(keycontrol,"199718");
-if string(keycontrol)==string("ARROW"){
-move=ini_GetValue(global.file_name,"CONFIG",string_encrypt("MRELATIVE", "199718"))
-move=string_decrypt(move,"199718");
-if string(move)==string("0"){
-speed-=.6
+            <string>keycontrol = global.controls;
+movement = global.movement;
+
+if keycontrol == "ARROW" {
+    if movement == "0" {
+        speed -= 0.6;
+    }
+    else
+    {
+        y += ms-dec;
+    }
 }
-if string(move)==string("1"){
-y+=ms-dec
-}
-}</string>
+</string>
           </argument>
         </arguments>
       </action>
@@ -3285,18 +3291,19 @@ y+=ms-dec
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>keycontrol=ini_GetValue(global.file_name,"CONFIG",string_encrypt("KEYS", "199718"))
-keycontrol=string_decrypt(keycontrol,"199718");
-if string(keycontrol)==string("ARROW"){
-move=ini_GetValue(global.file_name,"CONFIG",string_encrypt("MRELATIVE", "199718"))
-move=string_decrypt(move,"199718");
-if string(move)==string("0"){
-x += lengthdir_x(1.5,image_angle+90)
-y += lengthdir_y(1.5,image_angle+90)
+            <string>keycontrol = global.controls;
+movement = global.movement;
+
+if keycontrol == "ARROW" {
+    if movement == "0" {
+        x += lengthdir_x(1.5,image_angle+90);
+        y += lengthdir_y(1.5,image_angle+90);
+    }
+    else
+    {
+        x+=ms-dec;
+    }
 }
-if string(move)==string("1"){
-x+=ms-dec
-}}
 </string>
           </argument>
         </arguments>
@@ -3319,18 +3326,19 @@ x+=ms-dec
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>keycontrol=ini_GetValue(global.file_name,"CONFIG",string_encrypt("KEYS", "199718"))
-keycontrol=string_decrypt(keycontrol,"199718");
-if string(keycontrol)==string("ARROW"){
-move=ini_GetValue(global.file_name,"CONFIG",string_encrypt("MRELATIVE", "199718"))
-move=string_decrypt(move,"199718");
-if string(move)==string("0"){
-speed+=1
+            <string>keycontrol = global.controls;
+movement = global.movement;
+
+if keycontrol == "ARROW" {
+    if movement == "0" {
+        speed += 1;
+    }
+    else
+    {
+        y -= ms-dec;
+    }
 }
-if string(move)==string("1"){
-y-=ms-dec
-}
-}</string>
+</string>
           </argument>
         </arguments>
       </action>
@@ -3352,18 +3360,19 @@ y-=ms-dec
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>keycontrol=ini_GetValue(global.file_name,"CONFIG",string_encrypt("KEYS", "199718"))
-keycontrol=string_decrypt(keycontrol,"199718");
-if string(keycontrol)==string("ARROW"){
-move=ini_GetValue(global.file_name,"CONFIG",string_encrypt("MRELATIVE", "199718"))
-move=string_decrypt(move,"199718");
-if string(move)==string("0"){
-x += lengthdir_x(1.5,image_angle-90)
-y += lengthdir_y(1.5,image_angle-90)
+            <string>keycontrol = global.controls;
+movement = global.movement;
+
+if keycontrol == "ARROW" {
+    if movement == "0" {
+        x += lengthdir_x(1.5,image_angle-90);
+        y += lengthdir_y(1.5,image_angle-90);
+    }
+    else
+    {
+        x-=ms-dec;
+    }
 }
-if string(move)==string("1"){
-x-=ms-dec
-}}
 </string>
           </argument>
         </arguments>
@@ -4513,12 +4522,14 @@ alarm[0]=reload
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if try_optimise=true{
+            <string>/*
+if try_optimise=true{
 
 for (a=0;a&lt;bck_number;a+=1)
    {background_delete(background_tmp[a])}
    
-}</string>
+} */
+</string>
           </argument>
         </arguments>
       </action>
@@ -5071,11 +5082,11 @@ draw_set_alpha(1) //Reset the alpha
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>LOTUS=ini_GetValue(global.file_name,"WEAPONS",string_encrypt("LOTUS", "199718"))
-LOTUS=string_decrypt(LOTUS,"199718");
-lotus=real(LOTUS)
+            <string>LOTUS = global.lotus;
 if lotus&gt;0{
-instance_create(x,y,lotus_antitank_mine_obj)}</string>
+    instance_create(x,y,lotus_antitank_mine_obj)
+}
+</string>
           </argument>
         </arguments>
       </action>

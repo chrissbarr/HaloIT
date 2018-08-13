@@ -95,18 +95,13 @@ text='This will give you 1 Lotus Anti-Tank mine to use in game.###Cost: ' + stri
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>cp=convert_points_to_value()
-if cp&gt;cost{
-ini_Set(global.file_name, "CONFIG", string_encrypt("Points","199718"), string_encrypt(string(cp-cost),"199718")); 
-current_lotus=ini_GetValue(global.file_name,"WEAPONS",string_encrypt("LOTUS","199718"))
-current_lotus=string_decrypt(current_lotus,"199718")
-lotusno=real(current_lotus)
-lotusno=lotusno+1
-ini_Set(global.file_name, "WEAPONS", string_encrypt("LOTUS","199718"), string_encrypt(string(lotusno),"199718")); 
-show_message('You have succesfully purchased 1 Lotus Anti-Tank mine at the cost of ' + string(cost) +' points.')
+            <string>if cost &lt;= get_points() {
+    give_points(-cost);
+    global.lotus += 1;
+    show_message('You have succesfully purchased 1 Lotus Anti-Tank mine at the cost of ' + string(cost) +' points.')
+} else {
+    show_message('You do not have enough points.')
 }
-else
-show_message('You do not have enough points.')
 
 </string>
           </argument>

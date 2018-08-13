@@ -77,9 +77,8 @@ instance_destroy()</string>
           <argument>
             <kind>1</kind>
             <string>instance_create(other.x,other.y,phantom_explosion2)
-current_points=ini_GetValue(global.file_name,"CONFIG","Points")
-cp=real(current_points)
-ini_Set(global.file_name, "CONFIG", "Points", cp+5); </string>
+give_points(5);
+</string>
           </argument>
         </arguments>
       </action>

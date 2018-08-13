@@ -134,12 +134,9 @@ if paused=false{
 time-=1
 if time=0{
 //show_message('Congratulations, you survived ' + string(round(totaltime/30)) + ' seconds in the arena!')
-oldsurvivetime=ini_GetValue(global.file_name,"CONFIG",string_encrypt("LONGESTARENA", "199718"))
-oldsurvivetime=string_decrypt(oldsurvivetime,"199718");
-oldsurvivetime=real(oldsurvivetime)
+oldsurvivetime=global.arena_hitime;
 if totaltime/30&gt;oldsurvivetime{
-timetoaddtoini=totaltime/30
-ini_Set(global.file_name, "CONFIG", string_encrypt("LONGESTARENA", "199718"), string_encrypt(string(timetoaddtoini), "199718")); 
+global.arena_hitime=totaltime/30
 //show_message('Congratulations, you beat your old hi-score for the arena! Your new score is ' + string(timetoaddtoini) + ' seconds!')
 }
 //show_message('You killed ' + string(deadenemies) + ' enemies!')
@@ -239,13 +236,10 @@ instance_create(room_width+25+random(100),random(room_height),grunt_2_obj)
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>oldsurvivetime=ini_GetValue(global.file_name,"CONFIG",string_encrypt("LONGESTARENA", "199718"))
-oldsurvivetime=string_decrypt(oldsurvivetime,"199718");
-oldsurvivetime=real(oldsurvivetime)
-if time/30&gt;oldsurvivetime{
-timetoaddtoini=time/30
-ini_Set(global.file_name, "CONFIG", string_encrypt("LONGESTARENA", "199718"), string_encrypt(string(timetoaddtoini), "199718")); 
-show_message('Congratulations, you beat your old hi-score for the arena! Your new score is ' + string(timetoaddtoini) + ' seconds!')
+            <string>oldsurvivetime = global.arena_hitime;
+if time/30 &gt; oldsurvivetime{
+    global.arena_hitime = time/30; 
+    show_message('Congratulations, you beat your old hi-score for the arena! Your new score is ' + string(timetoaddtoini) + ' seconds!')
 }
 </string>
           </argument>

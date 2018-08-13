@@ -11,21 +11,18 @@ if obj_mc.shield<obj_mc.shield_max
 obj_mc.shield+=shieldtake}}
 else
 {
-hp-=other.hptake
-drawblood=ini_GetValue(global.file_name,"CONFIG",string_encrypt("DRAWBLOOD", "199718"))
-drawblood=string_decrypt(drawblood,"199718");
-if string(drawblood)==string("true")
-{
-repeat other.hptake/2
-{
-if what='grunt'
-instance_create(x,y,blue_blood_drop_obj)
-if what='jackal'
-instance_create(x,y,purple_blood_drop_obj)
-if what='elite'
-instance_create(x,y,purple_blood_drop_obj)
-}
-}
+    hp-=other.hptake
+    if global.drawblood {
+        repeat other.hptake/2
+        {
+            if what='grunt'
+                instance_create(x,y,blue_blood_drop_obj)
+            if what='jackal'
+                instance_create(x,y,purple_blood_drop_obj)
+            if what='elite'
+                instance_create(x,y,purple_blood_drop_obj)
+        }
+    }
 }
 with other{
 if dieonimpact=true

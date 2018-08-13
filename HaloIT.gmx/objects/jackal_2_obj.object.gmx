@@ -30,8 +30,7 @@ shoot=false
 friction=0.5
 shield=0
 hp=50
-difficulty=string(ini_GetValue(global.file_name,"CONFIG",string_encrypt("DIFFICULTY", "199718")))
-difficulty=string_decrypt(difficulty, "199718")
+difficulty = global.difficulty;
 if difficulty=string("easy")
 hp=50*1
 if difficulty=string("normal")
@@ -46,7 +45,8 @@ varGunDirection = point_direction(sprite_get_xoffset(sprite_index),sprite_get_yo
 varshield1X = x + lengthdir_x(varGunLength,image_angle + varGunDirection);
 varshield1Y = y + lengthdir_y(varGunLength,image_angle + varGunDirection);
 instance_create(varshield1X,varshield1Y,jackal_2_shield_obj)
-accuracy=10</string>
+accuracy=10
+</string>
           </argument>
         </arguments>
       </action>

@@ -325,11 +325,10 @@ instance_destroy()</string>
 with other
 instance_destroy()
 repeat 8
-drawblood=ini_GetValue(global.file_name,"CONFIG",string_encrypt("DRAWBLOOD", "199718"))
-drawblood=string_decrypt(drawblood,"199718");
-if string(drawblood)==string("true"){
+if global.drawblood {
 instance_create(x,y,red_blood_drop_obj)
-}</string>
+}
+</string>
           </argument>
         </arguments>
       </action>
@@ -355,11 +354,10 @@ instance_create(x,y,red_blood_drop_obj)
 with other
 instance_destroy()
 repeat 6
-drawblood=ini_GetValue(global.file_name,"CONFIG",string_encrypt("DRAWBLOOD", "199718"))
-drawblood=string_decrypt(drawblood,"199718");
-if string(drawblood)==string("true"){
+if global.drawblood {
 instance_create(x,y,red_blood_drop_obj)
-}</string>
+}
+</string>
           </argument>
         </arguments>
       </action>

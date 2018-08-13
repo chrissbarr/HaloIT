@@ -47,20 +47,10 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>keycontrol=ini_GetValue(global.file_name,"CONFIG",string_encrypt("KEYS", "199718"))
-keycontrol=string_decrypt(keycontrol,"199718");
-if string(keycontrol)==string("WASD"){
-//a=show_message_ext("The movement keys are currently set to WASD. Would you like to change them to the Arrow keys?","Yes","No","Later")
-//if a=1{
-ini_Set(global.file_name, "CONFIG", string_encrypt("KEYS", "199718"), string_encrypt(string("ARROW"), "199718"));
-//show_message("The movement control has been set to the Arrow keys.")
-//}}
-} else if string(keycontrol)==string("ARROW"){
-//a=show_message_ext("The movement keys are currently set to the Arrow Keys. Would you like to change them to WASD?","Yes","No","Later")
-//if a=1{
-ini_Set(global.file_name, "CONFIG", string_encrypt("KEYS", "199718"), string_encrypt(string("WASD"), "199718"));
-//show_message("The movement control has been set to WASD.")
-//}}
+            <string>if (global.controls == "WASD") {
+    global.controls = "ARROW";
+} else {
+    global.controls = "WASD";
 }
 </string>
           </argument>

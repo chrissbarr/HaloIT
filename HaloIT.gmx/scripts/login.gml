@@ -1,3 +1,4 @@
+/*
 global.user_name=get_string('Please enter your username:','')
 if global.user_name=''{
 show_message('Invalid username.')
@@ -30,3 +31,4 @@ show_message('That password is invalid!')
 global.user_name=""
 }
 }
+*/

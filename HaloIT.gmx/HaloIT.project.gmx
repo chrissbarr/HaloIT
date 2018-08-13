@@ -537,14 +537,6 @@
     </scripts>
     <script>scripts\missile_pods.gml</script>
     <script>scripts\missile_fire.gml</script>
-    <scripts name="Ini_File_Engine">
-      <script>scripts\ini_Exists.gml</script>
-      <script>scripts\ini_Create.gml</script>
-      <script>scripts\ini_Remove.gml</script>
-      <script>scripts\ini_Set.gml</script>
-      <script>scripts\ini_GetValue.gml</script>
-      <script>scripts\ini_Check.gml</script>
-    </scripts>
     <script>scripts\draw_percentage_bar.gml</script>
     <scripts name="Data Handling">
       <script>scripts\int2bin.gml</script>
@@ -557,7 +549,6 @@
       <script>scripts\string_decrypt.gml</script>
     </scripts>
     <script>scripts\enemy_die_scr.gml</script>
-    <script>scripts\convert_points_to_value.gml</script>
     <script>scripts\give_points.gml</script>
     <script>scripts\get_points.gml</script>
     <script>scripts\level_set_done.gml</script>
@@ -588,6 +579,7 @@
     <script>scripts\godmode_scr.gml</script>
     <script>scripts\lvl_select_mouse_over_scr.gml</script>
     <script>scripts\font.gml</script>
+    <script>scripts\level_get_done.gml</script>
   </scripts>
   <fonts name="fonts">
     <font>fonts\halofont</font>
@@ -917,8 +909,10 @@
     <object>objects\cursor_obj</object>
     <object>objects\cursor_normal_obj</object>
     <object>objects\spawnlocater_obj</object>
+    <object>objects\set_globals_obj</object>
   </objects>
   <rooms name="rooms">
+    <room>rooms\initialize_room</room>
     <room>rooms\menu</room>
     <room>rooms\loading1</room>
     <room>rooms\training</room>

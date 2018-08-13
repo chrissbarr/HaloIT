@@ -25,10 +25,10 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>lvl1comp=ini_GetValue(global.file_name,"CONFIG",string_encrypt("Level1comp", "199718"))
-lvl1comp=string_decrypt(lvl1comp,"199718");
-if string(lvl1comp)==string(1)
-instance_create(x+sprite_width+8,y,level2_select)</string>
+            <string>if level_get_done(1) {
+    instance_create(x+sprite_width+8,y,level2_select)
+}
+</string>
           </argument>
         </arguments>
       </action>

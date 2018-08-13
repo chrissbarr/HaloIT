@@ -1,3 +1,4 @@
+/*
 global.file_name=global.user_name + '_file'
 if ini_Exists(global.file_name)
 {
@@ -41,3 +42,4 @@ ini_Set(global.file_name, "KILLS", string_encrypt("Jackals", "199718"), string_e
 ini_Set(global.file_name, "KILLS", string_encrypt("Elites", "199718"), string_encrypt("0", "199718")); 
 ini_Set(global.file_name, "KILLS", string_encrypt("Hunters", "199718"), string_encrypt("0", "199718")); 
 }
+*/

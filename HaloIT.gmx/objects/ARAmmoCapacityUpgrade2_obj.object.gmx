@@ -96,21 +96,17 @@ text='This Ammo Capacity Upgrade will increase the maximum Assault Rifle ammo up
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>v2=ini_GetValue(global.file_name,"WEAPONS",string_encrypt("ARCAP","199718"))
-v2=string_decrypt(v2,"199718")
-v2=real(v2)
-if v&gt;v2{
-
-cp=convert_points_to_value()
-if cp&gt;cost{
-ini_Set(global.file_name, "CONFIG", string_encrypt("Points","199718"), string_encrypt(string(cp-cost),"199718")); 
-ini_Set(global.file_name, "WEAPONS", string_encrypt("ARCAP","199718"), string_encrypt("3","199718")); 
-show_message('You have succesfully purchased ' + version + ', at the cost of ' + string(cost) +' points.')
+            <string>if global.arcap &lt; v {
+    if cost &lt;= get_points() {
+        give_points(-cost);
+        global.arcap = v;
+        show_message('You have succesfully purchased ' + version + ', at the cost of ' + string(cost) +' points.')
+    } else {
+        show_message('You do not have enough points.')
+    }
+} else {
+    show_message('You already have this upgrade, or a higher model.')
 }
-else
-show_message('You do not have enough points.')}
-else
-show_message('You already have this weapon upgrade, or a higher model.')
 </string>
           </argument>
         </arguments>

@@ -282,10 +282,9 @@ contin=false}
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>current_points=ini_GetValue(global.file_name,"CONFIG","Points")
-cp=real(current_points)
-ini_Set(global.file_name, "CONFIG", "Points", cp+10); 
-ini_Set(global.file_name, "CONFIG", "Level2comp", true);</string>
+            <string>give_points(10);
+level_set_done(2);
+</string>
           </argument>
         </arguments>
       </action>

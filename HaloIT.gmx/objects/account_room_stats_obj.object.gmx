@@ -30,12 +30,10 @@ draw_set_color(global.textcolor)
 draw_set_font(denmark)
 draw_text(x+15,y+35,"General:")
 draw_text(x+15,y+50,"Player: " + string(global.user_name))
-cp=convert_points_to_value()
+cp=get_points()
 draw_text(x+15,y+65,"Points: " + string(round(cp)))
 draw_text(x+15,y+90,"Tech:")
-v2=ini_GetValue(global.file_name,"ARMOUR",string_encrypt("MJOLNIR","199718"))
-v2=string_decrypt(v2,"199718")
-v2=real(v2)
+v2 = global.mjolnir;
 if v2=1{
 draw_text(x+15,y+105,"MARK V MJOLNIR Armour")
 }
@@ -48,25 +46,22 @@ draw_text(x+15,y+105,"MARK VII MJOLNIR Armour")
 if v2=4{
 draw_text(x+15,y+105,"MARK VIII MJOLNIR Armour")
 }
-LOTUS=ini_GetValue(global.file_name,"WEAPONS",string_encrypt("LOTUS", "199718"))
-LOTUS=string_decrypt(LOTUS,"199718");
-lotus=real(LOTUS)
+
+lotus = global.lotus;
 draw_text(x+15,y+120,"Lotus Anti-Tank Mines: " + string(lotus))
 draw_text(x+15,y+145,"Kills:")
-grunts=ini_GetValue(global.file_name,"KILLS",string_encrypt("Grunts", "199718"))
-grunts=string_decrypt(grunts,"199718");
+
+
+grunts = global.kills_grunt;
 draw_text(x+15,y+160,"Grunts: " + string(grunts))
 
-jackals=ini_GetValue(global.file_name,"KILLS",string_encrypt("Jackals", "199718"))
-jackals=string_decrypt(jackals,"199718");
+jackals = global.kills_jackel;
 draw_text(x+15,y+175,"Jackals: " + string(jackals))
 
-elites=ini_GetValue(global.file_name,"KILLS",string_encrypt("Elites", "199718"))
-elites=string_decrypt(elites,"199718");
+elites = global.kills_elite;
 draw_text(x+15,y+190,"Elites: " + string(elites))
 
-hunters=ini_GetValue(global.file_name,"KILLS",string_encrypt("Hunters", "199718"))
-hunters=string_decrypt(hunters,"199718");
+hunters = global.kills_hunter;
 draw_text(x+15,y+205,"Hunters: " + string(hunters))
 draw_text(x+15,y+220,"Total: " + string(real(grunts)+real(jackals)+real(elites)+real(hunters)))
 </string>

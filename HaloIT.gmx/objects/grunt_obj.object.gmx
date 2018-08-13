@@ -31,8 +31,9 @@ friction=0.5
 hp=50
 shield=0
 alarm[1]=3
-difficulty=string(ini_GetValue(global.file_name,"CONFIG",string_encrypt("DIFFICULTY", "199718")))
-difficulty=string_decrypt(difficulty, "199718")
+
+
+difficulty = global.difficulty;
 if difficulty=string("easy")
 hp=50*1
 if difficulty=string("normal")
@@ -53,7 +54,8 @@ varheadX = x + lengthdir_x(varGunLength,image_angle + varGunDirection);
 varheadY = y + lengthdir_y(varGunLength,image_angle + varGunDirection);
 instance_create(x,y,grunt_head_obj)
 alarm[2]=1
-rank=1</string>
+rank=1
+</string>
           </argument>
         </arguments>
       </action>

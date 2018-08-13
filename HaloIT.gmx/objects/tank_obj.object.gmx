@@ -109,10 +109,10 @@ varexitY = y + lengthdir_y(varGunLength,image_angle + varGunDirection);</string>
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>keycontrol=ini_GetValue(global.file_name,"CONFIG",string_encrypt("KEYS", "199718"))
-keycontrol=string_decrypt(keycontrol,"199718");
-if string(keycontrol)==string("WASD")
-speed+=.2</string>
+            <string>if (global.controls == "WASD") {
+    speed += 0.2;
+}
+</string>
           </argument>
         </arguments>
       </action>
@@ -134,10 +134,10 @@ speed+=.2</string>
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>keycontrol=ini_GetValue(global.file_name,"CONFIG",string_encrypt("KEYS", "199718"))
-keycontrol=string_decrypt(keycontrol,"199718");
-if string(keycontrol)==string("WASD")
-speed-=.6</string>
+            <string>if (global.controls == "WASD") {
+    speed -= 0.6;
+}
+</string>
           </argument>
         </arguments>
       </action>
@@ -159,10 +159,10 @@ speed-=.6</string>
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>keycontrol=ini_GetValue(global.file_name,"CONFIG",string_encrypt("KEYS", "199718"))
-keycontrol=string_decrypt(keycontrol,"199718");
-if string(keycontrol)==string("WASD")
-direction-=speed</string>
+            <string>if (global.controls == "WASD") {
+    direction -= speed
+}
+</string>
           </argument>
         </arguments>
       </action>
@@ -184,10 +184,10 @@ direction-=speed</string>
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>keycontrol=ini_GetValue(global.file_name,"CONFIG",string_encrypt("KEYS", "199718"))
-keycontrol=string_decrypt(keycontrol,"199718");
-if string(keycontrol)==string("WASD")
-direction+=speed</string>
+            <string>if (global.controls == "WASD") {
+    direction += speed
+}
+</string>
           </argument>
         </arguments>
       </action>
@@ -209,10 +209,10 @@ direction+=speed</string>
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>keycontrol=ini_GetValue(global.file_name,"CONFIG",string_encrypt("KEYS", "199718"))
-keycontrol=string_decrypt(keycontrol,"199718");
-if string(keycontrol)==string("ARROW")
-speed-=.1</string>
+            <string>if (global.controls == "ARROW") {
+    speed -= 0.1;
+}
+</string>
           </argument>
         </arguments>
       </action>
@@ -234,10 +234,10 @@ speed-=.1</string>
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>keycontrol=ini_GetValue(global.file_name,"CONFIG",string_encrypt("KEYS", "199718"))
-keycontrol=string_decrypt(keycontrol,"199718");
-if string(keycontrol)==string("ARROW")
-direction-=speed</string>
+            <string>if (global.controls == "ARROW") {
+    direction-=speed
+}
+</string>
           </argument>
         </arguments>
       </action>
@@ -259,10 +259,10 @@ direction-=speed</string>
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>keycontrol=ini_GetValue(global.file_name,"CONFIG",string_encrypt("KEYS", "199718"))
-keycontrol=string_decrypt(keycontrol,"199718");
-if string(keycontrol)==string("ARROW")
-speed+=.2</string>
+            <string>if (global.controls == "ARROW") {
+    speed += 0.2;
+}
+</string>
           </argument>
         </arguments>
       </action>
@@ -284,10 +284,10 @@ speed+=.2</string>
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>keycontrol=ini_GetValue(global.file_name,"CONFIG",string_encrypt("KEYS", "199718"))
-keycontrol=string_decrypt(keycontrol,"199718");
-if string(keycontrol)==string("ARROW")
-direction+=speed</string>
+            <string>if (global.controls == "ARROW") {
+    direction+=speed
+}
+</string>
           </argument>
         </arguments>
       </action>
