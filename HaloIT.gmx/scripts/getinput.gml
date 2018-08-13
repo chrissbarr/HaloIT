@@ -14,6 +14,8 @@ c1=argument4
 c2=argument5
 c3=argument6
 
+buttons = argument11
+
 buttonx=xx
 buttony=yy+height/2-25
 
@@ -71,7 +73,7 @@ draw_set_color(c1)
 //draws the outline of the button
 draw_rectangle(buttonx-argument8/2,buttony-argument9/2,buttonx+argument8/2,buttony+argument9/2,true)
 draw_text(buttonx-string_length(button1text)*4,buttony-argument9/2+argument9/4,button1text)
-draw_set_font(-1)
+//draw_set_font(-1)
 
 //Sets the color to the second colour you specified
 draw_set_color(c2)
@@ -90,4 +92,4 @@ draw_set_color(c2)
 draw_set_color(c_black)
 draw_set_font(text1)
 draw_text(buttonx-100-50,buttony-25-25,realtext)
-draw_set_font(-1)
+//draw_set_font(-1)

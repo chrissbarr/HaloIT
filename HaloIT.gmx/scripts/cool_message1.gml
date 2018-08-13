@@ -11,6 +11,8 @@ width=argument2
 //sets the message height
 height=argument3
 //sets the colors
+c1=argument4
+c2=argument5
 c1=make_color_rgb(50,139,250)
 c2=make_color_rgb(0,12,34)
 c3=argument6
@@ -178,4 +180,4 @@ draw_set_color(c1)
 draw_rectangle(button3x-argument8/2,button3y-argument9/2,button3x+argument8/2,button3y+argument9/2,true)
 draw_text(button3x-string_length(button3text)*4,button3y-argument9/2+argument9/4,button3text)
 
-draw_set_font(-1)
+//draw_set_font(-1)
