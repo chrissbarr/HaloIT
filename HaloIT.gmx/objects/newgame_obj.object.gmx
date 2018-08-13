@@ -284,11 +284,12 @@ alarm[4]=room_speed*10</string>
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if ask&lt;3{
-text_scr(16)
-get_text_out_marker_step_event()
-}
-lvl_select_mouse_over_scr(newgame_obj,.5)</string>
+            <string>//if ask&lt;3{
+//text_scr(16)
+//get_text_out_marker_step_event()
+//}
+//lvl_select_mouse_over_scr(newgame_obj,.5)
+</string>
           </argument>
         </arguments>
       </action>
@@ -360,7 +361,7 @@ sound_play(menu_button_snd)</string>
 //if crtnew=1{
 global.user_name='default'; //get_string('Please enter your username:','')
 global.password='password'; //get_string('Please enter your password:','')
-//dif=show_message_ext('What difficulty do you wish to play on?','Easy','Normal','Heroic')
+dif=1;//show_message_ext('What difficulty do you wish to play on?','Easy','Normal','Heroic')
 //number=3
 new_user()
 room_goto(loading1)
