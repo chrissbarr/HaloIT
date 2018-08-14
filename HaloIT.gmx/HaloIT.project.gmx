@@ -520,6 +520,13 @@
     <background>background\halofloor_back</background>
     <background>background\museumfloor_back</background>
     <background>background\message_back</background>
+    <backgrounds name="levelSplash">
+      <background>background\splash_level1_intro1</background>
+      <background>background\splash_level1_outro1</background>
+      <background>background\splash_level2_intro1</background>
+      <background>background\splash_level2_outro1</background>
+      <background>background\splash_level3_intro1</background>
+    </backgrounds>
   </backgrounds>
   <paths name="paths">
     <path>paths\finalmovieclip_pelican2_path</path>
@@ -907,15 +914,18 @@
     <object>objects\cursor_normal_obj</object>
     <object>objects\spawnlocater_obj</object>
     <object>objects\set_globals_obj</object>
+    <object>objects\splash_manager_obj</object>
   </objects>
   <rooms name="rooms">
     <room>rooms\initialize_room</room>
     <room>rooms\menu</room>
-    <room>rooms\loading1</room>
+    <room>rooms\training_intro</room>
     <room>rooms\training</room>
-    <room>rooms\loading2</room>
+    <room>rooms\training_outro</room>
+    <room>rooms\sigma_octanus1_intro</room>
     <room>rooms\sigma_octanus1</room>
-    <room>rooms\loading3</room>
+    <room>rooms\sigma_octanus1_outro</room>
+    <room>rooms\sigma_octanus2_intro</room>
     <room>rooms\sigma_octanus2</room>
     <room>rooms\level2_room</room>
     <room>rooms\level_select</room>

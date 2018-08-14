@@ -25,10 +25,7 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>sound_play(message_snd)
-io_clear()
-//show_image('Resources\level1_intro1.jpg',true,room_speed*60*100)
-sound_play(message_end_snd)
+            <string>io_clear()
 sound_loop(level1_backgroundmusic_snd);
 countdown=room_speed*60*2
 alarm[0]=room_speed*2
@@ -355,14 +352,12 @@ alarm[1]=room_speed*6</string>
             <kind>1</kind>
             <string>countdown-=1
 
-if countdown=0{
-give_points(10)
-level_set_done(1)
-sound_play(message_snd)
-io_clear()
-//show_image('Resources\level1_finish1.jpg',true,room_speed*60*100)
-sound_play(message_end_snd)
-room_goto_next()}
+if (countdown == 0) {
+    give_points(10);
+    level_set_done(1);
+    io_clear();
+    room_goto(training_outro);
+}
 </string>
           </argument>
         </arguments>

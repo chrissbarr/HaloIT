@@ -120,7 +120,7 @@ alarm[0] = 10;
           <argument>
             <kind>1</kind>
             <string>if (canClick) {
-    room_goto(loading1);
+    room_goto(training_intro);
 }
 </string>
           </argument>
