@@ -220,7 +220,6 @@
     <sound>sound\assaultrifle_shot_sound</sound>
     <sound>sound\training_turret_shot_snd</sound>
     <sound>sound\marine_shot_snd</sound>
-    <sound>sound\menu_sound</sound>
     <sound>sound\plasma_rifle_shot</sound>
     <sound>sound\plasma_rifle_shot_2</sound>
     <sound>sound\plasma_pistol_shot</sound>
@@ -229,16 +228,8 @@
     <sound>sound\message_end_snd</sound>
     <sound>sound\menu_button_snd</sound>
     <sound>sound\phantom_fire_snd</sound>
-    <sound>sound\level1_backgroundmusic_snd</sound>
-    <sound>sound\level2_backgroundmusic_snd</sound>
-    <sound>sound\level3_backgroundmusic_snd</sound>
     <sound>sound\recharge_snd</sound>
     <sound>sound\shield_beep_snd</sound>
-    <sounds name="tds">
-      <sound>sound\snd_laser</sound>
-      <sound>sound\snd_laser2</sound>
-      <sound>sound\snd_explosion</sound>
-    </sounds>
     <sound>sound\battle_rifle_shot_snd</sound>
     <sound>sound\pistol_reload_snd</sound>
     <sound>sound\assault_rifle_reload_snd</sound>
@@ -251,9 +242,15 @@
     <sound>sound\needle2_shot_snd</sound>
     <sound>sound\needle_explode_snd</sound>
     <sound>sound\needle2_explode_snd</sound>
-    <sound>sound\arenabattle_music</sound>
     <sound>sound\bullet_ping_snd</sound>
-    <sound>sound\finalmovieclip_music</sound>
+    <sounds name="music">
+      <sound>sound\menu_sound</sound>
+      <sound>sound\level1_backgroundmusic_snd</sound>
+      <sound>sound\level2_backgroundmusic_snd</sound>
+      <sound>sound\level3_backgroundmusic_snd</sound>
+      <sound>sound\arenabattle_music</sound>
+      <sound>sound\finalmovieclip_music</sound>
+    </sounds>
   </sounds>
   <sprites name="sprites">
     <sprites name="covenant_spr">
