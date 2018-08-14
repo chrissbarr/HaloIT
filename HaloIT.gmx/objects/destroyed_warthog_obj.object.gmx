@@ -50,12 +50,12 @@ direction=random(360)</string>
           <argument>
             <kind>1</kind>
             <string>varGunLength = point_distance(sprite_get_xoffset(sprite_index),sprite_get_yoffset(sprite_index),27,15);
-varGunDirection = point_direction(sprite_get_xoffset(sprite_index),sprite_get_yoffset(sprite_index),0,0);
+varGunDirection = point_direction(sprite_get_xoffset(sprite_index),sprite_get_yoffset(sprite_index),27,15);
 varsmoke1X = x + lengthdir_x(varGunLength,image_angle + varGunDirection);
 varsmoke1Y = y + lengthdir_y(varGunLength,image_angle + varGunDirection);
 
 varGunLength = point_distance(sprite_get_xoffset(sprite_index),sprite_get_yoffset(sprite_index),27+5,15);
-varGunDirection = point_direction(sprite_get_xoffset(sprite_index),sprite_get_yoffset(sprite_index),5,0);
+varGunDirection = point_direction(sprite_get_xoffset(sprite_index),sprite_get_yoffset(sprite_index),27+5,15);
 varsmoke2X = x + lengthdir_x(varGunLength,image_angle + varGunDirection);
 varsmoke2Y = y + lengthdir_y(varGunLength,image_angle + varGunDirection);
 
@@ -74,248 +74,28 @@ varGunDirection = point_direction(sprite_get_xoffset(sprite_index),sprite_get_yo
 varsmoke5X = x + lengthdir_x(varGunLength,image_angle + varGunDirection);
 varsmoke5Y = y + lengthdir_y(varGunLength,image_angle + varGunDirection);
 
+var i = irandom(10);
 
-image_angle=direction</string>
-          </argument>
-        </arguments>
-      </action>
-      <action>
-        <libid>1</libid>
-        <id>405</id>
-        <kind>0</kind>
-        <userelative>0</userelative>
-        <isquestion>-1</isquestion>
-        <useapplyto>0</useapplyto>
-        <exetype>1</exetype>
-        <functionname>action_if_dice</functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>0</kind>
-            <string>10</string>
-          </argument>
-        </arguments>
-      </action>
-      <action>
-        <libid>1</libid>
-        <id>532</id>
-        <kind>0</kind>
-        <userelative>-1</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>1</exetype>
-        <functionname>action_effect</functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>4</kind>
-            <string>4</string>
-          </argument>
-          <argument>
-            <kind>0</kind>
-            <string>varsmoke1X</string>
-          </argument>
-          <argument>
-            <kind>0</kind>
-            <string>varsmoke1Y</string>
-          </argument>
-          <argument>
-            <kind>4</kind>
-            <string>0</string>
-          </argument>
-          <argument>
-            <kind>13</kind>
-            <string>8421504</string>
-          </argument>
-          <argument>
-            <kind>4</kind>
-            <string>1</string>
-          </argument>
-        </arguments>
-      </action>
-      <action>
-        <libid>1</libid>
-        <id>405</id>
-        <kind>0</kind>
-        <userelative>0</userelative>
-        <isquestion>-1</isquestion>
-        <useapplyto>0</useapplyto>
-        <exetype>1</exetype>
-        <functionname>action_if_dice</functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>0</kind>
-            <string>10</string>
-          </argument>
-        </arguments>
-      </action>
-      <action>
-        <libid>1</libid>
-        <id>532</id>
-        <kind>0</kind>
-        <userelative>-1</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>1</exetype>
-        <functionname>action_effect</functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>4</kind>
-            <string>4</string>
-          </argument>
-          <argument>
-            <kind>0</kind>
-            <string>varsmoke2X</string>
-          </argument>
-          <argument>
-            <kind>0</kind>
-            <string>varsmoke2Y</string>
-          </argument>
-          <argument>
-            <kind>4</kind>
-            <string>0</string>
-          </argument>
-          <argument>
-            <kind>13</kind>
-            <string>8421504</string>
-          </argument>
-          <argument>
-            <kind>4</kind>
-            <string>1</string>
-          </argument>
-        </arguments>
-      </action>
-      <action>
-        <libid>1</libid>
-        <id>405</id>
-        <kind>0</kind>
-        <userelative>0</userelative>
-        <isquestion>-1</isquestion>
-        <useapplyto>0</useapplyto>
-        <exetype>1</exetype>
-        <functionname>action_if_dice</functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>0</kind>
-            <string>10</string>
-          </argument>
-        </arguments>
-      </action>
-      <action>
-        <libid>1</libid>
-        <id>532</id>
-        <kind>0</kind>
-        <userelative>-1</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>1</exetype>
-        <functionname>action_effect</functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>4</kind>
-            <string>4</string>
-          </argument>
-          <argument>
-            <kind>0</kind>
-            <string>varsmoke4X</string>
-          </argument>
-          <argument>
-            <kind>0</kind>
-            <string>varsmoke4Y</string>
-          </argument>
-          <argument>
-            <kind>4</kind>
-            <string>0</string>
-          </argument>
-          <argument>
-            <kind>13</kind>
-            <string>8421504</string>
-          </argument>
-          <argument>
-            <kind>4</kind>
-            <string>1</string>
-          </argument>
-        </arguments>
-      </action>
-      <action>
-        <libid>1</libid>
-        <id>405</id>
-        <kind>0</kind>
-        <userelative>0</userelative>
-        <isquestion>-1</isquestion>
-        <useapplyto>0</useapplyto>
-        <exetype>1</exetype>
-        <functionname>action_if_dice</functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>0</kind>
-            <string>10</string>
-          </argument>
-        </arguments>
-      </action>
-      <action>
-        <libid>1</libid>
-        <id>532</id>
-        <kind>0</kind>
-        <userelative>-1</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>1</exetype>
-        <functionname>action_effect</functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>4</kind>
-            <string>4</string>
-          </argument>
-          <argument>
-            <kind>0</kind>
-            <string>varsmoke3X</string>
-          </argument>
-          <argument>
-            <kind>0</kind>
-            <string>varsmoke3Y</string>
-          </argument>
-          <argument>
-            <kind>4</kind>
-            <string>0</string>
-          </argument>
-          <argument>
-            <kind>13</kind>
-            <string>8421504</string>
-          </argument>
-          <argument>
-            <kind>4</kind>
-            <string>1</string>
+if (i == 0) {
+    effect_create_above(ef_smoke, varsmoke1X, varsmoke1Y, 0, c_gray);
+}
+
+if (i == 1) {
+    effect_create_above(ef_smoke, varsmoke2X, varsmoke2Y, 0, c_gray);
+}
+
+if (i == 2) {
+    effect_create_above(ef_smoke, varsmoke3X, varsmoke3Y, 0, c_gray);
+}
+
+if (i == 3) {
+    effect_create_above(ef_smoke, varsmoke4X, varsmoke4Y, 0, c_gray);
+}
+
+
+image_angle=direction
+
+</string>
           </argument>
         </arguments>
       </action>
