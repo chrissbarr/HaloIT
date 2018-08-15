@@ -9,9 +9,12 @@ I recently came across a back-up copy of the source files, and thought it would 
 
 And yes, I know it's a stupid name - I was 13. Leave me alone!
 
-## Process
+## Screenshots
+![Screenshot](https://raw.githubusercontent.com/chrissbarr/HaloIT/master/Resources/screenshot1.jpg)
 
-- [x] Figure out which source file was most recent
+## Plan
+
+- [x] Figure out which source file is most recent
 - [x] Open that source file in GM 6.1 and confirm that it works
 - [x] Make minimum necessary changes to run project in GM 8
 - [x] Generate a working .exe from GM 8 that will run post-Vista (done, see [releases](https://github.com/chrissbarr/HaloIT/releases/))
@@ -23,3 +26,7 @@ Once I have the file/folder-based version of the project from GM:S in source-con
 
 Looking at the code, a lot of it is as ugly as anything (I had virtually no understanding of object-oriented programming) and I would love to tidy it up, but I would like to get as close to an unmodified version as possible working first, to serve as an honest indicator of my prior (embarrasing) programming effort.
 
+## Playables
+Now that playable files have been generated, they are being hosted on the [releases](https://github.com/chrissbarr/HaloIT/releases/) page.
+
+Additionally, a browser-playable HTML5 copy of the most recent release is available [here](http://games.chrisbarrbuilds.com/HaloIT_latest/).
