@@ -50,9 +50,7 @@ audio_play_sound(level3_backgroundmusic_snd, 0, true);
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>give_points(10);
-level_set_done(3);
-audio_stop_all();
+            <string>audio_stop_all();
 </string>
           </argument>
         </arguments>
