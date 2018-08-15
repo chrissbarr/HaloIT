@@ -28,13 +28,13 @@
             <string>direction=obj_mc.direction+random(10)-5
 speed=0
 obj_mc.assaultrifle_mag-=1
-sound_play(assaultrifle_shot_sound)
 x=obj_mc.varshoot1X
 y=obj_mc.varshoot1Y
 alarm[1]=1
 hptake=6+random(2)
 shieldtake=1.5
-dieonimpact=true</string>
+dieonimpact=true
+</string>
           </argument>
         </arguments>
       </action>

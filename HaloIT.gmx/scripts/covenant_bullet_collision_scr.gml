@@ -22,7 +22,7 @@ else
             if what='elite'
                 instance_create(x,y,purple_blood_drop_obj)
             if what='hunter'{
-                sound_play(bullet_ping_snd)
+                audio_play_sound(bullet_ping_snd, 0, false)
             }
         }
     }

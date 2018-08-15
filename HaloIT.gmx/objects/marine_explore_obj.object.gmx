@@ -98,7 +98,7 @@ if !collision_line(x,y,target.x,target.y,solid_obj,true,true)
 if !collision_line(x,y,target.x,target.y,human_par,true,true){
 instance_create(varshoot1X,varshoot1Y,marine_bullet)
 sound_volume(marine_shot_snd,volume)
-sound_play(marine_shot_snd)}}
+audio_play_sound(marine_shot_snd, 0, false)}}
 alarm[0]=4+random(4)
 if instance_exists(covenant_2_par){
 target=instance_nearest(x,y,covenant_2_par)
@@ -108,11 +108,8 @@ if distance_to_object(target)&lt;range
 if !collision_line(x,y,target.x,target.y,solid_obj,true,true)
 if !collision_line(x,y,target.x,target.y,human_par,true,true){
 instance_create(varshoot1X,varshoot1Y,marine_bullet)
-sound_volume(marine_shot_snd,volume)
-sound_play(marine_shot_snd)
+audio_play_sound_at(marine_shot_snd, varshoot1X, varshoot1Y, 0, 100, 300, 1, false, 0);
 alarm[0]=4+random(4)}}
-
-
 </string>
           </argument>
         </arguments>
@@ -150,21 +147,6 @@ target=instance_nearest(x,y,covenant_2_par)
 if distance_to_object(target)&lt;range
 direction=point_direction(x,y,target.x,target.y)}
 
-
-ii=instance_nearest(x,y,obj_mc)
-if distance_to_object(ii)&gt;600
-volume=0
-if distance_to_object(ii)&lt;600 &amp;&amp; distance_to_object(ii)&gt;500
-volume=.2
-if distance_to_object(ii)&lt;500 &amp;&amp; distance_to_object(ii)&gt;400
-volume=.4
-if distance_to_object(ii)&lt;400 &amp;&amp; distance_to_object(ii)&gt;300
-volume=.5
-if distance_to_object(ii)&lt;300 &amp;&amp; distance_to_object(ii)&gt;200
-volume=.6
-if distance_to_object(ii)&lt;200
-volume=.7
-
 if hp&lt;0
 instance_destroy()
 if instance_exists(covenant_par){
@@ -184,7 +166,8 @@ else
 if explore=true
 if distance_to_point(tarx,tary)&gt;30{
 speed=1.5
-direction=point_direction(x,y,tarx,tary)}</string>
+direction=point_direction(x,y,tarx,tary)}
+</string>
           </argument>
         </arguments>
       </action>

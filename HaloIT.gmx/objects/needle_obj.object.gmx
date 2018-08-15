@@ -133,29 +133,14 @@ alarm[1] := 1</string>
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>
-image_speed=1
+            <string>image_speed=1
 a=round(random(2))
-iii=instance_nearest(x,y,obj_mc)
-if distance_to_object(iii)&gt;600
-volume=0
-if distance_to_object(iii)&lt;600 &amp;&amp; distance_to_object(iii)&gt;500
-volume=.2
-if distance_to_object(iii)&lt;500 &amp;&amp; distance_to_object(iii)&gt;400
-volume=.4
-if distance_to_object(iii)&lt;400 &amp;&amp; distance_to_object(iii)&gt;300
-volume=.6
-if distance_to_object(iii)&lt;300 &amp;&amp; distance_to_object(iii)&gt;200
-volume=.8
-if distance_to_object(iii)&lt;200
-volume=1
+
 if a=1{
-sound_volume(needle_explode_snd,volume)
-sound_play(needle_explode_snd)
+audio_play_sound_at(needle_explode_snd, x, y, 0, 100, 300, 1, false, 0);
 }
 else{
-sound_volume(needle2_explode_snd,volume)
-sound_play(needle2_explode_snd)
+audio_play_sound_at(needle2_explode_snd, x, y, 0, 100, 300, 1, false, 0);
 }
 </string>
           </argument>

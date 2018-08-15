@@ -28,7 +28,6 @@
             <string>ii=instance_nearest(x,y,banshee_scroller_obj)
 direction=point_direction(x,y,ii.x,ii.y)
 speed=8
-sound_play(phantom_fire_snd)
 </string>
           </argument>
         </arguments>

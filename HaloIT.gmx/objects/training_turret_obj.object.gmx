@@ -60,9 +60,10 @@ alarm[0]=ss
 a=instance_nearest(x,y,training_turret_bullet_obj)
 a.speed=12
 a.direction=self.direction+random(5)-2.5
-sound_play(training_turret_shot_snd)
+audio_play_sound_at(training_turret_shot_snd, x, y, 0, 50, 300, 1, false, 0);
 
-alarm[0]=ss+random(2)</string>
+alarm[0]=ss+random(2)
+</string>
           </argument>
         </arguments>
       </action>
@@ -90,29 +91,7 @@ varshoot1X = x + lengthdir_x(varGunLength,image_angle + varGunDirection);
 varshoot1Y = y + lengthdir_y(varGunLength,image_angle + varGunDirection);
 
 image_angle=direction
-
-ii=instance_nearest(x,y,obj_mc)
-
-if distance_to_object(ii)&gt;800
-volume=0
-if distance_to_object(ii)&lt;800 &amp;&amp; distance_to_object(ii)&gt;700
-volume=.1
-if distance_to_object(ii)&lt;700 &amp;&amp; distance_to_object(ii)&gt;600
-volume=.2
-if distance_to_object(ii)&lt;600 &amp;&amp; distance_to_object(ii)&gt;500
-volume=.3
-if distance_to_object(ii)&lt;500 &amp;&amp; distance_to_object(ii)&gt;400
-volume=.4
-if distance_to_object(ii)&lt;400 &amp;&amp; distance_to_object(ii)&gt;300
-volume=.5
-if distance_to_object(ii)&lt;300 &amp;&amp; distance_to_object(ii)&gt;200
-volume=.6
-if distance_to_object(ii)&lt;200 &amp;&amp; distance_to_object(ii)&gt;100
-volume=.7
-if distance_to_object(ii)&lt;100
-volume=.8
-
-sound_volume(training_turret_shot_snd,volume)</string>
+</string>
           </argument>
         </arguments>
       </action>

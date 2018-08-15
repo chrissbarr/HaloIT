@@ -25,10 +25,10 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if sound_isplaying(menu_sound)
-sound_stop(menu_sound)
-if sound_isplaying(shield_beep_snd)
-sound_stop(shield_beep_snd)
+            <string>if audio_is_playing(menu_sound)
+audio_stop_sound(menu_sound)
+if audio_is_playing(shield_beep_snd)
+audio_stop_sound(shield_beep_snd)
 reloading=false
 can_grenade=false
 grenade='frag'
@@ -200,6 +200,8 @@ alarm[0]=5 // small delay before we can shoot to debounce mouse on level start
 alarm[8]=1
 
 instance_create(x,y,cursor_obj)
+
+audio_listener_orientation(0,1,0,0,0,1);
 
 
 </string>
@@ -375,31 +377,31 @@ reloading=false</string>
           <argument>
             <kind>1</kind>
             <string>if reloadbullet='pistol'{
-sound_play(pistol_reload_snd)
+audio_play_sound(pistol_reload_snd, 0, false)
 }
 
 
 if reloadbullet='needler'{
-sound_play(pistol_reload_snd)
+audio_play_sound(pistol_reload_snd, 0, false)
 }
 
 
 if reloadbullet='assault_rifle'{
-sound_play(assault_rifle_reload_snd)
+audio_play_sound(assault_rifle_reload_snd, 0, false)
 }
 
 if reloadbullet='battle_rifle'{
-sound_play(battle_rifle_reload_snd)
+audio_play_sound(battle_rifle_reload_snd, 0, false)
 }
 
 if reloadbullet='sniper_rifle'{
-sound_play(battle_rifle_reload_snd)
+audio_play_sound(battle_rifle_reload_snd, 0, false)
 }
 
 if reloadbullet='shotgun'
 if reloading=true
 if shotgun_mag&lt;12{
-sound_play(shotgun_reload_snd)
+audio_play_sound(shotgun_reload_snd, 0, false)
 }
 
 
@@ -425,7 +427,7 @@ sound_play(shotgun_reload_snd)
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>sound_play(shotgun_cock_snd)</string>
+            <string>audio_play_sound(shotgun_cock_snd, 0, false)</string>
           </argument>
         </arguments>
       </action>
@@ -570,12 +572,12 @@ if overshield=false{
 if shield&lt;shield_max{
 shield+=1
 if shield&lt;50
-if !sound_isplaying(shield_beep_snd)
-sound_loop(shield_beep_snd)}}
+if !audio_is_playing(shield_beep_snd)
+audio_play_sound(shield_beep_snd, 0, true)}}
 
 if shield&gt;50
-if sound_isplaying(shield_beep_snd)
-sound_stop(shield_beep_snd)
+if audio_is_playing(shield_beep_snd)
+audio_stop_sound(shield_beep_snd)
 
 alarm[1]=1
 }</string>
@@ -690,7 +692,10 @@ reload=needler_shoot_speed+random(3)
 
 if plasma_rifle_ammo&lt;1.9
 plasma_rifle_ammo=0
-godmode_scr()</string>
+godmode_scr()
+
+audio_listener_position(x, y, 0);
+</string>
           </argument>
         </arguments>
       </action>
@@ -907,8 +912,8 @@ if distance_to_object(neartree2)&lt;100{
 rantreething=round(random(10))
 if rantreething=3{
 volthing=random(10)/10
-sound_volume(bird1_snd,volthing)
-sound_play(bird1_snd)
+audio_sound_gain(bird1_snd, volthing, 0)
+audio_play_sound(bird1_snd, 0, false)
 }
 }
 }
@@ -2918,7 +2923,7 @@ alarm[0]=reload
 if reloading=false{
 if battle_rifle_mag&gt;0{
 instance_create(varshoot1X,varshoot1Y,bullettype)
-sound_play(battle_rifle_shot_snd)
+audio_play_sound(battle_rifle_shot_snd, 0, false)
 alarm[6]=3
 b=2
 can_shoot=false
@@ -3041,7 +3046,7 @@ reloadbullet=battle_rifle_reload()
 if reloading=false{
 if sniper_rifle_mag&gt;0{
 instance_create(varshoot1X,varshoot1Y,bullettype)
-sound_play(sniper_rifle_shot_snd)
+audio_play_sound(sniper_rifle_shot_snd, 0, false)
 alarm[6]=3
 b=2
 can_shoot=false
@@ -3164,7 +3169,7 @@ reloadbullet=sniper_rifle_reload()
 if reloading=false{
 if pistol_mag&gt;0{
 instance_create(varshoot1X,varshoot1Y,bullettype)
-sound_play(pistol_shot_sound)
+audio_play_sound(pistol_shot_sound, 0, false)
 b=2
 can_shoot=false
 a=round(random(2))
@@ -3286,7 +3291,7 @@ reloadbullet=pistol_reload()
 if reloading=false{
 if assaultrifle_mag&gt;0{
 instance_create(varshoot1X,varshoot1Y,bullettype)
-sound_play(assaultrifle_shot_sound)
+audio_play_sound(assaultrifle_shot_sound, 0, false);
 b=2
 can_shoot=false
 a=round(random(2))
@@ -3427,7 +3432,7 @@ a.direction=direction+5+random(3)
 if s=1
 a.direction=direction+7+random(3)
 s-=1
-sound_play(shotgun_shot_snd)
+audio_play_sound(shotgun_shot_snd, 0, false)
 
 }
 shotgun_mag-=1
@@ -3558,10 +3563,10 @@ a=round(random(2))
 if a=1
 {
 alarm[3]=1
-sound_play(needle_shot_snd)
+audio_play_sound(needle_shot_snd, 0, false)
 }
 else
-sound_play(needle2_shot_snd)
+audio_play_sound(needle2_shot_snd, 0, false)
 alarm[0]=reload
 }
 else
@@ -3663,7 +3668,7 @@ reloadbullet=needler_reload_scr()
 if reloading=false{
 if battle_rifle_mag&gt;0{
 instance_create(varshoot1X,varshoot1Y,bullettype)
-sound_play(battle_rifle_shot_snd)
+audio_play_sound(battle_rifle_shot_snd, 0, false)
 b=2
 can_shoot=false
 a=round(random(2))

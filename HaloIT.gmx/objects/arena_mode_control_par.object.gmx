@@ -44,8 +44,8 @@ time=time*30
 totaltime=time
 deadenemies=0
 alarm[0]=room_speed*6+random(60)
-sound_stop_all();
-sound_loop(arenabattle_music)
+audio_stop_all();
+audio_play_sound(arenabattle_music, 0, true)
 ask=true
 number=1
 if time&gt;room_speed*60*25

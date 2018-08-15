@@ -116,8 +116,8 @@ alarm[0]=256/speed</string>
           <argument>
             <kind>1</kind>
             <string>image_index=1
-if !sound_isplaying(menu_button_snd)
-sound_play(menu_button_snd)</string>
+audio_play_sound(menu_button_snd, 0, false)
+</string>
           </argument>
         </arguments>
       </action>

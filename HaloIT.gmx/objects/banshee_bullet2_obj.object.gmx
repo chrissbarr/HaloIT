@@ -28,7 +28,7 @@
             <string>direction=90
 speed=18
 alarm[0]=700/speed
-sound_play(plasma_pistol_shot)</string>
+audio_play_sound(plasma_pistol_shot, 0, false)</string>
           </argument>
         </arguments>
       </action>

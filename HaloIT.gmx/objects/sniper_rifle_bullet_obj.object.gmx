@@ -31,7 +31,7 @@ if obj_mc.sniper_rifle_mag&lt;1
 instance_destroy()
 else{
 obj_mc.sniper_rifle_mag-=1
-sound_play(sniper_rifle_shot_snd)}
+audio_play_sound(sniper_rifle_shot_snd, 0, false)}
 x=obj_mc.varshoot1X
 y=obj_mc.varshoot1Y
 alarm[1]=1

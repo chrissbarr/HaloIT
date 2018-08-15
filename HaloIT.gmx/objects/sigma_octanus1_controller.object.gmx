@@ -27,7 +27,7 @@
             <kind>1</kind>
             <string>io_clear()
 paused=false
-sound_loop(level2_backgroundmusic_snd)
+audio_play_sound(level2_backgroundmusic_snd, 0, true)
 finished=false
 </string>
           </argument>

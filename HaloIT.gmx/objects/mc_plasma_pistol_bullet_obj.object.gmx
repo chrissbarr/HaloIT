@@ -32,7 +32,7 @@ if obj_mc.plasma_pistol_ammo&lt;1
 instance_destroy()
 else{
 obj_mc.plasma_pistol_ammo-=1
-sound_play(plasma_pistol_shot_2_snd)}
+audio_play_sound(plasma_pistol_shot_2_snd, 0, false)}
 alarm[0]=300/speed
 dieonimpact=true
 hptake=5

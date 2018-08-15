@@ -184,26 +184,10 @@ instance_activate_all()
 if distance_to_object(nn)&lt;10
 motion_add(point_direction(x,y,nn.x,nn.y),-.5)
 
-
-iii=instance_nearest(x,y,obj_mc)
-if distance_to_object(iii)&gt;600
-volume=0
-if distance_to_object(iii)&lt;600 &amp;&amp; distance_to_object(iii)&gt;500
-volume=.2
-if distance_to_object(iii)&lt;500 &amp;&amp; distance_to_object(iii)&gt;400
-volume=.4
-if distance_to_object(iii)&lt;400 &amp;&amp; distance_to_object(iii)&gt;300
-volume=.6
-if distance_to_object(iii)&lt;300 &amp;&amp; distance_to_object(iii)&gt;200
-volume=.8
-if distance_to_object(iii)&lt;200
-volume=1
-
 varGunLength = point_distance(sprite_get_xoffset(sprite_index),sprite_get_yoffset(sprite_index),16,9);
 varGunDirection = point_direction(sprite_get_xoffset(sprite_index),sprite_get_yoffset(sprite_index),16,9);
 varheadX = x + lengthdir_x(varGunLength,image_angle + varGunDirection);
 varheadY = y + lengthdir_y(varGunLength,image_angle + varGunDirection);
-
 </string>
           </argument>
         </arguments>
@@ -377,8 +361,9 @@ varheadY = y + lengthdir_y(varGunLength,image_angle + varGunDirection);
           <argument>
             <kind>1</kind>
             <string>if rank!=2{
-sound_volume(plasma_pistol_shot,volume)
-sound_play(plasma_pistol_shot)
+
+audio_play_sound_at(plasma_pistol_shot, varshoot1X, varshoot1Y, 0, 100, 300, 1, false, 0);
+
 a=instance_create(varshoot1X,varshoot1Y,plasma_pistol_bullet)
 a.direction=point_direction(x,y,instance_nearest(x,y,human_par).x,instance_nearest(x,y,human_par).y)+random(accuracy)-accuracy/2
 a.speed=8
@@ -386,12 +371,14 @@ a.alarm[0]=500/a.speed
 }
 else
 {
-sound_volume(needle_shot_snd,volume)
-sound_play(needle_shot_snd)
+
+audio_play_sound_at(needle_shot_snd, varshoot1X, varshoot1Y, 0, 100, 300, 1, false, 0);
+
 a=instance_create(varshoot1X,varshoot1Y,needle_obj)
 a.direction=direction+random(6)-3
 a.speed=13
-}</string>
+}
+</string>
           </argument>
         </arguments>
       </action>
@@ -481,7 +468,7 @@ a.speed=13
             <kind>1</kind>
             <string>if distance_to_object(instance_nearest(x,y,obj_mc))&lt;180
 if distance_to_object(instance_nearest(x,y,marine_par))&lt;180
-sound_play(grunt_allaroundme_snd)</string>
+audio_play_sound(grunt_allaroundme_snd, 0, false)</string>
           </argument>
         </arguments>
       </action>

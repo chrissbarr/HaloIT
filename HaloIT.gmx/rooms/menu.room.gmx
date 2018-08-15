@@ -10,8 +10,8 @@
   <persistent>0</persistent>
   <colour>12632256</colour>
   <showcolour>-1</showcolour>
-  <code>if !sound_isplaying(menu_sound)
-sound_loop(menu_sound)
+  <code>if !audio_is_playing(menu_sound)
+audio_play_sound(menu_sound, 0, true)
 draw_set_font(text1)
 global.textcolor=make_color_rgb(50,139,250)
 global.textcolor2=make_color_rgb(50,169,250)
@@ -23,7 +23,7 @@ global.backcolour=make_color_rgb(0,12,34)
 //message_input_color(global.backcolour)
 //message_input_font(denmark,14,global.textcolor,0)
 //message_mouse_color(global.textcolor2)
-sound_stop(arenabattle_music)</code>
+audio_stop_sound(arenabattle_music)</code>
   <enableViews>0</enableViews>
   <clearViewBackground>-1</clearViewBackground>
   <clearDisplayBuffer>-1</clearDisplayBuffer>

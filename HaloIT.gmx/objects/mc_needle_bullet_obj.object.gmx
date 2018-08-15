@@ -188,9 +188,9 @@ alarm[1] := 1</string>
 image_speed=1
 a=round(random(2))
 if a=1
-sound_play(needle_explode_snd)
+audio_play_sound(needle_explode_snd, 0, false)
 else
-sound_play(needle2_explode_snd)
+audio_play_sound(needle2_explode_snd, 0, false)
 </string>
           </argument>
         </arguments>

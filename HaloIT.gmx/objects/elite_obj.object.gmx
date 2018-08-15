@@ -212,21 +212,7 @@ nn=instance_nearest(x,y,grunt_obj)
 instance_activate_all()
 if distance_to_object(nn)&lt;10
 motion_add(point_direction(x,y,nn.x,nn.y),-.5)
-
-
-iii=instance_nearest(x,y,obj_mc)
-if distance_to_object(iii)&gt;600
-volume=0
-if distance_to_object(iii)&lt;600 &amp;&amp; distance_to_object(iii)&gt;500
-volume=.2
-if distance_to_object(iii)&lt;500 &amp;&amp; distance_to_object(iii)&gt;400
-volume=.4
-if distance_to_object(iii)&lt;400 &amp;&amp; distance_to_object(iii)&gt;300
-volume=.6
-if distance_to_object(iii)&lt;300 &amp;&amp; distance_to_object(iii)&gt;200
-volume=.8
-if distance_to_object(iii)&lt;200
-volume=1</string>
+</string>
           </argument>
         </arguments>
       </action>
@@ -398,8 +384,8 @@ volume=1</string>
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>sound_volume(plasma_rifle_shot,volume)
-sound_play(plasma_rifle_shot)</string>
+            <string>audio_play_sound_at(plasma_rifle_shot, varshoot1X, varshoot1Y, 0, 100, 300, 1, false, 0);
+</string>
           </argument>
         </arguments>
       </action>

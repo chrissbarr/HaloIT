@@ -108,22 +108,6 @@ varGunLength = point_distance(sprite_get_xoffset(sprite_index),sprite_get_yoffse
 varGunDirection = point_direction(sprite_get_xoffset(sprite_index),sprite_get_yoffset(sprite_index),29,20);
 varshoot2X = x + lengthdir_x(varGunLength,image_angle + varGunDirection);
 varshoot2Y = y + lengthdir_y(varGunLength,image_angle + varGunDirection);
-
-ii=instance_nearest(x,y,banshee_scroller_obj)
-
-
-if distance_to_object(ii)&gt;600
-volume=0
-if distance_to_object(ii)&lt;600 &amp;&amp; distance_to_object(ii)&gt;500
-volume=.2
-if distance_to_object(ii)&lt;500 &amp;&amp; distance_to_object(ii)&gt;400
-volume=.4
-if distance_to_object(ii)&lt;400 &amp;&amp; distance_to_object(ii)&gt;300
-volume=.6
-if distance_to_object(ii)&lt;300 &amp;&amp; distance_to_object(ii)&gt;200
-volume=.8
-if distance_to_object(ii)&lt;200
-volume=1
 </string>
           </argument>
         </arguments>
@@ -195,12 +179,10 @@ b=2
 else
 b=1
 
+audio_play_sound_at(plasma_pistol_shot, x, y, 0, 300, 800, 1, false, 0);
 
-sound_volume(plasma_pistol_shot,volume)
-sound_play(plasma_pistol_shot)
-sound_volume(plasma_pistol_shot,1)
-
-}</string>
+}
+</string>
           </argument>
         </arguments>
       </action>

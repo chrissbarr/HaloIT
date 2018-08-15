@@ -31,7 +31,7 @@ if obj_mc.plasma_rifle_ammo&lt;1
 instance_destroy()
 else{
 obj_mc.plasma_rifle_ammo-=random(.5)+.5
-sound_play(plasma_rifle_shot_2)}
+audio_play_sound(plasma_rifle_shot_2, 0, false)}
 alarm[0]=300/speed
 
 hptake=9+random(4)

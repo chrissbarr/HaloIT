@@ -28,7 +28,7 @@
             <string>speed=14
 direction=instance_nearest(x,y,tank_turret_obj).direction+random(10)-10
 alarm[0]=300/speed
-sound_play(assaultrifle_shot_sound)
+audio_play_sound(assaultrifle_shot_sound, 0, false)
 
 hptake=10+random(2)
 shieldtake=2.2

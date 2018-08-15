@@ -115,22 +115,6 @@ nn=instance_nearest(x,y,grunt_obj)
 instance_activate_all()
 if distance_to_object(nn)&lt;10
 motion_add(point_direction(x,y,nn.x,nn.y),-.5)
-
-iii=instance_nearest(x,y,obj_mc)
-if distance_to_object(iii)&gt;600
-volume=0
-if distance_to_object(iii)&lt;600 &amp;&amp; distance_to_object(iii)&gt;500
-volume=.2
-if distance_to_object(iii)&lt;500 &amp;&amp; distance_to_object(iii)&gt;400
-volume=.4
-if distance_to_object(iii)&lt;400 &amp;&amp; distance_to_object(iii)&gt;300
-volume=.6
-if distance_to_object(iii)&lt;300 &amp;&amp; distance_to_object(iii)&gt;200
-volume=.8
-if distance_to_object(iii)&lt;200
-volume=1
-
-
 </string>
           </argument>
         </arguments>
@@ -276,13 +260,15 @@ volume=1
           <argument>
             <kind>1</kind>
             <string>if rank!=2{
-sound_volume(plasma_pistol_shot,volume)
-sound_play(plasma_pistol_shot)
+
+audio_play_sound_at(plasma_pistol_shot, varshoot1X, varshoot1Y, 0, 100, 300, 1, false, 0);
+
 a=instance_create(varshoot1X,varshoot1Y,plasma_pistol_bullet)
 a.direction=point_direction(x,y,instance_nearest(x,y,human_par).x,instance_nearest(x,y,human_par).y)+random(accuracy)-accuracy/2
 a.speed=8
 a.alarm[0]=500/a.speed
-}</string>
+}
+</string>
           </argument>
         </arguments>
       </action>

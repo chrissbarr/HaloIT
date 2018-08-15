@@ -30,7 +30,7 @@ tarx=mouse_x
 tary=mouse_y
 direction=point_direction(x,y,tarx,tary)
 
-sound_play(tank_cannon_snd)
+audio_play_sound(tank_cannon_snd, 0, false)
 
 hptake=100+random(20)
 shieldtake=200

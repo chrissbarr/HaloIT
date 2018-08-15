@@ -42,7 +42,10 @@ hp=100
 
 instance_create(0,0,bar2_obj)
 lvl=1
-alarm[3]=room_speed*10</string>
+alarm[3]=room_speed*10
+
+audio_listener_orientation(0,1,0,0,0,1);
+</string>
           </argument>
         </arguments>
       </action>
@@ -243,6 +246,8 @@ varshoot2Y = y + lengthdir_y(varGunLength,image_angle + varGunDirection);
 
 if hp&lt;1
 instance_destroy()
+
+audio_listener_position(x, y, 0);
 </string>
           </argument>
         </arguments>

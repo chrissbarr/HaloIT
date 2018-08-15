@@ -30,7 +30,7 @@ splashList = ds_list_create();
 targetRoom = menu;
 canClick = false;
 
-sound_play(message_snd);
+audio_play_sound(message_snd, 0, false);
 
 alarm[0] = 10;
 </string>
@@ -106,7 +106,7 @@ alarm[0] = 10;
             <string>if (splashIndex &lt; ds_list_size(splashList)) {
     draw_background(splashList[| splashIndex], 0, 0);
 } else {
-    sound_play(message_end_snd);
+    audio_play_sound(message_end_snd, 0, false);
     room_goto(targetRoom);
 }
 </string>
