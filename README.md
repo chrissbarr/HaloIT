@@ -14,11 +14,10 @@ And yes, I know it's a stupid name - I was 13. Leave me alone!
 - [x] Figure out which source file was most recent
 - [x] Open that source file in GM 6.1 and confirm that it works
 - [x] Make minimum necessary changes to run project in GM 8
-- [ ] Generate a working .exe from GM 8 that will run post-Vista
-- [ ] Use GameMaker:Studio to import the GM 8 version and convert to a folder-based project structure instead of the GM 6.1 / 8 binary-blob (so I can actually see the code and track changes)
-- [ ] Get the project running in GM:S with the minimum number of necessary changes
-- [ ] Generate newer .exe from GM:S
-- [ ] Generate HTML5 browser-playable version from GM:S (would be nice to embed this project somewhere)
+- [x] Generate a working .exe from GM 8 that will run post-Vista (done, see [releases](https://github.com/chrissbarr/HaloIT/releases/))
+- [x] Use GameMaker:Studio to import the GM 8 version and convert to a folder-based project structure instead of the GM 6.1 / 8 binary-blob (so I can actually see the code and track changes)
+- [x] Get the project running in GM:S with the minimum number of necessary changes
+- [x] Generate Windows and HTML5 runnables from GM:S (done, see [releases](https://github.com/chrissbarr/HaloIT/releases/))
 
 Once I have the file/folder-based version of the project from GM:S in source-control, and have generated playable .exe and HTML5 outputs, I have a browsable and playable representation of the project as I left it years ago. 
 
