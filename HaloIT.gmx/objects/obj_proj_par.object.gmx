@@ -28,11 +28,11 @@
             <string>damage_shields = 1;
 damage_hp = 1;
 
-parent = noone;
+owner = undefined;
 
 speed = 60;
 lifespan = 30;
-target = noone;
+target = undefined;
 tracking_force = 0;
 
 step = 0;
@@ -89,14 +89,14 @@ if (step &gt; lifespan) {
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if (parent != noone) {
-    instance_deactivate_object(parent);
+            <string>if (owner != noone) {
+    instance_deactivate_object(owner);
 }
 
 coll = collision_line_point(xprevious, yprevious, x, y, entity_par_obj, true, true);
 
-if (parent != noone) {
-    instance_activate_object(parent);
+if (owner != noone) {
+    instance_activate_object(owner);
 }
 
 if(global.debug) {
@@ -108,10 +108,7 @@ if(global.debug) {
     }
 }
 
-if (coll[0] != noone and coll[0] != undefined) {
-    //x = coll[1];
-    //y = coll[2];
-    
+if (coll[0] != noone and coll[0] != undefined) {  
     p[0] = id;
     p[1] = coll[1];
     p[2] = coll[2];
@@ -121,10 +118,6 @@ if (coll[0] != noone and coll[0] != undefined) {
         event_perform(ev_other, ev_user0);// speed = 0;
     }
 }
-
-
-
-
 
 draw_sprite_ext(sprite_index, image_index, x, y, 1, 1, image_angle, c_white, 1);
 </string>

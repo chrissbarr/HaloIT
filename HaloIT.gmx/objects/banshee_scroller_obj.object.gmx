@@ -779,7 +779,7 @@ instance_destroy()</string>
         yy = varshoot2Y;
     }
 
-    a = spawn_projectile(obj_proj_banshee, xx, yy, direction, 1);
+    a = spawn_projectile(obj_proj_banshee, xx, yy, direction, 1, id);
     audio_play_sound_at(plasma_pistol_shot, xx, yy, 0, 300, 800, 1, false, 0);
     
     canshoot=false

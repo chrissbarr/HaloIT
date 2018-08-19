@@ -174,7 +174,7 @@ charge=0
 if charge=room_speed*3
 {
 fireDir = point_direction(x,y,ii.x,ii.y);
-a = spawn_projectile(obj_proj_fuel_rod, varshoot1X, varshoot1Y, fireDir, 5);
+a = spawn_projectile(obj_proj_fuel_rod, varshoot1X, varshoot1Y, fireDir, 5, id);
 charge=0
 }
 if charge&gt;1

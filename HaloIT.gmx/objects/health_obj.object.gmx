@@ -117,34 +117,21 @@ draw_percentage_bar(view_xview+10,view_yview+457+6,100,4,obj_mc.alarm[3],obj_mc.
 draw_percentage_bar(view_xview+116,view_yview+457,50,10,obj_mc.hp,obj_mc.hp_max,c_green,true,c_black);
 
 
+//drawing current weapon ammo and status
+var curWeap = obj_mc.weapons[| obj_mc.weapons_index];
+var mag = curWeap.magazine_current;
+var magMax = curWeap.magazine_maximum;
+var ammo = curWeap.ammo_current;
 
-if obj_mc.bullettype=obj_proj_pistol
-draw_text(view_xview+180,view_yview+455,'Ammo:' +string(obj_mc.pistol_mag)+'/'+string(obj_mc.pistolammo))
-
-if obj_mc.bullettype=obj_proj_arifle
-draw_text(view_xview+180,view_yview+455,'Ammo:' +string(obj_mc.assaultrifle_mag)+'/'+string(obj_mc.assaultrifleammo))
-
-if obj_mc.bullettype=obj_proj_plasma_rifle {
-draw_text(view_xview+180,view_yview+455,'Ammo:' +string(round(obj_mc.plasma_rifle_ammo)))
-if obj_mc.plasmacanshoot=true
-draw_percentage_bar(view_xview+260,view_yview+465,50,5,obj_mc.overload,10,c_white,true,c_black);
-else
-draw_percentage_bar(view_xview+260,view_yview+465,50,5,obj_mc.overload,10,c_red,true,c_black);
+if (curWeap.draw_ammo_as_bar) {
+    draw_percentage_bar(view_xview+180,view_yview+457,50,10,mag,magMax,c_blue,true,c_black);
+    if (curWeap.overheats) {
+        var overheat = curWeap.overheat_level;
+        draw_percentage_bar(view_xview+180,view_yview+465,50,5,overheat,1,c_white,false,c_black);
+    }
+} else {
+    draw_text(view_xview+180,view_yview+455,'Ammo:' + string(mag) + '/' + string(ammo));
 }
-
-if obj_mc.bullettype=obj_proj_plasma_pistol
-draw_text(view_xview+180,view_yview+455,'Ammo:' +string(obj_mc.plasma_pistol_ammo))
-
-if obj_mc.bullettype=battle_rifle_bullet_obj
-draw_text(view_xview+180,view_yview+455,'Ammo:' +string(obj_mc.battle_rifle_mag)+'/'+string(obj_mc.battle_rifle_ammo))
-
-if obj_mc.bullettype=obj_proj_shotgun
-draw_text(view_xview+180,view_yview+455,'Ammo:' +string(obj_mc.shotgun_mag)+'/'+string(obj_mc.shotgun_ammo))
-
-if obj_mc.bullettype=mc_needle_bullet_obj
-draw_text(view_xview+180,view_yview+455,'Ammo:' +string(obj_mc.needler_mag)+'/'+string(obj_mc.needler_ammo))
-
-
 
 
 draw_radar(global._radar,obj_mc.x,obj_mc.y,view_xview+589,view_yview+480-134+84,45,c_black,-1)

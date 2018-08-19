@@ -261,7 +261,7 @@ motion_add(point_direction(x,y,nn.x,nn.y),-.5)
             <string>audio_play_sound_at(plasma_pistol_shot, varshoot1X, varshoot1Y, 0, 100, 300, 1, false, 0);
 
 fireDir = point_direction(x,y,instance_nearest(x,y,human_par).x,instance_nearest(x,y,human_par).y);
-a = spawn_projectile(obj_proj_plasma_pistol, varshoot1X, varshoot1Y, fireDir, accuracy);
+a = spawn_projectile(obj_proj_plasma_pistol, varshoot1X, varshoot1Y, fireDir, accuracy, id);
 </string>
           </argument>
         </arguments>

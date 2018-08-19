@@ -95,7 +95,7 @@ direction=point_direction(x,y,target.x,target.y)
 if distance_to_object(target)&lt;range
 if !collision_line(x,y,target.x,target.y,solid_obj,true,true)
 if !collision_line(x,y,target.x,target.y,human_par,true,true){
-a = spawn_projectile(obj_proj_arifle, varshoot1X, varshoot1Y, direction, 5);
+a = spawn_projectile(obj_proj_arifle, varshoot1X, varshoot1Y, direction, 5, id);
 audio_play_sound_at(assaultrifle_shot_sound, varshoot1X, varshoot1Y, 0, 100, 300, 1, false, 0);
 }}
 alarm[0]=4+random(4)

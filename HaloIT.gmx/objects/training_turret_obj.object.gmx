@@ -57,7 +57,7 @@ alarm[0]=ss
           <argument>
             <kind>1</kind>
             <string>repeat (1) {
-    spawn_projectile(obj_proj_pistol, varshoot1X, varshoot1Y, direction, 5);
+    spawn_projectile(obj_proj_pistol, varshoot1X, varshoot1Y, direction, 5, id);
 }
 
 audio_play_sound_at(training_turret_shot_snd, x, y, 0, 50, 300, 1, false, 0);

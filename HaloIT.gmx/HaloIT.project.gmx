@@ -381,6 +381,7 @@
     <script>scripts\level_get_done.gml</script>
     <script>scripts\collision_line_point.gml</script>
     <script>scripts\spawn_projectile.gml</script>
+    <script>scripts\weapon_pickup.gml</script>
   </scripts>
   <fonts name="fonts">
     <font>fonts\halofont</font>
@@ -392,6 +393,37 @@
     <font>fonts\denmark</font>
   </fonts>
   <objects name="objects">
+    <objects name="weapons">
+      <objects name="projectiles">
+        <object>objects\sniper_rifle_bullet_obj</object>
+        <object>objects\mc_needle_bullet_obj</object>
+        <object>objects\needle_obj</object>
+        <object>objects\battle_rifle_bullet_obj</object>
+        <object>objects\plasma_pistol_bullet_trail_obj</object>
+        <object>objects\plasma_rifle_bullet_trail</object>
+        <object>objects\banshee_bullet_trail_obj</object>
+        <object>objects\fuel_rod_bullet_trail</object>
+        <object>objects\tank_bullet1_obj</object>
+        <object>objects\tank_bullet2_obj</object>
+        <object>objects\explosion_obj</object>
+        <object>objects\covenant_explosion_obj</object>
+        <object>objects\fuel_rod_explosion_obj</object>
+        <object>objects\shield_flare_obj</object>
+        <object>objects\needle_explode_obj</object>
+        <object>objects\obj_proj_par</object>
+        <object>objects\obj_proj_pistol</object>
+        <object>objects\obj_proj_shotgun</object>
+        <object>objects\obj_proj_arifle</object>
+        <object>objects\obj_proj_plasma_pistol</object>
+        <object>objects\obj_proj_plasma_rifle</object>
+        <object>objects\obj_proj_banshee</object>
+        <object>objects\obj_proj_fuel_rod</object>
+      </objects>
+      <object>objects\obj_weap_par</object>
+      <object>objects\obj_weap_pistol</object>
+      <object>objects\obj_weap_arifle</object>
+      <object>objects\obj_weap_plasma_rifle</object>
+    </objects>
     <objects name="flood">
       <object>objects\flood_infection_form_obj</object>
       <object>objects\flood_spawner_10_obj</object>
@@ -576,31 +608,6 @@
       <object>objects\level_select_background_obj</object>
       <object>objects\return_to_menu_obj</object>
       <object>objects\account_room_stats_obj</object>
-    </objects>
-    <objects name="projectiles">
-      <object>objects\sniper_rifle_bullet_obj</object>
-      <object>objects\mc_needle_bullet_obj</object>
-      <object>objects\needle_obj</object>
-      <object>objects\battle_rifle_bullet_obj</object>
-      <object>objects\plasma_pistol_bullet_trail_obj</object>
-      <object>objects\plasma_rifle_bullet_trail</object>
-      <object>objects\banshee_bullet_trail_obj</object>
-      <object>objects\fuel_rod_bullet_trail</object>
-      <object>objects\tank_bullet1_obj</object>
-      <object>objects\tank_bullet2_obj</object>
-      <object>objects\explosion_obj</object>
-      <object>objects\covenant_explosion_obj</object>
-      <object>objects\fuel_rod_explosion_obj</object>
-      <object>objects\shield_flare_obj</object>
-      <object>objects\needle_explode_obj</object>
-      <object>objects\obj_proj_par</object>
-      <object>objects\obj_proj_pistol</object>
-      <object>objects\obj_proj_shotgun</object>
-      <object>objects\obj_proj_arifle</object>
-      <object>objects\obj_proj_plasma_pistol</object>
-      <object>objects\obj_proj_plasma_rifle</object>
-      <object>objects\obj_proj_banshee</object>
-      <object>objects\obj_proj_fuel_rod</object>
     </objects>
     <objects name="vehicles">
       <object>objects\tank_turret_obj</object>
