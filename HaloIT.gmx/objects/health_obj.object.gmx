@@ -27,18 +27,14 @@
             <kind>1</kind>
             <string>global._radar=create_radar(400);
 radar_object_add(global._radar,grunt_obj,0,c_red,2);
-radar_object_add(global._radar,grunt_2_obj,0,c_red,2);
 radar_object_add(global._radar,elite_obj,0,c_red,2);
 radar_object_add(global._radar,hunter_obj,0,c_red,4);
 radar_object_add(global._radar,marine_par,0,c_green,2);
 radar_object_add(global._radar,obj_mc,0,c_green,2);
 radar_object_add(global._radar,target_obj,0,c_red,2);
 radar_object_add(global._radar,moving_target_obj,0,c_red,2);
-radar_object_add(global._radar,elite_2_obj,0,c_red,2);
 radar_object_add(global._radar,jackal_obj,0,c_red,2);
-radar_object_add(global._radar,jackal_2_obj,0,c_red,2);
 global.advice=''
-showfps=true
 alarm[0]=random(5)
 </string>
           </argument>
@@ -122,13 +118,13 @@ draw_percentage_bar(view_xview+116,view_yview+457,50,10,obj_mc.hp,obj_mc.hp_max,
 
 
 
-if obj_mc.bullettype=pistol_bullet_obj
+if obj_mc.bullettype=obj_proj_pistol
 draw_text(view_xview+180,view_yview+455,'Ammo:' +string(obj_mc.pistol_mag)+'/'+string(obj_mc.pistolammo))
 
-if obj_mc.bullettype=assaultrifle_bullet_obj
+if obj_mc.bullettype=obj_proj_arifle
 draw_text(view_xview+180,view_yview+455,'Ammo:' +string(obj_mc.assaultrifle_mag)+'/'+string(obj_mc.assaultrifleammo))
 
-if obj_mc.bullettype=mc_plasma_rifle_bullet_obj{
+if obj_mc.bullettype=obj_proj_plasma_rifle {
 draw_text(view_xview+180,view_yview+455,'Ammo:' +string(round(obj_mc.plasma_rifle_ammo)))
 if obj_mc.plasmacanshoot=true
 draw_percentage_bar(view_xview+260,view_yview+465,50,5,obj_mc.overload,10,c_white,true,c_black);
@@ -136,13 +132,13 @@ else
 draw_percentage_bar(view_xview+260,view_yview+465,50,5,obj_mc.overload,10,c_red,true,c_black);
 }
 
-if obj_mc.bullettype=mc_plasma_pistol_bullet_obj
+if obj_mc.bullettype=obj_proj_plasma_pistol
 draw_text(view_xview+180,view_yview+455,'Ammo:' +string(obj_mc.plasma_pistol_ammo))
 
 if obj_mc.bullettype=battle_rifle_bullet_obj
 draw_text(view_xview+180,view_yview+455,'Ammo:' +string(obj_mc.battle_rifle_mag)+'/'+string(obj_mc.battle_rifle_ammo))
 
-if obj_mc.bullettype=shotgun_bullet_obj
+if obj_mc.bullettype=obj_proj_shotgun
 draw_text(view_xview+180,view_yview+455,'Ammo:' +string(obj_mc.shotgun_mag)+'/'+string(obj_mc.shotgun_ammo))
 
 if obj_mc.bullettype=mc_needle_bullet_obj
@@ -155,8 +151,11 @@ draw_radar(global._radar,obj_mc.x,obj_mc.y,view_xview+589,view_yview+480-134+84,
 draw_set_font(messagesfont)
 if global.advice!=''
 draw_text_color(view_xview+4,view_yview+100,global.advice,c_white,c_white,c_white,c_white,.8)
-if showfps=true
-draw_text_color(view_xview+200,view_yview+10,'FPS:' + string(fps),c_white,c_white,c_white,c_white,1)</string>
+
+if (global.debug) {
+        draw_text_color(view_xview+10,view_yview+10,'FPS:' + string(fps),c_white,c_white,c_white,c_white,1)
+    }
+</string>
           </argument>
         </arguments>
       </action>

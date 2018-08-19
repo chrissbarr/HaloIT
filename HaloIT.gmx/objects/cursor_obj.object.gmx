@@ -168,22 +168,23 @@ radius=3</string>
 y=mouse_y
 image_speed=0
 if instance_exists(obj_mc){
-if obj_mc.wep=pistol_bullet_obj
+if obj_mc.wep=obj_proj_pistol
 sprite_index=pistol_cursor_spr
-if obj_mc.wep=assaultrifle_bullet_obj
+if obj_mc.wep=obj_proj_arifle
 sprite_index=cursor_spr
 if obj_mc.wep=battle_rifle_bullet_obj
 sprite_index=battle_rifle_cursor_spr
-if obj_mc.wep=mc_plasma_rifle_bullet_obj
+if obj_mc.wep=obj_proj_plasma_rifle
 sprite_index=plasma_rifle_cursor_spr
-if obj_mc.wep=mc_plasma_pistol_bullet_obj
+if obj_mc.wep=obj_proj_plasma_pistol
 sprite_index=plasma_pistol_cursor_spr
-if obj_mc.wep=shotgun_bullet_obj
+if obj_mc.wep=obj_proj_shotgun
 sprite_index=shotgun_cursor_spr
 if obj_mc.wep=mc_needle_bullet_obj
 sprite_index=needler_cursor_spr}
 else
-sprite_index=cursor_normal</string>
+sprite_index=cursor_normal
+</string>
           </argument>
         </arguments>
       </action>
@@ -273,22 +274,23 @@ sprite_index=cursor_normal</string>
 y=mouse_y
 image_speed=0
 if instance_exists(obj_mc){
-if obj_mc.wep=pistol_bullet_obj
+if obj_mc.wep=obj_proj_pistol
 sprite_index=pistol_cursor_spr
-if obj_mc.wep=assaultrifle_bullet_obj
+if obj_mc.wep=obj_proj_arifle
 sprite_index=cursor_spr
 if obj_mc.wep=battle_rifle_bullet_obj
 sprite_index=battle_rifle_cursor_spr
-if obj_mc.wep=mc_plasma_rifle_bullet_obj
+if obj_mc.wep=obj_proj_plasma_rifle
 sprite_index=plasma_rifle_cursor_spr
-if obj_mc.wep=mc_plasma_pistol_bullet_obj
+if obj_mc.wep=obj_proj_plasma_pistol
 sprite_index=plasma_pistol_cursor_spr
-if obj_mc.wep=shotgun_bullet_obj
+if obj_mc.wep=obj_proj_shotgun
 sprite_index=shotgun_cursor_spr
 if obj_mc.wep=mc_needle_bullet_obj
 sprite_index=needler_cursor_spr}
 else
-sprite_index=cursor_normal</string>
+sprite_index=cursor_normal
+</string>
           </argument>
         </arguments>
       </action>
@@ -322,18 +324,15 @@ sprite_index=cursor_normal</string>
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if collision_circle(x,y,radius,covenant_par,false,true){
-image_index=0
-alarm[0]=1
+            <string>if (collision_circle(x,y,radius,covenant_par,false,true)) {
+    image_index = 0;
+} else if (collision_circle(x,y,radius,human_par,false,true)) {
+    image_index = 1;
+} else {
+    image_index = 2;
 }
-if collision_circle(x,y,radius,covenant_2_par,false,true){
-image_index=0
-alarm[0]=1
-}
-if collision_circle(x,y,radius,human_par,false,true){
-image_index=1
-alarm[0]=1
-}</string>
+
+</string>
           </argument>
         </arguments>
       </action>

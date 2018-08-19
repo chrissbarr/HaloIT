@@ -58,13 +58,13 @@ obj_mc.stealshields=true
 }
 
 spawnable_enemies = ds_list_create();
-ds_list_add(spawnable_enemies, grunt_2_obj);
-ds_list_add(spawnable_enemies, grunt_2_obj);
-ds_list_add(spawnable_enemies, grunt_2_obj);
-ds_list_add(spawnable_enemies, grunt_2_obj);
-ds_list_add(spawnable_enemies, jackal_2_obj);
-ds_list_add(spawnable_enemies, jackal_2_obj);
-ds_list_add(spawnable_enemies, elite_2_obj);
+ds_list_add(spawnable_enemies, grunt_obj);
+ds_list_add(spawnable_enemies, grunt_obj);
+ds_list_add(spawnable_enemies, grunt_obj);
+ds_list_add(spawnable_enemies, grunt_obj);
+ds_list_add(spawnable_enemies, jackal_obj);
+ds_list_add(spawnable_enemies, jackal_obj);
+ds_list_add(spawnable_enemies, elite_obj);
 </string>
           </argument>
         </arguments>
@@ -145,7 +145,7 @@ alarm[0]=room_speed*2+random(room_speed*6)</string>
     }
 
 
-    if (instance_number(covenant_2_par) &lt; 10) {
+    if (instance_number(covenant_par) &lt; 10) {
         ds_list_shuffle(spawnable_enemies);
         var spawnSide = irandom(3);
         

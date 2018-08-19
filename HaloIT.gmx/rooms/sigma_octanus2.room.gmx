@@ -220,8 +220,6 @@ surface_free(Tsur)}}
     <instance objName="marine_explore_obj" x="1404" y="1692" name="inst_8090C24E" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="marine_explore_obj" x="1396" y="1388" name="inst_C0CFB0D0" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="marine_explore_obj" x="1584" y="1260" name="inst_21F9C347" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="jackal_obj" x="2416" y="1968" name="inst_0A6D4A67" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="jackal_obj" x="4912" y="2048" name="inst_3A0465DF" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="overshield_obj" x="4320" y="2736" name="inst_91DA1106" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="overshield_obj" x="4320" y="2688" name="inst_DAD1FB92" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="wall_2_obj" x="5124" y="1564" name="inst_4FCE0CD7" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
@@ -253,11 +251,6 @@ surface_free(Tsur)}}
     <instance objName="shelves_obj" x="5568" y="1448" name="inst_675CF078" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="shelves_obj" x="5568" y="1544" name="inst_C5512AFE" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="grunt_r3_spawn_obj" x="5384" y="1656" name="inst_4286D20C" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="jackal_obj" x="5288" y="1288" name="inst_5FB77971" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="jackal_obj" x="5336" y="1320" name="inst_5CC943A9" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="jackal_obj" x="5392" y="1352" name="inst_CD14BAB8" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="jackal_obj" x="5448" y="1320" name="inst_D0F49265" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="jackal_obj" x="5496" y="1288" name="inst_E49D53F8" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="barbed_wire_fence_vert_obj" x="6280" y="2368" name="inst_BA16939F" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="barbed_wire_fence_vert_obj" x="6280" y="2352" name="inst_998ECA8F" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="barbed_wire_fence_corner_obj" x="6280" y="2336" name="inst_4E593B0E" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>

@@ -25,12 +25,8 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if instance_exists(jackal_obj){
-a=instance_nearest(x,y,jackal_obj)
-x=a.varshield1X
-y=a.varshield1Y
-}
-shield=200</string>
+            <string>shield=200
+</string>
           </argument>
         </arguments>
       </action>
@@ -102,16 +98,12 @@ instance_destroy()
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if instance_exists(a){
-x=a.varshield1X
-y=a.varshield1Y
-image_angle=a.direction
+            <string>if (instance_exists(owner)) {
+    x = owner.x;
+    y = owner.y;
+} else {
+    instance_destroy();
 }
-else
-if distance_to_object(obj_mc)&lt;400
-instance_destroy()
-
-
 </string>
           </argument>
         </arguments>
@@ -162,6 +154,33 @@ instance_destroy()
 with other
 instance_destroy()
 alarm[0]=room_speed*1</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="7" enumb="10">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>proj_coll[0].x = proj_coll[1];
+proj_coll[0].y = proj_coll[2];
+proj_coll[0].xprevious = proj_coll[1];
+proj_coll[0].yprevious = proj_coll[2];
+proj_coll[0].direction += 180;
+</string>
           </argument>
         </arguments>
       </action>

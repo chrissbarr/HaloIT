@@ -5,7 +5,7 @@
   <visible>-1</visible>
   <depth>0</depth>
   <persistent>0</persistent>
-  <parentName>solid_obj</parentName>
+  <parentName>entity_par_obj</parentName>
   <maskName>&lt;undefined&gt;</maskName>
   <events>
     <event eventtype="0" enumb="0">
@@ -25,14 +25,17 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>hp=100
+            <string>event_inherited();
+
+hp=100
 image_speed=0
 ran=round(random(2))
 if ran=1
 up=false
 else
 up=true
-alarm[0]=room_speed*1+random(room_speed*4)</string>
+alarm[0]=room_speed*1+random(room_speed*4)
+</string>
           </argument>
         </arguments>
       </action>
@@ -144,6 +147,31 @@ hp-=other.hptake
 with other
 instance_destroy()
 }</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="7" enumb="10">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>if (up) {
+    event_inherited();
+}
+</string>
           </argument>
         </arguments>
       </action>

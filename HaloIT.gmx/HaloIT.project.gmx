@@ -379,6 +379,8 @@
     <script>scripts\lvl_select_mouse_over_scr.gml</script>
     <script>scripts\font.gml</script>
     <script>scripts\level_get_done.gml</script>
+    <script>scripts\collision_line_point.gml</script>
+    <script>scripts\spawn_projectile.gml</script>
   </scripts>
   <fonts name="fonts">
     <font>fonts\halofont</font>
@@ -399,14 +401,12 @@
       <object>objects\flood_carrier_form_explode_obj</object>
     </objects>
     <objects name="covenant">
-      <object>objects\grunt_obj</object>
+      <object>objects\covenant_par</object>
       <object>objects\jackal_obj</object>
-      <object>objects\jackal_2_obj</object>
-      <object>objects\grunt_2_obj</object>
+      <object>objects\grunt_obj</object>
       <object>objects\grunt_dead_obj</object>
       <object>objects\jackal_dead_obj</object>
       <object>objects\elite_obj</object>
-      <object>objects\elite_2_obj</object>
       <object>objects\elite_dead_obj</object>
       <object>objects\hunter_obj</object>
       <object>objects\hunter_dead_obj</object>
@@ -414,8 +414,6 @@
       <object>objects\purple_blood_drop_obj</object>
       <object>objects\b_emmiter</object>
       <object>objects\covenant_attract_obj</object>
-      <object>objects\covenant_2_par</object>
-      <object>objects\jackal_2_shield_obj</object>
       <object>objects\jackal_shield_obj</object>
       <object>objects\bullet_par</object>
       <object>objects\grunt_head_obj</object>
@@ -435,7 +433,6 @@
     <objects name="marines">
       <object>objects\marine_recall</object>
       <object>objects\marine_explore_obj</object>
-      <object>objects\marine_bullet</object>
       <object>objects\marine_stationary_obj</object>
       <object>objects\marine_dead_obj</object>
       <object>objects\marine_par</object>
@@ -581,24 +578,13 @@
       <object>objects\account_room_stats_obj</object>
     </objects>
     <objects name="projectiles">
-      <object>objects\assaultrifle_bullet_obj</object>
-      <object>objects\pistol_bullet_obj</object>
       <object>objects\sniper_rifle_bullet_obj</object>
       <object>objects\mc_needle_bullet_obj</object>
       <object>objects\needle_obj</object>
-      <object>objects\shotgun_bullet_obj</object>
       <object>objects\battle_rifle_bullet_obj</object>
-      <object>objects\plasma_pistol_bullet</object>
-      <object>objects\mc_plasma_pistol_bullet_obj</object>
       <object>objects\plasma_pistol_bullet_trail_obj</object>
-      <object>objects\mc_plasma_pistol_bullet_trail_obj</object>
-      <object>objects\plasma_rifle_bullet_obj</object>
-      <object>objects\mc_plasma_rifle_bullet_obj</object>
-      <object>objects\banshee_bullet_obj</object>
       <object>objects\plasma_rifle_bullet_trail</object>
-      <object>objects\mc_plasma_rifle_bullet_trail</object>
       <object>objects\banshee_bullet_trail_obj</object>
-      <object>objects\fuel_rod_bullet_obj</object>
       <object>objects\fuel_rod_bullet_trail</object>
       <object>objects\tank_bullet1_obj</object>
       <object>objects\tank_bullet2_obj</object>
@@ -607,6 +593,14 @@
       <object>objects\fuel_rod_explosion_obj</object>
       <object>objects\shield_flare_obj</object>
       <object>objects\needle_explode_obj</object>
+      <object>objects\obj_proj_par</object>
+      <object>objects\obj_proj_pistol</object>
+      <object>objects\obj_proj_shotgun</object>
+      <object>objects\obj_proj_arifle</object>
+      <object>objects\obj_proj_plasma_pistol</object>
+      <object>objects\obj_proj_plasma_rifle</object>
+      <object>objects\obj_proj_banshee</object>
+      <object>objects\obj_proj_fuel_rod</object>
     </objects>
     <objects name="vehicles">
       <object>objects\tank_turret_obj</object>
@@ -669,7 +663,6 @@
     <object>objects\human_par</object>
     <object>objects\health_obj</object>
     <object>objects\laserpointer</object>
-    <object>objects\covenant_par</object>
     <object>objects\object20</object>
     <object>objects\obj_parent_activate</object>
     <object>objects\banshee_obj</object>
@@ -678,7 +671,6 @@
         <object>objects\enemy_banshee_obj</object>
         <object>objects\enemy_banshee2_obj</object>
         <object>objects\enemy_phantom_obj</object>
-        <object>objects\enemy_banshee_bullet_obj</object>
         <object>objects\enemy_phantom_bullet_obj</object>
         <object>objects\banshee_explosion1</object>
         <object>objects\banshee_explosion2</object>
@@ -692,7 +684,6 @@
         <object>objects\scenery_par</object>
       </objects>
       <object>objects\banshee_scroller_obj</object>
-      <object>objects\banshee_bullet2_obj</object>
       <object>objects\banshee_bullet2_trail_obj</object>
       <object>objects\bar2_obj</object>
     </objects>
@@ -710,6 +701,8 @@
     <object>objects\spawnlocater_obj</object>
     <object>objects\set_globals_obj</object>
     <object>objects\splash_manager_obj</object>
+    <object>objects\character_par_obj</object>
+    <object>objects\entity_par_obj</object>
   </objects>
   <rooms name="rooms">
     <room>rooms\initialize_room</room>

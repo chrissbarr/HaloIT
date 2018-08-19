@@ -225,40 +225,6 @@ speed=13</string>
         </arguments>
       </action>
     </event>
-    <event eventtype="4" ename="covenant_par">
-      <action>
-        <libid>1</libid>
-        <id>603</id>
-        <kind>7</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>2</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>1</kind>
-            <string>if speed
-{
-   master := other.id
-   angle := master.image_angle
-   dist := point_distance(x,y,master.x,master.y)
-   direction := point_direction(master.x,master.y,x,y)
-   speed := 0
-   alarm[1] := 1
-}
-
-if hitenemy=false{
-alarm[0]=room_speed*1/2
-hitenemy=true}</string>
-          </argument>
-        </arguments>
-      </action>
-    </event>
     <event eventtype="4" ename="tank_obj">
       <action>
         <libid>1</libid>
@@ -353,7 +319,7 @@ hitenemy=true}</string>
         </arguments>
       </action>
     </event>
-    <event eventtype="4" ename="covenant_2_par">
+    <event eventtype="4" ename="covenant_par">
       <action>
         <libid>1</libid>
         <id>603</id>
