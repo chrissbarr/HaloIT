@@ -27,6 +27,8 @@
             <kind>1</kind>
             <string>event_inherited();
 
+name = "Assault Rifle";
+
 projectile = obj_proj_arifle;
 spread = 10;
 rate = room_speed / 20;

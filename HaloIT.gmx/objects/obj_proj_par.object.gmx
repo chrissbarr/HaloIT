@@ -32,8 +32,13 @@ owner = undefined;
 
 speed = 60;
 lifespan = 30;
+
+tracks = false;
+track_rate = 0;
+track_max_angle = 0;
 target = undefined;
-tracking_force = 0;
+
+charge = 1;
 
 step = 0;
 </string>
@@ -66,7 +71,17 @@ if (step &gt; lifespan) {
     instance_destroy();
 }
 
-
+if (tracks) {
+    if (target != undefined and instance_exists(target)) {
+        var targetDir, var angleError;
+        targetDir = point_direction(x, y, target.x, target.y);
+        angleError = angle_difference(direction, targetDir);
+        
+        if (abs(angleError) &lt; track_max_angle) {
+            direction -= sign(angleError) * track_rate;
+        }
+    }
+}
 </string>
           </argument>
         </arguments>

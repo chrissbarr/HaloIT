@@ -25,10 +25,13 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>projectile = undefined;
+            <string>name = "";
+
+projectile = undefined;
 spread = 0;
 rate = 0;
 fire_sound = undefined;
+
 
 magazine_maximum = 0;
 magazine_current = 0;
@@ -38,6 +41,7 @@ ammo_current = 0;
 reload_time = 0;
 reload_sound = undefined;
 reloading = false;
+reloads_per_shot = false;
 
 overheats = false;
 overheated = false;
@@ -46,14 +50,27 @@ overheat_level = 0;
 cooldown_rate = 0;
 overheat_firerate_multiplier = 0;
 overheat_spread_multiplier = 0;
+overheat_sound = undefined;
+
+charges = false;
+charge_rate = 0;
+charge_max = 0;
+charged_to = 1;
+charging = false;
+
+projectile_count = 1;
+
+
 
 draw_ammo_as_bar = false;
 
 current_step = 0;
 last_fired_step = 0;
 can_shoot = false;
+needs_reloading = false;
 
 owner = undefined;
+target = undefined;
 </string>
           </argument>
         </arguments>
@@ -76,7 +93,13 @@ owner = undefined;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>var ammo_needed = magazine_maximum - magazine_current;
+            <string>var ammo_needed;
+
+if (reloads_per_shot) {
+    ammo_needed = 1; 
+} else {
+    ammo_needed = magazine_maximum - magazine_current;
+}
 
 if (ammo_needed &gt; ammo_current) {
     ammo_needed = ammo_current;
@@ -87,6 +110,10 @@ ammo_current -= ammo_needed;
 magazine_current += ammo_needed;
 
 reloading = false;
+
+if (reloads_per_shot) {
+    event_perform(ev_other, ev_user1);
+}
 </string>
           </argument>
         </arguments>
@@ -117,10 +144,15 @@ var actualRate = rate + (overheat_firerate_multiplier * overheat_level);
 
 if (current_step - last_fired_step &gt; actualRate) {
     if (magazine_current &gt; 0) {
+        needs_reloading = false;
         if (!reloading) {
             if (!overheated) {
                 can_shoot = true;
             } 
+        }
+    } else {
+        if (ammo_current &gt; 0) {
+            needs_reloading = true;
         }
     }
 }
@@ -133,6 +165,42 @@ if (overheats) {
         overheated = false;
     }
 }
+
+if (charges) {
+    if (charging) {
+        charged_to += charge_rate;
+        if (charged_to &gt; charge_max) {
+            charged_to = charge_max;
+        }
+        if (charged_to &gt; magazine_current) {
+            charged_to = magazine_current;
+        }
+        show_debug_message(charged_to);
+    }
+}
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="7" enumb="12">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>charging = true;
 </string>
           </argument>
         </arguments>
@@ -197,24 +265,74 @@ if (overheats) {
           <argument>
             <kind>1</kind>
             <string>var actualSpread = spread + (overheat_level * overheat_spread_multiplier);
+var proj;
 
-spawn_projectile(projectile, x, y, direction, actualSpread, owner);
+repeat (projectile_count) {
+    proj = spawn_projectile(projectile, x, y, direction, actualSpread, owner);
+}
+
+if (owner != undefined and owner.target != undefined) {
+    proj.target = owner.target;
+}
+
+if (charges) {
+    magazine_current -= charged_to;
+    proj.charge = charged_to;
+    charged_to = 1;
+    charging = false;
+} else {
+    magazine_current -= 1;
+}
 
 if (fire_sound != undefined) {
     audio_play_sound_at(fire_sound, x, y, 0, 50, 300, 1, false, 0);
 }
 
-magazine_current -= 1;
-
 if (overheats) {
     overheat_level += overheat_rate;
     if (overheat_level &gt;= 1.0) {
         overheated = true;
+        if (overheat_sound != undefined) {
+            audio_play_sound_at(overheat_sound, x, y, 0, 50, 300, 1, false, 0);
+        }
     }
 }
 
 
 last_fired_step = current_step;
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="8" enumb="0">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>if(global.debug) {
+    var drawX = x;
+    var drawY = y - 50;
+    
+    draw_set_colour(c_white);
+    draw_text(drawX, drawY, name);
+    var ammoString = "(" + string(magazine_current) + "/" + string(magazine_maximum) + ")(" + string(ammo_current) + "/" + string(ammo_maximum) + ")";
+    draw_text(drawX, drawY+20, ammoString);
+}
+
+draw_sprite_ext(sprite_index, image_index, x, y, 1, 1, image_angle, c_white, 1);
 </string>
           </argument>
         </arguments>

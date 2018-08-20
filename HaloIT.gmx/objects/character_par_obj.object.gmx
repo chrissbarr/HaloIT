@@ -30,12 +30,15 @@
 weapons = ds_list_create();
 weapons_index = 0;
 weapons_max = 0;
+
+fireX = 0;
+fireY = 0;
 </string>
           </argument>
         </arguments>
       </action>
     </event>
-    <event eventtype="8" enumb="73">
+    <event eventtype="3" enumb="2">
       <action>
         <libid>1</libid>
         <id>603</id>
@@ -52,18 +55,17 @@ weapons_max = 0;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if (global.debug) {
-    var healthString = "(" + string(shield) + ")(" + string(hp) + ")";
-    draw_set_colour(c_white);
-    draw_set_halign(fa_center);
-    draw_set_valign(fa_middle);
+            <string>varGunLength = point_distance(sprite_get_xoffset(sprite_index), sprite_get_yoffset(sprite_index), fireX, fireY);
+varGunDirection = point_direction(sprite_get_xoffset(sprite_index), sprite_get_yoffset(sprite_index), fireX, fireY);
+varshootX = x + lengthdir_x(varGunLength, image_angle + varGunDirection);
+varshootY = y + lengthdir_y(varGunLength, image_angle + varGunDirection);
 
-    draw_text(x, y - 30, healthString);
-    
-    draw_set_colour(c_black);
-    draw_set_halign(fa_left);
-    draw_set_valign(fa_top);
+for (var i = 0; i &lt; ds_list_size(weapons); i++) {
+    weapons[| i].x = varshootX;
+    weapons[| i].y = varshootY;
+    weapons[| i].direction = direction;
 }
+
 </string>
           </argument>
         </arguments>

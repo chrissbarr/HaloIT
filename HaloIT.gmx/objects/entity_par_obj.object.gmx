@@ -38,6 +38,9 @@ shield = 0;
 current_step = 0;
 last_hp_step = 0;
 last_shield_step = 0;
+
+team = 0;
+target = undefined;
 </string>
           </argument>
         </arguments>
@@ -121,6 +124,51 @@ if (hp_max != -1 &amp;&amp; hp &lt;= 0) {
         proj_coll[0].x = proj_coll[1];
         proj_coll[0].y = proj_coll[2];
         instance_destroy(proj_coll[0]);
+    }
+}
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="8" enumb="73">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>if (global.debug) {
+    var healthString = "";
+    if (shield != -1) {
+        healthString += "(S" + string(shield) + ")";
+    }
+    
+    if (hp != -1) {
+        healthString += "(H" + string(hp) + ")";
+    }
+    
+    if (string_length(healthString) &gt; 0) {
+
+        draw_set_colour(c_white);
+        draw_set_halign(fa_center);
+        draw_set_valign(fa_middle);
+    
+        draw_text(x, y - 30, healthString);
+        
+        draw_set_colour(c_black);
+        draw_set_halign(fa_left);
+        draw_set_valign(fa_top);
     }
 }
 </string>

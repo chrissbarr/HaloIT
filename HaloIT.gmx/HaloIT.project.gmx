@@ -81,25 +81,17 @@
       <sprite>sprites\plasma_pistol_bullet_spr</sprite>
     </sprites>
     <sprites name="mc_group">
-      <sprite>sprites\mc_norm_spr</sprite>
+      <sprite>sprites\mc_pistol_spr</sprite>
+      <sprite>sprites\mc_arifle_spr</sprite>
       <sprite>sprites\mc_battle_rifle_spr</sprite>
       <sprite>sprites\mc_sniper_rifle_spr</sprite>
-      <sprite>sprites\mc_sniper_rifle_shield_spr</sprite>
       <sprite>sprites\mc_shotgun_spr</sprite>
-      <sprite>sprites\mc_battle_rifle_shield_spr</sprite>
-      <sprite>sprites\mc_pistol_spr</sprite>
       <sprite>sprites\mc_plasmarifle_spr</sprite>
       <sprite>sprites\mc_needler_spr</sprite>
-      <sprite>sprites\mc_needler_shield_spr</sprite>
-      <sprite>sprites\mc_pistol_shield_spr</sprite>
-      <sprite>sprites\mc_shotgun_shield_spr</sprite>
       <sprite>sprites\mc_plasmapistol_spr</sprite>
-      <sprite>sprites\mc_plasmarifle_shield_spr</sprite>
       <sprite>sprites\mc_shoot_spr</sprite>
       <sprite>sprites\pistol_bullet_spr</sprite>
       <sprite>sprites\assaultrifle_bullet_spr</sprite>
-      <sprite>sprites\mc_plasmapistol_shield_spr</sprite>
-      <sprite>sprites\mc_norm_shield_spr</sprite>
     </sprites>
     <sprites name="menu_group">
       <sprites name="newbuttons">
@@ -379,9 +371,14 @@
     <script>scripts\lvl_select_mouse_over_scr.gml</script>
     <script>scripts\font.gml</script>
     <script>scripts\level_get_done.gml</script>
-    <script>scripts\collision_line_point.gml</script>
     <script>scripts\spawn_projectile.gml</script>
     <script>scripts\weapon_pickup.gml</script>
+    <script>scripts\weapon_drop.gml</script>
+    <scripts name="utilties">
+      <script>scripts\collision_line_point.gml</script>
+      <script>scripts\collision_circle_list.gml</script>
+      <script>scripts\gauss.gml</script>
+    </scripts>
   </scripts>
   <fonts name="fonts">
     <font>fonts\halofont</font>
@@ -422,7 +419,9 @@
       <object>objects\obj_weap_par</object>
       <object>objects\obj_weap_pistol</object>
       <object>objects\obj_weap_arifle</object>
+      <object>objects\obj_weap_shotgun</object>
       <object>objects\obj_weap_plasma_rifle</object>
+      <object>objects\obj_weap_plasma_pistol</object>
     </objects>
     <objects name="flood">
       <object>objects\flood_infection_form_obj</object>

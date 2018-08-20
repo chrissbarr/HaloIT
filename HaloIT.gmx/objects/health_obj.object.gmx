@@ -127,7 +127,18 @@ if (curWeap.draw_ammo_as_bar) {
     draw_percentage_bar(view_xview+180,view_yview+457,50,10,mag,magMax,c_blue,true,c_black);
     if (curWeap.overheats) {
         var overheat = curWeap.overheat_level;
-        draw_percentage_bar(view_xview+180,view_yview+465,50,5,overheat,1,c_white,false,c_black);
+        var overheated = curWeap.overheated;
+        var bar_colour;
+        
+        if (overheated) { 
+            bar_colour = c_red; 
+        } else {
+            bar_colour = merge_colour(c_white, c_red, overheat);
+        }
+        
+        show_debug_message(string(overheat));
+        
+        draw_percentage_bar(view_xview+180,view_yview+457+5,50,5,overheat,1,bar_colour,false,c_black);
     }
 } else {
     draw_text(view_xview+180,view_yview+455,'Ammo:' + string(mag) + '/' + string(ammo));

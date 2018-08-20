@@ -35,7 +35,6 @@ weapon_pickup(w);
 var w = instance_create(x, y, obj_weap_arifle);
 weapon_pickup(w);
 
-
 if audio_is_playing(menu_sound)
 audio_stop_sound(menu_sound)
 if audio_is_playing(shield_beep_snd)
@@ -490,91 +489,6 @@ speed=ms
 
 if speed&lt;-2
 speed=-2
-if sprite_index=mc_norm_spr{
-varGunLength = point_distance(sprite_get_xoffset(sprite_index),sprite_get_yoffset(sprite_index),29,14);
-varGunDirection = point_direction(sprite_get_xoffset(sprite_index),sprite_get_yoffset(sprite_index),29,14);
-varshoot1X = x + lengthdir_x(varGunLength,image_angle + varGunDirection);
-varshoot1Y = y + lengthdir_y(varGunLength,image_angle + varGunDirection);}
-
-if sprite_index=mc_pistol_spr{
-varGunLength = point_distance(sprite_get_xoffset(sprite_index),sprite_get_yoffset(sprite_index),20,13);
-varGunDirection = point_direction(sprite_get_xoffset(sprite_index),sprite_get_yoffset(sprite_index),20,13);
-varshoot1X = x + lengthdir_x(varGunLength,image_angle + varGunDirection);
-varshoot1Y = y + lengthdir_y(varGunLength,image_angle + varGunDirection);}
-
-if sprite_index=mc_plasmarifle_spr{
-varGunLength = point_distance(sprite_get_xoffset(sprite_index),sprite_get_yoffset(sprite_index),22,15);
-varGunDirection = point_direction(sprite_get_xoffset(sprite_index),sprite_get_yoffset(sprite_index),22,15);
-varshoot1X = x + lengthdir_x(varGunLength,image_angle + varGunDirection);
-varshoot1Y = y + lengthdir_y(varGunLength,image_angle + varGunDirection);}
-
-if sprite_index=mc_plasmapistol_spr{
-varGunLength = point_distance(sprite_get_xoffset(sprite_index),sprite_get_yoffset(sprite_index),24,16);
-varGunDirection = point_direction(sprite_get_xoffset(sprite_index),sprite_get_yoffset(sprite_index),24,16);
-varshoot1X = x + lengthdir_x(varGunLength,image_angle + varGunDirection);
-varshoot1Y = y + lengthdir_y(varGunLength,image_angle + varGunDirection);}
-
-if sprite_index=mc_pistol_shield_spr{
-varGunLength = point_distance(sprite_get_xoffset(sprite_index),sprite_get_yoffset(sprite_index),23,16);
-varGunDirection = point_direction(sprite_get_xoffset(sprite_index),sprite_get_yoffset(sprite_index),23,16);
-varshoot1X = x + lengthdir_x(varGunLength,image_angle + varGunDirection);
-varshoot1Y = y + lengthdir_y(varGunLength,image_angle + varGunDirection);}
-
-if sprite_index=mc_norm_shield_spr{
-varGunLength = point_distance(sprite_get_xoffset(sprite_index),sprite_get_yoffset(sprite_index),32,18);
-varGunDirection = point_direction(sprite_get_xoffset(sprite_index),sprite_get_yoffset(sprite_index),32,18);
-varshoot1X = x + lengthdir_x(varGunLength,image_angle + varGunDirection);
-varshoot1Y = y + lengthdir_y(varGunLength,image_angle + varGunDirection);}
-
-if sprite_index=mc_plasmarifle_shield_spr{
-varGunLength = point_distance(sprite_get_xoffset(sprite_index),sprite_get_yoffset(sprite_index),24,17);
-varGunDirection = point_direction(sprite_get_xoffset(sprite_index),sprite_get_yoffset(sprite_index),24,17);
-varshoot1X = x + lengthdir_x(varGunLength,image_angle + varGunDirection);
-varshoot1Y = y + lengthdir_y(varGunLength,image_angle + varGunDirection);}
-
-if sprite_index=mc_plasmapistol_shield_spr{
-varGunLength = point_distance(sprite_get_xoffset(sprite_index),sprite_get_yoffset(sprite_index),27,18);
-varGunDirection = point_direction(sprite_get_xoffset(sprite_index),sprite_get_yoffset(sprite_index),27,18);
-varshoot1X = x + lengthdir_x(varGunLength,image_angle + varGunDirection);
-varshoot1Y = y + lengthdir_y(varGunLength,image_angle + varGunDirection);}
-
-if sprite_index=mc_battle_rifle_shield_spr{
-varGunLength = point_distance(sprite_get_xoffset(sprite_index),sprite_get_yoffset(sprite_index),29,16);
-varGunDirection = point_direction(sprite_get_xoffset(sprite_index),sprite_get_yoffset(sprite_index),29,16);
-varshoot1X = x + lengthdir_x(varGunLength,image_angle + varGunDirection);
-varshoot1Y = y + lengthdir_y(varGunLength,image_angle + varGunDirection);}
-
-if sprite_index=mc_battle_rifle_spr{
-varGunLength = point_distance(sprite_get_xoffset(sprite_index),sprite_get_yoffset(sprite_index),26,14);
-varGunDirection = point_direction(sprite_get_xoffset(sprite_index),sprite_get_yoffset(sprite_index),26,14);
-varshoot1X = x + lengthdir_x(varGunLength,image_angle + varGunDirection);
-varshoot1Y = y + lengthdir_y(varGunLength,image_angle + varGunDirection);}
-
-if sprite_index=mc_shotgun_spr{
-varGunLength = point_distance(sprite_get_xoffset(sprite_index),sprite_get_yoffset(sprite_index),29,14);
-varGunDirection = point_direction(sprite_get_xoffset(sprite_index),sprite_get_yoffset(sprite_index),29,14);
-varshoot1X = x + lengthdir_x(varGunLength,image_angle + varGunDirection);
-varshoot1Y = y + lengthdir_y(varGunLength,image_angle + varGunDirection);}
-
-if sprite_index=mc_shotgun_shield_spr{
-varGunLength = point_distance(sprite_get_xoffset(sprite_index),sprite_get_yoffset(sprite_index),32,15);
-varGunDirection = point_direction(sprite_get_xoffset(sprite_index),sprite_get_yoffset(sprite_index),32,15);
-varshoot1X = x + lengthdir_x(varGunLength,image_angle + varGunDirection);
-varshoot1Y = y + lengthdir_y(varGunLength,image_angle + varGunDirection);}
-
-if sprite_index=mc_needler_spr{
-varGunLength = point_distance(sprite_get_xoffset(sprite_index),sprite_get_yoffset(sprite_index),20,14);
-varGunDirection = point_direction(sprite_get_xoffset(sprite_index),sprite_get_yoffset(sprite_index),20,14);
-varshoot1X = x + lengthdir_x(varGunLength,image_angle + varGunDirection);
-varshoot1Y = y + lengthdir_y(varGunLength,image_angle + varGunDirection);}
-
-if sprite_index=mc_needler_shield_spr{
-varGunLength = point_distance(sprite_get_xoffset(sprite_index),sprite_get_yoffset(sprite_index),22,15);
-varGunDirection = point_direction(sprite_get_xoffset(sprite_index),sprite_get_yoffset(sprite_index),22,15);
-varshoot1X = x + lengthdir_x(varGunLength,image_angle + varGunDirection);
-varshoot1Y = y + lengthdir_y(varGunLength,image_angle + varGunDirection);}
-
-
 
 if hp&lt;1
 instance_destroy()
@@ -599,37 +513,77 @@ alarm[0]=2}}
 
 switch (weapons[| weapons_index].object_index) {
     case obj_weap_arifle:
-        sprite_index = mc_norm_spr;
-        fireX = 29;
-        fireY = 14;
+        sprite_index = mc_arifle_spr;
+        fireX = 33;
+        fireY = 16;
+        break;
+    case obj_weap_plasma_rifle:
+        sprite_index = mc_plasmarifle_spr;
+        fireX = 26;
+        fireY = 16;
+        break;
+    case obj_weap_plasma_pistol:
+        sprite_index = mc_plasmapistol_spr;
+        fireX = 27;
+        fireY = 19;
         break;
     default:
     case obj_weap_pistol:
         sprite_index = mc_pistol_spr;
-        fireX = 20;
-        fireY = 14;
+        fireX = 24;
+        fireY = 16;
         break;
 }
 
-varGunLength = point_distance(sprite_get_xoffset(sprite_index), sprite_get_yoffset(sprite_index), fireX, fireY);
-varGunDirection = point_direction(sprite_get_xoffset(sprite_index), sprite_get_yoffset(sprite_index), fireX, fireY);
-varshootX = x + lengthdir_x(varGunLength, image_angle + varGunDirection);
-varshootY = y + lengthdir_y(varGunLength, image_angle + varGunDirection);
-        
+event_inherited();
 
-for (var i = 0; i &lt; ds_list_size(weapons); i++) {
-    weapons[| i].x = varshootX;
-    weapons[| i].y = varshootY;
-    weapons[| i].direction = direction;
+if (shield &gt; 0) {
+    image_index = 1;
+} else {
+    image_index = 0;
 }
 
-if (mouse_check_button(mb_left)) {
 
-    var curWeap = weapons[| weapons_index];
-    
+var curWeap = weapons[| weapons_index];
+
+if (curWeap.charges) {
     if (curWeap.can_shoot) {
-        with curWeap { event_perform(ev_other, ev_user0); }
+        if (mouse_check_button_pressed(mb_left)) {
+            with curWeap { event_perform(ev_other, ev_user2); }
+        }
+        
+        if (mouse_check_button_released(mb_left)) {
+            with curWeap { event_perform(ev_other, ev_user0); }
+        }
     }
+} else {
+    if (mouse_check_button(mb_left)) {
+        if (curWeap.can_shoot) {
+            with curWeap { event_perform(ev_other, ev_user0); }
+        } else {
+            if (curWeap.needs_reloading and !curWeap.reloading) {
+                with curWeap { event_perform(ev_other, ev_user1); }
+            }
+        }
+    }
+}
+
+var nearbyWeapons = collision_circle_list(x, y, 50, obj_weap_par, false, true);
+
+if (nearbyWeapons != noone) {
+    for(var i = 0; i &lt; ds_list_size(nearbyWeapons); i++) {
+        if (nearbyWeapons[| i].owner != id) {
+            global.advice = 'Press E to pick up ' + nearbyWeapons[| i].name;
+            
+            if (keyboard_check_pressed(ord('E'))) {
+                weapon_drop(weapons[| weapons_index]);
+                weapon_pickup(nearbyWeapons[| i]);
+                break;
+            }
+        }
+    }
+    
+    ds_list_destroy(nearbyWeapons);
 }
 </string>
           </argument>
@@ -1080,427 +1034,6 @@ with other
 instance_destroy()
 flash=1
 alarm[2]=1}</string>
-          </argument>
-        </arguments>
-      </action>
-    </event>
-    <event eventtype="4" ename="needler_pickup_obj">
-      <action>
-        <libid>1</libid>
-        <id>603</id>
-        <kind>7</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>2</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>1</kind>
-            <string>global.advice='Press E to pick up Needler'
-alarm[4]=room_speed*1/2</string>
-          </argument>
-        </arguments>
-      </action>
-      <action>
-        <libid>1</libid>
-        <id>603</id>
-        <kind>7</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>2</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>1</kind>
-            <string>if keyboard_check_pressed(ord('E')){
-create=weapon_drop_scr(mc_needle_bullet_obj)
-needler_have=true
-needlercap=100
-needler_ammo=other.ammo
-
-
-with other
-instance_destroy()
-if wep=wep1{
-wep1=mc_needle_bullet_obj
-wep=mc_needle_bullet_obj
-}
-if wep=wep2{
-wep2=mc_needle_bullet_obj
-wep=mc_needle_bullet_obj
-}
-}
-</string>
-          </argument>
-        </arguments>
-      </action>
-    </event>
-    <event eventtype="4" ename="sniper_rifle_pickup_obj">
-      <action>
-        <libid>1</libid>
-        <id>603</id>
-        <kind>7</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>2</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>1</kind>
-            <string>global.advice='Press E to pick up Sniper Rifle'
-alarm[4]=room_speed*1/2</string>
-          </argument>
-        </arguments>
-      </action>
-      <action>
-        <libid>1</libid>
-        <id>603</id>
-        <kind>7</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>2</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>1</kind>
-            <string>if keyboard_check_pressed(ord('E')){
-create=weapon_drop_scr(sniper_rifle_bullet_obj)
-sniper_rifle_have=true
-sniper_rifle_ammo=other.ammo
-with other
-instance_destroy()
-if wep=wep1{
-wep1=sniper_rifle_bullet_obj
-wep=sniper_rifle_bullet_obj
-}
-if wep=wep2{
-wep2=sniper_rifle_bullet_obj
-wep=sniper_rifle_bullet_obj
-}
-}
-</string>
-          </argument>
-        </arguments>
-      </action>
-    </event>
-    <event eventtype="4" ename="pistol_pickup_obj">
-      <action>
-        <libid>1</libid>
-        <id>603</id>
-        <kind>7</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>2</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>1</kind>
-            <string>global.advice='Press E to pick up Pistol'
-alarm[4]=room_speed*1/2</string>
-          </argument>
-        </arguments>
-      </action>
-      <action>
-        <libid>1</libid>
-        <id>603</id>
-        <kind>7</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>2</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>1</kind>
-            <string>if keyboard_check_pressed(ord('E')){
-create=weapon_drop_scr(pistol_bullet_obj)
-pistol_have=true
-PISTOLCAP = global.pistolcap;
-if PISTOLCAP=string(1){
-pistolcap=48
-pistolammo=other.ammo
-}
-if PISTOLCAP=string(2){
-pistolcap=60
-pistolammo=other.ammo
-}
-if PISTOLCAP=string(3){
-pistolcap=72
-pistolammo=other.ammo
-}
-
-with other
-instance_destroy()
-if wep=wep1{
-wep1=pistol_bullet_obj
-wep=pistol_bullet_obj
-}
-if wep=wep2{
-wep2=pistol_bullet_obj
-wep=pistol_bullet_obj
-}
-}
-</string>
-          </argument>
-        </arguments>
-      </action>
-    </event>
-    <event eventtype="4" ename="shotgun_pickup_obj">
-      <action>
-        <libid>1</libid>
-        <id>603</id>
-        <kind>7</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>2</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>1</kind>
-            <string>global.advice='Press E to pick up Shotgun'
-alarm[4]=room_speed*1/2</string>
-          </argument>
-        </arguments>
-      </action>
-      <action>
-        <libid>1</libid>
-        <id>603</id>
-        <kind>7</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>2</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>1</kind>
-            <string>if keyboard_check_pressed(ord('E')){
-create=weapon_drop_scr()
-shotgun_have=true
-shotgun_ammo=other.ammo
-with other
-instance_destroy()
-if wep=wep1{
-wep1=obj_proj_shotgun
-wep=obj_proj_shotgun
-}
-if wep=wep2{
-wep2=obj_proj_shotgun
-wep=obj_proj_shotgun
-}
-}
-</string>
-          </argument>
-        </arguments>
-      </action>
-    </event>
-    <event eventtype="4" ename="plasma_rifle_pickup_obj">
-      <action>
-        <libid>1</libid>
-        <id>603</id>
-        <kind>7</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>2</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>1</kind>
-            <string>global.advice='Press E to pick up Plasma Rifle'
-alarm[4]=room_speed*1/2</string>
-          </argument>
-        </arguments>
-      </action>
-      <action>
-        <libid>1</libid>
-        <id>603</id>
-        <kind>7</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>2</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>1</kind>
-            <string>if keyboard_check_pressed(ord('E')){
-create=weapon_drop_scr()
-plasma_rifle_have=true
-plasma_rifle_ammo=other.ammo
-with other
-instance_destroy()
-if wep=wep1{
-wep1=mc_plasma_rifle_bullet_obj
-wep=mc_plasma_rifle_bullet_obj
-}
-if wep=wep2{
-wep2=mc_plasma_rifle_bullet_obj
-wep=mc_plasma_rifle_bullet_obj
-}
-}</string>
-          </argument>
-        </arguments>
-      </action>
-    </event>
-    <event eventtype="4" ename="battle_rifle_pickup_obj">
-      <action>
-        <libid>1</libid>
-        <id>603</id>
-        <kind>7</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>2</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>1</kind>
-            <string>global.advice='Press E to pick up Battle Rifle'
-alarm[4]=room_speed*1/2</string>
-          </argument>
-        </arguments>
-      </action>
-      <action>
-        <libid>1</libid>
-        <id>603</id>
-        <kind>7</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>2</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>1</kind>
-            <string>if keyboard_check_pressed(ord('E')){
-create=weapon_drop_scr(battle_rifle_bullet_obj)
-battle_rifle_have=true
-battle_rifle_ammo=other.ammo
-with other
-instance_destroy()
-if wep=wep1{
-wep1=battle_rifle_bullet_obj
-wep=battle_rifle_bullet_obj
-}
-if wep=wep2{
-wep2=battle_rifle_bullet_obj
-wep=battle_rifle_bullet_obj
-}
-}
-</string>
-          </argument>
-        </arguments>
-      </action>
-    </event>
-    <event eventtype="4" ename="plasma_pistol_pickup_obj">
-      <action>
-        <libid>1</libid>
-        <id>603</id>
-        <kind>7</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>2</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>1</kind>
-            <string>global.advice='Press E to pick up Plasma Pistol'
-alarm[4]=room_speed*1/2</string>
-          </argument>
-        </arguments>
-      </action>
-      <action>
-        <libid>1</libid>
-        <id>603</id>
-        <kind>7</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>2</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>1</kind>
-            <string>if keyboard_check_pressed(ord('E')){
-create=weapon_drop_scr()
-plasma_pistol_have=true
-plasma_pistol_ammo=other.ammo
-with other
-instance_destroy()
-if wep=wep1{
-wep1=mc_plasma_pistol_bullet_obj
-wep=mc_plasma_pistol_bullet_obj
-}
-if wep=wep2{
-wep2=mc_plasma_pistol_bullet_obj
-wep=mc_plasma_pistol_bullet_obj
-}
-}
-</string>
           </argument>
         </arguments>
       </action>
@@ -2395,7 +1928,14 @@ view=1
 else
 if view=1
 view=0
-}</string>
+}
+
+
+if (global.debug) {
+    x = mouse_x;
+    y = mouse_y;
+}
+</string>
           </argument>
         </arguments>
       </action>
