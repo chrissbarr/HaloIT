@@ -175,16 +175,7 @@ if (deactivated) {
     instance_activate_object(owner);
 }
 
-if(global.debug) {
-    if (coll[0] != noone) {
-        draw_line_colour(xprevious, yprevious, coll[1], coll[2], c_red, c_red);
-        draw_line_colour(coll[1], coll[2], x, y, c_white, c_white);
-    } else {
-        draw_line_colour(xprevious, yprevious, coll[1], coll[2], c_white, c_white);
-    }
-}
-
-if (coll[0] != noone and coll[0] != undefined) {  
+if (coll[0] != noone) {  
     p[0] = id;
     p[1] = coll[1];
     p[2] = coll[2];
@@ -192,6 +183,27 @@ if (coll[0] != noone and coll[0] != undefined) {
     with (coll[0]) {
         proj_coll = other.p;
         event_perform(ev_other, ev_user0);// speed = 0;
+    }
+}
+
+// collision with children of solid_obj destroys projectile - 
+// to maintain previous behaviour of projectiles being stopped by these objects
+coll2 = collision_line_point(xprevious, yprevious, x, y, solid_obj, true, true);
+if (coll2[0] != noone) {  
+    
+    x = coll2[1];
+    y = coll2[2];
+    
+    instance_destroy();
+}
+
+if(global.debug) {
+    if (coll[0] == noone) { coll = coll2; }
+    if (coll[0] != noone) {
+        draw_line_colour(xprevious, yprevious, coll[1], coll[2], c_red, c_red);
+        draw_line_colour(coll[1], coll[2], x, y, c_white, c_white);
+    } else {
+        draw_line_colour(xprevious, yprevious, coll[1], coll[2], c_white, c_white);
     }
 }
 
