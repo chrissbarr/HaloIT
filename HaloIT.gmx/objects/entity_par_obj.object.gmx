@@ -41,6 +41,10 @@ last_shield_step = 0;
 
 team = 0;
 target = undefined;
+
+lastHitX = 0;
+lastHitY = 0;
+lastHitSize = 0;
 </string>
           </argument>
         </arguments>
@@ -92,6 +96,52 @@ current_step++;
         </arguments>
       </action>
     </event>
+    <event eventtype="7" enumb="12">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>effect_create_above(ef_spark, proj_coll[1], proj_coll[2], 0, c_red);
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="7" enumb="11">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>effect_create_above(ef_spark, lastHitX, lastHitY, 0, c_white);
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
     <event eventtype="7" enumb="10">
       <action>
         <libid>1</libid>
@@ -115,14 +165,22 @@ current_step++;
             shield -= proj_coll[0].damage_shields;
             if(shield &lt; 0) { shield = 0; }
             
-            effect_create_above(ef_spark, proj_coll[1], proj_coll[2], 0, c_orange);
+            lastHitX = proj_coll[1];
+            lastHitY = proj_coll[2];
+            lastHitSize = proj_coll[0].damage_shields;
+            
+            event_perform(ev_other, ev_user1);
             
             last_shield_step = current_step;
         } else if (hp &gt; 0 and proj_coll[0].damage_hp &gt; 0) {
             hp -= proj_coll[0].damage_hp;
             if(hp &lt; 0) { hp = 0; }
             
-            effect_create_above(ef_spark, proj_coll[1], proj_coll[2], 0, c_red);
+            lastHitX = proj_coll[1];
+            lastHitY = proj_coll[2];
+            lastHitSize = proj_coll[0].damage_hp;
+            
+            event_perform(ev_other, ev_user2);
             
             last_shield_step = current_step;
             last_hp_step = current_step;
