@@ -58,13 +58,13 @@ obj_mc.stealshields=true
 }
 
 spawnable_enemies = ds_list_create();
-ds_list_add(spawnable_enemies, grunt_obj);
-ds_list_add(spawnable_enemies, grunt_obj);
-ds_list_add(spawnable_enemies, grunt_obj);
-ds_list_add(spawnable_enemies, grunt_obj);
-ds_list_add(spawnable_enemies, jackal_obj);
-ds_list_add(spawnable_enemies, jackal_obj);
-ds_list_add(spawnable_enemies, elite_obj);
+ds_list_add(spawnable_enemies, grunt_2_obj);
+ds_list_add(spawnable_enemies, grunt_2_obj);
+ds_list_add(spawnable_enemies, grunt_2_obj);
+ds_list_add(spawnable_enemies, grunt_2_obj);
+ds_list_add(spawnable_enemies, jackal_2_obj);
+ds_list_add(spawnable_enemies, jackal_2_obj);
+ds_list_add(spawnable_enemies, elite_2_obj);
 
 spawnable_pickups = ds_list_create();
 ds_list_add(spawnable_pickups, obj_weap_pistol);

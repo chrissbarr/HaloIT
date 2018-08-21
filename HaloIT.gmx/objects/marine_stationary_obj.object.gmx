@@ -71,8 +71,11 @@ image_index=0
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>a=instance_create(x,y,marine_dead_obj)
-a.image_index=image_index</string>
+            <string>event_inherited();
+
+a=instance_create(x,y,marine_dead_obj)
+a.image_index=image_index
+</string>
           </argument>
         </arguments>
       </action>

@@ -78,11 +78,11 @@ room_goto(sigma_octanus1_outro)
           <argument>
             <kind>1</kind>
             <string>repeat 2+gn
-instance_create(1000+random(2000),4500+random(300),grunt_obj)
+instance_create(1000+random(2000),4500+random(300),grunt_2_obj)
 repeat random(2)
-instance_create(1000+random(2000),4700+random(300),elite_obj)
+instance_create(1000+random(2000),4700+random(300),elite_2_obj)
 repeat random(3)
-instance_create(1000+random(2000),4500+random(300),jackal_obj)
+instance_create(1000+random(2000),4500+random(300),jackal_2_obj)
 </string>
           </argument>
         </arguments>
@@ -109,11 +109,11 @@ instance_create(1000+random(2000),4500+random(300),jackal_obj)
 if instance_number(covenant_par)&lt;20{
 if rounds&gt;1{
 repeat 2+gn
-instance_create(2000+random(2000),2000+random(300),grunt_obj)
+instance_create(2000+random(2000),2000+random(300),grunt_2_obj)
 repeat random(2)
-instance_create(2000+random(2000),1800+random(300),elite_obj)
+instance_create(2000+random(2000),1800+random(300),elite_2_obj)
 repeat random(3)
-instance_create(2000+random(2000),2000+random(300),jackal_obj)
+instance_create(2000+random(2000),2000+random(300),jackal_2_obj)
 alarm[2]=room_speed*25
 
 rounds-=1
@@ -199,12 +199,12 @@ finished=true
           <argument>
             <kind>1</kind>
             <string>repeat 2
-a=instance_create(2000+random(2000),2000+random(300),grunt_obj)
+a=instance_create(2000+random(2000),2000+random(300),grunt_2_obj)
 a.rank=1
 repeat 1
-instance_create(1500+random(2000),1500+random(300),elite_obj)
+instance_create(1500+random(2000),1500+random(300),elite_2_obj)
 repeat 1
-instance_create(2000+random(2000),2000+random(300),jackal_obj)
+instance_create(2000+random(2000),2000+random(300),jackal_2_obj)
 gn=0
 alarm[1]=room_speed*60*1
 rounds=4
