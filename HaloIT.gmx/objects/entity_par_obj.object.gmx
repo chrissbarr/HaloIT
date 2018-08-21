@@ -161,13 +161,13 @@ current_step++;
             <kind>1</kind>
             <string>if (proj_coll != undefined) {
     if (proj_coll[0] != noone) {
-        if (shield &gt; 0 and proj_coll[0].damage_shields &gt; 0) {
-            shield -= proj_coll[0].damage_shields;
+        if (shield &gt; 0 and proj_coll[0].damage_shield &gt; 0) {
+            shield -= proj_coll[0].damage_shield;
             if(shield &lt; 0) { shield = 0; }
             
             lastHitX = proj_coll[1];
             lastHitY = proj_coll[2];
-            lastHitSize = proj_coll[0].damage_shields;
+            lastHitSize = proj_coll[0].damage_shield;
             
             event_perform(ev_other, ev_user1);
             

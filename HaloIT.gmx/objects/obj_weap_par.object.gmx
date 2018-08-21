@@ -32,6 +32,10 @@ spread = 0;
 rate = 0;
 fire_sound = undefined;
 
+burst_size = 1;
+burst_delay = 0;
+burst_count = 0;
+burst_sound = undefined;
 
 magazine_maximum = 0;
 magazine_current = 0;
@@ -182,6 +186,18 @@ if (charges) {
         }
     }
 }
+
+if (burst_count != 0) {
+    if (burst_size &gt; burst_count) {
+        if (current_step - last_fired_step &gt; burst_delay) {
+            event_perform(ev_other, ev_user0);
+        }
+    }
+    
+    if (burst_count &gt;= burst_size) {
+        burst_count = 0;
+    }
+}
 </string>
           </argument>
         </arguments>
@@ -268,47 +284,50 @@ if (charges) {
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if (can_shoot) {
+            <string>var actualSpread = spread + (overheat_level * overheat_spread_multiplier);
+var proj;
 
-    var actualSpread = spread + (overheat_level * overheat_spread_multiplier);
-    var proj;
-    
-    repeat (projectile_count) {
-        proj = spawn_projectile(projectile, x, y, direction, actualSpread, owner);
-    }
-    
-    if (owner != undefined and owner.target != undefined) {
-        proj.target = owner.target;
-    }
-    
-    if (charges) {
-        magazine_current -= (max(1, charged_to));
-        proj.charge = (charged_to / charge_max);
-        charged_to = 0;
-        charging = false;
-    } else {
-        magazine_current -= 1;
-    }
-    
+repeat (projectile_count) {
+    proj = spawn_projectile(projectile, x, y, direction, actualSpread, owner);
+}
+
+if (owner != undefined and owner.target != undefined) {
+    proj.target = owner.target;
+}
+
+if (charges) {
+    magazine_current -= (max(1, charged_to));
+    proj.charge = (charged_to / charge_max);
+    charged_to = 0;
+    charging = false;
+} else {
+    magazine_current -= 1;
+}
+
+if (burst_count == 0) {
     if (fire_sound != undefined) {
         audio_play_sound_at(fire_sound, x, y, 0, 50, 300, 1, false, 0);
     }
-    
-    if (overheats) {
-        overheat_level += overheat_rate;
-        if (overheat_level &gt;= 1.0) {
-            overheated = true;
-            if (overheat_sound != undefined) {
-                audio_play_sound_at(overheat_sound, x, y, 0, 50, 300, 1, false, 0);
-            }
+}
+
+if (burst_count &gt; 0) {
+    if (burst_sound != undefined) {
+        audio_play_sound_at(burst_sound, x, y, 0, 50, 300, 1, false, 0);
+    }
+}
+
+if (overheats) {
+    overheat_level += overheat_rate;
+    if (overheat_level &gt;= 1.0) {
+        overheated = true;
+        if (overheat_sound != undefined) {
+            audio_play_sound_at(overheat_sound, x, y, 0, 50, 300, 1, false, 0);
         }
     }
-    
-    
-    last_fired_step = current_step;
-} else if (ammo_current &gt; 0 and !reloading) {
-    event_perform(ev_other, ev_user1);
 }
+
+burst_count++;
+last_fired_step = current_step;
 </string>
           </argument>
         </arguments>

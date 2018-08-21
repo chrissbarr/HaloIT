@@ -69,6 +69,7 @@ ds_list_add(spawnable_enemies, elite_2_obj);
 spawnable_pickups = ds_list_create();
 ds_list_add(spawnable_pickups, obj_weap_pistol);
 ds_list_add(spawnable_pickups, obj_weap_arifle);
+ds_list_add(spawnable_pickups, obj_weap_brifle);
 ds_list_add(spawnable_pickups, obj_weap_shotgun);
 ds_list_add(spawnable_pickups, overshield_obj);
 ds_list_add(spawnable_pickups, camoflage_obj);

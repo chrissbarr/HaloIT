@@ -2030,11 +2030,12 @@ reload=battle_rifle_shoot_speed
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if assault_rifle_have=true{
-bullettype=assaultrifle_bullet_obj
-sprite_index=mc_norm_spr
-reload=assaultrifle_shoot_speed
-}</string>
+            <string>var weapIndex = check_carrying_weapon(obj_weap_arifle);
+
+if (weapIndex != -1) {
+    weapons_index = weapIndex;
+}
+</string>
           </argument>
         </arguments>
       </action>
@@ -2056,11 +2057,12 @@ reload=assaultrifle_shoot_speed
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if pistol_have=true{
-bullettype=pistol_bullet_obj
-sprite_index=mc_pistol_spr
-reload=pistol_shoot_speed
-}</string>
+            <string>var weapIndex = check_carrying_weapon(obj_weap_pistol);
+
+if (weapIndex != -1) {
+    weapons_index = weapIndex;
+}
+</string>
           </argument>
         </arguments>
       </action>

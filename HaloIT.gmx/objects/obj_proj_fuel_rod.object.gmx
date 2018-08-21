@@ -27,7 +27,7 @@
             <kind>1</kind>
             <string>event_inherited();
 
-damage_shields = 50;
+damage_shield = 50;
 damage_hp = 50;
 speed = 8;
 </string>

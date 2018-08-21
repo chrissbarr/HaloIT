@@ -387,6 +387,7 @@
         <object>objects\obj_proj_pistol</object>
         <object>objects\obj_proj_shotgun</object>
         <object>objects\obj_proj_arifle</object>
+        <object>objects\obj_proj_brifle</object>
         <object>objects\obj_proj_plasma_pistol</object>
         <object>objects\obj_proj_needle</object>
         <object>objects\obj_proj_plasma_rifle</object>
@@ -399,6 +400,7 @@
       <object>objects\obj_weap_par</object>
       <object>objects\obj_weap_pistol</object>
       <object>objects\obj_weap_arifle</object>
+      <object>objects\obj_weap_brifle</object>
       <object>objects\obj_weap_shotgun</object>
       <object>objects\obj_weap_plasma_rifle</object>
       <object>objects\obj_weap_plasma_pistol</object>
