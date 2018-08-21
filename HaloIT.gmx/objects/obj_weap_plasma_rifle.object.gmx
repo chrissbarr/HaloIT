@@ -47,6 +47,8 @@ overheat_spread_multiplier = 15;
 ammo_transferable = false;
 
 draw_ammo_as_bar = true;
+
+targeting_spr = spr_cursor_plasma_rifle;
 </string>
           </argument>
         </arguments>

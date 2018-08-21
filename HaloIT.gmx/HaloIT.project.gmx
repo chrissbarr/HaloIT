@@ -136,6 +136,16 @@
       <sprite>sprites\shotgun_bullet_spr</sprite>
       <sprite>sprites\lotus_antitank_mine_spr</sprite>
     </sprites>
+    <sprites name="cursor">
+      <sprite>sprites\spr_cursor_normal</sprite>
+      <sprite>sprites\spr_cursor_pistol</sprite>
+      <sprite>sprites\spr_cursor_arifle</sprite>
+      <sprite>sprites\spr_cursor_shotgun</sprite>
+      <sprite>sprites\spr_cursor_brifle</sprite>
+      <sprite>sprites\spr_cursor_plasma_rifle</sprite>
+      <sprite>sprites\spr_cursor_plasma_pistol</sprite>
+      <sprite>sprites\spr_cursor_needler</sprite>
+    </sprites>
     <sprite>sprites\bar_spr</sprite>
     <sprite>sprites\laserpointer_spr</sprite>
     <sprite>sprites\portable_shield_depleted_spr</sprite>
@@ -215,14 +225,6 @@
     <sprite>sprites\armour_text_spr</sprite>
     <sprite>sprites\weapons_text_spr</sprite>
     <sprite>sprites\points_text_spr</sprite>
-    <sprite>sprites\cursor_normal</sprite>
-    <sprite>sprites\cursor_spr</sprite>
-    <sprite>sprites\pistol_cursor_spr</sprite>
-    <sprite>sprites\shotgun_cursor_spr</sprite>
-    <sprite>sprites\battle_rifle_cursor_spr</sprite>
-    <sprite>sprites\plasma_rifle_cursor_spr</sprite>
-    <sprite>sprites\plasma_pistol_cursor_spr</sprite>
-    <sprite>sprites\needler_cursor_spr</sprite>
     <sprite>sprites\button_explode_spr</sprite>
     <sprite>sprites\armour_status_spr</sprite>
     <sprite>sprites\longsword_spr</sprite>
@@ -680,7 +682,7 @@
       <object>objects\covenant_frigate_obj</object>
     </objects>
     <object>objects\objParent_deac</object>
-    <object>objects\cursor_obj</object>
+    <object>objects\obj_cursor</object>
     <object>objects\cursor_normal_obj</object>
     <object>objects\spawnlocater_obj</object>
     <object>objects\set_globals_obj</object>

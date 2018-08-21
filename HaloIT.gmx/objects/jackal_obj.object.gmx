@@ -426,10 +426,12 @@ varGunDirection = point_direction(sprite_get_xoffset(sprite_index),sprite_get_yo
 varshieldX = x + lengthdir_x(varGunLength,image_angle + varGunDirection);
 varshieldY = y + lengthdir_y(varGunLength,image_angle + varGunDirection);
 
-myShield.x = varshieldX;
-myShield.y = varshieldY;
-myShield.direction = direction;
-myShield.image_angle = myShield.direction;
+if (myShield != undefined and instance_exists(myShield)) {
+    myShield.x = varshieldX;
+    myShield.y = varshieldY;
+    myShield.direction = direction;
+    myShield.image_angle = myShield.direction;
+}
 </string>
           </argument>
         </arguments>

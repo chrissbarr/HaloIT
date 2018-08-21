@@ -44,6 +44,8 @@ reload_sound = shotgun_reload_snd;
 projectile_count = 10;
 
 reloads_per_shot = true;
+
+targeting_spr = spr_cursor_shotgun;
 </string>
           </argument>
         </arguments>

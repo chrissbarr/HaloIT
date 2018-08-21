@@ -26,14 +26,11 @@
           <argument>
             <kind>1</kind>
             <string>global._radar=create_radar(400);
-radar_object_add(global._radar,grunt_obj,0,c_red,2);
-radar_object_add(global._radar,elite_obj,0,c_red,2);
-radar_object_add(global._radar,hunter_obj,0,c_red,4);
+radar_object_add(global._radar,covenant_par,0,c_red,2);
 radar_object_add(global._radar,marine_par,0,c_green,2);
 radar_object_add(global._radar,obj_mc,0,c_green,2);
 radar_object_add(global._radar,target_obj,0,c_red,2);
 radar_object_add(global._radar,moving_target_obj,0,c_red,2);
-radar_object_add(global._radar,jackal_obj,0,c_red,2);
 global.advice=''
 global.control = '';
 alarm[0]=random(5)

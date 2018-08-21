@@ -114,7 +114,8 @@ else
 alarm[0]=5 // small delay before we can shoot to debounce mouse on level start
 alarm[8]=1
 
-instance_create(x,y,cursor_obj)
+cursor = instance_create(x,y,obj_cursor);
+cursor.owner = id;
 
 audio_listener_orientation(0,1,0,0,0,1);
 
@@ -503,7 +504,7 @@ if keyboard_check(vk_shift){
 else
 ms=room_speed*.1
 
-direction=point_direction(x,y,cursor_obj.x,cursor_obj.y)
+direction=point_direction(x,y,cursor.x,cursor.y)
 
 if instance_exists(tank_obj){
 if distance_to_object(instance_nearest(x,y,tank_obj))&lt;10{
@@ -516,6 +517,11 @@ switch (weapons[| weapons_index].object_index) {
         sprite_index = mc_arifle_spr;
         fireX = 33;
         fireY = 17;
+        break;
+    case obj_weap_brifle:
+        sprite_index = mc_battle_rifle_spr;
+        fireX = 31;
+        fireY = 16;
         break;
     case obj_weap_shotgun:
         sprite_index = mc_shotgun_spr;
@@ -596,7 +602,7 @@ if (nearbyWeapons != noone) {
                 }
             }
             
-            if (alreadyCarrying == -1 or (wep.ammo_transferable == false and (wep.ammo_current &gt; weapons[| alreadyCarrying].ammo_current or wep.magazine_current &gt; weapons[| alreadyCarrying].magazine_current))) {
+            if (alreadyCarrying == -1 or (alreadyCarrying == weapons_index and wep.ammo_transferable == false and (wep.ammo_current &gt; weapons[| alreadyCarrying].ammo_current or wep.magazine_current &gt; weapons[| alreadyCarrying].magazine_current))) {
                 global.control = 'Press E to pick up ' + wep.name;
                 
                 if (keyboard_check_pressed(ord('E'))) {
@@ -1375,8 +1381,6 @@ speed = 0;
 }
 
 with (other) { instance_destroy(); }
-
-alarm[1]=recharge_speed
 </string>
           </argument>
         </arguments>
@@ -1680,28 +1684,6 @@ if keycontrol == "ARROW" {
         </arguments>
       </action>
     </event>
-    <event eventtype="6" enumb="57">
-      <action>
-        <libid>1</libid>
-        <id>603</id>
-        <kind>7</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>2</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>1</kind>
-            <string></string>
-          </argument>
-        </arguments>
-      </action>
-    </event>
     <event eventtype="6" enumb="54">
       <action>
         <libid>1</libid>
@@ -1726,15 +1708,6 @@ instance_create(x,y,frag_grenade_obj)
 frag_grenades-=1
 }
 }
-
-if wep=sniper_rifle_bullet_obj{
-if view=0
-view=1
-else
-if view=1
-view=0
-}
-
 
 if (global.debug) {
     x = mouse_x;
@@ -1952,11 +1925,12 @@ screen_save(file_name+'.bmp')</string>
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if plasma_rifle_have=true{
-bullettype=mc_plasma_rifle_bullet_obj
-sprite_index=mc_plasmarifle_spr
-reload=plasma_rifle_shoot_speed
-}</string>
+            <string>var weapIndex = check_carrying_weapon(obj_weap_plasma_rifle);
+
+if (weapIndex != -1) {
+    weapons_index = weapIndex;
+}
+</string>
           </argument>
         </arguments>
       </action>
@@ -1978,11 +1952,12 @@ reload=plasma_rifle_shoot_speed
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if plasma_pistol_have=true{
-bullettype=mc_plasma_pistol_bullet_obj
-sprite_index=mc_plasmapistol_spr
-reload=plasma_pistol_shoot_speed
-}</string>
+            <string>var weapIndex = check_carrying_weapon(obj_weap_plasma_pistol);
+
+if (weapIndex != -1) {
+    weapons_index = weapIndex;
+}
+</string>
           </argument>
         </arguments>
       </action>
@@ -2004,11 +1979,12 @@ reload=plasma_pistol_shoot_speed
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if battle_rifle_have=true{
-bullettype=battle_rifle_bullet_obj
-sprite_index=mc_battle_rifle_spr
-reload=battle_rifle_shoot_speed
-}</string>
+            <string>var weapIndex = check_carrying_weapon(obj_weap_brifle);
+
+if (weapIndex != -1) {
+    weapons_index = weapIndex;
+}
+</string>
           </argument>
         </arguments>
       </action>

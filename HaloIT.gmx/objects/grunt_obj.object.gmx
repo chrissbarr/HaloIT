@@ -566,28 +566,6 @@ switch (weapons[| weapons_index].object_index) {
         </arguments>
       </action>
     </event>
-    <event eventtype="4" ename="cursor_obj">
-      <action>
-        <libid>1</libid>
-        <id>605</id>
-        <kind>0</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>0</useapplyto>
-        <exetype>0</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>1</kind>
-            <string>Who cares!</string>
-          </argument>
-        </arguments>
-      </action>
-    </event>
     <event eventtype="4" ename="damage_circle_obj">
       <action>
         <libid>1</libid>

@@ -50,6 +50,8 @@ charge_max = 10;
 ammo_transferable = false;
 
 draw_ammo_as_bar = true;
+
+targeting_spr = spr_cursor_plasma_pistol;
 </string>
           </argument>
         </arguments>

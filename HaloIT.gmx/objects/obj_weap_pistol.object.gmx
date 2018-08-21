@@ -40,6 +40,8 @@ ammo_maximum = 12 * 8;
 ammo_current = 12 * 4;
 reload_time = room_speed * 2;
 reload_sound = pistol_reload_snd;
+
+targeting_spr = spr_cursor_pistol;
 </string>
           </argument>
         </arguments>

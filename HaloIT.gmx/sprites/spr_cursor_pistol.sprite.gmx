@@ -20,8 +20,8 @@
   <width>9</width>
   <height>9</height>
   <frames>
-    <frame index="0">images\pistol_cursor_spr_0.png</frame>
-    <frame index="1">images\pistol_cursor_spr_1.png</frame>
-    <frame index="2">images\pistol_cursor_spr_2.png</frame>
+    <frame index="0">images\spr_cursor_pistol_0.png</frame>
+    <frame index="1">images\spr_cursor_pistol_1.png</frame>
+    <frame index="2">images\spr_cursor_pistol_2.png</frame>
   </frames>
 </sprite>

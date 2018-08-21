@@ -43,6 +43,8 @@ ammo_maximum = 36 * 3;
 ammo_current = 36 * 5;
 reload_time = room_speed * 2;
 reload_sound = battle_rifle_reload_snd;
+
+targeting_spr = spr_cursor_brifle;
 </string>
           </argument>
         </arguments>

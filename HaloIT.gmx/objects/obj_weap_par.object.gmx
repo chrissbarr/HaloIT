@@ -77,6 +77,8 @@ needs_reloading = false;
 owner = undefined;
 target = undefined;
 
+targeting_spr = undefined;
+
 depth = 1;
 </string>
           </argument>
