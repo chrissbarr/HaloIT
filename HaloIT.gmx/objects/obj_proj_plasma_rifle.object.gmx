@@ -27,9 +27,11 @@
             <kind>1</kind>
             <string>event_inherited();
 
-damage_shields = 4;
-damage_hp = 4;
+damage_shields = 10;
+damage_hp = 5;
 speed = 14;
+
+spawns_trail = obj_proj_trail_plasma_rifle;
 </string>
           </argument>
         </arguments>

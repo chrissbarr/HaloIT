@@ -27,8 +27,8 @@
             <kind>1</kind>
             <string>event_inherited();
 
-damage_hp = 2;
-damage_shield = 2;
+damage_hp = 10;
+damage_shield = 10;
 </string>
           </argument>
         </arguments>

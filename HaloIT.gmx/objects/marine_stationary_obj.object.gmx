@@ -25,10 +25,20 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>alarm[0]=10
+            <string>event_inherited();
+
+var w = instance_create(x, y, obj_weap_arifle);
+weapon_pickup(w);
+
+fireX = 29;
+fireY = 15;
+
+hp_max = 50;
+hp_regen_rate = 0.05;
+
+alarm[0]=10
 volume=0
-hp=75
-shield=0
+
 camoflage=false
 can_shoot=false
 alarm[1]=1
@@ -38,7 +48,8 @@ imi=round(random(3))
 if imi=1
 image_index=1
 else
-image_index=0</string>
+image_index=0
+</string>
           </argument>
         </arguments>
       </action>
@@ -93,10 +104,6 @@ if instance_exists(covenant_par){
 target=instance_nearest(x,y,covenant_par)
 if distance_to_object(target)&lt;range
 direction=point_direction(x,y,target.x,target.y)}
-if instance_exists(covenant_2_par){
-target=instance_nearest(x,y,covenant_2_par)
-if distance_to_object(target)&lt;range
-direction=point_direction(x,y,target.x,target.y)}
 
 if hp&lt;0
 instance_destroy()
@@ -130,8 +137,18 @@ direction=point_direction(x,y,target.x,target.y)
 if distance_to_object(target)&lt;range
 if !collision_line(x,y,target.x,target.y,solid_obj,true,true)
 if !collision_line(x,y,target.x,target.y,human_par,true,true){
-a = spawn_projectile(obj_proj_arifle, varshoot1X, varshoot1Y, direction, 5, id);
-audio_play_sound_at(assaultrifle_shot_sound, varshoot1X, varshoot1Y, 0, 100, 300, 1, false, 0);
+
+var curWeap = weapons[| weapons_index];
+
+if (curWeap.can_shoot) {
+    curWeap.direction = point_direction(curWeap.x, curWeap.y, target.x, target.y);
+    with curWeap { event_perform(ev_other, ev_user0); }
+} else {
+    if (curWeap.needs_reloading and !curWeap.reloading) {
+        with curWeap { event_perform(ev_other, ev_user1); }
+    }
+}
+
 }}
 alarm[0]=4+random(4)
 
@@ -172,28 +189,6 @@ speed=-other.hptake
 }
 if hp&lt;1
 instance_destroy()</string>
-          </argument>
-        </arguments>
-      </action>
-    </event>
-    <event eventtype="4" ename="bullet_par">
-      <action>
-        <libid>1</libid>
-        <id>603</id>
-        <kind>7</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>2</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>1</kind>
-            <string>marine_bullet_collision_scr()</string>
           </argument>
         </arguments>
       </action>

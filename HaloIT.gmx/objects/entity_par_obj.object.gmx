@@ -68,7 +68,9 @@ target = undefined;
     shield = shield_max;
 }
 
-current_step++;
+if (hp_max != -1 &amp;&amp; hp &lt;= 0) {
+    instance_destroy();
+}
 
 if (current_step - last_hp_step &gt; hp_regen_delay) {
     hp += hp_regen_rate;
@@ -84,9 +86,7 @@ if (current_step - last_shield_step &gt; shield_regen_delay) {
     }
 }
 
-if (hp_max != -1 &amp;&amp; hp &lt;= 0) {
-    instance_destroy();
-}
+current_step++;
 </string>
           </argument>
         </arguments>
@@ -111,19 +111,28 @@ if (hp_max != -1 &amp;&amp; hp &lt;= 0) {
             <kind>1</kind>
             <string>if (proj_coll != undefined) {
     if (proj_coll[0] != noone) {
-        if (shield &gt; 0) {
+        if (shield &gt; 0 and proj_coll[0].damage_shields &gt; 0) {
             shield -= proj_coll[0].damage_shields;
+            if(shield &lt; 0) { shield = 0; }
+            
             effect_create_above(ef_spark, proj_coll[1], proj_coll[2], 0, c_orange);
+            
             last_shield_step = current_step;
-        } else if (hp &gt; 0) {
+        } else if (hp &gt; 0 and proj_coll[0].damage_hp &gt; 0) {
             hp -= proj_coll[0].damage_hp;
+            if(hp &lt; 0) { hp = 0; }
+            
             effect_create_above(ef_spark, proj_coll[1], proj_coll[2], 0, c_red);
+            
             last_shield_step = current_step;
             last_hp_step = current_step;
         }
-        proj_coll[0].x = proj_coll[1];
-        proj_coll[0].y = proj_coll[2];
-        instance_destroy(proj_coll[0]);
+        if (proj_coll[0].collided_with == undefined) {
+            proj_coll[0].x = proj_coll[1];
+            proj_coll[0].y = proj_coll[2];
+            proj_coll[0].collided_with = id;
+            with proj_coll[0] { event_perform(ev_other, ev_user0); }
+        }        
     }
 }
 </string>

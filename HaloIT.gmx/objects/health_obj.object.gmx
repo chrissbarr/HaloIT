@@ -35,6 +35,7 @@ radar_object_add(global._radar,target_obj,0,c_red,2);
 radar_object_add(global._radar,moving_target_obj,0,c_red,2);
 radar_object_add(global._radar,jackal_obj,0,c_red,2);
 global.advice=''
+global.control = '';
 alarm[0]=random(5)
 </string>
           </argument>
@@ -136,9 +137,21 @@ if (curWeap.draw_ammo_as_bar) {
             bar_colour = merge_colour(c_white, c_red, overheat);
         }
         
-        show_debug_message(string(overheat));
-        
         draw_percentage_bar(view_xview+180,view_yview+457+5,50,5,overheat,1,bar_colour,false,c_black);
+    }
+    
+    if (curWeap.charges) {
+        var charge = curWeap.charged_to;
+        var charge_max = curWeap.charge_max;
+        var bar_colour;
+        
+        if (charge == charge_max) { 
+            bar_colour = c_red; 
+        } else {
+            bar_colour = merge_colour(c_white, c_red, charge / charge_max);
+        }
+                
+        draw_percentage_bar(view_xview+180,view_yview+457+5,50,5,charge,charge_max,bar_colour,false,c_black);
     }
 } else {
     draw_text(view_xview+180,view_yview+455,'Ammo:' + string(mag) + '/' + string(ammo));
@@ -147,8 +160,14 @@ if (curWeap.draw_ammo_as_bar) {
 
 draw_radar(global._radar,obj_mc.x,obj_mc.y,view_xview+589,view_yview+480-134+84,45,c_black,-1)
 draw_set_font(messagesfont)
-if global.advice!=''
-draw_text_color(view_xview+4,view_yview+100,global.advice,c_white,c_white,c_white,c_white,.8)
+
+if (global.advice != '') {
+    draw_text_color(view_xview+4,view_yview+100,global.advice,c_white,c_white,c_white,c_white,.8)
+}
+
+if (global.control != '') {
+    draw_text_color(view_xview+4,view_yview+70,global.control,c_white,c_white,c_white,c_white,.8)
+}
 
 if (global.debug) {
         draw_text_color(view_xview+10,view_yview+10,'FPS:' + string(fps),c_white,c_white,c_white,c_white,1)

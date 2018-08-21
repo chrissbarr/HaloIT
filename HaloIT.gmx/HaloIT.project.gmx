@@ -345,16 +345,6 @@
     <script>scripts\level_set_done.gml</script>
     <script>scripts\new_user.gml</script>
     <script>scripts\login.gml</script>
-    <script>scripts\covenant_bullet_collision_scr.gml</script>
-    <script>scripts\covenant2_bullet_collision_scr.gml</script>
-    <script>scripts\marine_bullet_collision_scr.gml</script>
-    <script>scripts\weapon_drop_scr.gml</script>
-    <script>scripts\pistol_reload.gml</script>
-    <script>scripts\assault_rifle_reload.gml</script>
-    <script>scripts\battle_rifle_reload.gml</script>
-    <script>scripts\sniper_rifle_reload.gml</script>
-    <script>scripts\needler_reload_scr.gml</script>
-    <script>scripts\shotgun_reload.gml</script>
     <script>scripts\sc_button.gml</script>
     <script>scripts\cool_message1.gml</script>
     <script>scripts\string_wrap.gml</script>
@@ -379,6 +369,7 @@
       <script>scripts\collision_circle_list.gml</script>
       <script>scripts\gauss.gml</script>
     </scripts>
+    <script>scripts\check_carrying_weapon.gml</script>
   </scripts>
   <fonts name="fonts">
     <font>fonts\halofont</font>
@@ -392,29 +383,18 @@
   <objects name="objects">
     <objects name="weapons">
       <objects name="projectiles">
-        <object>objects\sniper_rifle_bullet_obj</object>
-        <object>objects\mc_needle_bullet_obj</object>
-        <object>objects\needle_obj</object>
-        <object>objects\battle_rifle_bullet_obj</object>
-        <object>objects\plasma_pistol_bullet_trail_obj</object>
-        <object>objects\plasma_rifle_bullet_trail</object>
-        <object>objects\banshee_bullet_trail_obj</object>
-        <object>objects\fuel_rod_bullet_trail</object>
-        <object>objects\tank_bullet1_obj</object>
-        <object>objects\tank_bullet2_obj</object>
-        <object>objects\explosion_obj</object>
-        <object>objects\covenant_explosion_obj</object>
-        <object>objects\fuel_rod_explosion_obj</object>
-        <object>objects\shield_flare_obj</object>
-        <object>objects\needle_explode_obj</object>
         <object>objects\obj_proj_par</object>
         <object>objects\obj_proj_pistol</object>
         <object>objects\obj_proj_shotgun</object>
         <object>objects\obj_proj_arifle</object>
         <object>objects\obj_proj_plasma_pistol</object>
+        <object>objects\obj_proj_needle</object>
         <object>objects\obj_proj_plasma_rifle</object>
         <object>objects\obj_proj_banshee</object>
         <object>objects\obj_proj_fuel_rod</object>
+        <object>objects\obj_proj_trail_par</object>
+        <object>objects\obj_proj_trail_plasma_pistol</object>
+        <object>objects\obj_proj_trail_plasma_rifle</object>
       </objects>
       <object>objects\obj_weap_par</object>
       <object>objects\obj_weap_pistol</object>
@@ -422,6 +402,7 @@
       <object>objects\obj_weap_shotgun</object>
       <object>objects\obj_weap_plasma_rifle</object>
       <object>objects\obj_weap_plasma_pistol</object>
+      <object>objects\obj_weap_needler</object>
     </objects>
     <objects name="flood">
       <object>objects\flood_infection_form_obj</object>
@@ -433,13 +414,13 @@
     </objects>
     <objects name="covenant">
       <object>objects\covenant_par</object>
-      <object>objects\jackal_obj</object>
       <object>objects\grunt_obj</object>
+      <object>objects\jackal_obj</object>
+      <object>objects\elite_obj</object>
+      <object>objects\hunter_obj</object>
       <object>objects\grunt_dead_obj</object>
       <object>objects\jackal_dead_obj</object>
-      <object>objects\elite_obj</object>
       <object>objects\elite_dead_obj</object>
-      <object>objects\hunter_obj</object>
       <object>objects\hunter_dead_obj</object>
       <object>objects\blue_blood_drop_obj</object>
       <object>objects\purple_blood_drop_obj</object>
@@ -554,6 +535,7 @@
       <object>objects\solid_hor_obj</object>
       <object>objects\targetbounce_obj</object>
       <object>objects\shelves_obj</object>
+      <object>objects\obj_test_target</object>
     </objects>
     <objects name="menu">
       <objects name="pausemenu">
@@ -615,17 +597,8 @@
     </objects>
     <objects name="equipment">
       <objects name="weaponpickups">
-        <object>objects\assaultrifle_ammo_obj</object>
-        <object>objects\battle_rifle_ammo_obj</object>
-        <object>objects\pistol_ammo_obj</object>
-        <object>objects\assault_rifle_pickup_obj</object>
-        <object>objects\plasma_pistol_pickup_obj</object>
-        <object>objects\battle_rifle_pickup_obj</object>
-        <object>objects\plasma_rifle_pickup_obj</object>
-        <object>objects\shotgun_pickup_obj</object>
-        <object>objects\pistol_pickup_obj</object>
-        <object>objects\sniper_rifle_pickup_obj</object>
-        <object>objects\needler_pickup_obj</object>
+        <object>objects\obj_ammo_par</object>
+        <object>objects\obj_ammo_arifle</object>
       </objects>
       <objects name="pickups">
         <object>objects\healthpack_obj</object>

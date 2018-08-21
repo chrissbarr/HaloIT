@@ -515,6 +515,11 @@ switch (weapons[| weapons_index].object_index) {
     case obj_weap_arifle:
         sprite_index = mc_arifle_spr;
         fireX = 33;
+        fireY = 17;
+        break;
+    case obj_weap_shotgun:
+        sprite_index = mc_shotgun_spr;
+        fireX = 33;
         fireY = 16;
         break;
     case obj_weap_plasma_rifle:
@@ -568,22 +573,64 @@ if (curWeap.charges) {
     }
 }
 
-var nearbyWeapons = collision_circle_list(x, y, 50, obj_weap_par, false, true);
+global.control = '';
+
+var nearbyWeapons = collision_circle_list(x, y, 20, obj_weap_par, false, true);
 
 if (nearbyWeapons != noone) {
     for(var i = 0; i &lt; ds_list_size(nearbyWeapons); i++) {
-        if (nearbyWeapons[| i].owner != id) {
-            global.advice = 'Press E to pick up ' + nearbyWeapons[| i].name;
+        var wep = nearbyWeapons[| i];
+        if (wep.owner == undefined) {
+            var alreadyCarrying = check_carrying_weapon(wep.object_index);
             
-            if (keyboard_check_pressed(ord('E'))) {
-                weapon_drop(weapons[| weapons_index]);
-                weapon_pickup(nearbyWeapons[| i]);
-                break;
+            if (alreadyCarrying != -1) {
+                if (wep.ammo_transferable and wep.ammo_current &gt; 0) {
+                    var ammo_needed = weapons[| alreadyCarrying].ammo_maximum - weapons[| alreadyCarrying].ammo_current;
+                    
+                    if (ammo_needed &gt; wep.ammo_current) {
+                        ammo_needed = wep.ammo_current;
+                    }
+                    
+                    wep.ammo_current -= ammo_needed;
+                    weapons[| alreadyCarrying].ammo_current += ammo_needed;
+                }
+            }
+            
+            if (alreadyCarrying == -1 or (wep.ammo_transferable == false and (wep.ammo_current &gt; weapons[| alreadyCarrying].ammo_current or wep.magazine_current &gt; weapons[| alreadyCarrying].magazine_current))) {
+                global.control = 'Press E to pick up ' + wep.name;
+                
+                if (keyboard_check_pressed(ord('E'))) {
+                    weapon_drop(weapons[| weapons_index]);
+                    weapon_pickup(wep);
+                    break;
+                }
             }
         }
     }
     
     ds_list_destroy(nearbyWeapons);
+}
+
+
+var nearbyAmmo = collision_circle_list(x, y, 20, obj_ammo_par, false, true);
+
+if (nearbyAmmo != noone) {
+    for(var i = 0; i &lt; ds_list_size(nearbyAmmo); i++) {
+        var ammo = nearbyAmmo[| i];
+        var carryingWeaponToSuit = check_carrying_weapon(ammo.ammo_for_weapon);
+        
+        if (carryingWeaponToSuit != -1) {
+            var ammo_needed = weapons[| carryingWeaponToSuit].ammo_maximum - weapons[| carryingWeaponToSuit].ammo_current;
+                    
+            if (ammo_needed &gt; ammo.ammo_amount) {
+                ammo_needed = ammo.ammo_amount;
+            }
+            
+            ammo.ammo_amount -= ammo_needed;
+            weapons[| carryingWeaponToSuit].ammo_current += ammo_needed;
+        }
+    }
+    ds_list_destroy(nearbyAmmo);
 }
 </string>
           </argument>
@@ -1034,248 +1081,6 @@ with other
 instance_destroy()
 flash=1
 alarm[2]=1}</string>
-          </argument>
-        </arguments>
-      </action>
-    </event>
-    <event eventtype="4" ename="assault_rifle_pickup_obj">
-      <action>
-        <libid>1</libid>
-        <id>603</id>
-        <kind>7</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>2</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>1</kind>
-            <string>global.advice='Press E to pick up Assault Rifle'
-alarm[4]=room_speed*1/2</string>
-          </argument>
-        </arguments>
-      </action>
-      <action>
-        <libid>1</libid>
-        <id>603</id>
-        <kind>7</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>2</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>1</kind>
-            <string>if keyboard_check_pressed(ord('E')){
-create=weapon_drop_scr(assaultrifle_bullet_obj)
-assault_rifle_have=true
-ARCAP = global.arcap;
-if ARCAP=string(1){
-ARcap=600
-assaultrifleammo=other.ammo
-}
-if ARCAP=string(2){
-ARcap=800
-assaultrifleammo=other.ammo
-}
-if ARCAP=string(3){
-ARcap=1000
-assaultrifleammo=other.ammo
-}
-with other
-instance_destroy()
-if wep=wep1{
-wep1=assaultrifle_bullet_obj
-wep=assaultrifle_bullet_obj
-}
-if wep=wep2{
-wep2=assaultrifle_bullet_obj
-wep=assaultrifle_bullet_obj
-}
-}
-</string>
-          </argument>
-        </arguments>
-      </action>
-    </event>
-    <event eventtype="4" ename="pistol_ammo_obj">
-      <action>
-        <libid>1</libid>
-        <id>603</id>
-        <kind>7</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>2</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>1</kind>
-            <string>if pistol_have=true{
-//If pistol ammo not full
-if pistolammo&lt;pistolcap
-{
-//works out how much ammo is needed
-am=pistolcap-pistolammo
-//if ammo is larger than maximun reload
-if am&gt;24
-//ammo is set to maximum reload
-am=24
-//adds needed amount of ammo to pistol
-pistolammo+=am
-//if pistol has more the max ammo
-if pistolammo&gt;pistolcap
-//sets pistol to max ammo
-pistolammo=pistolcap
-//takes away from the reloads ammo
-other.ammo-=self.am
-//if the reload pack has no ammo left
-if other.ammo&lt;1
-//it is destroyed
-with other
-instance_destroy()
-}
-}</string>
-          </argument>
-        </arguments>
-      </action>
-    </event>
-    <event eventtype="4" ename="battle_rifle_ammo_obj">
-      <action>
-        <libid>1</libid>
-        <id>603</id>
-        <kind>7</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>2</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>1</kind>
-            <string>if battle_rifle_have=true{
-//If pistol ammo not full
-if battle_rifle_ammo&lt;108
-{
-//works out how much ammo is needed
-am=108-battle_rifle_ammo
-//if ammo is larger than maximun reload
-if am&gt;108
-//ammo is set to maximum reload
-am=108
-//adds needed amount of ammo to pistol
-battle_rifle_ammo+=am
-//if pistol has more the max ammo
-if battle_rifle_ammo&gt;108
-//sets pistol to max ammo
-battle_rifle_ammo=108
-//takes away from the reloads ammo
-other.ammo-=self.am
-//if the reload pack has no ammo left
-if other.ammo&lt;1
-//it is destroyed
-with other
-instance_destroy()
-}
-}</string>
-          </argument>
-        </arguments>
-      </action>
-    </event>
-    <event eventtype="4" ename="assaultrifle_ammo_obj">
-      <action>
-        <libid>1</libid>
-        <id>603</id>
-        <kind>7</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>2</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>1</kind>
-            <string>if assault_rifle_have=true{
-//If pistol ammo not full
-if assaultrifleammo&lt;ARcap
-{
-//works out how much ammo is needed
-am=ARcap-assaultrifleammo
-//if ammo is larger than maximun reload
-if am&gt;300
-//ammo is set to maximum reload
-am=300
-//adds needed amount of ammo to pistol
-assaultrifleammo+=am
-//if pistol has more the max ammo
-if assaultrifleammo&gt;ARcap
-//sets pistol to max ammo
-assaultrifleammo=ARcap
-//takes away from the reloads ammo
-other.ammo-=self.am
-//if the reload pack has no ammo left
-if other.ammo&lt;1
-//it is destroyed
-with other
-instance_destroy()
-}
-}</string>
-          </argument>
-        </arguments>
-      </action>
-    </event>
-    <event eventtype="4" ename="fuel_rod_bullet_trail">
-      <action>
-        <libid>1</libid>
-        <id>603</id>
-        <kind>7</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>2</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>1</kind>
-            <string>if (shield &gt; 1) {
-    shield-=1*hurt;
-    effect_create_above(ef_spark, other.x, other.y, 0, c_orange);
-} else {
-    hp-=1*hurt
-    repeat random(5)
-        a=instance_create(x,y,red_blood_drop_obj)
-}
-
-with (other) { instance_destroy(); }
-
-alarm[1]=recharge_speed
-</string>
           </argument>
         </arguments>
       </action>

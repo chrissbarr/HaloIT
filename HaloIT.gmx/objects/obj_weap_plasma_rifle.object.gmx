@@ -30,18 +30,21 @@
 name = "Plasma Rifle";
 
 projectile = obj_proj_plasma_rifle;
-spread = 5;
-rate = room_speed / 10;
+spread = 1;
+rate = room_speed / 8;
 fire_sound = plasma_rifle_shot;
 
 magazine_maximum = 100;
 magazine_current = 100;
 
 overheats = true;
-overheat_rate = 0.1;
+overheat_rate = 0.05;
 cooldown_rate = 0.02;
+cooldown_delay = 5;
 overheat_firerate_multiplier = -2;
 overheat_spread_multiplier = 15;
+
+ammo_transferable = false;
 
 draw_ammo_as_bar = true;
 </string>

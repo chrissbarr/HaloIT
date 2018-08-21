@@ -41,7 +41,7 @@ ammo_current = 12 * 2;
 reload_time = room_speed / 2;
 reload_sound = shotgun_reload_snd;
 
-projectile_count = 8;
+projectile_count = 10;
 
 reloads_per_shot = true;
 </string>

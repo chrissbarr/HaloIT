@@ -48,6 +48,7 @@ overheated = false;
 overheat_rate = 0;
 overheat_level = 0;
 cooldown_rate = 0;
+cooldown_delay = 0;
 overheat_firerate_multiplier = 0;
 overheat_spread_multiplier = 0;
 overheat_sound = undefined;
@@ -55,12 +56,12 @@ overheat_sound = undefined;
 charges = false;
 charge_rate = 0;
 charge_max = 0;
-charged_to = 1;
+charged_to = 0;
 charging = false;
 
 projectile_count = 1;
 
-
+ammo_transferable = true;
 
 draw_ammo_as_bar = false;
 
@@ -71,6 +72,8 @@ needs_reloading = false;
 
 owner = undefined;
 target = undefined;
+
+depth = 1;
 </string>
           </argument>
         </arguments>
@@ -159,7 +162,9 @@ if (current_step - last_fired_step &gt; actualRate) {
 
 if (overheats) {
     if (overheat_level &gt; 0) {
-        overheat_level -= cooldown_rate;
+        if (current_step - last_fired_step &gt; cooldown_delay) {
+            overheat_level -= cooldown_rate;
+        }
     } else {
         overheat_level = 0;
         overheated = false;
@@ -175,7 +180,6 @@ if (charges) {
         if (charged_to &gt; magazine_current) {
             charged_to = magazine_current;
         }
-        show_debug_message(charged_to);
     }
 }
 </string>
@@ -264,42 +268,47 @@ if (charges) {
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>var actualSpread = spread + (overheat_level * overheat_spread_multiplier);
-var proj;
+            <string>if (can_shoot) {
 
-repeat (projectile_count) {
-    proj = spawn_projectile(projectile, x, y, direction, actualSpread, owner);
-}
-
-if (owner != undefined and owner.target != undefined) {
-    proj.target = owner.target;
-}
-
-if (charges) {
-    magazine_current -= charged_to;
-    proj.charge = charged_to;
-    charged_to = 1;
-    charging = false;
-} else {
-    magazine_current -= 1;
-}
-
-if (fire_sound != undefined) {
-    audio_play_sound_at(fire_sound, x, y, 0, 50, 300, 1, false, 0);
-}
-
-if (overheats) {
-    overheat_level += overheat_rate;
-    if (overheat_level &gt;= 1.0) {
-        overheated = true;
-        if (overheat_sound != undefined) {
-            audio_play_sound_at(overheat_sound, x, y, 0, 50, 300, 1, false, 0);
+    var actualSpread = spread + (overheat_level * overheat_spread_multiplier);
+    var proj;
+    
+    repeat (projectile_count) {
+        proj = spawn_projectile(projectile, x, y, direction, actualSpread, owner);
+    }
+    
+    if (owner != undefined and owner.target != undefined) {
+        proj.target = owner.target;
+    }
+    
+    if (charges) {
+        magazine_current -= (max(1, charged_to));
+        proj.charge = (charged_to / charge_max);
+        charged_to = 0;
+        charging = false;
+    } else {
+        magazine_current -= 1;
+    }
+    
+    if (fire_sound != undefined) {
+        audio_play_sound_at(fire_sound, x, y, 0, 50, 300, 1, false, 0);
+    }
+    
+    if (overheats) {
+        overheat_level += overheat_rate;
+        if (overheat_level &gt;= 1.0) {
+            overheated = true;
+            if (overheat_sound != undefined) {
+                audio_play_sound_at(overheat_sound, x, y, 0, 50, 300, 1, false, 0);
+            }
         }
     }
+    
+    
+    last_fired_step = current_step;
+} else if (ammo_current &gt; 0 and !reloading) {
+    event_perform(ev_other, ev_user1);
 }
-
-
-last_fired_step = current_step;
 </string>
           </argument>
         </arguments>
@@ -327,12 +336,28 @@ last_fired_step = current_step;
     var drawY = y - 50;
     
     draw_set_colour(c_white);
+    draw_set_halign(fa_center);
+    draw_set_valign(fa_middle);
+    
     draw_text(drawX, drawY, name);
     var ammoString = "(" + string(magazine_current) + "/" + string(magazine_maximum) + ")(" + string(ammo_current) + "/" + string(ammo_maximum) + ")";
     draw_text(drawX, drawY+20, ammoString);
+    
+    if (owner != undefined) {
+        draw_set_alpha(0.5);
+        draw_set_colour(c_red);
+        draw_line(x, y, x + lengthdir_x(1000, direction), y + lengthdir_y(1000, direction));
+    }
+    
+    draw_set_alpha(1);
+    draw_set_colour(c_white);
+    draw_set_halign(fa_left);
+    draw_set_valign(fa_top);
 }
 
-draw_sprite_ext(sprite_index, image_index, x, y, 1, 1, image_angle, c_white, 1);
+if (owner == undefined) {
+    draw_sprite_ext(sprite_index, image_index, x, y, 1, 1, image_angle, c_white, 1);
+}
 </string>
           </argument>
         </arguments>

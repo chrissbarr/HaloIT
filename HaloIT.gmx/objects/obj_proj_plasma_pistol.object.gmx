@@ -27,15 +27,17 @@
             <kind>1</kind>
             <string>event_inherited();
 
-damage_shields = 5;
-damage_hp = 10;
-speed = 8;
+damage_shields = 10;
+damage_hp = 5;
+speed = 10;
 
-lifespan = 60;
+lifespan = 80;
 
 tracks = true;
 track_rate = 2;
 track_max_angle = 30;
+
+spawns_trail = obj_proj_trail_plasma_pistol;
 
 alarm[0] = 1;
 </string>
@@ -60,9 +62,9 @@ alarm[0] = 1;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>speed += charge;
-damage_shields += charge;
-damage_hp += charge;
+            <string>speed = speed + (charge * 10);
+damage_shields = damage_shields + (charge * 90); 
+damage_hp = damage_hp + (charge * 5);
 
 track_max_angle += charge;
 track_rate += charge/2;

@@ -44,8 +44,10 @@ overheat_firerate_multiplier = -2;
 overheat_spread_multiplier = 15;
 
 charges = true;
-charge_rate = 0.5;
-charge_max = 20;
+charge_rate = 0.3;
+charge_max = 10;
+
+ammo_transferable = false;
 
 draw_ammo_as_bar = true;
 </string>

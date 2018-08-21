@@ -30,6 +30,8 @@
 damage_shields = 4;
 damage_hp = 4;
 speed = 18;
+
+spawns_trail = obj_proj_trail_plasma_rifle;
 </string>
           </argument>
         </arguments>
