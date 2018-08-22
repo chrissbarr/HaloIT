@@ -5,7 +5,7 @@
   <visible>-1</visible>
   <depth>0</depth>
   <persistent>0</persistent>
-  <parentName>&lt;undefined&gt;</parentName>
+  <parentName>covenant_par</parentName>
   <maskName>&lt;undefined&gt;</maskName>
   <events>
     <event eventtype="0" enumb="0">
@@ -25,24 +25,16 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>alarm[0]=room_speed*1
+            <string>event_inherited();
+
+alarm[0]=room_speed*1
 shoot=false
 friction=2
-shield=0
-hp=600
+hp_max=600
 alarm[1]=room_speed*8+random(60)
 c_shoot=true
 charge=0
 charging=false
-difficulty = global.difficulty;
-if difficulty=string("easy")
-hp=50*1
-if difficulty=string("normal")
-hp=50*1.5
-if difficulty=string("heroic")
-hp=50*2
-if difficulty=string("legendary")
-hp=50*2.5
 </string>
           </argument>
         </arguments>
@@ -173,7 +165,7 @@ charge=0
 
 if charge=room_speed*3
 {
-fireDir = point_direction(x,y,ii.x,ii.y);
+fireDir = point_direction(varshoot1X,varshoot1Y,ii.x,ii.y);
 a = spawn_projectile(obj_proj_fuel_rod, varshoot1X, varshoot1Y, fireDir, 5, id);
 charge=0
 }
