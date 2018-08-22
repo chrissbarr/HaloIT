@@ -538,6 +538,11 @@ switch (weapons[| weapons_index].object_index) {
         fireX = 27;
         fireY = 19;
         break;
+    case obj_weap_needler:
+        sprite_index = mc_needler_spr;
+        fireX = 25;
+        fireY = 15;
+        break;
     default:
     case obj_weap_pistol:
         sprite_index = mc_pistol_spr;

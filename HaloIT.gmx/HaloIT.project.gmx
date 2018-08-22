@@ -34,9 +34,7 @@
     <sound>sound\shotgun_cock_snd</sound>
     <sound>sound\grunt_allaroundme_snd</sound>
     <sound>sound\needle_shot_snd</sound>
-    <sound>sound\needle2_shot_snd</sound>
     <sound>sound\needle_explode_snd</sound>
-    <sound>sound\needle2_explode_snd</sound>
     <sound>sound\bullet_ping_snd</sound>
     <sounds name="music">
       <sound>sound\menu_sound</sound>
@@ -392,6 +390,7 @@
         <object>objects\obj_proj_brifle</object>
         <object>objects\obj_proj_plasma_pistol</object>
         <object>objects\obj_proj_needle</object>
+        <object>objects\obj_proj_needle_explosion</object>
         <object>objects\obj_proj_plasma_rifle</object>
         <object>objects\obj_proj_banshee</object>
         <object>objects\obj_proj_fuel_rod</object>

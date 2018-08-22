@@ -31,7 +31,7 @@ name = "Needler";
 
 projectile = obj_proj_needle;
 spread = 5;
-rate = 1;
+rate = 2;
 fire_sound = needle_shot_snd;
 
 magazine_maximum = 32;
