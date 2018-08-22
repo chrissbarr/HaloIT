@@ -113,7 +113,9 @@ current_step++;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>effect_create_above(ef_spark, proj_coll[1], proj_coll[2], 0, c_red);
+            <string>if (global.debug) {
+    effect_create_above(ef_spark, proj_coll[1], proj_coll[2], 0, c_red);
+}
 </string>
           </argument>
         </arguments>
@@ -136,7 +138,9 @@ current_step++;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>effect_create_above(ef_spark, lastHitX, lastHitY, 0, c_white);
+            <string>if (global.debug) {
+    effect_create_above(ef_spark, lastHitX, lastHitY, 0, c_white);
+}
 </string>
           </argument>
         </arguments>
