@@ -45,6 +45,13 @@ reload_time = room_speed * 1;
 
 targeting_spr = spr_cursor_needler;
 
+muzzle_flash = obj_weap_flash;
+muzzle_flash_size_x_base = 0.50;
+muzzle_flash_size_y_base = 0.80;
+muzzle_flash_size_x_range = 0.20;
+muzzle_flash_size_y_range = 0.20;
+muzzle_flash_blend_colour = c_fuchsia;
+
 </string>
           </argument>
         </arguments>

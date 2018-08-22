@@ -42,6 +42,8 @@ magazine_current = 0;
 ammo_maximum = 0;
 ammo_current = 0;
 
+ammo_decreases = true;
+
 reload_time = 0;
 reload_sound = undefined;
 reloading = false;
@@ -78,6 +80,18 @@ owner = undefined;
 target = undefined;
 
 targeting_spr = undefined;
+
+muzzle_flash = undefined;
+muzzle_flash_spr = undefined;
+muzzle_flash_size_x_base = 0;
+muzzle_flash_size_x_range = 0;
+muzzle_flash_size_x_charge = 0;
+muzzle_flash_size_x_overheat = 0;
+muzzle_flash_size_y_base = 0;
+muzzle_flash_size_y_range = 0;
+muzzle_flash_size_y_charge = 0;
+muzzle_flash_size_y_overheat = 0;
+muzzle_flash_blend_colour = c_white;
 
 depth = 1;
 s_emit = audio_emitter_create();
@@ -325,13 +339,43 @@ if (owner != undefined and owner.target != undefined) {
     proj.target = owner.target;
 }
 
+if (muzzle_flash != undefined) {
+    var flashSizeX, flashSizeY;
+    flashSizeX = muzzle_flash_size_x_base + random_range(0, muzzle_flash_size_x_range);
+    flashSizeY = muzzle_flash_size_y_base + random_range(0, muzzle_flash_size_y_range);
+    
+    if (charges) {
+        flashSizeX += (muzzle_flash_size_x_charge * charged_to / charge_max);
+        flashSizeY += (muzzle_flash_size_y_charge * charged_to / charge_max);
+    }
+    
+    if (overheats) {
+        flashSizeX += (muzzle_flash_size_x_overheat * overheat_level);
+        flashSizeY += (muzzle_flash_size_y_overheat * overheat_level);
+    }
+    
+    flash = instance_create(x, y, muzzle_flash);
+    flash.sizeX = flashSizeX;
+    flash.sizeY = flashSizeY;
+    flash.blend_colour = muzzle_flash_blend_colour;
+    if (muzzle_flash_spr != undefined) {
+        flash.sprite_index = muzzle_flash_spr;
+    }
+    flash.direction = direction;
+    flash.image_angle = direction;
+}
+
 if (charges) {
-    magazine_current -= (max(1, charged_to));
+    if (ammo_decreases) {
+        magazine_current -= (max(1, charged_to));
+    }
     proj.charge = (charged_to / charge_max);
     charged_to = 0;
     charging = false;
 } else {
-    magazine_current -= 1;
+    if (ammo_decreases) {
+        magazine_current -= 1;
+    }
 }
 
 if (burst_count == 0) {

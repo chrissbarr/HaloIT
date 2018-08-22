@@ -46,6 +46,12 @@ projectile_count = 10;
 reloads_per_shot = true;
 
 targeting_spr = spr_cursor_shotgun;
+
+muzzle_flash = obj_weap_flash;
+muzzle_flash_size_x_base = 0.90;
+muzzle_flash_size_y_base = 0.90;
+muzzle_flash_size_x_range = 0.10;
+muzzle_flash_size_y_range = 0.10;
 </string>
           </argument>
         </arguments>

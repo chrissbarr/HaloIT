@@ -42,6 +42,12 @@ reload_time = room_speed * 2;
 reload_sound = pistol_reload_snd;
 
 targeting_spr = spr_cursor_pistol;
+
+muzzle_flash = obj_weap_flash;
+muzzle_flash_size_x_base = 0.40;
+muzzle_flash_size_y_base = 0.40;
+muzzle_flash_size_x_range = 0.10;
+muzzle_flash_size_y_range = 0.10;
 </string>
           </argument>
         </arguments>

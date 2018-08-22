@@ -40,6 +40,13 @@ ammo_maximum = 60 * 10;
 ammo_current = 60 * 4;
 reload_time = room_speed * 2;
 reload_sound = assault_rifle_reload_snd;
+
+muzzle_flash = obj_weap_flash;
+muzzle_flash_size_x_base = 0.75;
+muzzle_flash_size_y_base = 0.75;
+muzzle_flash_size_x_range = 0.10;
+muzzle_flash_size_y_range = 0.10;
+
 </string>
           </argument>
         </arguments>

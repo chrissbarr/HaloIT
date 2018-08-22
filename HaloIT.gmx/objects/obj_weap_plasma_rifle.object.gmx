@@ -49,6 +49,15 @@ ammo_transferable = false;
 draw_ammo_as_bar = true;
 
 targeting_spr = spr_cursor_plasma_rifle;
+
+muzzle_flash = obj_weap_flash;
+muzzle_flash_size_x_base = 0.90;
+muzzle_flash_size_y_base = 0.40;
+muzzle_flash_size_x_range = 0.20;
+muzzle_flash_size_y_range = 0.20;
+muzzle_flash_size_x_overheat = 0.7;
+muzzle_flash_size_y_overheat = 0.2;
+muzzle_flash_blend_colour = c_aqua;
 </string>
           </argument>
         </arguments>

@@ -133,6 +133,7 @@
       <sprite>sprites\frag_grenade_spr</sprite>
       <sprite>sprites\shotgun_bullet_spr</sprite>
       <sprite>sprites\lotus_antitank_mine_spr</sprite>
+      <sprite>sprites\spr_muzzle_flash_1</sprite>
     </sprites>
     <sprites name="cursor">
       <sprite>sprites\spr_cursor_normal</sprite>
@@ -407,6 +408,9 @@
       <object>objects\obj_weap_plasma_rifle</object>
       <object>objects\obj_weap_plasma_pistol</object>
       <object>objects\obj_weap_needler</object>
+      <objects name="flashes">
+        <object>objects\obj_weap_flash</object>
+      </objects>
     </objects>
     <objects name="flood">
       <object>objects\flood_infection_form_obj</object>
