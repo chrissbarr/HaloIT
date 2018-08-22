@@ -47,6 +47,11 @@ lvl=1
 alarm[3]=room_speed*10
 
 audio_listener_orientation(0,1,0,0,0,1);
+
+varshoot1X = x;
+varshoot1Y = y;
+varshoot2X = x;
+varshoot2Y = y;
 </string>
           </argument>
         </arguments>
@@ -252,7 +257,7 @@ audio_listener_position(x, y, 0);
         </arguments>
       </action>
     </event>
-    <event eventtype="4" ename="enemy_phantom_bullet_obj">
+    <event eventtype="4" ename="enemy_banshee2_obj">
       <action>
         <libid>1</libid>
         <id>603</id>
@@ -270,7 +275,7 @@ audio_listener_position(x, y, 0);
           <argument>
             <kind>1</kind>
             <string>if hp&gt;1
-hp-=8
+hp-=50
 else
 instance_destroy()</string>
           </argument>
@@ -790,6 +795,32 @@ instance_destroy()</string>
     else
         b=1
 }
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="7" enumb="12">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>e = instance_create(lastHitX, lastHitY, obj_banshee_explosion);
+e.colour = c_blue;
+e.size = 0;
+e.effect = ef_explosion;
 </string>
           </argument>
         </arguments>

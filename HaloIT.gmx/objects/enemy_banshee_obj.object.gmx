@@ -5,7 +5,7 @@
   <visible>-1</visible>
   <depth>-10</depth>
   <persistent>0</persistent>
-  <parentName>covenant_par</parentName>
+  <parentName>obj_banshee_scroller_par</parentName>
   <maskName>&lt;undefined&gt;</maskName>
   <events>
     <event eventtype="0" enumb="0">
@@ -78,7 +78,11 @@ instance_destroy()
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>instance_create(other.x,other.y,banshee_explosion2)
+            <string>e = instance_create(x, y, obj_banshee_explosion);
+e.colour = c_purple;
+e.size = 0;
+e.effect = ef_explosion;
+
 give_points(1);
 </string>
           </argument>

@@ -5,10 +5,38 @@
   <visible>-1</visible>
   <depth>-10</depth>
   <persistent>0</persistent>
-  <parentName>covenant_par</parentName>
+  <parentName>obj_banshee_scroller_par</parentName>
   <maskName>&lt;undefined&gt;</maskName>
   <events>
     <event eventtype="0" enumb="0">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>event_inherited();
+
+b=1
+volume=0
+hp_max=1250
+alarm[0]=360/speed
+if instance_number(enemy_phantom_obj)&gt;1
+instance_destroy()
+</string>
+          </argument>
+        </arguments>
+      </action>
       <action>
         <libid>1</libid>
         <id>101</id>
@@ -33,34 +61,6 @@
           </argument>
         </arguments>
       </action>
-      <action>
-        <libid>1</libid>
-        <id>603</id>
-        <kind>7</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>2</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>1</kind>
-            <string>event_inherited();
-
-b=1
-volume=0
-hp_max=400
-alarm[0]=360/speed
-if instance_number(enemy_phantom_obj)&gt;1
-instance_destroy()
-</string>
-          </argument>
-        </arguments>
-      </action>
     </event>
     <event eventtype="1" enumb="0">
       <action>
@@ -79,7 +79,12 @@ instance_destroy()
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>instance_create(other.x,other.y,phantom_explosion2)
+            <string>e = instance_create(x, y, obj_banshee_explosion);
+e.colour = c_purple;
+e.size = 1;
+e.effect = ef_explosion;
+
+give_points(1);
 give_points(5);
 </string>
           </argument>
@@ -257,20 +262,26 @@ if y&lt;room_height{
 
 if b=1
 {
-instance_create(varshoot1X,varshoot1Y,enemy_phantom_bullet_obj)
+a = spawn_projectile(obj_proj_phantom, varshoot1X, varshoot1Y, direction, 1, id);
 b=2
 }
 else
 if b=2
 {
-instance_create(varshoot2X,varshoot2Y,enemy_phantom_bullet_obj)
+a = spawn_projectile(obj_proj_phantom, varshoot2X, varshoot2Y, direction, 1, id);
 b=3
 }
 else
 if b=3
 {
-instance_create(varshoot3X,varshoot3Y,enemy_phantom_bullet_obj)
+a = spawn_projectile(obj_proj_phantom, varshoot3X, varshoot3Y, direction, 1, id);
 b=1
+}
+
+var target = instance_nearest(x, y, banshee_scroller_obj);
+
+if(target != undefined) {
+    a.direction = point_direction(a.x, a.y, target.x, target.y);
 }
 
 audio_play_sound_at(plasma_pistol_shot, x, y, 0, 300, 800, 1, false, 0);
