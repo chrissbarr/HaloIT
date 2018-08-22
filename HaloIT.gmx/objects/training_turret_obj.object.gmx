@@ -5,7 +5,7 @@
   <visible>-1</visible>
   <depth>0</depth>
   <persistent>0</persistent>
-  <parentName>&lt;undefined&gt;</parentName>
+  <parentName>character_par_obj</parentName>
   <maskName>&lt;undefined&gt;</maskName>
   <events>
     <event eventtype="0" enumb="0">
@@ -25,44 +25,23 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>tar=instance_nearest(x,y,training_turret_aim_obj)
-direction=point_direction(x,y,tar.x,tar.y)
-varGunLength = point_distance(sprite_get_xoffset(sprite_index),sprite_get_yoffset(sprite_index),54,15);
-varGunDirection = point_direction(sprite_get_xoffset(sprite_index),sprite_get_yoffset(sprite_index),54,15);
-varshoot1X = x + lengthdir_x(varGunLength,image_angle + varGunDirection);
-varshoot1Y = y + lengthdir_y(varGunLength,image_angle + varGunDirection);
+            <string>event_inherited();
 
-ss=1
-alarm[0]=ss
-</string>
-          </argument>
-        </arguments>
-      </action>
-    </event>
-    <event eventtype="2" enumb="0">
-      <action>
-        <libid>1</libid>
-        <id>603</id>
-        <kind>7</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>2</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>1</kind>
-            <string>repeat (1) {
-    spawn_projectile(obj_proj_pistol, varshoot1X, varshoot1Y, direction, 5, id);
-}
+target=instance_nearest(x,y,training_turret_aim_obj)
+direction=point_direction(x,y,target.x,target.y)
 
-audio_play_sound_at(training_turret_shot_snd, x, y, 0, 50, 300, 1, false, 0);
+fireX = 58;
+fireY = 15;
 
-alarm[0]=1//ss+random(2)
+weapon = instance_create(x, y, obj_weap_arifle);
+weapon.spread = 5;
+weapon.rate = 1;
+weapon.ammo_decreases = false;
+weapon.owner = id;
+weapon.muzzle_flash_size_x_base = 1.0;
+weapon.muzzle_flash_size_x_range = 0.5;
+
+weapon_pickup(weapon);
 </string>
           </argument>
         </arguments>
@@ -85,12 +64,17 @@ alarm[0]=1//ss+random(2)
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>varGunLength = point_distance(sprite_get_xoffset(sprite_index),sprite_get_yoffset(sprite_index),54,15);
-varGunDirection = point_direction(sprite_get_xoffset(sprite_index),sprite_get_yoffset(sprite_index),54,15);
-varshoot1X = x + lengthdir_x(varGunLength,image_angle + varGunDirection);
-varshoot1Y = y + lengthdir_y(varGunLength,image_angle + varGunDirection);
+            <string>image_angle=direction
 
-image_angle=direction
+var curWeap = weapons[| weapons_index];
+
+if (curWeap.can_shoot) {
+    with curWeap { event_perform(ev_other, ev_user0); }
+} else {
+    if (curWeap.needs_reloading and !curWeap.reloading) {
+        with curWeap { event_perform(ev_other, ev_user1); }
+    }
+}
 </string>
           </argument>
         </arguments>

@@ -627,7 +627,6 @@
       </objects>
       <object>objects\training_turret_obj</object>
       <object>objects\training_turret_aim_obj</object>
-      <object>objects\training_turret_bullet_obj</object>
       <object>objects\damage_small_circle_obj</object>
       <objects name="skulls">
         <object>objects\shieldbashskull_obj</object>

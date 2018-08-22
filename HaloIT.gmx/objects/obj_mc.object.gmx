@@ -29,10 +29,10 @@
 
 weapons_max = 2;
 
-var w = instance_create(x, y, obj_weap_plasma_rifle);
+var w = instance_create(x, y, obj_weap_arifle);
 weapon_pickup(w);
 
-var w = instance_create(x, y, obj_weap_arifle);
+var w = instance_create(x, y, obj_weap_pistol);
 weapon_pickup(w);
 
 if audio_is_playing(menu_sound)
@@ -909,40 +909,6 @@ with other
 global.advice='You found the Black Eye Skull! You can use this skull next time you play arena mode!'
 alarm[4]=room_speed*5
 }
-</string>
-          </argument>
-        </arguments>
-      </action>
-    </event>
-    <event eventtype="4" ename="training_turret_bullet_obj">
-      <action>
-        <libid>1</libid>
-        <id>603</id>
-        <kind>7</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>2</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>1</kind>
-            <string>if (shield &gt; 1) {
-    shield-=7*hurt;
-    effect_create_above(ef_spark, other.x, other.y, 0, c_orange);
-} else {
-    hp-=9*hurt
-    repeat random(5)
-        a=instance_create(x,y,red_blood_drop_obj)
-}
-
-with (other) { instance_destroy(); }
-
-alarm[1]=recharge_speed
 </string>
           </argument>
         </arguments>
