@@ -30,7 +30,7 @@
 name = "Needler";
 
 projectile = obj_proj_needle;
-spread = 5;
+spread = 1;
 rate = 2;
 fire_sound = needle_shot_snd;
 
@@ -41,7 +41,12 @@ ammo_maximum = 32 * 4;
 ammo_current = 32 * 2;
 
 reload_time = room_speed * 1;
-//reload_sound = pistol_reload_snd;
+
+overheats = false;
+overheat_rate = 0.05;
+cooldown_rate = 0.02;
+cooldown_delay = 5;
+overheat_spread_multiplier = 10;
 
 targeting_spr = spr_cursor_needler;
 

@@ -34,13 +34,15 @@ speed = 8;
 lifespan = 120;
 
 tracks = true;
-track_rate = 3;
-track_max_angle = 50;
+track_rate = 1;
+track_max_angle = 150;
 
 xOffset = 0;
 yOffset = 0;
 
 detonate_delay = room_speed;
+
+spawns_trail = obj_proj_trail_needler;
 </string>
           </argument>
         </arguments>
@@ -198,6 +200,8 @@ rotOffset = collided_with.direction - direction;
 damage_shield = 0;
 damage_hp = 0;
 speed = 0;
+
+spawns_trail = undefined;
 
 alarm[0] = detonate_delay;
 </string>
