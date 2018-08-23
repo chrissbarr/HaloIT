@@ -28,10 +28,13 @@
             <string>window_set_cursor(cr_none);
 
 owner = undefined;
+target = undefined;
 
 default_cursor = spr_cursor_arifle;
-image_index=2
+
 radius=20
+
+
 </string>
           </argument>
         </arguments>
@@ -70,7 +73,6 @@ if (owner != undefined and instance_exists(owner)) {
         }
     }
 
-    var target;
     var entities = collision_circle_list(x, y, radius, entity_par_obj, true, true);
     
     if (entities != noone) {

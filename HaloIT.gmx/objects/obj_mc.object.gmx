@@ -559,6 +559,9 @@ if (shield &gt; 0) {
     image_index = 0;
 }
 
+if (cursor != undefined and instance_exists(cursor)) {
+    target = cursor.target;
+}
 
 var curWeap = weapons[| weapons_index];
 
