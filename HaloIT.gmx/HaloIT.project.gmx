@@ -50,14 +50,9 @@
       <sprite>sprites\grunt_spr</sprite>
       <sprite>sprites\grunt_2_spr</sprite>
       <sprite>sprites\grunt_3_spr</sprite>
-      <sprite>sprites\plasma_rifle_bolt</sprite>
-      <sprite>sprites\plasma_rifle_bullet_trail_spr</sprite>
-      <sprite>sprites\spr_proj_trail_needle</sprite>
       <sprite>sprites\grunt_dead_spr</sprite>
       <sprite>sprites\grunt_dead2_spr</sprite>
       <sprite>sprites\grunt_dead3_spr</sprite>
-      <sprite>sprites\fuel_rod_bullet_trail_spr</sprite>
-      <sprite>sprites\banshee_bullet2_trail_spr</sprite>
       <sprite>sprites\elite_spr</sprite>
       <sprite>sprites\elite_rank2_spr</sprite>
       <sprite>sprites\portable_shield2_spr</sprite>
@@ -65,19 +60,13 @@
       <sprite>sprites\elite_rank2_dead_spr</sprite>
       <sprite>sprites\hunter_spr</sprite>
       <sprite>sprites\portable_shield_spr</sprite>
-      <sprite>sprites\fuel_rod_bullet_spr</sprite>
       <sprite>sprites\covenant_cargo_module_spr</sprite>
-      <sprite>sprites\banshee_bullet_trail_spr</sprite>
-      <sprite>sprites\phantom_bullet_trail_spr</sprite>
-      <sprite>sprites\banshee_bullet_spr</sprite>
-      <sprite>sprites\plasma_pistol_bullet_trail_spr</sprite>
       <sprite>sprites\blue_blood_drop</sprite>
       <sprite>sprites\purple_blood_droop_spr</sprite>
       <sprite>sprites\hunter_dead_spr</sprite>
       <sprite>sprites\jackal_spr</sprite>
       <sprite>sprites\jackal_dead_spr</sprite>
       <sprite>sprites\jackal_shield_spr</sprite>
-      <sprite>sprites\plasma_pistol_bullet_spr</sprite>
     </sprites>
     <sprites name="mc_group">
       <sprite>sprites\mc_pistol_spr</sprite>
@@ -89,8 +78,6 @@
       <sprite>sprites\mc_needler_spr</sprite>
       <sprite>sprites\mc_plasmapistol_spr</sprite>
       <sprite>sprites\mc_shoot_spr</sprite>
-      <sprite>sprites\pistol_bullet_spr</sprite>
-      <sprite>sprites\assaultrifle_bullet_spr</sprite>
     </sprites>
     <sprites name="menu_group">
       <sprites name="newbuttons">
@@ -121,20 +108,49 @@
       <sprite>sprites\level_select_box_spr</sprite>
       <sprite>sprites\new_halo_spr</sprite>
     </sprites>
-    <sprites name="weapon_group">
-      <sprite>sprites\plasma_rifle_pickup_spr</sprite>
+    <sprites name="weapons">
+      <sprites name="projectiles">
+        <sprite>sprites\spr_proj_arifle</sprite>
+        <sprite>sprites\spr_proj_pistol</sprite>
+        <sprite>sprites\spr_proj_plasma_rifle</sprite>
+        <sprite>sprites\spr_proj_banshee</sprite>
+        <sprite>sprites\spr_proj_phantom</sprite>
+        <sprite>sprites\spr_proj_plasma_pistol</sprite>
+        <sprite>sprites\spr_proj_needle_explosion</sprite>
+        <sprite>sprites\spr_proj_fuel_rod</sprite>
+        <sprite>sprites\spr_proj_sniper</sprite>
+        <sprite>sprites\spr_proj_needle</sprite>
+        <sprite>sprites\spr_proj_tank1</sprite>
+        <sprite>sprites\spr_proj_tank2</sprite>
+        <sprite>sprites\spr_proj_brifle</sprite>
+        <sprite>sprites\spr_proj_shotgun</sprite>
+      </sprites>
+      <sprites name="trails">
+        <sprite>sprites\spr_proj_trail_fuel_rod</sprite>
+        <sprite>sprites\spr_proj_trail_banshee</sprite>
+        <sprite>sprites\spr_proj_trail_phantom</sprite>
+        <sprite>sprites\spr_proj_trail_plasma_pistol</sprite>
+        <sprite>sprites\spr_proj_trail_plasma_rifle</sprite>
+        <sprite>sprites\spr_proj_trail_needle</sprite>
+      </sprites>
+      <sprite>sprites\spr_wea_plasma_rifle</sprite>
       <sprite>sprites\damage_circle_spr</sprite>
       <sprite>sprites\damage_small_circle_spr</sprite>
-      <sprite>sprites\assault_rifle_pickup_spr</sprite>
-      <sprite>sprites\plasma_pistol_pickup_spr</sprite>
-      <sprite>sprites\pistol_pickup_spr</sprite>
-      <sprite>sprites\battle_rifle_pickup_spr</sprite>
-      <sprite>sprites\shotgun_pickup_spr</sprite>
-      <sprite>sprites\battle_rifle_bullet_spr</sprite>
-      <sprite>sprites\frag_grenade_spr</sprite>
-      <sprite>sprites\shotgun_bullet_spr</sprite>
-      <sprite>sprites\lotus_antitank_mine_spr</sprite>
+      <sprite>sprites\spr_weap_arifle</sprite>
+      <sprite>sprites\spr_weap_plasma_pistol</sprite>
+      <sprite>sprites\spr_weap_pistol</sprite>
+      <sprite>sprites\spr_weap_brifle</sprite>
+      <sprite>sprites\spr_weap_sniper</sprite>
+      <sprite>sprites\spr_weap_needler</sprite>
+      <sprite>sprites\spr_weap_shotgun</sprite>
+      <sprite>sprites\spr_weap_grenade_frag</sprite>
+      <sprite>sprites\spr_weap_mine_lotus</sprite>
       <sprite>sprites\spr_muzzle_flash_1</sprite>
+      <sprites name="ammunition">
+        <sprite>sprites\battle_rifle_ammo_spr</sprite>
+        <sprite>sprites\pistol_ammo_spr</sprite>
+        <sprite>sprites\assaultrifle_ammo_spr</sprite>
+      </sprites>
     </sprites>
     <sprites name="cursor">
       <sprite>sprites\spr_cursor_normal</sprite>
@@ -155,13 +171,10 @@
     <sprite>sprites\red_blood_drop</sprite>
     <sprite>sprites\tent_spr</sprite>
     <sprite>sprites\healthpack_spr</sprite>
-    <sprite>sprites\pistol_ammo_spr</sprite>
     <sprite>sprites\marine_dead_spr</sprite>
     <sprite>sprites\tank_turret_spr</sprite>
     <sprite>sprites\tank_spr</sprite>
     <sprite>sprites\tank_inactive_spr</sprite>
-    <sprite>sprites\tank_bullet1_spr</sprite>
-    <sprite>sprites\tank_bullet2_Spr</sprite>
     <sprite>sprites\sprite43</sprite>
     <sprite>sprites\boulder1_spr</sprite>
     <sprite>sprites\boulder2_spr</sprite>
@@ -174,9 +187,6 @@
     <sprite>sprites\barbed_wire_corner1_spr</sprite>
     <sprite>sprites\covenant_cargocrate_spr</sprite>
     <sprite>sprites\covenant_computer_core_spr</sprite>
-    <sprites name="text">
-      <sprite>sprites\level1start_text_spr</sprite>
-    </sprites>
     <sprite>sprites\target_spr</sprite>
     <sprite>sprites\popup_target_spr</sprite>
     <sprite>sprites\moving_target_spr</sprite>
@@ -207,16 +217,12 @@
     <sprite>sprites\tree_4by2_spr</sprite>
     <sprite>sprites\tree_vertical_1_spr</sprite>
     <sprite>sprites\enemy_phantom_spr</sprite>
-    <sprite>sprites\phantom_bullet_spr</sprite>
     <sprite>sprites\pillar_of_autumn_spr</sprite>
     <sprite>sprites\archer_missile_spr</sprite>
     <sprite>sprites\archer_missile_smoke_spr</sprite>
     <sprite>sprites\covenant_frigate_spr</sprite>
     <sprite>sprites\line_spr</sprite>
     <sprite>sprites\training_turret_spr</sprite>
-    <sprite>sprites\training_turret_bullet_spr</sprite>
-    <sprite>sprites\assaultrifle_ammo_spr</sprite>
-    <sprite>sprites\battle_rifle_ammo_spr</sprite>
     <sprite>sprites\level_select_spr</sprite>
     <sprite>sprites\concrete_bunker_spr</sprite>
     <sprite>sprites\tree_delete_circle_spr</sprite>
@@ -260,12 +266,7 @@
     <sprite>sprites\sprite619</sprite>
     <sprite>sprites\museum_room1_roof_spr</sprite>
     <sprite>sprites\shield_flare_spr</sprite>
-    <sprite>sprites\needle_spr</sprite>
-    <sprite>sprites\needler_pickup_spr</sprite>
-    <sprite>sprites\needle_explode_spr</sprite>
     <sprite>sprites\targetbounce_spr</sprite>
-    <sprite>sprites\sniper_rifle_pickup_spr</sprite>
-    <sprite>sprites\sniper_rifle_bullet_spr</sprite>
     <sprite>sprites\infection_form_spr</sprite>
     <sprite>sprites\infection_explode_spr</sprite>
     <sprite>sprites\flood_carrier_form_spr</sprite>
