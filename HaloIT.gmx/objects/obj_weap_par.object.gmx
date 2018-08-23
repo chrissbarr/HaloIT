@@ -207,15 +207,13 @@ if (current_step - last_fired_step &gt; actualRate) {
     }
 }
 
-if (overheats) {
-    if (overheat_level &gt; 0) {
-        if (current_step - last_fired_step &gt; cooldown_delay) {
-            overheat_level -= cooldown_rate;
-        }
-    } else {
-        overheat_level = 0;
-        overheated = false;
+if (overheat_level &gt; 0) {
+    if (current_step - last_fired_step &gt; cooldown_delay) {
+        overheat_level -= cooldown_rate;
     }
+} else {
+    overheat_level = 0;
+    overheated = false;
 }
 
 if (charges) {
@@ -391,9 +389,10 @@ if (burst_count &gt; 0) {
     }
 }
 
-if (overheats) {
-    overheat_level += overheat_rate;
-    if (overheat_level &gt;= 1.0) {
+overheat_level += overheat_rate;
+if (overheat_level &gt;= 1.0) {
+    overheat_level = 1.0;
+    if (overheats) {
         overheated = true;
         if (overheat_sound != undefined) {
             audio_play_sound_on(s_emit, overheat_sound, false, 0);
