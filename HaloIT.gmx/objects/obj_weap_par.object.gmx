@@ -96,6 +96,8 @@ muzzle_flash_blend_colour = c_white;
 depth = 1;
 s_emit = audio_emitter_create();
 audio_emitter_falloff(s_emit, 50 , 300, 1);
+
+debug_string = "";
 </string>
           </argument>
         </arguments>
@@ -239,7 +241,6 @@ if (burst_count != 0) {
         burst_count = 0;
     }
 }
-
 
 audio_emitter_position(s_emit, x, y, 0);
 </string>
@@ -425,17 +426,27 @@ last_fired_step = current_step;
           <argument>
             <kind>1</kind>
             <string>if(global.debug) {
-    var drawX = x;
-    var drawY = y - 50;
+
+    debug_string = "";
+    debug_string += string(name);
+    debug_string += "#";
+    debug_string += "(" + string(magazine_current) + "/" + string(magazine_maximum) + ")(" + string(ammo_current) + "/" + string(ammo_maximum) + ")";
+    debug_string += "#";
+    debug_string += "(" + string(overheat_level) + "/" + string(1.0) + ")(" + string(charged_to) + "/" + string(charge_max) + ")";
     
-    draw_set_colour(c_white);
-    draw_set_halign(fa_center);
-    draw_set_valign(fa_middle);
+    if (owner == undefined or !instance_exists(owner)) {
+
+        var drawX = x;
+        var drawY = y - 50;
+            
+        draw_set_colour(c_white);
+        draw_set_halign(fa_center);
+        draw_set_valign(fa_middle);
     
-    draw_text(drawX, drawY, name);
-    var ammoString = "(" + string(magazine_current) + "/" + string(magazine_maximum) + ")(" + string(ammo_current) + "/" + string(ammo_maximum) + ")";
-    draw_text(drawX, drawY+20, ammoString);
-    
+        draw_text(drawX, drawY, debug_string);
+        
+    }
+       
     if (owner != undefined) {
         draw_set_alpha(0.5);
         draw_set_colour(c_red);

@@ -380,6 +380,7 @@
     <font>fonts\hudfont</font>
     <font>fonts\pausedfont</font>
     <font>fonts\denmark</font>
+    <font>fonts\debug_font</font>
   </fonts>
   <objects name="objects">
     <objects name="weapons">

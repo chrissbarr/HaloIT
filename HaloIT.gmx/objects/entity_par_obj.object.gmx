@@ -45,6 +45,44 @@ target = undefined;
 lastHitX = 0;
 lastHitY = 0;
 lastHitSize = 0;
+
+debug_string = "";
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="3" enumb="2">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>if (global.debug) {  
+    debug_string = "";
+    
+    if (shield != -1) {
+        debug_string += "(S" + string(shield) + ")";
+    }
+    
+    if (hp != -1) {
+        debug_string += "(H" + string(hp) + ")";
+    }
+    
+    if(debug_string != "") { debug_string += "#"; }
+    
+}
 </string>
           </argument>
         </arguments>
@@ -219,27 +257,19 @@ current_step++;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if (global.debug) {
-    var healthString = "";
-    if (shield != -1) {
-        healthString += "(S" + string(shield) + ")";
-    }
-    
-    if (hp != -1) {
-        healthString += "(H" + string(hp) + ")";
-    }
-    
-    if (string_length(healthString) &gt; 0) {
+            <string>if (global.debug) {  
+    if (debug_string != "") {
 
         draw_set_colour(c_white);
         draw_set_halign(fa_center);
-        draw_set_valign(fa_middle);
+        draw_set_font(debug_font);
+        
+        var yOffset = 10 + string_height(debug_string);
     
-        draw_text(x, y - 30, healthString);
+        draw_text(x, y - yOffset, debug_string);
         
         draw_set_colour(c_black);
         draw_set_halign(fa_left);
-        draw_set_valign(fa_top);
     }
 }
 </string>

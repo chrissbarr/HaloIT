@@ -83,7 +83,9 @@ fireY = 0;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>varGunLength = point_distance(sprite_get_xoffset(sprite_index), sprite_get_yoffset(sprite_index), fireX, fireY);
+            <string>event_inherited();
+
+varGunLength = point_distance(sprite_get_xoffset(sprite_index), sprite_get_yoffset(sprite_index), fireX, fireY);
 varGunDirection = point_direction(sprite_get_xoffset(sprite_index), sprite_get_yoffset(sprite_index), fireX, fireY);
 varshootX = x + lengthdir_x(varGunLength, image_angle + varGunDirection);
 varshootY = y + lengthdir_y(varGunLength, image_angle + varGunDirection);
@@ -94,6 +96,11 @@ for (var i = 0; i &lt; ds_list_size(weapons); i++) {
     weapons[| i].direction = direction;
 }
 
+if (global.debug) {
+    for (var i = 0; i &lt; ds_list_size(weapons); i++) {
+        debug_string += weapons[| i].debug_string + "#";
+    }
+}
 </string>
           </argument>
         </arguments>
