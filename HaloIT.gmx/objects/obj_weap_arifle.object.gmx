@@ -30,7 +30,7 @@
 name = "Assault Rifle";
 
 projectile = obj_proj_arifle;
-spread = 10;
+spread = 4;
 rate = room_speed / 20;
 fire_sound = assaultrifle_shot_sound;
 
@@ -40,6 +40,12 @@ ammo_maximum = 60 * 10;
 ammo_current = 60 * 4;
 reload_time = room_speed * 2;
 reload_sound = assault_rifle_reload_snd;
+
+overheats = false;
+overheat_rate = 0.05;
+cooldown_rate = 0.2;
+cooldown_delay = 2;
+overheat_spread_multiplier = 6;
 
 muzzle_flash = obj_weap_flash;
 muzzle_flash_size_x_base = 0.75;

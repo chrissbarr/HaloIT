@@ -29,6 +29,8 @@
 
 damage_hp = 4;
 damage_shield = 1.5;
+
+lifespan = 10;
 </string>
           </argument>
         </arguments>

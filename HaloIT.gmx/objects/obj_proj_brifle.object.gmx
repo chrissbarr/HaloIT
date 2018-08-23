@@ -29,7 +29,10 @@
 
 damage_hp = 10;
 damage_shield = 7.5;
+
 speed = 80
+
+lifespan = 10;
 </string>
           </argument>
         </arguments>
