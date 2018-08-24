@@ -676,38 +676,6 @@ if camoflage=false
 if image_alpha&lt;1
 image_alpha+=.03
 
-/*
-bullettype=wep
-if bullettype=obj_proj_pistol{
-sprite_index=mc_pistol_spr
-reload=pistol_shoot_speed
-}
-if bullettype=obj_proj_arifle{
-sprite_index=mc_norm_spr
-reload=assaultrifle_shoot_speed
-}
-if bullettype=battle_rifle_bullet_obj{
-sprite_index=mc_battle_rifle_spr
-reload=battle_rifle_shoot_speed
-}
-if bullettype=obj_proj_shotgun{
-sprite_index=mc_shotgun_spr
-reload=shotgun_shoot_speed
-}
-if bullettype=obj_proj_plasma_rifle{
-sprite_index=mc_plasmarifle_spr
-reload=plasma_rifle_shoot_speed
-}
-if bullettype=obj_proj_plasma_pistol{
-sprite_index=mc_plasmapistol_spr
-reload=plasma_pistol_shoot_speed
-}
-if bullettype=mc_needle_bullet_obj{
-sprite_index=mc_needler_spr
-reload=needler_shoot_speed
-}
-*/
-
 if overshield=true{
 
 if shield_max&gt;shieldrem
@@ -753,21 +721,7 @@ audio_listener_position(x, y, 0);
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if overload&gt;10
-overload=10
-if overload&gt;9.8{
-plasmacanshoot=false
-}
-
-if overload&gt;0
-overload-=.2
-if overload&lt;0
-overload=0
-if overload=0{
-plasmacanshoot=true
-}
-
-if instance_exists(tank_inactive_obj){
+            <string>if instance_exists(tank_inactive_obj){
 if collision_circle(x,y,30,tank_inactive_obj,true,true){
 global.advice="Press V to enter Scorpion Tank"
 alarm[4]=room_speed/2
@@ -806,7 +760,8 @@ if view_wport&lt;1280
 view_wport+=6
 if view_hport&lt;960
 view_hport+=6
-}</string>
+}
+</string>
           </argument>
         </arguments>
       </action>
