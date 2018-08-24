@@ -32,14 +32,14 @@ name = "Assault Rifle";
 projectile = obj_proj_arifle;
 spread = 4;
 rate = room_speed / 20;
-fire_sound = assaultrifle_shot_sound;
+fire_sound = snd_weap_arifle_fire;
 
 magazine_maximum = 60;
 magazine_current = 60;
 ammo_maximum = 60 * 10;
 ammo_current = 60 * 4;
 reload_time = room_speed * 2;
-reload_sound = assault_rifle_reload_snd;
+reload_sound = snd_weap_arifle_reload;
 
 overheats = false;
 overheat_rate = 0.05;

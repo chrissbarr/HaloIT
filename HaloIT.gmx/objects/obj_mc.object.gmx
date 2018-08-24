@@ -528,12 +528,12 @@ switch (weapons[| weapons_index].object_index) {
         fireX = 33;
         fireY = 16;
         break;
-    case obj_weap_plasma_rifle:
+    case obj_weap_plasmarifle:
         sprite_index = mc_plasmarifle_spr;
         fireX = 26;
         fireY = 16;
         break;
-    case obj_weap_plasma_pistol:
+    case obj_weap_plasmapistol:
         sprite_index = mc_plasmapistol_spr;
         fireX = 27;
         fireY = 19;
@@ -1899,7 +1899,7 @@ screen_save(file_name+'.bmp')</string>
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>var weapIndex = check_carrying_weapon(obj_weap_plasma_rifle);
+            <string>var weapIndex = check_carrying_weapon(obj_weap_plasmarifle);
 
 if (weapIndex != -1) {
     weapons_index = weapIndex;
@@ -1926,7 +1926,7 @@ if (weapIndex != -1) {
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>var weapIndex = check_carrying_weapon(obj_weap_plasma_pistol);
+            <string>var weapIndex = check_carrying_weapon(obj_weap_plasmapistol);
 
 if (weapIndex != -1) {
     weapons_index = weapIndex;

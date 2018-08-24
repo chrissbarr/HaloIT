@@ -32,7 +32,7 @@ name = "Battle Rifle";
 projectile = obj_proj_brifle;
 spread = 2;
 rate = room_speed / 3;
-fire_sound = battle_rifle_shot_snd;
+fire_sound = snd_weap_brifle_fire;
 
 burst_size = 3;
 burst_delay = 2;
@@ -42,7 +42,7 @@ magazine_current = 36;
 ammo_maximum = 36 * 3;
 ammo_current = 36 * 5;
 reload_time = room_speed * 2;
-reload_sound = battle_rifle_reload_snd;
+reload_sound = snd_weap_brifle_reload;
 
 targeting_spr = spr_cursor_brifle;
 

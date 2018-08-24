@@ -93,7 +93,7 @@ a.rank=rank
           <argument>
             <kind>1</kind>
             <string>if rank=1{
-var w = instance_create(x, y, obj_weap_plasma_pistol);
+var w = instance_create(x, y, obj_weap_plasmapistol);
 weapon_pickup(w);
 accuracy=12
 firerate=20
@@ -107,14 +107,14 @@ firerate=3
 }
 
 if rank=3{
-var w = instance_create(x, y, obj_weap_plasma_pistol);
+var w = instance_create(x, y, obj_weap_plasmapistol);
 weapon_pickup(w);
 accuracy=2
 firerate=5
 }
 
 if rank=4{
-var w = instance_create(x, y, obj_weap_plasma_pistol);
+var w = instance_create(x, y, obj_weap_plasmapistol);
 weapon_pickup(w);
 accuracy=6
 firerate=16
@@ -555,7 +555,7 @@ switch (weapons[| weapons_index].object_index) {
         fireY = 15;
         break;
     default:
-    case obj_weap_plasma_pistol:
+    case obj_weap_plasmapistol:
         sprite_index = grunt_spr;
         fireX = 36;
         fireY = 13;

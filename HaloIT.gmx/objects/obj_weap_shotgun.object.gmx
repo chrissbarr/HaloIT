@@ -32,14 +32,14 @@ name = "Shotgun";
 projectile = obj_proj_shotgun;
 spread = 10;
 rate = room_speed * 1;
-fire_sound = shotgun_shot_snd;
+fire_sound = snd_weap_shotgun_fire;
 
 magazine_maximum = 12;
 magazine_current = 12;
 ammo_maximum = 12 * 4;
 ammo_current = 12 * 2;
 reload_time = room_speed / 2;
-reload_sound = shotgun_reload_snd;
+reload_sound = snd_weap_shotgun_reload;
 
 projectile_count = 10;
 

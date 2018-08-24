@@ -9,32 +9,30 @@
     <sounds name="backgroundambience">
       <sound>sound\bird1_snd</sound>
     </sounds>
-    <sound>sound\pistol_shot_sound</sound>
-    <sound>sound\sniper_rifle_shot_snd</sound>
-    <sound>sound\tank_cannon_snd</sound>
-    <sound>sound\assaultrifle_shot_sound</sound>
-    <sound>sound\training_turret_shot_snd</sound>
-    <sound>sound\marine_shot_snd</sound>
-    <sound>sound\plasma_rifle_shot</sound>
-    <sound>sound\plasma_rifle_shot_2</sound>
-    <sound>sound\plasma_pistol_shot</sound>
-    <sound>sound\plasma_pistol_shot_2_snd</sound>
+    <sounds name="weapons">
+      <sound>sound\snd_weap_arifle_fire</sound>
+      <sound>sound\snd_weap_arifle_reload</sound>
+      <sound>sound\snd_weap_brifle_fire</sound>
+      <sound>sound\snd_weap_brifle_reload</sound>
+      <sound>sound\snd_weap_needler_explode</sound>
+      <sound>sound\snd_weap_needler_fire</sound>
+      <sound>sound\snd_weap_phantom_fire</sound>
+      <sound>sound\snd_weap_pistol_fire</sound>
+      <sound>sound\snd_weap_pistol_reload</sound>
+      <sound>sound\snd_weap_plasmapistol_fire</sound>
+      <sound>sound\snd_weap_plasmarifle_fire</sound>
+      <sound>sound\snd_weap_shotgun_cock</sound>
+      <sound>sound\snd_weap_shotgun_fire</sound>
+      <sound>sound\snd_weap_shotgun_reload</sound>
+      <sound>sound\snd_weap_sniper_fire</sound>
+      <sound>sound\snd_weap_tank1_fire</sound>
+    </sounds>
     <sound>sound\message_snd</sound>
     <sound>sound\message_end_snd</sound>
     <sound>sound\menu_button_snd</sound>
-    <sound>sound\phantom_fire_snd</sound>
     <sound>sound\recharge_snd</sound>
     <sound>sound\shield_beep_snd</sound>
-    <sound>sound\battle_rifle_shot_snd</sound>
-    <sound>sound\pistol_reload_snd</sound>
-    <sound>sound\assault_rifle_reload_snd</sound>
-    <sound>sound\battle_rifle_reload_snd</sound>
-    <sound>sound\shotgun_reload_snd</sound>
-    <sound>sound\shotgun_shot_snd</sound>
-    <sound>sound\shotgun_cock_snd</sound>
     <sound>sound\grunt_allaroundme_snd</sound>
-    <sound>sound\needle_shot_snd</sound>
-    <sound>sound\needle_explode_snd</sound>
     <sound>sound\bullet_ping_snd</sound>
     <sounds name="music">
       <sound>sound\menu_sound</sound>
@@ -109,58 +107,58 @@
       <sprite>sprites\new_halo_spr</sprite>
     </sprites>
     <sprites name="weapons">
-      <sprites name="projectiles">
-        <sprite>sprites\spr_proj_arifle</sprite>
-        <sprite>sprites\spr_proj_pistol</sprite>
-        <sprite>sprites\spr_proj_plasma_rifle</sprite>
-        <sprite>sprites\spr_proj_banshee</sprite>
-        <sprite>sprites\spr_proj_phantom</sprite>
-        <sprite>sprites\spr_proj_plasma_pistol</sprite>
-        <sprite>sprites\spr_proj_needle_explosion</sprite>
-        <sprite>sprites\spr_proj_fuel_rod</sprite>
-        <sprite>sprites\spr_proj_sniper</sprite>
-        <sprite>sprites\spr_proj_needle</sprite>
-        <sprite>sprites\spr_proj_tank1</sprite>
-        <sprite>sprites\spr_proj_tank2</sprite>
-        <sprite>sprites\spr_proj_brifle</sprite>
-        <sprite>sprites\spr_proj_shotgun</sprite>
-      </sprites>
-      <sprites name="trails">
-        <sprite>sprites\spr_proj_trail_fuel_rod</sprite>
-        <sprite>sprites\spr_proj_trail_banshee</sprite>
-        <sprite>sprites\spr_proj_trail_phantom</sprite>
-        <sprite>sprites\spr_proj_trail_plasma_pistol</sprite>
-        <sprite>sprites\spr_proj_trail_plasma_rifle</sprite>
-        <sprite>sprites\spr_proj_trail_needle</sprite>
-      </sprites>
-      <sprite>sprites\spr_wea_plasma_rifle</sprite>
-      <sprite>sprites\damage_circle_spr</sprite>
-      <sprite>sprites\damage_small_circle_spr</sprite>
-      <sprite>sprites\spr_weap_arifle</sprite>
-      <sprite>sprites\spr_weap_plasma_pistol</sprite>
-      <sprite>sprites\spr_weap_pistol</sprite>
-      <sprite>sprites\spr_weap_brifle</sprite>
-      <sprite>sprites\spr_weap_sniper</sprite>
-      <sprite>sprites\spr_weap_needler</sprite>
-      <sprite>sprites\spr_weap_shotgun</sprite>
-      <sprite>sprites\spr_weap_grenade_frag</sprite>
-      <sprite>sprites\spr_weap_mine_lotus</sprite>
-      <sprite>sprites\spr_muzzle_flash_1</sprite>
       <sprites name="ammunition">
         <sprite>sprites\battle_rifle_ammo_spr</sprite>
         <sprite>sprites\pistol_ammo_spr</sprite>
         <sprite>sprites\assaultrifle_ammo_spr</sprite>
       </sprites>
+      <sprites name="projectiles">
+        <sprite>sprites\spr_proj_arifle</sprite>
+        <sprite>sprites\spr_proj_banshee</sprite>
+        <sprite>sprites\spr_proj_brifle</sprite>
+        <sprite>sprites\spr_proj_fuelrod</sprite>
+        <sprite>sprites\spr_proj_needler</sprite>
+        <sprite>sprites\spr_proj_needler_explosion</sprite>
+        <sprite>sprites\spr_proj_phantom</sprite>
+        <sprite>sprites\spr_proj_pistol</sprite>
+        <sprite>sprites\spr_proj_plasmapistol</sprite>
+        <sprite>sprites\spr_proj_plasmarifle</sprite>
+        <sprite>sprites\spr_proj_shotgun</sprite>
+        <sprite>sprites\spr_proj_sniper</sprite>
+        <sprite>sprites\spr_proj_tank1</sprite>
+        <sprite>sprites\spr_proj_tank2</sprite>
+      </sprites>
+      <sprites name="trails">
+        <sprite>sprites\spr_proj_trail_banshee</sprite>
+        <sprite>sprites\spr_proj_trail_fuelrod</sprite>
+        <sprite>sprites\spr_proj_trail_needler</sprite>
+        <sprite>sprites\spr_proj_trail_phantom</sprite>
+        <sprite>sprites\spr_proj_trail_plasmapistol</sprite>
+        <sprite>sprites\spr_proj_trail_plasmarifle</sprite>
+      </sprites>
+      <sprite>sprites\damage_circle_spr</sprite>
+      <sprite>sprites\damage_small_circle_spr</sprite>
+      <sprite>sprites\spr_muzzle_flash_1</sprite>
+      <sprite>sprites\spr_wea_plasmarifle</sprite>
+      <sprite>sprites\spr_weap_arifle</sprite>
+      <sprite>sprites\spr_weap_brifle</sprite>
+      <sprite>sprites\spr_weap_grenade_frag</sprite>
+      <sprite>sprites\spr_weap_mine_lotus</sprite>
+      <sprite>sprites\spr_weap_needler</sprite>
+      <sprite>sprites\spr_weap_pistol</sprite>
+      <sprite>sprites\spr_weap_plasmapistol</sprite>
+      <sprite>sprites\spr_weap_shotgun</sprite>
+      <sprite>sprites\spr_weap_sniper</sprite>
     </sprites>
     <sprites name="cursor">
+      <sprite>sprites\spr_cursor_arifle</sprite>
+      <sprite>sprites\spr_cursor_brifle</sprite>
+      <sprite>sprites\spr_cursor_needler</sprite>
       <sprite>sprites\spr_cursor_normal</sprite>
       <sprite>sprites\spr_cursor_pistol</sprite>
-      <sprite>sprites\spr_cursor_arifle</sprite>
+      <sprite>sprites\spr_cursor_plasmapistol</sprite>
+      <sprite>sprites\spr_cursor_plasmarifle</sprite>
       <sprite>sprites\spr_cursor_shotgun</sprite>
-      <sprite>sprites\spr_cursor_brifle</sprite>
-      <sprite>sprites\spr_cursor_plasma_rifle</sprite>
-      <sprite>sprites\spr_cursor_plasma_pistol</sprite>
-      <sprite>sprites\spr_cursor_needler</sprite>
     </sprites>
     <sprite>sprites\bar_spr</sprite>
     <sprite>sprites\laserpointer_spr</sprite>
@@ -392,16 +390,16 @@
         <object>objects\obj_proj_shotgun</object>
         <object>objects\obj_proj_arifle</object>
         <object>objects\obj_proj_brifle</object>
-        <object>objects\obj_proj_plasma_pistol</object>
-        <object>objects\obj_proj_needle</object>
-        <object>objects\obj_proj_needle_explosion</object>
-        <object>objects\obj_proj_plasma_rifle</object>
+        <object>objects\obj_proj_plasmapistol</object>
+        <object>objects\obj_proj_needler</object>
+        <object>objects\obj_proj_needler_explosion</object>
+        <object>objects\obj_proj_plasmarifle</object>
         <object>objects\obj_proj_banshee</object>
         <object>objects\obj_proj_phantom</object>
-        <object>objects\obj_proj_fuel_rod</object>
+        <object>objects\obj_proj_fuelrod</object>
         <object>objects\obj_proj_trail_par</object>
-        <object>objects\obj_proj_trail_plasma_pistol</object>
-        <object>objects\obj_proj_trail_plasma_rifle</object>
+        <object>objects\obj_proj_trail_plasmapistol</object>
+        <object>objects\obj_proj_trail_plasmarifle</object>
         <object>objects\obj_proj_trail_needler</object>
       </objects>
       <object>objects\obj_weap_par</object>
@@ -409,8 +407,8 @@
       <object>objects\obj_weap_arifle</object>
       <object>objects\obj_weap_brifle</object>
       <object>objects\obj_weap_shotgun</object>
-      <object>objects\obj_weap_plasma_rifle</object>
-      <object>objects\obj_weap_plasma_pistol</object>
+      <object>objects\obj_weap_plasmarifle</object>
+      <object>objects\obj_weap_plasmapistol</object>
       <object>objects\obj_weap_needler</object>
       <objects name="flashes">
         <object>objects\obj_weap_flash</object>

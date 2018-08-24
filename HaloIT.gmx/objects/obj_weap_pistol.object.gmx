@@ -32,14 +32,14 @@ name = "Pistol";
 projectile = obj_proj_pistol;
 spread = 2;
 rate = room_speed / 2;
-fire_sound = pistol_shot_sound;
+fire_sound = snd_weap_pistol_fire;
 
 magazine_maximum = 12;
 magazine_current = 12;
 ammo_maximum = 12 * 8;
 ammo_current = 12 * 4;
 reload_time = room_speed * 2;
-reload_sound = pistol_reload_snd;
+reload_sound = snd_weap_pistol_reload;
 
 targeting_spr = spr_cursor_pistol;
 

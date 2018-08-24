@@ -29,10 +29,10 @@
 
 name = "Needler";
 
-projectile = obj_proj_needle;
+projectile = obj_proj_needler;
 spread = 1;
 rate = 2;
-fire_sound = needle_shot_snd;
+fire_sound = snd_weap_needler_fire;
 
 magazine_maximum = 32;
 magazine_current = 32;
