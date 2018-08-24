@@ -46,6 +46,7 @@ overheat_spread_multiplier = 15;
 charges = true;
 charge_rate = 0.3;
 charge_max = 10;
+charge_delay = 5;
 
 ammo_transferable = false;
 

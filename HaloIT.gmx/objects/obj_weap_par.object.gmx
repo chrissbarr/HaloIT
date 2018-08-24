@@ -64,6 +64,8 @@ charge_rate = 0;
 charge_max = 0;
 charged_to = 0;
 charging = false;
+charge_delay = 0;
+charge_start_time = 0;
 
 projectile_count = 1;
 
@@ -218,12 +220,14 @@ if (overheat_level &gt; 0) {
 
 if (charges) {
     if (charging) {
-        charged_to += charge_rate;
-        if (charged_to &gt; charge_max) {
-            charged_to = charge_max;
-        }
-        if (charged_to &gt; magazine_current) {
-            charged_to = magazine_current;
+        if (current_step - charge_start_time &gt; charge_delay) {
+            charged_to += charge_rate;
+            if (charged_to &gt; charge_max) {
+                charged_to = charge_max;
+            }
+            if (charged_to &gt; magazine_current) {
+                charged_to = magazine_current;
+            }
         }
     }
 }
@@ -264,6 +268,7 @@ audio_emitter_position(s_emit, x, y, 0);
           <argument>
             <kind>1</kind>
             <string>charging = true;
+charge_start_time = current_step;
 </string>
           </argument>
         </arguments>
