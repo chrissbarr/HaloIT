@@ -53,10 +53,20 @@ ammo_amount = 0;
     var drawX = x;
     var drawY = y - 50;
     
+    var debug_string = "";
+    
+    debug_string += "Ammo For:#";
+    debug_string += string(ammo_for_weapon.name) + "#";
+    debug_string += "(" + string(ammo_amount) + ")";
+    
+    draw_set_halign(fa_center);
+    draw_set_font(debug_font);    
     draw_set_colour(c_white);
-    draw_text(drawX, drawY, "Ammo for: " + string(ammo_for_weapon.name));
-    var ammoString = "(" + string(ammo_amount) + ")";
-    draw_text(drawX, drawY+20, ammoString);
+    
+    draw_text(drawX, drawY, debug_string);
+    
+    draw_set_halign(fa_left);
+
 }
 
 draw_sprite_ext(sprite_index, image_index, x, y, 1, 1, image_angle, c_white, 1);

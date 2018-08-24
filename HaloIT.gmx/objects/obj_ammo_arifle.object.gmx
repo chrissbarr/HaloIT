@@ -28,7 +28,7 @@
             <string>event_inherited();
 
 ammo_for_weapon = obj_weap_arifle;
-ammo_amount = 600;
+ammo_amount = ammo_for_weapon.magazine_maximum * 5;
 </string>
           </argument>
         </arguments>
