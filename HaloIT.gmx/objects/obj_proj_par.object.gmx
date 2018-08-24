@@ -74,6 +74,7 @@ depth = -5;
         var t = instance_create(x, y, spawns_trail);
         t.direction = direction;
         t.image_angle = t.direction;
+        t.image_xscale = speed / t.sprite_width;
     }
 }
 </string>
