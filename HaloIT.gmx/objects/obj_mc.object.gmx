@@ -591,10 +591,11 @@ global.control = '';
 
 var nearbyWeapons = collision_circle_list(x, y, 20, obj_weap_par, false, true);
 
-if (nearbyWeapons != noone) {
+if (nearbyWeapons != noone) {    
     for(var i = 0; i &lt; ds_list_size(nearbyWeapons); i++) {
         var wep = nearbyWeapons[| i];
         if (wep.owner == undefined) {
+           
             var alreadyCarrying = check_carrying_weapon(wep.object_index);
             
             if (alreadyCarrying != -1) {
@@ -616,8 +617,8 @@ if (nearbyWeapons != noone) {
                 if (keyboard_check_pressed(ord('E'))) {
                     weapon_drop(weapons[| weapons_index]);
                     weapon_pickup(wep);
-                    break;
                 }
+                break;
             }
         }
     }
