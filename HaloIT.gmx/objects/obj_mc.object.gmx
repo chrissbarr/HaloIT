@@ -1990,11 +1990,22 @@ if (weapIndex != -1) {
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>weapons_index += 1;
+            <string>new_index = weapons_index + 1;
 
-if (weapons_index &gt;= ds_list_size(weapons)) {
-    weapons_index = 0;
+if (new_index &gt;= ds_list_size(weapons)) {
+    new_index = 0;
 }
+
+if (new_index != weapons_index) {
+    oldWep = weapons[| weapons_index];
+    with (oldWep) { event_perform(ev_other, ev_user3); }
+    
+    weapons_index = new_index;
+    
+    with (weapons[| weapons_index]) { event_perform(ev_other, ev_user4); }
+}
+
+
 </string>
           </argument>
         </arguments>

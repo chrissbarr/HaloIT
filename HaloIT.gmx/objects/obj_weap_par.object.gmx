@@ -95,9 +95,14 @@ muzzle_flash_size_y_charge = 0;
 muzzle_flash_size_y_overheat = 0;
 muzzle_flash_blend_colour = c_white;
 
+weapon_draw_sound = undefined;
+weapon_draw_delay = 10;
+weapon_draw_ready = true;
+
 depth = 1;
 s_emit = audio_emitter_create();
 audio_emitter_falloff(s_emit, 50 , 300, 1);
+playing_sound_index = undefined;
 
 debug_string = "";
 </string>
@@ -123,6 +128,29 @@ debug_string = "";
           <argument>
             <kind>1</kind>
             <string>audio_emitter_free(s_emit);
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="2" enumb="1">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>weapon_draw_ready = true;
 </string>
           </argument>
         </arguments>
@@ -229,7 +257,9 @@ if (current_step - last_fired_step &gt; actualRate) {
         needs_reloading = false;
         if (!reloading) {
             if (!overheated) {
-                can_shoot = true;
+                if (weapon_draw_ready) {
+                    can_shoot = true;
+                }
             } 
         }
     } else {
@@ -275,6 +305,73 @@ if (burst_count != 0) {
 }
 
 audio_emitter_position(s_emit, x, y, 0);
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="7" enumb="14">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>// used when switching to or picking up this weapon
+
+// weapon can't fire until weapon_draw_delay has elapsed
+weapon_draw_ready = false;
+can_shoot = false;
+alarm[1] = weapon_draw_delay;
+
+if (weapon_draw_sound != undefined) {
+    playing_sound_index = audio_play_sound_on(s_emit, weapon_draw_sound, false, 0);
+}
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="7" enumb="13">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>// used when switching away from or putting down this weapon
+
+// cancel ongoing reloading
+if (reloading) {
+    reloading = false;
+    alarm[0] = -1;
+    show_debug_message("Aborting reload");
+}
+
+// stop any ongoing sound 
+if (playing_sound_index != undefined) {
+    audio_stop_sound(playing_sound_index); 
+}
 </string>
           </argument>
         </arguments>
@@ -327,7 +424,7 @@ charge_start_time = current_step;
             reloading = true;
             
             if (reload_sound != undefined) {
-                audio_play_sound_on(s_emit, reload_sound, false, 0);
+                reloading_sound_index = audio_play_sound_on(s_emit, reload_sound, false, 0);
             }
             
             alarm[0] = reload_time;

@@ -52,6 +52,8 @@ muzzle_flash_size_x_base = 0.90;
 muzzle_flash_size_y_base = 0.90;
 muzzle_flash_size_x_range = 0.10;
 muzzle_flash_size_y_range = 0.10;
+
+weapon_draw_sound = snd_weap_shotgun_cock;
 </string>
           </argument>
         </arguments>
