@@ -340,6 +340,14 @@ surface_free(Tsur)}}
     <instance objName="tree_4by2_obj" x="1724" y="3648" name="inst_67A14C5E" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="tree_4by2_obj" x="1732" y="3720" name="inst_62832E85" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="tree_4by2_obj" x="1864" y="3752" name="inst_2C3738DD" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="obj_ammo_arifle" x="2860" y="3160" name="inst_238E9A12" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="obj_ammo_arifle" x="2868" y="3248" name="inst_D766F4BD" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="obj_ammo_arifle" x="2972" y="3168" name="inst_5D54D284" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="obj_weap_brifle" x="3088" y="3240" name="inst_B9DFBCAE" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="obj_ammo_brifle" x="2964" y="3152" name="inst_B792C4A3" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="obj_ammo_pistol" x="2848" y="3256" name="inst_38BC5507" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="obj_ammo_pistol" x="2976" y="3240" name="inst_32C6287E" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="obj_ammo_pistol" x="2840" y="3168" name="inst_5D1DEA10" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
   </instances>
   <tiles/>
   <PhysicsWorld>0</PhysicsWorld>
