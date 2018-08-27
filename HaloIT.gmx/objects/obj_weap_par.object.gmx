@@ -100,8 +100,6 @@ weapon_draw_delay = 10;
 weapon_draw_ready = true;
 
 depth = 1;
-s_emit = audio_emitter_create();
-audio_emitter_falloff(s_emit, 50 , 300, 1);
 playing_sound_index = undefined;
 
 debug_string = "";
@@ -303,8 +301,6 @@ if (burst_count != 0) {
         burst_count = 0;
     }
 }
-
-audio_emitter_position(s_emit, x, y, 0);
 </string>
           </argument>
         </arguments>
@@ -335,7 +331,11 @@ can_shoot = false;
 alarm[1] = weapon_draw_delay;
 
 if (weapon_draw_sound != undefined) {
-    playing_sound_index = audio_play_sound_on(s_emit, weapon_draw_sound, false, 0);
+    if (owner != undefined and owner.object_index == obj_mc) {
+        playing_sound_index = audio_play_sound(weapon_draw_sound, 1, false);
+    } else {
+        playing_sound_index = audio_play_sound_at(weapon_draw_sound, x, y, 0, 50, 300, 1, false, 0);
+    }
 }
 </string>
           </argument>
@@ -424,7 +424,11 @@ charge_start_time = current_step;
             reloading = true;
             
             if (reload_sound != undefined) {
-                reloading_sound_index = audio_play_sound_on(s_emit, reload_sound, false, 0);
+                if (owner != undefined and owner.object_index == obj_mc) {
+                    playing_sound_index = audio_play_sound(reload_sound, 1, false);
+                } else {
+                    playing_sound_index = audio_play_sound_at(reload_sound, x, y, 0, 50, 300, 1, false, 0);
+                }
             }
             
             alarm[0] = reload_time;
@@ -511,13 +515,21 @@ if (charges) {
 
 if (burst_count == 0) {
     if (fire_sound != undefined) {
-        audio_play_sound_on(s_emit, fire_sound, false, 0);
+        if (owner != undefined and owner.object_index == obj_mc) {
+            audio_play_sound(fire_sound, 1, false);
+        } else {
+            audio_play_sound_at(fire_sound, x, y, 0, 50, 300, 1, false, 0);
+        }
     }
 }
 
 if (burst_count &gt; 0) {
     if (burst_sound != undefined) {
-        audio_play_sound_on(s_emit, burst_sound, false, 0);
+        if (owner != undefined and owner.object_index == obj_mc) {
+            audio_play_sound(burst_sound, 1, false);
+        } else {
+            audio_play_sound_at(burst_sound, x, y, 0, 50, 300, 1, false, 0);
+        }
     }
 }
 
@@ -527,7 +539,11 @@ if (overheat_level &gt;= 1.0) {
     if (overheats) {
         overheated = true;
         if (overheat_sound != undefined) {
-            audio_play_sound_on(s_emit, overheat_sound, false, 0);
+            if (owner != undefined and owner.object_index == obj_mc) {
+                audio_play_sound(overheat_sound, 1, false);
+            } else {
+                audio_play_sound_at(overheat_sound, x, y, 0, 50, 300, 1, false, 0);
+            }
         }
     }
 }
