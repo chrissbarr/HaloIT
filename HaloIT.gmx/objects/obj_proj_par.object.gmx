@@ -40,11 +40,22 @@ target = undefined;
 
 collided_with = undefined;
 
-spawns_trail = undefined;
-
 charge = 1;
 
 step = 0;
+
+spawns_trail = undefined;
+
+trail_start_alpha = 1.0;
+trail_fade_rate = 0.1;
+
+draws_line_trail = false;
+draws_line_trail_start_colour = c_white;
+draws_line_trail_end_colour = c_white;
+draws_line_trail_width = 1.0;
+
+c1[0] = noone;
+c2[0] = noone;
 
 depth = -4;
 </string>
@@ -69,12 +80,69 @@ depth = -4;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if (spawns_trail != undefined) {
+            <string>var moved = false;
+var ownerX, ownerY;
+
+if (owner != undefined and instance_exists(owner)) {
+    ownerX = owner.x;
+    ownerY = owner.y;
+    owner.x = -9999;
+    owner.y = -9999;
+    moved = true;
+}
+
+c1 = collision_line_point(xprevious, yprevious, x, y, entity_par_obj, true, true);
+
+if (moved) {
+    owner.x = ownerX;
+    owner.y = ownerY;
+}
+
+// collision with children of solid_obj destroys projectile - 
+// to maintain previous behaviour of projectiles being stopped by these objects
+c2 = collision_line_point(xprevious, yprevious, x, y, solid_obj, true, true);
+
+// if we hit both a solid object and something else, interact with whichever was hit first
+if (c1[0] != noone and c2[0] != noone) {  
+    c1dist = point_distance(xprevious, yprevious, c1[1], c1[2]);
+    c2dist = point_distance(xprevious, yprevious, c2[1], c2[2]);
+    
+    if (c1dist &lt; c2dist) { c2[0] = noone; }
+    else { c1[0] = noone; }
+}
+
+if (c1[0] != noone) {  
+    p[0] = id;
+    p[1] = c1[1];
+    p[2] = c1[2];
+    
+    with (c1[0]) {
+        proj_coll = other.p;
+        event_perform(ev_other, ev_user0);
+    }
+}
+
+if (c2[0] != noone) {  
+    x = c2[1];
+    y = c2[2];
+    instance_destroy();
+}
+
+if (spawns_trail != undefined) {
     if (step &gt; 0) {
         var t = instance_create(x, y, spawns_trail);
         t.direction = direction;
         t.image_angle = t.direction;
         t.image_xscale = speed / t.sprite_width;
+        t.image_alpha = trail_start_alpha;
+        t.trail_fade_rate = trail_fade_rate;
+        if (draws_line_trail) {
+            t.x2 = xprevious;
+            t.y2 = yprevious;
+            t.draws_line_trail_start_colour = draws_line_trail_start_colour;
+            t.draws_line_trail_end_colour = draws_line_trail_end_colour;
+            t.draws_line_trail_width = draws_line_trail_width;
+        }
     }
 }
 </string>
@@ -163,61 +231,13 @@ if (tracks) {
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>var moved = false;
-var ownerX, ownerY;
-
-if (owner != undefined and instance_exists(owner)) {
-    ownerX = owner.x;
-    ownerY = owner.y;
-    owner.x = -9999;
-    owner.y = -9999;
-    moved = true;
-}
-
-c1 = collision_line_point(xprevious, yprevious, x, y, entity_par_obj, true, true);
-
-if (moved) {
-    owner.x = ownerX;
-    owner.y = ownerY;
-}
-
-// collision with children of solid_obj destroys projectile - 
-// to maintain previous behaviour of projectiles being stopped by these objects
-c2 = collision_line_point(xprevious, yprevious, x, y, solid_obj, true, true);
-
-// if we hit both a solid object and something else, interact with whichever was hit first
-if (c1[0] != noone and c2[0] != noone) {  
-    c1dist = point_distance(xprevious, yprevious, c1[1], c1[2]);
-    c2dist = point_distance(xprevious, yprevious, c2[1], c2[2]);
-    
-    if (c1dist &lt; c2dist) { c2[0] = noone; }
-    else { c1[0] = noone; }
-}
-
-if (c1[0] != noone) {  
-    p[0] = id;
-    p[1] = c1[1];
-    p[2] = c1[2];
-    
-    with (c1[0]) {
-        proj_coll = other.p;
-        event_perform(ev_other, ev_user0);
-    }
-}
-
-if (c2[0] != noone) {  
-    x = c2[1];
-    y = c2[2];
-    instance_destroy();
-}
-
-if(global.debug) {
+            <string>if(global.debug) {
     if (c1[0] == noone) { c1 = c2; }
     if (c1[0] != noone) {
         draw_line_colour(xprevious, yprevious, c1[1], c1[2], c_red, c_red);
         draw_line_colour(c1[1], c1[2], x, y, c_white, c_white);
     } else {
-        draw_line_colour(xprevious, yprevious, c1[1], c1[2], c_white, c_white);
+        draw_line_colour(xprevious, yprevious, x, y, c_white, c_white);
     }
 }
 

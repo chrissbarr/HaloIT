@@ -31,6 +31,15 @@ damage_hp = 4;
 damage_shield = 1.5;
 
 lifespan = 10;
+
+spawns_trail = obj_proj_trail_ballistic;
+
+trail_start_alpha = 0.4;
+trail_fade_rate = 0.1;
+draws_line_trail = true;
+draws_line_trail_start_colour = make_colour_rgb(255, 255, 200);
+draws_line_trail_end_colour = make_colour_rgb(255, 255, 200);
+draws_line_trail_width = 1.0;
 </string>
           </argument>
         </arguments>

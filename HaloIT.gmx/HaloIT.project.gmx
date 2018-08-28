@@ -397,6 +397,7 @@
         <object>objects\obj_proj_fuelrod</object>
         <object>objects\obj_proj_trail_par</object>
         <object>objects\obj_proj_trail_plasmapistol</object>
+        <object>objects\obj_proj_trail_ballistic</object>
         <object>objects\obj_proj_trail_plasmarifle</object>
         <object>objects\obj_proj_trail_needler</object>
       </objects>

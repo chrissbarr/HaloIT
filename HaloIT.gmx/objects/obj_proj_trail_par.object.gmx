@@ -26,7 +26,10 @@
           <argument>
             <kind>1</kind>
             <string>image_alpha = 1.0;
-decayRate = 0.1;
+trail_fade_rate = 0.1;
+
+x1 = undefined;
+x2 = undefined;
 </string>
           </argument>
         </arguments>
@@ -49,9 +52,9 @@ decayRate = 0.1;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>image_alpha -= decayRate;
+            <string>image_alpha -= trail_fade_rate;
 
-if (image_alpha &lt; decayRate) {
+if (image_alpha &lt; trail_fade_rate) {
     instance_destroy();
 }
 </string>
