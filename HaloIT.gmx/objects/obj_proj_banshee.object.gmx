@@ -29,7 +29,7 @@
 
 damage_shield = 12.5;
 damage_hp = 12.5;
-speed = 12;
+speed = 18;
 
 spawns_trail = obj_proj_trail_plasmarifle;
 </string>

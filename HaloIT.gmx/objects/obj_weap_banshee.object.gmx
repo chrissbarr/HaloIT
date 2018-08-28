@@ -31,8 +31,8 @@ name = "Banshee Cannon";
 
 projectile = obj_proj_banshee;
 spread = 1;
-rate = room_speed / 5;
-fire_sound = snd_weap_plasmarifle_fire;
+rate = room_speed / 6;
+fire_sound = snd_weap_plasmapistol_fire;
 
 ammo_decreases = false;
 
