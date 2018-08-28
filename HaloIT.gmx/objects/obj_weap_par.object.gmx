@@ -102,6 +102,10 @@ weapon_draw_ready = true;
 depth = 1;
 playing_sound_index = undefined;
 
+audio_falloff_ref_distance = 100;
+audio_falloff_max_dist = 300;
+audio_falloff_factor = 1.0;
+
 debug_string = "";
 </string>
           </argument>
@@ -333,8 +337,9 @@ alarm[1] = weapon_draw_delay;
 if (weapon_draw_sound != undefined) {
     if (owner != undefined and owner.object_index == obj_mc) {
         playing_sound_index = audio_play_sound(weapon_draw_sound, 1, false);
+        audio_sound_gain(playing_sound_index, global.player_audio_level, 0);
     } else {
-        playing_sound_index = audio_play_sound_at(weapon_draw_sound, x, y, 0, 50, 300, 1, false, 0);
+        playing_sound_index = audio_play_sound_at(weapon_draw_sound, x, y, 0, audio_falloff_ref_distance, audio_falloff_max_dist, audio_falloff_factor, false, 0);
     }
 }
 </string>
@@ -426,8 +431,9 @@ charge_start_time = current_step;
             if (reload_sound != undefined) {
                 if (owner != undefined and owner.object_index == obj_mc) {
                     playing_sound_index = audio_play_sound(reload_sound, 1, false);
+                    audio_sound_gain(playing_sound_index, global.player_audio_level, 0);
                 } else {
-                    playing_sound_index = audio_play_sound_at(reload_sound, x, y, 0, 50, 300, 1, false, 0);
+                    playing_sound_index = audio_play_sound_at(reload_sound, x, y, 0, audio_falloff_ref_distance, audio_falloff_max_dist, audio_falloff_factor, false, 0);
                 }
             }
             
@@ -516,9 +522,10 @@ if (charges) {
 if (burst_count == 0) {
     if (fire_sound != undefined) {
         if (owner != undefined and owner.object_index == obj_mc) {
-            audio_play_sound(fire_sound, 1, false);
+            var s = audio_play_sound(fire_sound, 1, false);
+            audio_sound_gain(s, global.player_audio_level, 0);
         } else {
-            audio_play_sound_at(fire_sound, x, y, 0, 50, 300, 1, false, 0);
+            audio_play_sound_at(fire_sound, x, y, 0, audio_falloff_ref_distance, audio_falloff_max_dist, audio_falloff_factor, false, 0);
         }
     }
 }
@@ -526,9 +533,10 @@ if (burst_count == 0) {
 if (burst_count &gt; 0) {
     if (burst_sound != undefined) {
         if (owner != undefined and owner.object_index == obj_mc) {
-            audio_play_sound(burst_sound, 1, false);
+            var s = audio_play_sound(burst_sound, 1, false);
+            audio_sound_gain(s, global.player_audio_level, 0);
         } else {
-            audio_play_sound_at(burst_sound, x, y, 0, 50, 300, 1, false, 0);
+            audio_play_sound_at(burst_sound, x, y, 0, audio_falloff_ref_distance, audio_falloff_max_dist, audio_falloff_factor, false, 0);
         }
     }
 }
@@ -540,9 +548,10 @@ if (overheat_level &gt;= 1.0) {
         overheated = true;
         if (overheat_sound != undefined) {
             if (owner != undefined and owner.object_index == obj_mc) {
-                audio_play_sound(overheat_sound, 1, false);
+                var s = audio_play_sound(overheat_sound, 1, false);
+                audio_sound_gain(s, global.player_audio_level, 0);
             } else {
-                audio_play_sound_at(overheat_sound, x, y, 0, 50, 300, 1, false, 0);
+                audio_play_sound_at(overheat_sound, x, y, 0, audio_falloff_ref_distance, audio_falloff_max_dist, audio_falloff_factor, false, 0);
             }
         }
     }
