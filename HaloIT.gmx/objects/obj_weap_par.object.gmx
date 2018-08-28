@@ -282,6 +282,11 @@ if (burst_count != 0) {
         burst_count = 0;
     }
 }
+
+// if all ammo is gone, and the weapon is unowned, remove it
+if (magazine_current == 0 and ammo_current == 0 and ammo_decreases and owner == undefined) {
+    instance_destroy();
+}
 </string>
           </argument>
         </arguments>

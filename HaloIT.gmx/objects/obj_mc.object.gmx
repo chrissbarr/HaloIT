@@ -599,15 +599,27 @@ if (nearbyWeapons != noone) {
             var alreadyCarrying = check_carrying_weapon(wep.object_index);
             
             if (alreadyCarrying != -1) {
-                if (wep.ammo_transferable and wep.ammo_current &gt; 0) {
-                    var ammo_needed = weapons[| alreadyCarrying].ammo_maximum - weapons[| alreadyCarrying].ammo_current;
-                    
-                    if (ammo_needed &gt; wep.ammo_current) {
-                        ammo_needed = wep.ammo_current;
+                if (wep.ammo_transferable) {
+                    if (wep.ammo_current &gt; 0) {
+                        var ammo_needed = weapons[| alreadyCarrying].ammo_maximum - weapons[| alreadyCarrying].ammo_current;
+                        
+                        if (ammo_needed &gt; wep.ammo_current) {
+                            ammo_needed = wep.ammo_current;
+                        }
+                        
+                        wep.ammo_current -= ammo_needed;
+                        weapons[| alreadyCarrying].ammo_current += ammo_needed;
                     }
-                    
-                    wep.ammo_current -= ammo_needed;
-                    weapons[| alreadyCarrying].ammo_current += ammo_needed;
+                    if (wep.magazine_current &gt; 0) {
+                        var ammo_needed = weapons[| alreadyCarrying].ammo_maximum - weapons[| alreadyCarrying].ammo_current;
+                        
+                        if (ammo_needed &gt; wep.magazine_current) {
+                            ammo_needed = wep.magazine_current;
+                        }
+                        
+                        wep.magazine_current -= ammo_needed;
+                        weapons[| alreadyCarrying].ammo_current += ammo_needed;
+                    }
                 }
             }
             
