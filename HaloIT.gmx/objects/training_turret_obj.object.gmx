@@ -34,12 +34,13 @@ fireX = 58;
 fireY = 15;
 
 weapon = instance_create(x, y, obj_weap_arifle);
-weapon.spread = 5;
+weapon.spread = 3;
 weapon.rate = 1;
 weapon.ammo_decreases = false;
 weapon.owner = id;
 weapon.muzzle_flash_size_x_base = 1.0;
 weapon.muzzle_flash_size_x_range = 0.5;
+weapon.overheat_rate = 0;
 
 weapon_pickup(weapon);
 </string>
