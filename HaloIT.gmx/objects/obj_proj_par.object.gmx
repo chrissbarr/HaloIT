@@ -163,17 +163,22 @@ if (tracks) {
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>var deactivated = false;
+            <string>var moved = false;
+var ownerX, ownerY;
 
 if (owner != undefined and instance_exists(owner)) {
-    deactivated = true;
-    instance_deactivate_object(owner);
+    ownerX = owner.x;
+    ownerY = owner.y;
+    owner.x = -9999;
+    owner.y = -9999;
+    moved = true;
 }
 
 c1 = collision_line_point(xprevious, yprevious, x, y, entity_par_obj, true, true);
 
-if (deactivated) {
-    instance_activate_object(owner);
+if (moved) {
+    owner.x = ownerX;
+    owner.y = ownerY;
 }
 
 // collision with children of solid_obj destroys projectile - 
