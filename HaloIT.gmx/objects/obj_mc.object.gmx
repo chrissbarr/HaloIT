@@ -568,16 +568,19 @@ var curWeap = weapons[| weapons_index];
 if (curWeap.charges) {
     if (curWeap.can_shoot) {
         if (mouse_check_button_pressed(mb_left)) {
+            camoflage = false;
             with curWeap { event_perform(ev_other, ev_user2); }
         }
         
         if (mouse_check_button_released(mb_left)) {
+            camoflage = false;
             with curWeap { event_perform(ev_other, ev_user0); }
         }
     }
 } else {
     if (mouse_check_button(mb_left)) {
         if (curWeap.can_shoot) {
+            camoflage = false;
             with curWeap { event_perform(ev_other, ev_user0); }
         } else {
             if (curWeap.needs_reloading and !curWeap.reloading) {
