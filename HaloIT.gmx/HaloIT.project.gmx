@@ -208,8 +208,6 @@
     <sprite>sprites\cliff_corner6_spr</sprite>
     <sprite>sprites\cliff_corner7_spr</sprite>
     <sprite>sprites\banshee_spr</sprite>
-    <sprite>sprites\banshee_scroller_spr</sprite>
-    <sprite>sprites\enemy_banshee_spr</sprite>
     <sprite>sprites\bar2_spr</sprite>
     <sprite>sprites\tree_scroller_spr</sprite>
     <sprite>sprites\tree_4by2_spr</sprite>
@@ -408,6 +406,7 @@
       <object>objects\obj_weap_brifle</object>
       <object>objects\obj_weap_shotgun</object>
       <object>objects\obj_weap_plasmarifle</object>
+      <object>objects\obj_weap_banshee</object>
       <object>objects\obj_weap_plasmapistol</object>
       <object>objects\obj_weap_needler</object>
       <objects name="flashes">
@@ -658,6 +657,7 @@
     <object>objects\laserpointer</object>
     <object>objects\object20</object>
     <object>objects\obj_parent_activate</object>
+    <object>objects\obj_banshee_par</object>
     <object>objects\banshee_obj</object>
     <objects name="scroller">
       <objects name="enemies">
@@ -665,7 +665,6 @@
         <object>objects\enemy_banshee2_obj</object>
         <object>objects\enemy_phantom_obj</object>
         <object>objects\obj_banshee_explosion</object>
-        <object>objects\obj_banshee_scroller_par</object>
       </objects>
       <objects name="scenery">
         <object>objects\rock1_obj</object>
