@@ -255,7 +255,7 @@ can_shoot = false;
 var actualRate = rate + (overheat_firerate_multiplier * overheat_level);
 
 if (current_step - last_fired_step &gt; actualRate) {
-    if (magazine_current &gt; 0) {
+    if (magazine_current &gt; 0 or !ammo_decreases) {
         needs_reloading = false;
         if (!reloading) {
             if (!overheated) {
@@ -473,11 +473,15 @@ charge_start_time = current_step;
 var proj;
 
 repeat (projectile_count) {
-    proj = spawn_projectile(projectile, x, y, direction, actualSpread, owner);
+    if (projectile != undefined) {
+        proj = spawn_projectile(projectile, x, y, direction, actualSpread, owner);
+    }
 }
 
 if (owner != undefined and owner.target != undefined) {
-    proj.target = owner.target;
+    if (proj != undefined) {
+        proj.target = owner.target;
+    }
 }
 
 if (muzzle_flash != undefined) {
@@ -510,7 +514,9 @@ if (charges) {
     if (ammo_decreases) {
         magazine_current -= (max(1, charged_to));
     }
-    proj.charge = (charged_to / charge_max);
+    if (proj != undefined) {
+        proj.charge = (charged_to / charge_max);
+    }
     charged_to = 0;
     charging = false;
 } else {
