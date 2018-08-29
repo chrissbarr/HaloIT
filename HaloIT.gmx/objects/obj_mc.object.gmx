@@ -117,6 +117,10 @@ alarm[8]=1
 cursor = instance_create(x,y,obj_cursor);
 cursor.owner = id;
 
+shield_regen_start_sound = recharge_snd;
+shield_regen_critical_sound = shield_beep_snd;
+shield_regen_critical_ratio = 0.5;
+
 audio_listener_orientation(0,1,0,0,0,1);
 
 
@@ -692,26 +696,12 @@ if camoflage=false
 if image_alpha&lt;1
 image_alpha+=.03
 
-if overshield=true{
-
-if shield_max&gt;shieldrem
-{
-shield-=.01
-}
-else
-{
-shield_max=shieldrem
-shield=shield_max
-overshield=false
-}
-
-}
-
-if overshield=true
-if shield&lt;1{
-overshield=false
-shield_max=shieldrem
-shield=shield_max
+if (overshield) {
+    if (shield &gt; shield_max) {
+        shield -= .01;
+    } else {
+        overshield = false;
+    }
 }
 
 godmode_scr()
@@ -969,13 +959,14 @@ alarm[1]=recharge_speed</string>
             <kind>1</kind>
             <string>if overshield=false{
 shieldrem=shield_max
-shield_max=shieldrem+shieldrem/2
-shield=shield_max
+//shield_max=shieldrem+shieldrem/2
+shield = shield_max * 2;
 overshield=true
 with other
 instance_destroy()
 alarm[1]=1
-}</string>
+}
+</string>
           </argument>
         </arguments>
       </action>

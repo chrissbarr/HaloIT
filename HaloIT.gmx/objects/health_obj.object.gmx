@@ -99,16 +99,19 @@ depth=-10000
 draw_sprite(bar_spr,-1,view_xview[view_current]+0,view_yview[view_current]+347)
 depth=-9999
 
-if obj_mc.overshield=true
-shieldcolor=c_maroon
-else
-shieldcolor=c_blue
+if (obj_mc.overshield) {
+    shieldfcolor = c_maroon;
+    shieldbcolor = c_blue;
+    shieldmax = obj_mc.shield_max;
+    shieldval = obj_mc.shield - obj_mc.shield_max;
+} else {
+    shieldfcolor = c_blue;
+    shieldbcolor = c_black;
+    shieldmax = obj_mc.shield_max;
+    shieldval = obj_mc.shield;
+}
 
-if obj_mc.overshield=true
-draw_percentage_bar(view_xview+10,view_yview+457,100,10,obj_mc.shield,obj_mc.shield_max,shieldcolor,true,c_blue);
-
-if obj_mc.overshield=false
-draw_percentage_bar(view_xview+10,view_yview+457,100,10,obj_mc.shield,obj_mc.shield_max,shieldcolor,true,c_black);
+draw_percentage_bar(view_xview+10,view_yview+457,100,10,shieldval,shieldmax,shieldfcolor,true,shieldbcolor);
 
 if (obj_mc.camoflage) {
     draw_percentage_bar(view_xview+10,view_yview+457+6,100,4,obj_mc.alarm[3],obj_mc.camomaxtime,c_white,false,c_blue);

@@ -35,6 +35,12 @@ shield_regen_rate = 0;
 shield_regen_delay = 0;
 shield = 0;
 
+shield_regen_start_sound = undefined;
+shield_regen_start_sound_id = undefined;
+shield_regen_critical_sound = undefined;
+shield_regen_critical_sound_id = undefined;
+shield_regen_critical_ratio = 0.5;
+
 current_step = 0;
 last_hp_step = 0;
 last_shield_step = 0;
@@ -122,10 +128,33 @@ if (current_step - last_hp_step &gt; hp_regen_delay) {
 }
 
 if (current_step - last_shield_step &gt; shield_regen_delay) {
-    shield += shield_regen_rate;
-    if (shield &gt; shield_max) {
-        shield = shield_max;
+    if (shield &lt; shield_max) {
+        shield += shield_regen_rate;
+        if (shield &gt; shield_max) {
+            shield = shield_max;
+        }
+        if (shield_regen_start_sound != undefined) {
+            if (shield_regen_start_sound_id == undefined or !audio_is_playing(shield_regen_start_sound_id)) {
+                shield_regen_start_sound_id = audio_play_sound(shield_regen_start_sound, 1, false);
+            }
+        }
+        if (shield_regen_critical_sound != undefined) {
+            if (shield &lt; shield_max * shield_regen_critical_ratio) {
+                if (shield_regen_critical_sound_id == undefined or !audio_is_playing(shield_regen_critical_sound_id)) {
+                    shield_regen_critical_sound_id = audio_play_sound(shield_regen_critical_sound, 1, false);
+                }
+            }
+        }
+    } else {
+        if (shield_regen_start_sound_id != undefined and audio_is_playing(shield_regen_start_sound_id)) {
+            audio_sound_gain(shield_regen_start_sound_id, 0, 100);
+        }
     }
+} else {
+    if (shield_regen_start_sound_id != undefined and audio_is_playing(shield_regen_start_sound_id)) {
+        audio_stop_sound(shield_regen_start_sound_id);
+    }
+    
 }
 
 current_step++;
