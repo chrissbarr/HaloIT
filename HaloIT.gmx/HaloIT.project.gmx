@@ -602,6 +602,7 @@
       <object>objects\level_select_background_obj</object>
       <object>objects\return_to_menu_obj</object>
       <object>objects\account_room_stats_obj</object>
+      <object>objects\obj_draw_version</object>
     </objects>
     <objects name="vehicles">
       <object>objects\tank_turret_obj</object>

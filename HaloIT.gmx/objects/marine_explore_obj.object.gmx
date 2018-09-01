@@ -248,6 +248,8 @@ if distance_to_object(i)&gt;100
 direction=point_direction(x,y,i.x,i.y)
 speed=maxspeed
 }
+
+if (speed &gt; maxspeed) { speed = maxspeed; }
 </string>
           </argument>
         </arguments>
