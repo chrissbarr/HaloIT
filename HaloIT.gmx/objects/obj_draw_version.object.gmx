@@ -4,11 +4,11 @@
   <solid>0</solid>
   <visible>-1</visible>
   <depth>0</depth>
-  <persistent>-1</persistent>
+  <persistent>0</persistent>
   <parentName>&lt;undefined&gt;</parentName>
   <maskName>&lt;undefined&gt;</maskName>
   <events>
-    <event eventtype="0" enumb="0">
+    <event eventtype="8" enumb="0">
       <action>
         <libid>1</libid>
         <id>603</id>
@@ -25,34 +25,13 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>global.difficulty = "normal";
-global.mjolnir = 1;
-global.recharge = 1;
-global.pistolcap = 1;
-global.arcap = 1;
-global.lasersight = 1;
-global.controls = "WASD";
-global.movement = "0";
-global.lotus = 0;
-global.points = 0;
-global.drawblood = true;
+            <string>var draw_string = global.version;
+draw_set_colour(c_white);
+draw_set_alpha(0.5);
 
-global.kills_grunt = 0;
-global.kills_jackal = 0;
-global.kills_elite = 0;
-global.kills_hunter = 0;
+draw_text(room_width - string_width(draw_string), room_height - string_height(draw_string), draw_string);
 
-for(var i = 0; i &lt; 10; i++) {
-    global.levels_finished[i] = false;
-}
-
-global.arena_hitime = 0;
-
-global.version =  "v0.2.1";
-
-randomize();
-
-room_goto_next();
+draw_set_alpha(1.0);
 </string>
           </argument>
         </arguments>

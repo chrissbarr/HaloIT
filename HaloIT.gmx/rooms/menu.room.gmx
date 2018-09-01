@@ -74,6 +74,7 @@ audio_stop_sound(arenabattle_music)</code>
     <instance objName="menu_hidden_obj" x="144" y="448" name="inst_4222CDD4" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="halo_writing_obj" x="320" y="64" name="inst_352F3EFB" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="newgame_obj" x="112" y="176" name="inst_DCEE8E1E" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="obj_draw_version" x="0" y="0" name="inst_0C90DCBC" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
   </instances>
   <tiles/>
   <PhysicsWorld>0</PhysicsWorld>
