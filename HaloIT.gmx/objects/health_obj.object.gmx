@@ -57,7 +57,7 @@ alarm[0]=random(5)
           <argument>
             <kind>1</kind>
             <string>if !instance_exists(arena_mode_control_par){
-trythisthing=true
+trythisthing=false
 if trythisthing=true{
 var border;
 border=10
