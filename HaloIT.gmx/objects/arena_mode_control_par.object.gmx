@@ -65,6 +65,15 @@ ds_list_add(spawnable_enemies, grunt_2_obj);
 ds_list_add(spawnable_enemies, jackal_2_obj);
 ds_list_add(spawnable_enemies, jackal_2_obj);
 ds_list_add(spawnable_enemies, elite_2_obj);
+
+spawnable_pickups = ds_list_create();
+ds_list_add(spawnable_pickups, obj_weap_pistol);
+ds_list_add(spawnable_pickups, obj_weap_arifle);
+ds_list_add(spawnable_pickups, obj_weap_brifle);
+ds_list_add(spawnable_pickups, obj_weap_shotgun);
+ds_list_add(spawnable_pickups, overshield_obj);
+ds_list_add(spawnable_pickups, camoflage_obj);
+ds_list_add(spawnable_pickups, healthpack_obj);
 </string>
           </argument>
         </arguments>
@@ -101,22 +110,11 @@ ds_list_add(spawnable_enemies, elite_2_obj);
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if weaponspawn=1{
-a=round(random(6))
-instance_create(random(room_width),random(room_height),choose(assaultrifle_ammo_obj,pistol_ammo_obj,battle_rifle_ammo_obj,battle_rifle_pickup_obj,shotgun_pickup_obj,needler_pickup_obj))
-}
+            <string>ds_list_shuffle(spawnable_pickups);
+instance_create(random(room_width), random(room_height), spawnable_pickups[| 0]);
 
-if powerups=true{
-a=round(random(3))
-if a=1
-instance_create(random(room_width),random(room_height),overshield_obj)
-if a=2
-instance_create(random(room_width),random(room_height),camoflage_obj)
-if a=3
-instance_create(random(room_width),random(room_height),healthpack_obj)
-}
-
-alarm[0]=room_speed*2+random(room_speed*6)</string>
+alarm[0]=room_speed*2+random(room_speed*6)
+</string>
           </argument>
         </arguments>
       </action>
@@ -145,7 +143,7 @@ alarm[0]=room_speed*2+random(room_speed*6)</string>
     }
 
 
-    if (instance_number(covenant_2_par) &lt; 10) {
+    if (instance_number(covenant_par) &lt; 10) {
         ds_list_shuffle(spawnable_enemies);
         var spawnSide = irandom(3);
         

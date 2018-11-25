@@ -9,34 +9,30 @@
     <sounds name="backgroundambience">
       <sound>sound\bird1_snd</sound>
     </sounds>
-    <sound>sound\pistol_shot_sound</sound>
-    <sound>sound\sniper_rifle_shot_snd</sound>
-    <sound>sound\tank_cannon_snd</sound>
-    <sound>sound\assaultrifle_shot_sound</sound>
-    <sound>sound\training_turret_shot_snd</sound>
-    <sound>sound\marine_shot_snd</sound>
-    <sound>sound\plasma_rifle_shot</sound>
-    <sound>sound\plasma_rifle_shot_2</sound>
-    <sound>sound\plasma_pistol_shot</sound>
-    <sound>sound\plasma_pistol_shot_2_snd</sound>
+    <sounds name="weapons">
+      <sound>sound\snd_weap_arifle_fire</sound>
+      <sound>sound\snd_weap_arifle_reload</sound>
+      <sound>sound\snd_weap_brifle_fire</sound>
+      <sound>sound\snd_weap_brifle_reload</sound>
+      <sound>sound\snd_weap_needler_explode</sound>
+      <sound>sound\snd_weap_needler_fire</sound>
+      <sound>sound\snd_weap_phantom_fire</sound>
+      <sound>sound\snd_weap_pistol_fire</sound>
+      <sound>sound\snd_weap_pistol_reload</sound>
+      <sound>sound\snd_weap_plasmapistol_fire</sound>
+      <sound>sound\snd_weap_plasmarifle_fire</sound>
+      <sound>sound\snd_weap_shotgun_cock</sound>
+      <sound>sound\snd_weap_shotgun_fire</sound>
+      <sound>sound\snd_weap_shotgun_reload</sound>
+      <sound>sound\snd_weap_sniper_fire</sound>
+      <sound>sound\snd_weap_tank1_fire</sound>
+    </sounds>
     <sound>sound\message_snd</sound>
     <sound>sound\message_end_snd</sound>
     <sound>sound\menu_button_snd</sound>
-    <sound>sound\phantom_fire_snd</sound>
     <sound>sound\recharge_snd</sound>
     <sound>sound\shield_beep_snd</sound>
-    <sound>sound\battle_rifle_shot_snd</sound>
-    <sound>sound\pistol_reload_snd</sound>
-    <sound>sound\assault_rifle_reload_snd</sound>
-    <sound>sound\battle_rifle_reload_snd</sound>
-    <sound>sound\shotgun_reload_snd</sound>
-    <sound>sound\shotgun_shot_snd</sound>
-    <sound>sound\shotgun_cock_snd</sound>
     <sound>sound\grunt_allaroundme_snd</sound>
-    <sound>sound\needle_shot_snd</sound>
-    <sound>sound\needle2_shot_snd</sound>
-    <sound>sound\needle_explode_snd</sound>
-    <sound>sound\needle2_explode_snd</sound>
     <sound>sound\bullet_ping_snd</sound>
     <sounds name="music">
       <sound>sound\menu_sound</sound>
@@ -52,13 +48,9 @@
       <sprite>sprites\grunt_spr</sprite>
       <sprite>sprites\grunt_2_spr</sprite>
       <sprite>sprites\grunt_3_spr</sprite>
-      <sprite>sprites\plasma_rifle_bolt</sprite>
-      <sprite>sprites\plasma_rifle_bullet_trail_spr</sprite>
       <sprite>sprites\grunt_dead_spr</sprite>
       <sprite>sprites\grunt_dead2_spr</sprite>
       <sprite>sprites\grunt_dead3_spr</sprite>
-      <sprite>sprites\fuel_rod_bullet_trail_spr</sprite>
-      <sprite>sprites\banshee_bullet2_trail_spr</sprite>
       <sprite>sprites\elite_spr</sprite>
       <sprite>sprites\elite_rank2_spr</sprite>
       <sprite>sprites\portable_shield2_spr</sprite>
@@ -66,40 +58,24 @@
       <sprite>sprites\elite_rank2_dead_spr</sprite>
       <sprite>sprites\hunter_spr</sprite>
       <sprite>sprites\portable_shield_spr</sprite>
-      <sprite>sprites\fuel_rod_bullet_spr</sprite>
       <sprite>sprites\covenant_cargo_module_spr</sprite>
-      <sprite>sprites\banshee_bullet_trail_spr</sprite>
-      <sprite>sprites\phantom_bullet_trail_spr</sprite>
-      <sprite>sprites\banshee_bullet_spr</sprite>
-      <sprite>sprites\plasma_pistol_bullet_trail_spr</sprite>
       <sprite>sprites\blue_blood_drop</sprite>
       <sprite>sprites\purple_blood_droop_spr</sprite>
       <sprite>sprites\hunter_dead_spr</sprite>
       <sprite>sprites\jackal_spr</sprite>
       <sprite>sprites\jackal_dead_spr</sprite>
       <sprite>sprites\jackal_shield_spr</sprite>
-      <sprite>sprites\plasma_pistol_bullet_spr</sprite>
     </sprites>
     <sprites name="mc_group">
-      <sprite>sprites\mc_norm_spr</sprite>
+      <sprite>sprites\mc_pistol_spr</sprite>
+      <sprite>sprites\mc_arifle_spr</sprite>
       <sprite>sprites\mc_battle_rifle_spr</sprite>
       <sprite>sprites\mc_sniper_rifle_spr</sprite>
-      <sprite>sprites\mc_sniper_rifle_shield_spr</sprite>
       <sprite>sprites\mc_shotgun_spr</sprite>
-      <sprite>sprites\mc_battle_rifle_shield_spr</sprite>
-      <sprite>sprites\mc_pistol_spr</sprite>
       <sprite>sprites\mc_plasmarifle_spr</sprite>
       <sprite>sprites\mc_needler_spr</sprite>
-      <sprite>sprites\mc_needler_shield_spr</sprite>
-      <sprite>sprites\mc_pistol_shield_spr</sprite>
-      <sprite>sprites\mc_shotgun_shield_spr</sprite>
       <sprite>sprites\mc_plasmapistol_spr</sprite>
-      <sprite>sprites\mc_plasmarifle_shield_spr</sprite>
       <sprite>sprites\mc_shoot_spr</sprite>
-      <sprite>sprites\pistol_bullet_spr</sprite>
-      <sprite>sprites\assaultrifle_bullet_spr</sprite>
-      <sprite>sprites\mc_plasmapistol_shield_spr</sprite>
-      <sprite>sprites\mc_norm_shield_spr</sprite>
     </sprites>
     <sprites name="menu_group">
       <sprites name="newbuttons">
@@ -130,19 +106,59 @@
       <sprite>sprites\level_select_box_spr</sprite>
       <sprite>sprites\new_halo_spr</sprite>
     </sprites>
-    <sprites name="weapon_group">
-      <sprite>sprites\plasma_rifle_pickup_spr</sprite>
+    <sprites name="weapons">
+      <sprites name="ammunition">
+        <sprite>sprites\battle_rifle_ammo_spr</sprite>
+        <sprite>sprites\pistol_ammo_spr</sprite>
+        <sprite>sprites\assaultrifle_ammo_spr</sprite>
+      </sprites>
+      <sprites name="projectiles">
+        <sprite>sprites\spr_proj_arifle</sprite>
+        <sprite>sprites\spr_proj_banshee</sprite>
+        <sprite>sprites\spr_proj_brifle</sprite>
+        <sprite>sprites\spr_proj_fuelrod</sprite>
+        <sprite>sprites\spr_proj_needler</sprite>
+        <sprite>sprites\spr_proj_needler_explosion</sprite>
+        <sprite>sprites\spr_proj_phantom</sprite>
+        <sprite>sprites\spr_proj_pistol</sprite>
+        <sprite>sprites\spr_proj_plasmapistol</sprite>
+        <sprite>sprites\spr_proj_plasmarifle</sprite>
+        <sprite>sprites\spr_proj_shotgun</sprite>
+        <sprite>sprites\spr_proj_sniper</sprite>
+        <sprite>sprites\spr_proj_tank1</sprite>
+        <sprite>sprites\spr_proj_tank2</sprite>
+      </sprites>
+      <sprites name="trails">
+        <sprite>sprites\spr_proj_trail_banshee</sprite>
+        <sprite>sprites\spr_proj_trail_fuelrod</sprite>
+        <sprite>sprites\spr_proj_trail_needler</sprite>
+        <sprite>sprites\spr_proj_trail_phantom</sprite>
+        <sprite>sprites\spr_proj_trail_plasmapistol</sprite>
+        <sprite>sprites\spr_proj_trail_plasmarifle</sprite>
+      </sprites>
       <sprite>sprites\damage_circle_spr</sprite>
       <sprite>sprites\damage_small_circle_spr</sprite>
-      <sprite>sprites\assault_rifle_pickup_spr</sprite>
-      <sprite>sprites\plasma_pistol_pickup_spr</sprite>
-      <sprite>sprites\pistol_pickup_spr</sprite>
-      <sprite>sprites\battle_rifle_pickup_spr</sprite>
-      <sprite>sprites\shotgun_pickup_spr</sprite>
-      <sprite>sprites\battle_rifle_bullet_spr</sprite>
-      <sprite>sprites\frag_grenade_spr</sprite>
-      <sprite>sprites\shotgun_bullet_spr</sprite>
-      <sprite>sprites\lotus_antitank_mine_spr</sprite>
+      <sprite>sprites\spr_muzzle_flash_1</sprite>
+      <sprite>sprites\spr_wea_plasmarifle</sprite>
+      <sprite>sprites\spr_weap_arifle</sprite>
+      <sprite>sprites\spr_weap_brifle</sprite>
+      <sprite>sprites\spr_weap_grenade_frag</sprite>
+      <sprite>sprites\spr_weap_mine_lotus</sprite>
+      <sprite>sprites\spr_weap_needler</sprite>
+      <sprite>sprites\spr_weap_pistol</sprite>
+      <sprite>sprites\spr_weap_plasmapistol</sprite>
+      <sprite>sprites\spr_weap_shotgun</sprite>
+      <sprite>sprites\spr_weap_sniper</sprite>
+    </sprites>
+    <sprites name="cursor">
+      <sprite>sprites\spr_cursor_arifle</sprite>
+      <sprite>sprites\spr_cursor_brifle</sprite>
+      <sprite>sprites\spr_cursor_needler</sprite>
+      <sprite>sprites\spr_cursor_normal</sprite>
+      <sprite>sprites\spr_cursor_pistol</sprite>
+      <sprite>sprites\spr_cursor_plasmapistol</sprite>
+      <sprite>sprites\spr_cursor_plasmarifle</sprite>
+      <sprite>sprites\spr_cursor_shotgun</sprite>
     </sprites>
     <sprite>sprites\bar_spr</sprite>
     <sprite>sprites\laserpointer_spr</sprite>
@@ -153,13 +169,10 @@
     <sprite>sprites\red_blood_drop</sprite>
     <sprite>sprites\tent_spr</sprite>
     <sprite>sprites\healthpack_spr</sprite>
-    <sprite>sprites\pistol_ammo_spr</sprite>
     <sprite>sprites\marine_dead_spr</sprite>
     <sprite>sprites\tank_turret_spr</sprite>
     <sprite>sprites\tank_spr</sprite>
     <sprite>sprites\tank_inactive_spr</sprite>
-    <sprite>sprites\tank_bullet1_spr</sprite>
-    <sprite>sprites\tank_bullet2_Spr</sprite>
     <sprite>sprites\sprite43</sprite>
     <sprite>sprites\boulder1_spr</sprite>
     <sprite>sprites\boulder2_spr</sprite>
@@ -172,9 +185,6 @@
     <sprite>sprites\barbed_wire_corner1_spr</sprite>
     <sprite>sprites\covenant_cargocrate_spr</sprite>
     <sprite>sprites\covenant_computer_core_spr</sprite>
-    <sprites name="text">
-      <sprite>sprites\level1start_text_spr</sprite>
-    </sprites>
     <sprite>sprites\target_spr</sprite>
     <sprite>sprites\popup_target_spr</sprite>
     <sprite>sprites\moving_target_spr</sprite>
@@ -198,23 +208,17 @@
     <sprite>sprites\cliff_corner6_spr</sprite>
     <sprite>sprites\cliff_corner7_spr</sprite>
     <sprite>sprites\banshee_spr</sprite>
-    <sprite>sprites\banshee_scroller_spr</sprite>
-    <sprite>sprites\enemy_banshee_spr</sprite>
     <sprite>sprites\bar2_spr</sprite>
     <sprite>sprites\tree_scroller_spr</sprite>
     <sprite>sprites\tree_4by2_spr</sprite>
     <sprite>sprites\tree_vertical_1_spr</sprite>
     <sprite>sprites\enemy_phantom_spr</sprite>
-    <sprite>sprites\phantom_bullet_spr</sprite>
     <sprite>sprites\pillar_of_autumn_spr</sprite>
     <sprite>sprites\archer_missile_spr</sprite>
     <sprite>sprites\archer_missile_smoke_spr</sprite>
     <sprite>sprites\covenant_frigate_spr</sprite>
     <sprite>sprites\line_spr</sprite>
     <sprite>sprites\training_turret_spr</sprite>
-    <sprite>sprites\training_turret_bullet_spr</sprite>
-    <sprite>sprites\assaultrifle_ammo_spr</sprite>
-    <sprite>sprites\battle_rifle_ammo_spr</sprite>
     <sprite>sprites\level_select_spr</sprite>
     <sprite>sprites\concrete_bunker_spr</sprite>
     <sprite>sprites\tree_delete_circle_spr</sprite>
@@ -223,14 +227,6 @@
     <sprite>sprites\armour_text_spr</sprite>
     <sprite>sprites\weapons_text_spr</sprite>
     <sprite>sprites\points_text_spr</sprite>
-    <sprite>sprites\cursor_normal</sprite>
-    <sprite>sprites\cursor_spr</sprite>
-    <sprite>sprites\pistol_cursor_spr</sprite>
-    <sprite>sprites\shotgun_cursor_spr</sprite>
-    <sprite>sprites\battle_rifle_cursor_spr</sprite>
-    <sprite>sprites\plasma_rifle_cursor_spr</sprite>
-    <sprite>sprites\plasma_pistol_cursor_spr</sprite>
-    <sprite>sprites\needler_cursor_spr</sprite>
     <sprite>sprites\button_explode_spr</sprite>
     <sprite>sprites\armour_status_spr</sprite>
     <sprite>sprites\longsword_spr</sprite>
@@ -266,12 +262,7 @@
     <sprite>sprites\sprite619</sprite>
     <sprite>sprites\museum_room1_roof_spr</sprite>
     <sprite>sprites\shield_flare_spr</sprite>
-    <sprite>sprites\needle_spr</sprite>
-    <sprite>sprites\needler_pickup_spr</sprite>
-    <sprite>sprites\needle_explode_spr</sprite>
     <sprite>sprites\targetbounce_spr</sprite>
-    <sprite>sprites\sniper_rifle_pickup_spr</sprite>
-    <sprite>sprites\sniper_rifle_bullet_spr</sprite>
     <sprite>sprites\infection_form_spr</sprite>
     <sprite>sprites\infection_explode_spr</sprite>
     <sprite>sprites\flood_carrier_form_spr</sprite>
@@ -353,16 +344,6 @@
     <script>scripts\level_set_done.gml</script>
     <script>scripts\new_user.gml</script>
     <script>scripts\login.gml</script>
-    <script>scripts\covenant_bullet_collision_scr.gml</script>
-    <script>scripts\covenant2_bullet_collision_scr.gml</script>
-    <script>scripts\marine_bullet_collision_scr.gml</script>
-    <script>scripts\weapon_drop_scr.gml</script>
-    <script>scripts\pistol_reload.gml</script>
-    <script>scripts\assault_rifle_reload.gml</script>
-    <script>scripts\battle_rifle_reload.gml</script>
-    <script>scripts\sniper_rifle_reload.gml</script>
-    <script>scripts\needler_reload_scr.gml</script>
-    <script>scripts\shotgun_reload.gml</script>
     <script>scripts\sc_button.gml</script>
     <script>scripts\cool_message1.gml</script>
     <script>scripts\string_wrap.gml</script>
@@ -379,6 +360,15 @@
     <script>scripts\lvl_select_mouse_over_scr.gml</script>
     <script>scripts\font.gml</script>
     <script>scripts\level_get_done.gml</script>
+    <script>scripts\spawn_projectile.gml</script>
+    <script>scripts\weapon_pickup.gml</script>
+    <script>scripts\weapon_drop.gml</script>
+    <scripts name="utilties">
+      <script>scripts\collision_line_point.gml</script>
+      <script>scripts\collision_circle_list.gml</script>
+      <script>scripts\gauss.gml</script>
+    </scripts>
+    <script>scripts\check_carrying_weapon.gml</script>
   </scripts>
   <fonts name="fonts">
     <font>fonts\halofont</font>
@@ -388,8 +378,42 @@
     <font>fonts\hudfont</font>
     <font>fonts\pausedfont</font>
     <font>fonts\denmark</font>
+    <font>fonts\debug_font</font>
   </fonts>
   <objects name="objects">
+    <objects name="weapons">
+      <objects name="projectiles">
+        <object>objects\obj_proj_par</object>
+        <object>objects\obj_proj_pistol</object>
+        <object>objects\obj_proj_shotgun</object>
+        <object>objects\obj_proj_arifle</object>
+        <object>objects\obj_proj_brifle</object>
+        <object>objects\obj_proj_plasmapistol</object>
+        <object>objects\obj_proj_needler</object>
+        <object>objects\obj_proj_needler_explosion</object>
+        <object>objects\obj_proj_plasmarifle</object>
+        <object>objects\obj_proj_banshee</object>
+        <object>objects\obj_proj_phantom</object>
+        <object>objects\obj_proj_fuelrod</object>
+        <object>objects\obj_proj_trail_par</object>
+        <object>objects\obj_proj_trail_plasmapistol</object>
+        <object>objects\obj_proj_trail_ballistic</object>
+        <object>objects\obj_proj_trail_plasmarifle</object>
+        <object>objects\obj_proj_trail_needler</object>
+      </objects>
+      <object>objects\obj_weap_par</object>
+      <object>objects\obj_weap_pistol</object>
+      <object>objects\obj_weap_arifle</object>
+      <object>objects\obj_weap_brifle</object>
+      <object>objects\obj_weap_shotgun</object>
+      <object>objects\obj_weap_plasmarifle</object>
+      <object>objects\obj_weap_banshee</object>
+      <object>objects\obj_weap_plasmapistol</object>
+      <object>objects\obj_weap_needler</object>
+      <objects name="flashes">
+        <object>objects\obj_weap_flash</object>
+      </objects>
+    </objects>
     <objects name="flood">
       <object>objects\flood_infection_form_obj</object>
       <object>objects\flood_spawner_10_obj</object>
@@ -399,23 +423,22 @@
       <object>objects\flood_carrier_form_explode_obj</object>
     </objects>
     <objects name="covenant">
+      <object>objects\covenant_par</object>
       <object>objects\grunt_obj</object>
+      <object>objects\grunt_2_obj</object>
       <object>objects\jackal_obj</object>
       <object>objects\jackal_2_obj</object>
-      <object>objects\grunt_2_obj</object>
-      <object>objects\grunt_dead_obj</object>
-      <object>objects\jackal_dead_obj</object>
       <object>objects\elite_obj</object>
       <object>objects\elite_2_obj</object>
-      <object>objects\elite_dead_obj</object>
       <object>objects\hunter_obj</object>
+      <object>objects\grunt_dead_obj</object>
+      <object>objects\jackal_dead_obj</object>
+      <object>objects\elite_dead_obj</object>
       <object>objects\hunter_dead_obj</object>
       <object>objects\blue_blood_drop_obj</object>
       <object>objects\purple_blood_drop_obj</object>
       <object>objects\b_emmiter</object>
       <object>objects\covenant_attract_obj</object>
-      <object>objects\covenant_2_par</object>
-      <object>objects\jackal_2_shield_obj</object>
       <object>objects\jackal_shield_obj</object>
       <object>objects\bullet_par</object>
       <object>objects\grunt_head_obj</object>
@@ -435,7 +458,6 @@
     <objects name="marines">
       <object>objects\marine_recall</object>
       <object>objects\marine_explore_obj</object>
-      <object>objects\marine_bullet</object>
       <object>objects\marine_stationary_obj</object>
       <object>objects\marine_dead_obj</object>
       <object>objects\marine_par</object>
@@ -526,6 +548,7 @@
       <object>objects\solid_hor_obj</object>
       <object>objects\targetbounce_obj</object>
       <object>objects\shelves_obj</object>
+      <object>objects\obj_test_target</object>
     </objects>
     <objects name="menu">
       <objects name="pausemenu">
@@ -581,34 +604,6 @@
       <object>objects\account_room_stats_obj</object>
       <object>objects\obj_draw_version</object>
     </objects>
-    <objects name="projectiles">
-      <object>objects\assaultrifle_bullet_obj</object>
-      <object>objects\pistol_bullet_obj</object>
-      <object>objects\sniper_rifle_bullet_obj</object>
-      <object>objects\mc_needle_bullet_obj</object>
-      <object>objects\needle_obj</object>
-      <object>objects\shotgun_bullet_obj</object>
-      <object>objects\battle_rifle_bullet_obj</object>
-      <object>objects\plasma_pistol_bullet</object>
-      <object>objects\mc_plasma_pistol_bullet_obj</object>
-      <object>objects\plasma_pistol_bullet_trail_obj</object>
-      <object>objects\mc_plasma_pistol_bullet_trail_obj</object>
-      <object>objects\plasma_rifle_bullet_obj</object>
-      <object>objects\mc_plasma_rifle_bullet_obj</object>
-      <object>objects\banshee_bullet_obj</object>
-      <object>objects\plasma_rifle_bullet_trail</object>
-      <object>objects\mc_plasma_rifle_bullet_trail</object>
-      <object>objects\banshee_bullet_trail_obj</object>
-      <object>objects\fuel_rod_bullet_obj</object>
-      <object>objects\fuel_rod_bullet_trail</object>
-      <object>objects\tank_bullet1_obj</object>
-      <object>objects\tank_bullet2_obj</object>
-      <object>objects\explosion_obj</object>
-      <object>objects\covenant_explosion_obj</object>
-      <object>objects\fuel_rod_explosion_obj</object>
-      <object>objects\shield_flare_obj</object>
-      <object>objects\needle_explode_obj</object>
-    </objects>
     <objects name="vehicles">
       <object>objects\tank_turret_obj</object>
       <object>objects\tank_inactive_obj</object>
@@ -616,17 +611,10 @@
     </objects>
     <objects name="equipment">
       <objects name="weaponpickups">
-        <object>objects\assaultrifle_ammo_obj</object>
-        <object>objects\battle_rifle_ammo_obj</object>
-        <object>objects\pistol_ammo_obj</object>
-        <object>objects\assault_rifle_pickup_obj</object>
-        <object>objects\plasma_pistol_pickup_obj</object>
-        <object>objects\battle_rifle_pickup_obj</object>
-        <object>objects\plasma_rifle_pickup_obj</object>
-        <object>objects\shotgun_pickup_obj</object>
-        <object>objects\pistol_pickup_obj</object>
-        <object>objects\sniper_rifle_pickup_obj</object>
-        <object>objects\needler_pickup_obj</object>
+        <object>objects\obj_ammo_par</object>
+        <object>objects\obj_ammo_arifle</object>
+        <object>objects\obj_ammo_brifle</object>
+        <object>objects\obj_ammo_pistol</object>
       </objects>
       <objects name="pickups">
         <object>objects\healthpack_obj</object>
@@ -644,7 +632,6 @@
       </objects>
       <object>objects\training_turret_obj</object>
       <object>objects\training_turret_aim_obj</object>
-      <object>objects\training_turret_bullet_obj</object>
       <object>objects\damage_small_circle_obj</object>
       <objects name="skulls">
         <object>objects\shieldbashskull_obj</object>
@@ -670,20 +657,16 @@
     <object>objects\human_par</object>
     <object>objects\health_obj</object>
     <object>objects\laserpointer</object>
-    <object>objects\covenant_par</object>
     <object>objects\object20</object>
     <object>objects\obj_parent_activate</object>
+    <object>objects\obj_banshee_par</object>
     <object>objects\banshee_obj</object>
     <objects name="scroller">
       <objects name="enemies">
         <object>objects\enemy_banshee_obj</object>
         <object>objects\enemy_banshee2_obj</object>
         <object>objects\enemy_phantom_obj</object>
-        <object>objects\enemy_banshee_bullet_obj</object>
-        <object>objects\enemy_phantom_bullet_obj</object>
-        <object>objects\banshee_explosion1</object>
-        <object>objects\banshee_explosion2</object>
-        <object>objects\phantom_explosion2</object>
+        <object>objects\obj_banshee_explosion</object>
       </objects>
       <objects name="scenery">
         <object>objects\rock1_obj</object>
@@ -693,8 +676,6 @@
         <object>objects\scenery_par</object>
       </objects>
       <object>objects\banshee_scroller_obj</object>
-      <object>objects\banshee_bullet2_obj</object>
-      <object>objects\banshee_bullet2_trail_obj</object>
       <object>objects\bar2_obj</object>
     </objects>
     <objects name="spacebattle">
@@ -706,11 +687,13 @@
       <object>objects\covenant_frigate_obj</object>
     </objects>
     <object>objects\objParent_deac</object>
-    <object>objects\cursor_obj</object>
+    <object>objects\obj_cursor</object>
     <object>objects\cursor_normal_obj</object>
     <object>objects\spawnlocater_obj</object>
     <object>objects\set_globals_obj</object>
     <object>objects\splash_manager_obj</object>
+    <object>objects\character_par_obj</object>
+    <object>objects\entity_par_obj</object>
   </objects>
   <rooms name="rooms">
     <room>rooms\initialize_room</room>

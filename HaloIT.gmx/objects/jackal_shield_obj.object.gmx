@@ -5,7 +5,7 @@
   <visible>-1</visible>
   <depth>-1</depth>
   <persistent>0</persistent>
-  <parentName>&lt;undefined&gt;</parentName>
+  <parentName>entity_par_obj</parentName>
   <maskName>&lt;undefined&gt;</maskName>
   <events>
     <event eventtype="0" enumb="0">
@@ -25,67 +25,18 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if instance_exists(jackal_obj){
-a=instance_nearest(x,y,jackal_obj)
-x=a.varshield1X
-y=a.varshield1Y
-}
-shield=200</string>
-          </argument>
-        </arguments>
-      </action>
-    </event>
-    <event eventtype="2" enumb="0">
-      <action>
-        <libid>1</libid>
-        <id>543</id>
-        <kind>0</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>1</exetype>
-        <functionname>action_sprite_color</functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>13</kind>
-            <string>16777215</string>
-          </argument>
-          <argument>
-            <kind>0</kind>
-            <string>1</string>
-          </argument>
-        </arguments>
-      </action>
-    </event>
-    <event eventtype="3" enumb="2">
-      <action>
-        <libid>1</libid>
-        <id>603</id>
-        <kind>7</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>2</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>1</kind>
-            <string>if shield&lt;1
-instance_destroy()
+            <string>event_inherited();
+
+shield_max = 500;
+shield_regen_rate = .2;
+shield_regen_delay = 10;
+hp_max = 10;
 </string>
           </argument>
         </arguments>
       </action>
     </event>
-    <event eventtype="3" enumb="0">
+    <event eventtype="7" enumb="11">
       <action>
         <libid>1</libid>
         <id>603</id>
@@ -102,46 +53,13 @@ instance_destroy()
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if instance_exists(a){
-x=a.varshield1X
-y=a.varshield1Y
-image_angle=a.direction
-}
-else
-if distance_to_object(obj_mc)&lt;400
-instance_destroy()
-
-
+            <string>// nada
 </string>
           </argument>
         </arguments>
       </action>
     </event>
-    <event eventtype="4" ename="bullet_par">
-      <action>
-        <libid>1</libid>
-        <id>543</id>
-        <kind>0</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>1</exetype>
-        <functionname>action_sprite_color</functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>13</kind>
-            <string>255</string>
-          </argument>
-          <argument>
-            <kind>0</kind>
-            <string>1</string>
-          </argument>
-        </arguments>
-      </action>
+    <event eventtype="8" enumb="0">
       <action>
         <libid>1</libid>
         <id>603</id>
@@ -158,10 +76,12 @@ instance_destroy()
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>shield-=other.shieldtake
-with other
-instance_destroy()
-alarm[0]=room_speed*1</string>
+            <string>var col;
+
+col = merge_colour(c_white, c_red, ((shield_max - shield) / shield_max));
+
+draw_sprite_ext(sprite_index, image_index, x, y, 1, 1, image_angle, col, 1);
+</string>
           </argument>
         </arguments>
       </action>

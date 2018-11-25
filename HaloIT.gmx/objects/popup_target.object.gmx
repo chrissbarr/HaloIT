@@ -5,7 +5,7 @@
   <visible>-1</visible>
   <depth>0</depth>
   <persistent>0</persistent>
-  <parentName>solid_obj</parentName>
+  <parentName>entity_par_obj</parentName>
   <maskName>&lt;undefined&gt;</maskName>
   <events>
     <event eventtype="0" enumb="0">
@@ -25,14 +25,19 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>hp=100
+            <string>event_inherited();
+hp_max=100
+
+team = 2;
+
 image_speed=0
 ran=round(random(2))
 if ran=1
 up=false
 else
 up=true
-alarm[0]=room_speed*1+random(room_speed*4)</string>
+alarm[0]=room_speed*1+random(room_speed*4)
+</string>
           </argument>
         </arguments>
       </action>
@@ -110,18 +115,16 @@ alarm[0]=room_speed*1+random(room_speed*4)</string>
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if hp&lt;1
-instance_destroy()
-
-if up=true
+            <string>if up=true
 image_index=0
 else
-image_index=1</string>
+image_index=1
+</string>
           </argument>
         </arguments>
       </action>
     </event>
-    <event eventtype="4" ename="bullet_par">
+    <event eventtype="7" enumb="10">
       <action>
         <libid>1</libid>
         <id>603</id>
@@ -138,12 +141,10 @@ image_index=1</string>
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if up=true
-{
-hp-=other.hptake
-with other
-instance_destroy()
-}</string>
+            <string>if (up) {
+    event_inherited();
+}
+</string>
           </argument>
         </arguments>
       </action>

@@ -25,7 +25,17 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if audio_is_playing(menu_sound)
+            <string>event_inherited();
+
+weapons_max = 2;
+
+var w = instance_create(x, y, obj_weap_arifle);
+weapon_pickup(w);
+
+var w = instance_create(x, y, obj_weap_pistol);
+weapon_pickup(w);
+
+if audio_is_playing(menu_sound)
 audio_stop_sound(menu_sound)
 if audio_is_playing(shield_beep_snd)
 audio_stop_sound(shield_beep_snd)
@@ -34,9 +44,7 @@ can_grenade=false
 grenade='frag'
 frag_grenades=40
 godmode=false
-wep1=pistol_bullet_obj
-wep2=assaultrifle_bullet_obj
-wep=wep1
+
 ms=room_speed*.1
 overload=0
 view=0
@@ -47,72 +55,14 @@ myp = mouse_y;
 turn_speed=360/120
 global.enemyspeed=1.75
 friction=0.3
-bullettype=pistol_bullet_obj
+bullettype=obj_proj_pistol
 dec=1
 
-difficulty=global.difficulty;
-if difficulty=string("easy")
-hurt=1.4
-if difficulty=string("normal")
-hurt=1.8
-if difficulty=string("heroic")
-hurt=2.5
-if difficulty=string("legendary")
-hurt=3
-
-if instance_exists(arena_mode_control_par){
-if arena_mode_control_par.dif=1
 hurt=1.2
-if arena_mode_control_par.dif=2
-hurt=1.5
-if arena_mode_control_par.dif=3
-hurt=1.9
-}
+
 recharge=true
 stealshields=false
 
-pistol_shoot_speed=room_speed*1/2
-pistol_have=true
-pistol_mag=12
-assaultrifle_shoot_speed=room_speed*1/15
-assault_rifle_have=true
-assaultrifle_mag=60
-
-plasma_rifle_shoot_speed=room_speed*1/12
-plasma_rifle_have=false
-plasma_rifle_ammo=0
-
-plasma_pistol_shoot_speed=room_speed*1/2
-plasma_pistol_have=false
-plasma_pistol_ammo=0
-
-battle_rifle_shoot_speed=room_speed*1/3
-battle_rifle_have=false
-battle_rifle_ammo=0
-battle_rifle_mag=36
-
-needler_shoot_speed=room_speed*1/12
-needler_have=false
-needler_ammo=0
-needler_mag=20
-
-shotgun_shoot_speed=room_speed*1
-shotgun_have=false
-shotgun_ammo=0
-shotgun_mag=12
-
-sniper_rifle_shoot_speed=room_speed*1
-sniper_rifle_have=false
-sniper_rifle_ammo=0
-sniper_rifle_mag=4
-
-
-rocket_launcher_shoot_speed=room_speed*1/5
-rocket_launcher_have=false
-rocket_launcher_ammo=0
-
-reload=pistol_shoot_speed
-can_shoot=false
 try_optimise=false
 draw=false
 laseron=false
@@ -124,69 +74,34 @@ instance_create(x,y,health_obj)
 
 MJOLNIR = global.mjolnir;
 if MJOLNIR == 1 {
-shield=100
 shield_max=100
-hp=100
 hp_max=100
 }
 if MJOLNIR == 2 {
-shield=150
 shield_max=150
-hp=125
 hp_max=125
 }
 if MJOLNIR == 3 {
-shield=175
 shield_max=175
-hp=150
 hp_max=150
 }
 if MJOLNIR == 4 {
-shield=200
 shield_max=200
-hp=175
 hp_max=175
 }
 
 RECHARGE = global.recharge;
 if RECHARGE == 1 {
-recharge_speed=room_speed*3
+shield_regen_rate = 1.0;
+shield_regen_delay = room_speed*3;
 }
 if RECHARGE == 2 {
-recharge_speed=room_speed*2
+shield_regen_rate = 1.5;
+shield_regen_delay = room_speed*2;
 }
 if RECHARGE == 3 {
-recharge_speed=room_speed*1
-}
-
-PISTOLCAP = global.pistolcap; 
-if PISTOLCAP == 1 {
-pistolcap=48
-pistolammo=48
-}
-if PISTOLCAP == 2 {
-pistolcap=60
-pistolammo=60
-}
-if PISTOLCAP == 3 {
-pistolcap=72
-pistolammo=72
-}
-
-
-
-ARCAP = global.arcap;
-if ARCAP == 1 {
-ARcap=600
-assaultrifleammo=600
-}
-if ARCAP == 2 {
-ARcap=800
-assaultrifleammo=800
-}
-if ARCAP == 3 {
-ARcap=1000
-assaultrifleammo=1000
+shield_regen_rate = 2.0;
+shield_regen_delay = room_speed*1;
 }
 
 LASERSIGHT = global.lasersight
@@ -199,7 +114,12 @@ else
 alarm[0]=5 // small delay before we can shoot to debounce mouse on level start
 alarm[8]=1
 
-instance_create(x,y,cursor_obj)
+cursor = instance_create(x,y,obj_cursor);
+cursor.owner = id;
+
+shield_regen_start_sound = recharge_snd;
+shield_regen_critical_sound = shield_beep_snd;
+shield_regen_critical_ratio = 0.5;
 
 audio_listener_orientation(0,1,0,0,0,1);
 
@@ -550,7 +470,7 @@ a.ammo=create_ammo
         </arguments>
       </action>
     </event>
-    <event eventtype="2" enumb="1">
+    <event eventtype="3" enumb="2">
       <action>
         <libid>1</libid>
         <id>603</id>
@@ -567,42 +487,186 @@ a.ammo=create_ammo
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if recharge=true{
-if overshield=false{
-if shield&lt;shield_max{
-shield+=1
-if shield&lt;50
-if !audio_is_playing(shield_beep_snd)
-audio_play_sound(shield_beep_snd, 0, true)}}
+            <string>image_angle=direction
 
-if shield&gt;50
-if audio_is_playing(shield_beep_snd)
-audio_stop_sound(shield_beep_snd)
+if speed&gt;ms
+speed=ms
 
-alarm[1]=1
-}</string>
-          </argument>
-        </arguments>
-      </action>
-    </event>
-    <event eventtype="2" enumb="0">
-      <action>
-        <libid>1</libid>
-        <id>603</id>
-        <kind>7</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>2</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>1</kind>
-            <string>can_shoot=true</string>
+if speed&lt;-2
+speed=-2
+
+if hp&lt;1
+instance_destroy()
+
+if keyboard_check(vk_shift){
+    movement = global.movement;
+    if movement == "0" 
+        ms=room_speed*.18
+    else
+        ms=room_speed*.15
+}
+else
+ms=room_speed*.1
+
+direction=point_direction(x,y,cursor.x,cursor.y)
+
+if instance_exists(tank_obj){
+if distance_to_object(instance_nearest(x,y,tank_obj))&lt;10{
+can_shoot=false
+alarm[0]=2}}
+
+
+switch (weapons[| weapons_index].object_index) {
+    case obj_weap_arifle:
+        sprite_index = mc_arifle_spr;
+        fireX = 33;
+        fireY = 17;
+        break;
+    case obj_weap_brifle:
+        sprite_index = mc_battle_rifle_spr;
+        fireX = 31;
+        fireY = 16;
+        break;
+    case obj_weap_shotgun:
+        sprite_index = mc_shotgun_spr;
+        fireX = 33;
+        fireY = 16;
+        break;
+    case obj_weap_plasmarifle:
+        sprite_index = mc_plasmarifle_spr;
+        fireX = 26;
+        fireY = 16;
+        break;
+    case obj_weap_plasmapistol:
+        sprite_index = mc_plasmapistol_spr;
+        fireX = 27;
+        fireY = 19;
+        break;
+    case obj_weap_needler:
+        sprite_index = mc_needler_spr;
+        fireX = 25;
+        fireY = 15;
+        break;
+    default:
+    case obj_weap_pistol:
+        sprite_index = mc_pistol_spr;
+        fireX = 24;
+        fireY = 16;
+        break;
+}
+
+event_inherited();
+
+if (shield &gt; 0) {
+    image_index = 1;
+} else {
+    image_index = 0;
+}
+
+if (cursor != undefined and instance_exists(cursor)) {
+    target = cursor.target;
+}
+
+var curWeap = weapons[| weapons_index];
+
+if (curWeap.charges) {
+    if (curWeap.can_shoot) {
+        if (mouse_check_button_pressed(mb_left)) {
+            camoflage = false;
+            with curWeap { event_perform(ev_other, ev_user2); }
+        }
+        
+        if (mouse_check_button_released(mb_left)) {
+            camoflage = false;
+            with curWeap { event_perform(ev_other, ev_user0); }
+        }
+    }
+} else {
+    if (mouse_check_button(mb_left)) {
+        if (curWeap.can_shoot) {
+            camoflage = false;
+            with curWeap { event_perform(ev_other, ev_user0); }
+        } else {
+            if (curWeap.needs_reloading and !curWeap.reloading) {
+                with curWeap { event_perform(ev_other, ev_user1); }
+            }
+        }
+    }
+}
+
+global.control = '';
+
+var nearbyWeapons = collision_circle_list(x, y, 20, obj_weap_par, false, true);
+
+if (nearbyWeapons != noone) {    
+    for(var i = 0; i &lt; ds_list_size(nearbyWeapons); i++) {
+        var wep = nearbyWeapons[| i];
+        if (wep.owner == undefined) {
+           
+            var alreadyCarrying = check_carrying_weapon(wep.object_index);
+            
+            if (alreadyCarrying != -1) {
+                if (wep.ammo_transferable) {
+                    if (wep.ammo_current &gt; 0) {
+                        var ammo_needed = weapons[| alreadyCarrying].ammo_maximum - weapons[| alreadyCarrying].ammo_current;
+                        
+                        if (ammo_needed &gt; wep.ammo_current) {
+                            ammo_needed = wep.ammo_current;
+                        }
+                        
+                        wep.ammo_current -= ammo_needed;
+                        weapons[| alreadyCarrying].ammo_current += ammo_needed;
+                    }
+                    if (wep.magazine_current &gt; 0) {
+                        var ammo_needed = weapons[| alreadyCarrying].ammo_maximum - weapons[| alreadyCarrying].ammo_current;
+                        
+                        if (ammo_needed &gt; wep.magazine_current) {
+                            ammo_needed = wep.magazine_current;
+                        }
+                        
+                        wep.magazine_current -= ammo_needed;
+                        weapons[| alreadyCarrying].ammo_current += ammo_needed;
+                    }
+                }
+            }
+            
+            if (alreadyCarrying == -1 or (alreadyCarrying == weapons_index and wep.ammo_transferable == false and (wep.ammo_current &gt; weapons[| alreadyCarrying].ammo_current or wep.magazine_current &gt; weapons[| alreadyCarrying].magazine_current))) {
+                global.control = 'Press E to pick up ' + wep.name;
+                
+                if (keyboard_check_pressed(ord('E'))) {
+                    weapon_drop(weapons[| weapons_index]);
+                    weapon_pickup(wep);
+                }
+                break;
+            }
+        }
+    }
+    
+    ds_list_destroy(nearbyWeapons);
+}
+
+
+var nearbyAmmo = collision_circle_list(x, y, 20, obj_ammo_par, false, true);
+
+if (nearbyAmmo != noone) {
+    for(var i = 0; i &lt; ds_list_size(nearbyAmmo); i++) {
+        var ammo = nearbyAmmo[| i];
+        var carryingWeaponToSuit = check_carrying_weapon(ammo.ammo_for_weapon);
+        
+        if (carryingWeaponToSuit != -1) {
+            var ammo_needed = weapons[| carryingWeaponToSuit].ammo_maximum - weapons[| carryingWeaponToSuit].ammo_current;
+                    
+            if (ammo_needed &gt; ammo.ammo_amount) {
+                ammo_needed = ammo.ammo_amount;
+            }
+            
+            ammo.ammo_amount -= ammo_needed;
+            weapons[| carryingWeaponToSuit].ammo_current += ammo_needed;
+        }
+    }
+    ds_list_destroy(nearbyAmmo);
+}
+</string>
           </argument>
         </arguments>
       </action>
@@ -632,66 +696,14 @@ if camoflage=false
 if image_alpha&lt;1
 image_alpha+=.03
 
-bullettype=wep
-if bullettype=pistol_bullet_obj{
-sprite_index=mc_pistol_spr
-reload=pistol_shoot_speed
-}
-if bullettype=assaultrifle_bullet_obj{
-sprite_index=mc_norm_spr
-reload=assaultrifle_shoot_speed
-}
-if bullettype=battle_rifle_bullet_obj{
-sprite_index=mc_battle_rifle_spr
-reload=battle_rifle_shoot_speed
-}
-if bullettype=shotgun_bullet_obj{
-sprite_index=mc_shotgun_spr
-reload=shotgun_shoot_speed
-}
-if bullettype=mc_plasma_rifle_bullet_obj{
-sprite_index=mc_plasmarifle_spr
-reload=plasma_rifle_shoot_speed
-}
-if bullettype=mc_plasma_pistol_bullet_obj{
-sprite_index=mc_plasmapistol_spr
-reload=plasma_pistol_shoot_speed
-}
-if bullettype=mc_needle_bullet_obj{
-sprite_index=mc_needler_spr
-reload=needler_shoot_speed
+if (overshield) {
+    if (shield &gt; shield_max) {
+        shield -= .01;
+    } else {
+        overshield = false;
+    }
 }
 
-if overshield=true{
-
-if shield_max&gt;shieldrem
-{
-shield-=.01
-}
-else
-{
-shield_max=shieldrem
-shield=shield_max
-overshield=false
-}
-
-}
-
-if overshield=true
-if shield&lt;1{
-overshield=false
-shield_max=shieldrem
-shield=shield_max
-}
-
-if bullettype=mc_plasma_rifle_bullet_obj
-reload=plasma_rifle_shoot_speed+random(3)
-if bullettype=mc_needle_bullet_obj
-reload=needler_shoot_speed+random(3)
-
-
-if plasma_rifle_ammo&lt;1.9
-plasma_rifle_ammo=0
 godmode_scr()
 
 audio_listener_position(x, y, 0);
@@ -715,185 +727,7 @@ audio_listener_position(x, y, 0);
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>image_angle=direction
-
-if speed&gt;ms
-speed=ms
-
-if speed&lt;-2
-speed=-2
-if sprite_index=mc_norm_spr{
-varGunLength = point_distance(sprite_get_xoffset(sprite_index),sprite_get_yoffset(sprite_index),29,14);
-varGunDirection = point_direction(sprite_get_xoffset(sprite_index),sprite_get_yoffset(sprite_index),29,14);
-varshoot1X = x + lengthdir_x(varGunLength,image_angle + varGunDirection);
-varshoot1Y = y + lengthdir_y(varGunLength,image_angle + varGunDirection);}
-
-if sprite_index=mc_pistol_spr{
-varGunLength = point_distance(sprite_get_xoffset(sprite_index),sprite_get_yoffset(sprite_index),20,13);
-varGunDirection = point_direction(sprite_get_xoffset(sprite_index),sprite_get_yoffset(sprite_index),20,13);
-varshoot1X = x + lengthdir_x(varGunLength,image_angle + varGunDirection);
-varshoot1Y = y + lengthdir_y(varGunLength,image_angle + varGunDirection);}
-
-if sprite_index=mc_plasmarifle_spr{
-varGunLength = point_distance(sprite_get_xoffset(sprite_index),sprite_get_yoffset(sprite_index),22,15);
-varGunDirection = point_direction(sprite_get_xoffset(sprite_index),sprite_get_yoffset(sprite_index),22,15);
-varshoot1X = x + lengthdir_x(varGunLength,image_angle + varGunDirection);
-varshoot1Y = y + lengthdir_y(varGunLength,image_angle + varGunDirection);}
-
-if sprite_index=mc_plasmapistol_spr{
-varGunLength = point_distance(sprite_get_xoffset(sprite_index),sprite_get_yoffset(sprite_index),24,16);
-varGunDirection = point_direction(sprite_get_xoffset(sprite_index),sprite_get_yoffset(sprite_index),24,16);
-varshoot1X = x + lengthdir_x(varGunLength,image_angle + varGunDirection);
-varshoot1Y = y + lengthdir_y(varGunLength,image_angle + varGunDirection);}
-
-if sprite_index=mc_pistol_shield_spr{
-varGunLength = point_distance(sprite_get_xoffset(sprite_index),sprite_get_yoffset(sprite_index),23,16);
-varGunDirection = point_direction(sprite_get_xoffset(sprite_index),sprite_get_yoffset(sprite_index),23,16);
-varshoot1X = x + lengthdir_x(varGunLength,image_angle + varGunDirection);
-varshoot1Y = y + lengthdir_y(varGunLength,image_angle + varGunDirection);}
-
-if sprite_index=mc_norm_shield_spr{
-varGunLength = point_distance(sprite_get_xoffset(sprite_index),sprite_get_yoffset(sprite_index),32,18);
-varGunDirection = point_direction(sprite_get_xoffset(sprite_index),sprite_get_yoffset(sprite_index),32,18);
-varshoot1X = x + lengthdir_x(varGunLength,image_angle + varGunDirection);
-varshoot1Y = y + lengthdir_y(varGunLength,image_angle + varGunDirection);}
-
-if sprite_index=mc_plasmarifle_shield_spr{
-varGunLength = point_distance(sprite_get_xoffset(sprite_index),sprite_get_yoffset(sprite_index),24,17);
-varGunDirection = point_direction(sprite_get_xoffset(sprite_index),sprite_get_yoffset(sprite_index),24,17);
-varshoot1X = x + lengthdir_x(varGunLength,image_angle + varGunDirection);
-varshoot1Y = y + lengthdir_y(varGunLength,image_angle + varGunDirection);}
-
-if sprite_index=mc_plasmapistol_shield_spr{
-varGunLength = point_distance(sprite_get_xoffset(sprite_index),sprite_get_yoffset(sprite_index),27,18);
-varGunDirection = point_direction(sprite_get_xoffset(sprite_index),sprite_get_yoffset(sprite_index),27,18);
-varshoot1X = x + lengthdir_x(varGunLength,image_angle + varGunDirection);
-varshoot1Y = y + lengthdir_y(varGunLength,image_angle + varGunDirection);}
-
-if sprite_index=mc_battle_rifle_shield_spr{
-varGunLength = point_distance(sprite_get_xoffset(sprite_index),sprite_get_yoffset(sprite_index),29,16);
-varGunDirection = point_direction(sprite_get_xoffset(sprite_index),sprite_get_yoffset(sprite_index),29,16);
-varshoot1X = x + lengthdir_x(varGunLength,image_angle + varGunDirection);
-varshoot1Y = y + lengthdir_y(varGunLength,image_angle + varGunDirection);}
-
-if sprite_index=mc_battle_rifle_spr{
-varGunLength = point_distance(sprite_get_xoffset(sprite_index),sprite_get_yoffset(sprite_index),26,14);
-varGunDirection = point_direction(sprite_get_xoffset(sprite_index),sprite_get_yoffset(sprite_index),26,14);
-varshoot1X = x + lengthdir_x(varGunLength,image_angle + varGunDirection);
-varshoot1Y = y + lengthdir_y(varGunLength,image_angle + varGunDirection);}
-
-if sprite_index=mc_shotgun_spr{
-varGunLength = point_distance(sprite_get_xoffset(sprite_index),sprite_get_yoffset(sprite_index),29,14);
-varGunDirection = point_direction(sprite_get_xoffset(sprite_index),sprite_get_yoffset(sprite_index),29,14);
-varshoot1X = x + lengthdir_x(varGunLength,image_angle + varGunDirection);
-varshoot1Y = y + lengthdir_y(varGunLength,image_angle + varGunDirection);}
-
-if sprite_index=mc_shotgun_shield_spr{
-varGunLength = point_distance(sprite_get_xoffset(sprite_index),sprite_get_yoffset(sprite_index),32,15);
-varGunDirection = point_direction(sprite_get_xoffset(sprite_index),sprite_get_yoffset(sprite_index),32,15);
-varshoot1X = x + lengthdir_x(varGunLength,image_angle + varGunDirection);
-varshoot1Y = y + lengthdir_y(varGunLength,image_angle + varGunDirection);}
-
-if sprite_index=mc_needler_spr{
-varGunLength = point_distance(sprite_get_xoffset(sprite_index),sprite_get_yoffset(sprite_index),20,14);
-varGunDirection = point_direction(sprite_get_xoffset(sprite_index),sprite_get_yoffset(sprite_index),20,14);
-varshoot1X = x + lengthdir_x(varGunLength,image_angle + varGunDirection);
-varshoot1Y = y + lengthdir_y(varGunLength,image_angle + varGunDirection);}
-
-if sprite_index=mc_needler_shield_spr{
-varGunLength = point_distance(sprite_get_xoffset(sprite_index),sprite_get_yoffset(sprite_index),22,15);
-varGunDirection = point_direction(sprite_get_xoffset(sprite_index),sprite_get_yoffset(sprite_index),22,15);
-varshoot1X = x + lengthdir_x(varGunLength,image_angle + varGunDirection);
-varshoot1Y = y + lengthdir_y(varGunLength,image_angle + varGunDirection);}
-
-
-if shield&gt;2{
-if sprite_index=mc_norm_spr
-sprite_index=mc_norm_shield_spr
-if sprite_index=mc_pistol_spr
-sprite_index=mc_pistol_shield_spr
-if sprite_index=mc_plasmarifle_spr
-sprite_index=mc_plasmarifle_shield_spr
-if sprite_index=mc_plasmapistol_spr
-sprite_index=mc_plasmapistol_shield_spr
-if sprite_index=mc_battle_rifle_spr
-sprite_index=mc_battle_rifle_shield_spr
-if sprite_index=mc_shotgun_spr
-sprite_index=mc_shotgun_shield_spr
-if sprite_index=mc_needler_spr
-sprite_index=mc_needler_shield_spr}
-else{
-if sprite_index=mc_norm_shield_spr
-sprite_index=mc_norm_spr
-if sprite_index=mc_pistol_shield_spr
-sprite_index=mc_pistol_spr
-if sprite_index=mc_plasmarifle_shield_spr
-sprite_index=mc_plasmarifle_spr
-if sprite_index=mc_plasmapistol_shield_spr
-sprite_index=mc_plasmapistol_spr
-if sprite_index=mc_battle_rifle_shield_spr
-sprite_index=mc_battle_rifle_spr
-if sprite_index=mc_shotgun_shield_spr
-sprite_index=mc_shotgun_spr
-if sprite_index=mc_needler_shield_spr
-sprite_index=mc_needler_spr}
-if shield&lt;0
-shield=0
-
-if hp&lt;1
-instance_destroy()
-
-if keyboard_check(vk_shift){
-    movement = global.movement;
-    if movement == "0" 
-        ms=room_speed*.18
-    else
-        ms=room_speed*.15
-}
-else
-ms=room_speed*.1
-
-direction=point_direction(x,y,cursor_obj.x,cursor_obj.y)
-
-if instance_exists(tank_obj){
-if distance_to_object(instance_nearest(x,y,tank_obj))&lt;10{
-can_shoot=false
-alarm[0]=2}}
-</string>
-          </argument>
-        </arguments>
-      </action>
-      <action>
-        <libid>1</libid>
-        <id>603</id>
-        <kind>7</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>2</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>1</kind>
-            <string>if overload&gt;10
-overload=10
-if overload&gt;9.8{
-plasmacanshoot=false
-}
-
-if overload&gt;0
-overload-=.2
-if overload&lt;0
-overload=0
-if overload=0{
-plasmacanshoot=true
-}
-
-if instance_exists(tank_inactive_obj){
+            <string>if instance_exists(tank_inactive_obj){
 if collision_circle(x,y,30,tank_inactive_obj,true,true){
 global.advice="Press V to enter Scorpion Tank"
 alarm[4]=room_speed/2
@@ -932,38 +766,6 @@ if view_wport&lt;1280
 view_wport+=6
 if view_hport&lt;960
 view_hport+=6
-}</string>
-          </argument>
-        </arguments>
-      </action>
-    </event>
-    <event eventtype="4" ename="covenant_par">
-      <action>
-        <libid>1</libid>
-        <id>603</id>
-        <kind>7</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>2</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>1</kind>
-            <string>{
-x = xprevious;
-y = yprevious;
-if (abs(hspeed) &gt;= abs(vspeed) &amp;&amp;
-not place_meeting(x+hspeed,y,covenant_par))
-{ x += hspeed; exit;}
-if (abs(vspeed) &gt;= abs(hspeed) &amp;&amp;
-not place_meeting(x,y+vspeed,covenant_par))
-{ y += vspeed; exit;}
-speed = 0;
 }
 </string>
           </argument>
@@ -1076,40 +878,6 @@ alarm[4]=room_speed*5
         </arguments>
       </action>
     </event>
-    <event eventtype="4" ename="training_turret_bullet_obj">
-      <action>
-        <libid>1</libid>
-        <id>603</id>
-        <kind>7</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>2</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>1</kind>
-            <string>if (shield &gt; 1) {
-    shield-=7*hurt;
-    effect_create_above(ef_spark, other.x, other.y, 0, c_orange);
-} else {
-    hp-=9*hurt
-    repeat random(5)
-        a=instance_create(x,y,red_blood_drop_obj)
-}
-
-with (other) { instance_destroy(); }
-
-alarm[1]=recharge_speed
-</string>
-          </argument>
-        </arguments>
-      </action>
-    </event>
     <event eventtype="4" ename="training_turret_obj">
       <action>
         <libid>1</libid>
@@ -1191,13 +959,14 @@ alarm[1]=recharge_speed</string>
             <kind>1</kind>
             <string>if overshield=false{
 shieldrem=shield_max
-shield_max=shieldrem+shieldrem/2
-shield=shield_max
+//shield_max=shieldrem+shieldrem/2
+shield = shield_max * 2;
 overshield=true
 with other
 instance_destroy()
 alarm[1]=1
-}</string>
+}
+</string>
           </argument>
         </arguments>
       </action>
@@ -1254,805 +1023,6 @@ with other
 instance_destroy()
 flash=1
 alarm[2]=1}</string>
-          </argument>
-        </arguments>
-      </action>
-    </event>
-    <event eventtype="4" ename="needler_pickup_obj">
-      <action>
-        <libid>1</libid>
-        <id>603</id>
-        <kind>7</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>2</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>1</kind>
-            <string>global.advice='Press E to pick up Needler'
-alarm[4]=room_speed*1/2</string>
-          </argument>
-        </arguments>
-      </action>
-      <action>
-        <libid>1</libid>
-        <id>603</id>
-        <kind>7</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>2</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>1</kind>
-            <string>if keyboard_check_pressed(ord('E')){
-create=weapon_drop_scr(mc_needle_bullet_obj)
-needler_have=true
-needlercap=100
-needler_ammo=other.ammo
-
-
-with other
-instance_destroy()
-if wep=wep1{
-wep1=mc_needle_bullet_obj
-wep=mc_needle_bullet_obj
-}
-if wep=wep2{
-wep2=mc_needle_bullet_obj
-wep=mc_needle_bullet_obj
-}
-}
-</string>
-          </argument>
-        </arguments>
-      </action>
-    </event>
-    <event eventtype="4" ename="sniper_rifle_pickup_obj">
-      <action>
-        <libid>1</libid>
-        <id>603</id>
-        <kind>7</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>2</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>1</kind>
-            <string>global.advice='Press E to pick up Sniper Rifle'
-alarm[4]=room_speed*1/2</string>
-          </argument>
-        </arguments>
-      </action>
-      <action>
-        <libid>1</libid>
-        <id>603</id>
-        <kind>7</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>2</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>1</kind>
-            <string>if keyboard_check_pressed(ord('E')){
-create=weapon_drop_scr(sniper_rifle_bullet_obj)
-sniper_rifle_have=true
-sniper_rifle_ammo=other.ammo
-with other
-instance_destroy()
-if wep=wep1{
-wep1=sniper_rifle_bullet_obj
-wep=sniper_rifle_bullet_obj
-}
-if wep=wep2{
-wep2=sniper_rifle_bullet_obj
-wep=sniper_rifle_bullet_obj
-}
-}
-</string>
-          </argument>
-        </arguments>
-      </action>
-    </event>
-    <event eventtype="4" ename="pistol_pickup_obj">
-      <action>
-        <libid>1</libid>
-        <id>603</id>
-        <kind>7</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>2</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>1</kind>
-            <string>global.advice='Press E to pick up Pistol'
-alarm[4]=room_speed*1/2</string>
-          </argument>
-        </arguments>
-      </action>
-      <action>
-        <libid>1</libid>
-        <id>603</id>
-        <kind>7</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>2</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>1</kind>
-            <string>if keyboard_check_pressed(ord('E')){
-create=weapon_drop_scr(pistol_bullet_obj)
-pistol_have=true
-PISTOLCAP = global.pistolcap;
-if PISTOLCAP=string(1){
-pistolcap=48
-pistolammo=other.ammo
-}
-if PISTOLCAP=string(2){
-pistolcap=60
-pistolammo=other.ammo
-}
-if PISTOLCAP=string(3){
-pistolcap=72
-pistolammo=other.ammo
-}
-
-with other
-instance_destroy()
-if wep=wep1{
-wep1=pistol_bullet_obj
-wep=pistol_bullet_obj
-}
-if wep=wep2{
-wep2=pistol_bullet_obj
-wep=pistol_bullet_obj
-}
-}
-</string>
-          </argument>
-        </arguments>
-      </action>
-    </event>
-    <event eventtype="4" ename="shotgun_pickup_obj">
-      <action>
-        <libid>1</libid>
-        <id>603</id>
-        <kind>7</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>2</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>1</kind>
-            <string>global.advice='Press E to pick up Shotgun'
-alarm[4]=room_speed*1/2</string>
-          </argument>
-        </arguments>
-      </action>
-      <action>
-        <libid>1</libid>
-        <id>603</id>
-        <kind>7</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>2</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>1</kind>
-            <string>if keyboard_check_pressed(ord('E')){
-create=weapon_drop_scr()
-shotgun_have=true
-shotgun_ammo=other.ammo
-with other
-instance_destroy()
-if wep=wep1{
-wep1=shotgun_bullet_obj
-wep=shotgun_bullet_obj
-}
-if wep=wep2{
-wep2=shotgun_bullet_obj
-wep=shotgun_bullet_obj
-}
-}
-</string>
-          </argument>
-        </arguments>
-      </action>
-    </event>
-    <event eventtype="4" ename="plasma_rifle_pickup_obj">
-      <action>
-        <libid>1</libid>
-        <id>603</id>
-        <kind>7</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>2</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>1</kind>
-            <string>global.advice='Press E to pick up Plasma Rifle'
-alarm[4]=room_speed*1/2</string>
-          </argument>
-        </arguments>
-      </action>
-      <action>
-        <libid>1</libid>
-        <id>603</id>
-        <kind>7</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>2</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>1</kind>
-            <string>if keyboard_check_pressed(ord('E')){
-create=weapon_drop_scr()
-plasma_rifle_have=true
-plasma_rifle_ammo=other.ammo
-with other
-instance_destroy()
-if wep=wep1{
-wep1=mc_plasma_rifle_bullet_obj
-wep=mc_plasma_rifle_bullet_obj
-}
-if wep=wep2{
-wep2=mc_plasma_rifle_bullet_obj
-wep=mc_plasma_rifle_bullet_obj
-}
-}</string>
-          </argument>
-        </arguments>
-      </action>
-    </event>
-    <event eventtype="4" ename="battle_rifle_pickup_obj">
-      <action>
-        <libid>1</libid>
-        <id>603</id>
-        <kind>7</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>2</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>1</kind>
-            <string>global.advice='Press E to pick up Battle Rifle'
-alarm[4]=room_speed*1/2</string>
-          </argument>
-        </arguments>
-      </action>
-      <action>
-        <libid>1</libid>
-        <id>603</id>
-        <kind>7</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>2</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>1</kind>
-            <string>if keyboard_check_pressed(ord('E')){
-create=weapon_drop_scr(battle_rifle_bullet_obj)
-battle_rifle_have=true
-battle_rifle_ammo=other.ammo
-with other
-instance_destroy()
-if wep=wep1{
-wep1=battle_rifle_bullet_obj
-wep=battle_rifle_bullet_obj
-}
-if wep=wep2{
-wep2=battle_rifle_bullet_obj
-wep=battle_rifle_bullet_obj
-}
-}
-</string>
-          </argument>
-        </arguments>
-      </action>
-    </event>
-    <event eventtype="4" ename="plasma_pistol_pickup_obj">
-      <action>
-        <libid>1</libid>
-        <id>603</id>
-        <kind>7</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>2</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>1</kind>
-            <string>global.advice='Press E to pick up Plasma Pistol'
-alarm[4]=room_speed*1/2</string>
-          </argument>
-        </arguments>
-      </action>
-      <action>
-        <libid>1</libid>
-        <id>603</id>
-        <kind>7</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>2</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>1</kind>
-            <string>if keyboard_check_pressed(ord('E')){
-create=weapon_drop_scr()
-plasma_pistol_have=true
-plasma_pistol_ammo=other.ammo
-with other
-instance_destroy()
-if wep=wep1{
-wep1=mc_plasma_pistol_bullet_obj
-wep=mc_plasma_pistol_bullet_obj
-}
-if wep=wep2{
-wep2=mc_plasma_pistol_bullet_obj
-wep=mc_plasma_pistol_bullet_obj
-}
-}
-</string>
-          </argument>
-        </arguments>
-      </action>
-    </event>
-    <event eventtype="4" ename="assault_rifle_pickup_obj">
-      <action>
-        <libid>1</libid>
-        <id>603</id>
-        <kind>7</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>2</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>1</kind>
-            <string>global.advice='Press E to pick up Assault Rifle'
-alarm[4]=room_speed*1/2</string>
-          </argument>
-        </arguments>
-      </action>
-      <action>
-        <libid>1</libid>
-        <id>603</id>
-        <kind>7</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>2</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>1</kind>
-            <string>if keyboard_check_pressed(ord('E')){
-create=weapon_drop_scr(assaultrifle_bullet_obj)
-assault_rifle_have=true
-ARCAP = global.arcap;
-if ARCAP=string(1){
-ARcap=600
-assaultrifleammo=other.ammo
-}
-if ARCAP=string(2){
-ARcap=800
-assaultrifleammo=other.ammo
-}
-if ARCAP=string(3){
-ARcap=1000
-assaultrifleammo=other.ammo
-}
-with other
-instance_destroy()
-if wep=wep1{
-wep1=assaultrifle_bullet_obj
-wep=assaultrifle_bullet_obj
-}
-if wep=wep2{
-wep2=assaultrifle_bullet_obj
-wep=assaultrifle_bullet_obj
-}
-}
-</string>
-          </argument>
-        </arguments>
-      </action>
-    </event>
-    <event eventtype="4" ename="pistol_ammo_obj">
-      <action>
-        <libid>1</libid>
-        <id>603</id>
-        <kind>7</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>2</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>1</kind>
-            <string>if pistol_have=true{
-//If pistol ammo not full
-if pistolammo&lt;pistolcap
-{
-//works out how much ammo is needed
-am=pistolcap-pistolammo
-//if ammo is larger than maximun reload
-if am&gt;24
-//ammo is set to maximum reload
-am=24
-//adds needed amount of ammo to pistol
-pistolammo+=am
-//if pistol has more the max ammo
-if pistolammo&gt;pistolcap
-//sets pistol to max ammo
-pistolammo=pistolcap
-//takes away from the reloads ammo
-other.ammo-=self.am
-//if the reload pack has no ammo left
-if other.ammo&lt;1
-//it is destroyed
-with other
-instance_destroy()
-}
-}</string>
-          </argument>
-        </arguments>
-      </action>
-    </event>
-    <event eventtype="4" ename="battle_rifle_ammo_obj">
-      <action>
-        <libid>1</libid>
-        <id>603</id>
-        <kind>7</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>2</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>1</kind>
-            <string>if battle_rifle_have=true{
-//If pistol ammo not full
-if battle_rifle_ammo&lt;108
-{
-//works out how much ammo is needed
-am=108-battle_rifle_ammo
-//if ammo is larger than maximun reload
-if am&gt;108
-//ammo is set to maximum reload
-am=108
-//adds needed amount of ammo to pistol
-battle_rifle_ammo+=am
-//if pistol has more the max ammo
-if battle_rifle_ammo&gt;108
-//sets pistol to max ammo
-battle_rifle_ammo=108
-//takes away from the reloads ammo
-other.ammo-=self.am
-//if the reload pack has no ammo left
-if other.ammo&lt;1
-//it is destroyed
-with other
-instance_destroy()
-}
-}</string>
-          </argument>
-        </arguments>
-      </action>
-    </event>
-    <event eventtype="4" ename="assaultrifle_ammo_obj">
-      <action>
-        <libid>1</libid>
-        <id>603</id>
-        <kind>7</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>2</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>1</kind>
-            <string>if assault_rifle_have=true{
-//If pistol ammo not full
-if assaultrifleammo&lt;ARcap
-{
-//works out how much ammo is needed
-am=ARcap-assaultrifleammo
-//if ammo is larger than maximun reload
-if am&gt;300
-//ammo is set to maximum reload
-am=300
-//adds needed amount of ammo to pistol
-assaultrifleammo+=am
-//if pistol has more the max ammo
-if assaultrifleammo&gt;ARcap
-//sets pistol to max ammo
-assaultrifleammo=ARcap
-//takes away from the reloads ammo
-other.ammo-=self.am
-//if the reload pack has no ammo left
-if other.ammo&lt;1
-//it is destroyed
-with other
-instance_destroy()
-}
-}</string>
-          </argument>
-        </arguments>
-      </action>
-    </event>
-    <event eventtype="4" ename="fuel_rod_bullet_trail">
-      <action>
-        <libid>1</libid>
-        <id>603</id>
-        <kind>7</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>2</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>1</kind>
-            <string>if (shield &gt; 1) {
-    shield-=1*hurt;
-    effect_create_above(ef_spark, other.x, other.y, 0, c_orange);
-} else {
-    hp-=1*hurt
-    repeat random(5)
-        a=instance_create(x,y,red_blood_drop_obj)
-}
-
-with (other) { instance_destroy(); }
-
-alarm[1]=recharge_speed
-</string>
-          </argument>
-        </arguments>
-      </action>
-    </event>
-    <event eventtype="4" ename="fuel_rod_bullet_obj">
-      <action>
-        <libid>1</libid>
-        <id>603</id>
-        <kind>7</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>2</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>1</kind>
-            <string>if (shield &gt; 1) {
-    shield-=50*hurt;
-    effect_create_above(ef_spark, other.x, other.y, 0, c_orange);
-} else {
-    hp-=40*hurt
-    repeat random(5)
-        a=instance_create(x,y,red_blood_drop_obj)
-}
-
-with (other) { instance_destroy(); }
-
-alarm[1]=recharge_speed
-</string>
-          </argument>
-        </arguments>
-      </action>
-    </event>
-    <event eventtype="4" ename="plasma_rifle_bullet_obj">
-      <action>
-        <libid>1</libid>
-        <id>603</id>
-        <kind>7</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>2</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>1</kind>
-            <string>if (shield &gt; 1) {
-    shield-=4*hurt;
-    effect_create_above(ef_spark, other.x, other.y, 0, c_orange);
-} else {
-    hp-=4*hurt
-    repeat random(5)
-        a=instance_create(x,y,red_blood_drop_obj)
-}
-
-with (other) { instance_destroy(); }
-
-alarm[1]=recharge_speed
-</string>
-          </argument>
-        </arguments>
-      </action>
-    </event>
-    <event eventtype="4" ename="plasma_pistol_bullet">
-      <action>
-        <libid>1</libid>
-        <id>603</id>
-        <kind>7</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>2</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>1</kind>
-            <string>if (shield &gt; 1) {
-    shield-=5*hurt;
-    effect_create_above(ef_spark, other.x, other.y, 0, c_orange);
-} else {
-    hp-=10*hurt
-    repeat random(5)
-        a=instance_create(x,y,red_blood_drop_obj)
-}
-
-with (other) { instance_destroy(); }
-
-alarm[1]=recharge_speed
-</string>
-          </argument>
-        </arguments>
-      </action>
-    </event>
-    <event eventtype="4" ename="needle_obj">
-      <action>
-        <libid>1</libid>
-        <id>603</id>
-        <kind>7</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>2</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>1</kind>
-            <string>if (shield &gt; 1) {
-    shield-=1*hurt;
-    effect_create_above(ef_spark, other.x, other.y, 0, c_orange);
-} else {
-    hp-=2*hurt
-    repeat random(5)
-        a=instance_create(x,y,red_blood_drop_obj)
-}
-
-with (other) { instance_destroy(); }
-
-alarm[1]=recharge_speed
-</string>
           </argument>
         </arguments>
       </action>
@@ -2287,41 +1257,7 @@ speed = 0;
         </arguments>
       </action>
     </event>
-    <event eventtype="4" ename="marine_bullet">
-      <action>
-        <libid>1</libid>
-        <id>603</id>
-        <kind>7</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>2</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>1</kind>
-            <string>if (shield &gt; 1) {
-    shield-=2*hurt;
-    effect_create_above(ef_spark, other.x, other.y, 0, c_orange);
-} else {
-    hp-=4*hurt
-    repeat random(5)
-        a=instance_create(x,y,red_blood_drop_obj)
-}
-
-with (other) { instance_destroy(); }
-
-alarm[1]=recharge_speed
-</string>
-          </argument>
-        </arguments>
-      </action>
-    </event>
-    <event eventtype="4" ename="covenant_2_par">
+    <event eventtype="4" ename="covenant_par">
       <action>
         <libid>1</libid>
         <id>603</id>
@@ -2342,10 +1278,10 @@ alarm[1]=recharge_speed
 x = xprevious;
 y = yprevious;
 if (abs(hspeed) &gt;= abs(vspeed) &amp;&amp;
-not place_meeting(x+hspeed,y,covenant_2_par))
+not place_meeting(x+hspeed,y,covenant_par))
 { x += hspeed; exit;}
 if (abs(vspeed) &gt;= abs(hspeed) &amp;&amp;
-not place_meeting(x,y+vspeed,covenant_2_par))
+not place_meeting(x,y+vspeed,covenant_par))
 { y += vspeed; exit;}
 speed = 0;
 }
@@ -2381,8 +1317,6 @@ speed = 0;
 }
 
 with (other) { instance_destroy(); }
-
-alarm[1]=recharge_speed
 </string>
           </argument>
         </arguments>
@@ -2686,28 +1620,6 @@ if keycontrol == "ARROW" {
         </arguments>
       </action>
     </event>
-    <event eventtype="6" enumb="57">
-      <action>
-        <libid>1</libid>
-        <id>603</id>
-        <kind>7</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>2</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>1</kind>
-            <string></string>
-          </argument>
-        </arguments>
-      </action>
-    </event>
     <event eventtype="6" enumb="54">
       <action>
         <libid>1</libid>
@@ -2733,1084 +1645,13 @@ frag_grenades-=1
 }
 }
 
-if wep=sniper_rifle_bullet_obj{
-if view=0
-view=1
-else
-if view=1
-view=0
-}</string>
-          </argument>
-        </arguments>
-      </action>
-    </event>
-    <event eventtype="6" enumb="50">
-      <action>
-        <libid>1</libid>
-        <id>612</id>
-        <kind>0</kind>
-        <userelative>0</userelative>
-        <isquestion>-1</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>1</exetype>
-        <functionname>action_if_variable</functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>0</kind>
-            <string>bullettype</string>
-          </argument>
-          <argument>
-            <kind>0</kind>
-            <string>mc_plasma_rifle_bullet_obj</string>
-          </argument>
-          <argument>
-            <kind>4</kind>
-            <string>0</string>
-          </argument>
-        </arguments>
-      </action>
-      <action>
-        <libid>1</libid>
-        <id>422</id>
-        <kind>1</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>0</useapplyto>
-        <exetype>0</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-      </action>
-      <action>
-        <libid>1</libid>
-        <id>603</id>
-        <kind>7</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>2</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>1</kind>
-            <string>if plasmacanshoot=true{
-if can_shoot=true{
-instance_create(varshoot1X,varshoot1Y,bullettype)
-if plasma_rifle_ammo&gt;1
-overload+=1.5+random(.6)
-can_shoot=false
-a=round(random(2))
-if a=1
-alarm[3]=1
-alarm[0]=reload
-}
+if (global.debug) {
+    x = mouse_x;
+    y = mouse_y;
 }
 </string>
           </argument>
         </arguments>
-      </action>
-      <action>
-        <libid>1</libid>
-        <id>425</id>
-        <kind>4</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>0</useapplyto>
-        <exetype>0</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-      </action>
-      <action>
-        <libid>1</libid>
-        <id>424</id>
-        <kind>2</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>0</useapplyto>
-        <exetype>0</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-      </action>
-      <action>
-        <libid>1</libid>
-        <id>421</id>
-        <kind>3</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>0</useapplyto>
-        <exetype>0</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-      </action>
-      <action>
-        <libid>1</libid>
-        <id>612</id>
-        <kind>0</kind>
-        <userelative>0</userelative>
-        <isquestion>-1</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>1</exetype>
-        <functionname>action_if_variable</functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>0</kind>
-            <string>bullettype</string>
-          </argument>
-          <argument>
-            <kind>0</kind>
-            <string>battle_rifle_bullet_obj</string>
-          </argument>
-          <argument>
-            <kind>4</kind>
-            <string>0</string>
-          </argument>
-        </arguments>
-      </action>
-      <action>
-        <libid>1</libid>
-        <id>422</id>
-        <kind>1</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>0</useapplyto>
-        <exetype>0</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-      </action>
-      <action>
-        <libid>1</libid>
-        <id>603</id>
-        <kind>7</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>2</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>1</kind>
-            <string>if can_shoot=true{
-if reloading=false{
-if battle_rifle_mag&gt;0{
-instance_create(varshoot1X,varshoot1Y,bullettype)
-audio_play_sound(battle_rifle_shot_snd, 0, false)
-alarm[6]=3
-b=2
-can_shoot=false
-a=round(random(2))
-if a=1
-alarm[3]=1
-alarm[0]=reload
-}
-else
-if battle_rifle_ammo&gt;0
-reloadbullet=battle_rifle_reload()
-}
-}
-
-</string>
-          </argument>
-        </arguments>
-      </action>
-      <action>
-        <libid>1</libid>
-        <id>425</id>
-        <kind>4</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>0</useapplyto>
-        <exetype>0</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-      </action>
-      <action>
-        <libid>1</libid>
-        <id>424</id>
-        <kind>2</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>0</useapplyto>
-        <exetype>0</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-      </action>
-      <action>
-        <libid>1</libid>
-        <id>421</id>
-        <kind>3</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>0</useapplyto>
-        <exetype>0</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-      </action>
-      <action>
-        <libid>1</libid>
-        <id>612</id>
-        <kind>0</kind>
-        <userelative>0</userelative>
-        <isquestion>-1</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>1</exetype>
-        <functionname>action_if_variable</functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>0</kind>
-            <string>bullettype</string>
-          </argument>
-          <argument>
-            <kind>0</kind>
-            <string>sniper_rifle_bullet_obj</string>
-          </argument>
-          <argument>
-            <kind>4</kind>
-            <string>0</string>
-          </argument>
-        </arguments>
-      </action>
-      <action>
-        <libid>1</libid>
-        <id>422</id>
-        <kind>1</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>0</useapplyto>
-        <exetype>0</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-      </action>
-      <action>
-        <libid>1</libid>
-        <id>603</id>
-        <kind>7</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>2</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>1</kind>
-            <string>if can_shoot=true{
-if reloading=false{
-if sniper_rifle_mag&gt;0{
-instance_create(varshoot1X,varshoot1Y,bullettype)
-audio_play_sound(sniper_rifle_shot_snd, 0, false)
-alarm[6]=3
-b=2
-can_shoot=false
-a=round(random(2))
-if a=1
-alarm[3]=1
-alarm[0]=reload
-}
-else
-if sniper_rifle_ammo&gt;0
-reloadbullet=sniper_rifle_reload()
-}
-}
-
-</string>
-          </argument>
-        </arguments>
-      </action>
-      <action>
-        <libid>1</libid>
-        <id>425</id>
-        <kind>4</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>0</useapplyto>
-        <exetype>0</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-      </action>
-      <action>
-        <libid>1</libid>
-        <id>424</id>
-        <kind>2</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>0</useapplyto>
-        <exetype>0</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-      </action>
-      <action>
-        <libid>1</libid>
-        <id>421</id>
-        <kind>3</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>0</useapplyto>
-        <exetype>0</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-      </action>
-      <action>
-        <libid>1</libid>
-        <id>612</id>
-        <kind>0</kind>
-        <userelative>0</userelative>
-        <isquestion>-1</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>1</exetype>
-        <functionname>action_if_variable</functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>0</kind>
-            <string>bullettype</string>
-          </argument>
-          <argument>
-            <kind>0</kind>
-            <string>pistol_bullet_obj</string>
-          </argument>
-          <argument>
-            <kind>4</kind>
-            <string>0</string>
-          </argument>
-        </arguments>
-      </action>
-      <action>
-        <libid>1</libid>
-        <id>422</id>
-        <kind>1</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>0</useapplyto>
-        <exetype>0</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-      </action>
-      <action>
-        <libid>1</libid>
-        <id>603</id>
-        <kind>7</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>2</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>1</kind>
-            <string>if can_shoot=true{
-if reloading=false{
-if pistol_mag&gt;0{
-instance_create(varshoot1X,varshoot1Y,bullettype)
-audio_play_sound(pistol_shot_sound, 0, false)
-b=2
-can_shoot=false
-a=round(random(2))
-if a=1
-alarm[3]=1
-alarm[0]=reload
-}
-else
-if pistolammo&gt;0
-reloadbullet=pistol_reload()
-}
-}
-
-</string>
-          </argument>
-        </arguments>
-      </action>
-      <action>
-        <libid>1</libid>
-        <id>425</id>
-        <kind>4</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>0</useapplyto>
-        <exetype>0</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-      </action>
-      <action>
-        <libid>1</libid>
-        <id>424</id>
-        <kind>2</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>0</useapplyto>
-        <exetype>0</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-      </action>
-      <action>
-        <libid>1</libid>
-        <id>421</id>
-        <kind>3</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>0</useapplyto>
-        <exetype>0</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-      </action>
-      <action>
-        <libid>1</libid>
-        <id>612</id>
-        <kind>0</kind>
-        <userelative>0</userelative>
-        <isquestion>-1</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>1</exetype>
-        <functionname>action_if_variable</functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>0</kind>
-            <string>bullettype</string>
-          </argument>
-          <argument>
-            <kind>0</kind>
-            <string>assaultrifle_bullet_obj</string>
-          </argument>
-          <argument>
-            <kind>4</kind>
-            <string>0</string>
-          </argument>
-        </arguments>
-      </action>
-      <action>
-        <libid>1</libid>
-        <id>422</id>
-        <kind>1</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>0</useapplyto>
-        <exetype>0</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-      </action>
-      <action>
-        <libid>1</libid>
-        <id>603</id>
-        <kind>7</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>2</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>1</kind>
-            <string>if can_shoot=true{
-if reloading=false{
-if assaultrifle_mag&gt;0{
-instance_create(varshoot1X,varshoot1Y,bullettype)
-audio_play_sound(assaultrifle_shot_sound, 0, false);
-b=2
-can_shoot=false
-a=round(random(2))
-if a=1
-alarm[3]=1
-alarm[0]=reload
-}
-else
-if assaultrifleammo&gt;0
-reloadbullet=assault_rifle_reload()
-}
-}
-
-</string>
-          </argument>
-        </arguments>
-      </action>
-      <action>
-        <libid>1</libid>
-        <id>425</id>
-        <kind>4</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>0</useapplyto>
-        <exetype>0</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-      </action>
-      <action>
-        <libid>1</libid>
-        <id>424</id>
-        <kind>2</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>0</useapplyto>
-        <exetype>0</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-      </action>
-      <action>
-        <libid>1</libid>
-        <id>421</id>
-        <kind>3</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>0</useapplyto>
-        <exetype>0</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-      </action>
-      <action>
-        <libid>1</libid>
-        <id>612</id>
-        <kind>0</kind>
-        <userelative>0</userelative>
-        <isquestion>-1</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>1</exetype>
-        <functionname>action_if_variable</functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>0</kind>
-            <string>bullettype</string>
-          </argument>
-          <argument>
-            <kind>0</kind>
-            <string>shotgun_bullet_obj</string>
-          </argument>
-          <argument>
-            <kind>4</kind>
-            <string>0</string>
-          </argument>
-        </arguments>
-      </action>
-      <action>
-        <libid>1</libid>
-        <id>422</id>
-        <kind>1</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>0</useapplyto>
-        <exetype>0</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-      </action>
-      <action>
-        <libid>1</libid>
-        <id>603</id>
-        <kind>7</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>2</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>1</kind>
-            <string>if can_shoot=true{
-if reloading=false{
-if shotgun_mag&gt;0{
-s=15
-repeat 8{
-a=instance_create(varshoot1X,varshoot1Y,bullettype)
-if s=15
-a.direction=direction-7-random(3)
-if s=13
-a.direction=direction-5-random(3)
-if s=11
-a.direction=direction-3-random(3)
-if s=9
-a.direction=direction-1-random(3)
-if s=7
-a.direction=direction+1+random(3)
-if s=5
-a.direction=direction+3+random(3)
-if s=3
-a.direction=direction+5+random(3)
-if s=1
-a.direction=direction+7+random(3)
-s-=1
-audio_play_sound(shotgun_shot_snd, 0, false)
-
-}
-shotgun_mag-=1
-b=2
-can_shoot=false
-a=round(random(2))
-if a=1
-alarm[3]=1
-alarm[0]=reload
-alarm[7]=reload/2
-}
-else
-if shotgun_ammo&gt;0
-reloadbullet=shotgun_reload()
-}
-}
-
-</string>
-          </argument>
-        </arguments>
-      </action>
-      <action>
-        <libid>1</libid>
-        <id>425</id>
-        <kind>4</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>0</useapplyto>
-        <exetype>0</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-      </action>
-      <action>
-        <libid>1</libid>
-        <id>424</id>
-        <kind>2</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>0</useapplyto>
-        <exetype>0</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-      </action>
-      <action>
-        <libid>1</libid>
-        <id>421</id>
-        <kind>3</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>0</useapplyto>
-        <exetype>0</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-      </action>
-      <action>
-        <libid>1</libid>
-        <id>612</id>
-        <kind>0</kind>
-        <userelative>0</userelative>
-        <isquestion>-1</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>1</exetype>
-        <functionname>action_if_variable</functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>0</kind>
-            <string>bullettype</string>
-          </argument>
-          <argument>
-            <kind>0</kind>
-            <string>mc_needle_bullet_obj</string>
-          </argument>
-          <argument>
-            <kind>4</kind>
-            <string>0</string>
-          </argument>
-        </arguments>
-      </action>
-      <action>
-        <libid>1</libid>
-        <id>422</id>
-        <kind>1</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>0</useapplyto>
-        <exetype>0</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-      </action>
-      <action>
-        <libid>1</libid>
-        <id>603</id>
-        <kind>7</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>2</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>1</kind>
-            <string>if can_shoot=true{
-if reloading=false{
-if needler_mag&gt;0{
-instance_create(varshoot1X,varshoot1Y,bullettype)
-can_shoot=false
-a=round(random(2))
-if a=1
-{
-alarm[3]=1
-audio_play_sound(needle_shot_snd, 0, false)
-}
-else
-audio_play_sound(needle2_shot_snd, 0, false)
-alarm[0]=reload
-}
-else
-reloadbullet=needler_reload_scr()
-}
-}
-
-</string>
-          </argument>
-        </arguments>
-      </action>
-      <action>
-        <libid>1</libid>
-        <id>425</id>
-        <kind>4</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>0</useapplyto>
-        <exetype>0</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-      </action>
-      <action>
-        <libid>1</libid>
-        <id>424</id>
-        <kind>2</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>0</useapplyto>
-        <exetype>0</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-      </action>
-      <action>
-        <libid>1</libid>
-        <id>612</id>
-        <kind>0</kind>
-        <userelative>0</userelative>
-        <isquestion>-1</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>1</exetype>
-        <functionname>action_if_variable</functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>0</kind>
-            <string>bullettype</string>
-          </argument>
-          <argument>
-            <kind>0</kind>
-            <string>battle_rifle_bullet_obj</string>
-          </argument>
-          <argument>
-            <kind>4</kind>
-            <string>0</string>
-          </argument>
-        </arguments>
-      </action>
-      <action>
-        <libid>1</libid>
-        <id>422</id>
-        <kind>1</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>0</useapplyto>
-        <exetype>0</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-      </action>
-      <action>
-        <libid>1</libid>
-        <id>603</id>
-        <kind>7</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>2</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>1</kind>
-            <string>if can_shoot=true{
-if reloading=false{
-if battle_rifle_mag&gt;0{
-instance_create(varshoot1X,varshoot1Y,bullettype)
-audio_play_sound(battle_rifle_shot_snd, 0, false)
-b=2
-can_shoot=false
-a=round(random(2))
-if a=1
-alarm[3]=1
-alarm[0]=reload
-}
-else
-reloadbullet=battle_rifle_reload()
-}
-}
-
-</string>
-          </argument>
-        </arguments>
-      </action>
-      <action>
-        <libid>1</libid>
-        <id>425</id>
-        <kind>4</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>0</useapplyto>
-        <exetype>0</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-      </action>
-      <action>
-        <libid>1</libid>
-        <id>424</id>
-        <kind>2</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>0</useapplyto>
-        <exetype>0</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-      </action>
-      <action>
-        <libid>1</libid>
-        <id>421</id>
-        <kind>3</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>0</useapplyto>
-        <exetype>0</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-      </action>
-      <action>
-        <libid>1</libid>
-        <id>421</id>
-        <kind>3</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>0</useapplyto>
-        <exetype>0</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-      </action>
-      <action>
-        <libid>1</libid>
-        <id>422</id>
-        <kind>1</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>0</useapplyto>
-        <exetype>0</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-      </action>
-      <action>
-        <libid>1</libid>
-        <id>603</id>
-        <kind>7</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>2</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>1</kind>
-            <string>if can_shoot=true{
-instance_create(varshoot1X,varshoot1Y,bullettype)
-can_shoot=false
-a=round(random(2))
-if a=1
-alarm[3]=1
-alarm[0]=reload
-}
-
-</string>
-          </argument>
-        </arguments>
-      </action>
-      <action>
-        <libid>1</libid>
-        <id>425</id>
-        <kind>4</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>0</useapplyto>
-        <exetype>0</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-      </action>
-      <action>
-        <libid>1</libid>
-        <id>424</id>
-        <kind>2</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>0</useapplyto>
-        <exetype>0</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
       </action>
     </event>
     <event eventtype="7" enumb="5">
@@ -3909,46 +1750,29 @@ draw_set_alpha(1) //Reset the alpha
     <event eventtype="9" enumb="82">
       <action>
         <libid>1</libid>
-        <id>612</id>
-        <kind>0</kind>
+        <id>603</id>
+        <kind>7</kind>
         <userelative>0</userelative>
-        <isquestion>-1</isquestion>
+        <isquestion>0</isquestion>
         <useapplyto>-1</useapplyto>
-        <exetype>1</exetype>
-        <functionname>action_if_variable</functionname>
+        <exetype>2</exetype>
+        <functionname></functionname>
         <codestring></codestring>
         <whoName>self</whoName>
         <relative>0</relative>
         <isnot>0</isnot>
         <arguments>
           <argument>
-            <kind>0</kind>
-            <string>bullettype</string>
-          </argument>
-          <argument>
-            <kind>0</kind>
-            <string>battle_rifle_bullet_obj</string>
-          </argument>
-          <argument>
-            <kind>4</kind>
-            <string>0</string>
+            <kind>1</kind>
+            <string>var curWeap = weapons[| weapons_index];
+
+with curWeap { event_perform(ev_other, ev_user1); }
+</string>
           </argument>
         </arguments>
       </action>
-      <action>
-        <libid>1</libid>
-        <id>422</id>
-        <kind>1</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>0</useapplyto>
-        <exetype>0</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-      </action>
+    </event>
+    <event eventtype="9" enumb="80">
       <action>
         <libid>1</libid>
         <id>603</id>
@@ -3965,412 +1789,10 @@ draw_set_alpha(1) //Reset the alpha
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>reloadbullet=battle_rifle_reload()
-
-
+            <string>global.debug = !global.debug;
 </string>
           </argument>
         </arguments>
-      </action>
-      <action>
-        <libid>1</libid>
-        <id>425</id>
-        <kind>4</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>0</useapplyto>
-        <exetype>0</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-      </action>
-      <action>
-        <libid>1</libid>
-        <id>424</id>
-        <kind>2</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>0</useapplyto>
-        <exetype>0</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-      </action>
-      <action>
-        <libid>1</libid>
-        <id>612</id>
-        <kind>0</kind>
-        <userelative>0</userelative>
-        <isquestion>-1</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>1</exetype>
-        <functionname>action_if_variable</functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>0</kind>
-            <string>bullettype</string>
-          </argument>
-          <argument>
-            <kind>0</kind>
-            <string>assaultrifle_bullet_obj</string>
-          </argument>
-          <argument>
-            <kind>4</kind>
-            <string>0</string>
-          </argument>
-        </arguments>
-      </action>
-      <action>
-        <libid>1</libid>
-        <id>422</id>
-        <kind>1</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>0</useapplyto>
-        <exetype>0</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-      </action>
-      <action>
-        <libid>1</libid>
-        <id>603</id>
-        <kind>7</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>2</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>1</kind>
-            <string>reloadbullet=assault_rifle_reload()
-
-
-</string>
-          </argument>
-        </arguments>
-      </action>
-      <action>
-        <libid>1</libid>
-        <id>425</id>
-        <kind>4</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>0</useapplyto>
-        <exetype>0</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-      </action>
-      <action>
-        <libid>1</libid>
-        <id>424</id>
-        <kind>2</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>0</useapplyto>
-        <exetype>0</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-      </action>
-      <action>
-        <libid>1</libid>
-        <id>612</id>
-        <kind>0</kind>
-        <userelative>0</userelative>
-        <isquestion>-1</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>1</exetype>
-        <functionname>action_if_variable</functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>0</kind>
-            <string>bullettype</string>
-          </argument>
-          <argument>
-            <kind>0</kind>
-            <string>pistol_bullet_obj</string>
-          </argument>
-          <argument>
-            <kind>4</kind>
-            <string>0</string>
-          </argument>
-        </arguments>
-      </action>
-      <action>
-        <libid>1</libid>
-        <id>422</id>
-        <kind>1</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>0</useapplyto>
-        <exetype>0</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-      </action>
-      <action>
-        <libid>1</libid>
-        <id>603</id>
-        <kind>7</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>2</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>1</kind>
-            <string>reloadbullet=pistol_reload()
-
-
-</string>
-          </argument>
-        </arguments>
-      </action>
-      <action>
-        <libid>1</libid>
-        <id>425</id>
-        <kind>4</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>0</useapplyto>
-        <exetype>0</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-      </action>
-      <action>
-        <libid>1</libid>
-        <id>424</id>
-        <kind>2</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>0</useapplyto>
-        <exetype>0</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-      </action>
-      <action>
-        <libid>1</libid>
-        <id>612</id>
-        <kind>0</kind>
-        <userelative>0</userelative>
-        <isquestion>-1</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>1</exetype>
-        <functionname>action_if_variable</functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>0</kind>
-            <string>bullettype</string>
-          </argument>
-          <argument>
-            <kind>0</kind>
-            <string>mc_needle_bullet_obj</string>
-          </argument>
-          <argument>
-            <kind>4</kind>
-            <string>0</string>
-          </argument>
-        </arguments>
-      </action>
-      <action>
-        <libid>1</libid>
-        <id>422</id>
-        <kind>1</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>0</useapplyto>
-        <exetype>0</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-      </action>
-      <action>
-        <libid>1</libid>
-        <id>603</id>
-        <kind>7</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>2</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>1</kind>
-            <string>reloadbullet=needler_reload_scr()
-
-
-</string>
-          </argument>
-        </arguments>
-      </action>
-      <action>
-        <libid>1</libid>
-        <id>425</id>
-        <kind>4</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>0</useapplyto>
-        <exetype>0</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-      </action>
-      <action>
-        <libid>1</libid>
-        <id>424</id>
-        <kind>2</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>0</useapplyto>
-        <exetype>0</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-      </action>
-      <action>
-        <libid>1</libid>
-        <id>612</id>
-        <kind>0</kind>
-        <userelative>0</userelative>
-        <isquestion>-1</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>1</exetype>
-        <functionname>action_if_variable</functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>0</kind>
-            <string>bullettype</string>
-          </argument>
-          <argument>
-            <kind>0</kind>
-            <string>shotgun_bullet_obj</string>
-          </argument>
-          <argument>
-            <kind>4</kind>
-            <string>0</string>
-          </argument>
-        </arguments>
-      </action>
-      <action>
-        <libid>1</libid>
-        <id>422</id>
-        <kind>1</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>0</useapplyto>
-        <exetype>0</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-      </action>
-      <action>
-        <libid>1</libid>
-        <id>603</id>
-        <kind>7</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>2</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>1</kind>
-            <string>reloadbullet=shotgun_reload()
-
-
-</string>
-          </argument>
-        </arguments>
-      </action>
-      <action>
-        <libid>1</libid>
-        <id>425</id>
-        <kind>4</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>0</useapplyto>
-        <exetype>0</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-      </action>
-      <action>
-        <libid>1</libid>
-        <id>424</id>
-        <kind>2</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>0</useapplyto>
-        <exetype>0</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
       </action>
     </event>
     <event eventtype="9" enumb="76">
@@ -4416,11 +1838,12 @@ if lotus&gt;0{
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if plasma_rifle_have=true{
-bullettype=mc_plasma_rifle_bullet_obj
-sprite_index=mc_plasmarifle_spr
-reload=plasma_rifle_shoot_speed
-}</string>
+            <string>var weapIndex = check_carrying_weapon(obj_weap_plasmarifle);
+
+if (weapIndex != -1) {
+    weapons_index = weapIndex;
+}
+</string>
           </argument>
         </arguments>
       </action>
@@ -4442,11 +1865,12 @@ reload=plasma_rifle_shoot_speed
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if plasma_pistol_have=true{
-bullettype=mc_plasma_pistol_bullet_obj
-sprite_index=mc_plasmapistol_spr
-reload=plasma_pistol_shoot_speed
-}</string>
+            <string>var weapIndex = check_carrying_weapon(obj_weap_plasmapistol);
+
+if (weapIndex != -1) {
+    weapons_index = weapIndex;
+}
+</string>
           </argument>
         </arguments>
       </action>
@@ -4468,11 +1892,12 @@ reload=plasma_pistol_shoot_speed
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if battle_rifle_have=true{
-bullettype=battle_rifle_bullet_obj
-sprite_index=mc_battle_rifle_spr
-reload=battle_rifle_shoot_speed
-}</string>
+            <string>var weapIndex = check_carrying_weapon(obj_weap_brifle);
+
+if (weapIndex != -1) {
+    weapons_index = weapIndex;
+}
+</string>
           </argument>
         </arguments>
       </action>
@@ -4494,11 +1919,12 @@ reload=battle_rifle_shoot_speed
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if assault_rifle_have=true{
-bullettype=assaultrifle_bullet_obj
-sprite_index=mc_norm_spr
-reload=assaultrifle_shoot_speed
-}</string>
+            <string>var weapIndex = check_carrying_weapon(obj_weap_arifle);
+
+if (weapIndex != -1) {
+    weapons_index = weapIndex;
+}
+</string>
           </argument>
         </arguments>
       </action>
@@ -4520,11 +1946,12 @@ reload=assaultrifle_shoot_speed
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if pistol_have=true{
-bullettype=pistol_bullet_obj
-sprite_index=mc_pistol_spr
-reload=pistol_shoot_speed
-}</string>
+            <string>var weapIndex = check_carrying_weapon(obj_weap_pistol);
+
+if (weapIndex != -1) {
+    weapons_index = weapIndex;
+}
+</string>
           </argument>
         </arguments>
       </action>
@@ -4546,13 +1973,23 @@ reload=pistol_shoot_speed
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if wep=wep1
-wep=wep2
-else
-if wep=wep2
-wep=wep1
-reloading=false
-reloadbullet=''</string>
+            <string>new_index = weapons_index + 1;
+
+if (new_index &gt;= ds_list_size(weapons)) {
+    new_index = 0;
+}
+
+if (new_index != weapons_index) {
+    oldWep = weapons[| weapons_index];
+    with (oldWep) { event_perform(ev_other, ev_user3); }
+    
+    weapons_index = new_index;
+    
+    with (weapons[| weapons_index]) { event_perform(ev_other, ev_user4); }
+}
+
+
+</string>
           </argument>
         </arguments>
       </action>

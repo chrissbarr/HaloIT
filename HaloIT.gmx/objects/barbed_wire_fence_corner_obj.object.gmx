@@ -33,7 +33,8 @@ image_index=1
 if instance_place(x,y-sprite_height,barbed_wire_fence_vert_obj) &amp;&amp; instance_place(x-sprite_width,y,barbed_wire_fence_hor_obj)
 image_index=2
 if instance_place(x,y-sprite_height,barbed_wire_fence_vert_obj) &amp;&amp; instance_place(x+sprite_width,y,barbed_wire_fence_hor_obj)
-image_index=3</string>
+image_index=3
+</string>
           </argument>
         </arguments>
       </action>

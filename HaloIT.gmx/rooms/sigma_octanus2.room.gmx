@@ -82,11 +82,6 @@ surface_free(Tsur)}}
     <view visible="0" objName="&lt;undefined&gt;" xview="0" yview="0" wview="640" hview="480" xport="0" yport="0" wport="640" hport="480" hborder="32" vborder="32" hspeed="-1" vspeed="-1"/>
   </views>
   <instances>
-    <instance objName="pistol_ammo_obj" x="4388" y="1556" name="inst_E361D798" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="pistol_ammo_obj" x="4412" y="1596" name="inst_3479E33B" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="pistol_ammo_obj" x="4444" y="1556" name="inst_D4D6AE35" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="pistol_ammo_obj" x="4540" y="1596" name="inst_75A7F08B" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="shotgun_pickup_obj" x="4420" y="1580" name="inst_11B96CF1" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="solid_vertical_obj" x="5755" y="1872" name="inst_B15DE11D" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="solid_vertical_obj" x="5748" y="2924" name="inst_FECFBC32" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="solid_hor_obj" x="5890" y="2370" name="inst_84DD8710" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
@@ -220,8 +215,6 @@ surface_free(Tsur)}}
     <instance objName="marine_explore_obj" x="1404" y="1692" name="inst_8090C24E" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="marine_explore_obj" x="1396" y="1388" name="inst_C0CFB0D0" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="marine_explore_obj" x="1584" y="1260" name="inst_21F9C347" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="jackal_obj" x="2416" y="1968" name="inst_0A6D4A67" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="jackal_obj" x="4912" y="2048" name="inst_3A0465DF" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="overshield_obj" x="4320" y="2736" name="inst_91DA1106" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="overshield_obj" x="4320" y="2688" name="inst_DAD1FB92" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="wall_2_obj" x="5124" y="1564" name="inst_4FCE0CD7" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
@@ -253,11 +246,6 @@ surface_free(Tsur)}}
     <instance objName="shelves_obj" x="5568" y="1448" name="inst_675CF078" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="shelves_obj" x="5568" y="1544" name="inst_C5512AFE" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="grunt_r3_spawn_obj" x="5384" y="1656" name="inst_4286D20C" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="jackal_obj" x="5288" y="1288" name="inst_5FB77971" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="jackal_obj" x="5336" y="1320" name="inst_5CC943A9" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="jackal_obj" x="5392" y="1352" name="inst_CD14BAB8" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="jackal_obj" x="5448" y="1320" name="inst_D0F49265" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="jackal_obj" x="5496" y="1288" name="inst_E49D53F8" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="barbed_wire_fence_vert_obj" x="6280" y="2368" name="inst_BA16939F" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="barbed_wire_fence_vert_obj" x="6280" y="2352" name="inst_998ECA8F" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="barbed_wire_fence_corner_obj" x="6280" y="2336" name="inst_4E593B0E" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
@@ -604,6 +592,11 @@ surface_free(Tsur)}}
     <instance objName="tree_2by4_obj" x="4832" y="864" name="inst_6702EC18" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="tree_2by4_obj" x="4920" y="864" name="inst_DD204720" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="tree_2by4_obj" x="5016" y="856" name="inst_A7DC1494" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="obj_weap_shotgun" x="4420" y="1580" name="inst_DB54762A" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="obj_ammo_pistol" x="4412" y="1596" name="inst_2C886E30" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="obj_ammo_pistol" x="4444" y="1556" name="inst_0E634053" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="obj_ammo_pistol" x="4540" y="1596" name="inst_4FABEE79" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="obj_ammo_pistol" x="4388" y="1556" name="inst_0624D616" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
   </instances>
   <tiles>
     <tile bgName="water2_back" x="5748" y="1380" w="384" h="384" xo="0" yo="0" id="10002030" name="tile_13EE49EE" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>

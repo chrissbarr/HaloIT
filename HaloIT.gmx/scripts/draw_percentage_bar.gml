@@ -21,6 +21,7 @@ height = argument3;
 value = argument4;
 value_max = argument5;
 
+
 //draw the back of the health bar
 border = 1;
 if argument7=true{
@@ -32,13 +33,20 @@ draw_rectangle(x1,   y1,  x1+width,    y1+height,   false);
 
 
 }
-//set length and height values
-x2 = x1 + (value/value_max * width);
-y2 = y1 + height;
 
-//draw the health bar
-draw_set_color(argument6);
-draw_rectangle(x1,y1,x2,y2,false);
+if (value != 0) {
+
+    //set length and height values
+    x2 = x1 + (value/value_max * width);
+    y2 = y1 + height;
+    
+    //draw the health bar
+    draw_set_color(argument6);
+    draw_rectangle(x1,y1,x2,y2,false);
+
+}
 
 //set the color back to black
 draw_set_color(c_black);
+
+

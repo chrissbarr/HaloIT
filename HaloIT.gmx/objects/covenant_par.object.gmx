@@ -5,7 +5,7 @@
   <visible>-1</visible>
   <depth>0</depth>
   <persistent>0</persistent>
-  <parentName>objParent_deac</parentName>
+  <parentName>character_par_obj</parentName>
   <maskName>&lt;undefined&gt;</maskName>
   <events>
     <event eventtype="0" enumb="0">
@@ -25,8 +25,9 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if distance_to_object(obj_mc)&gt;2000
-instance_deactivate_object(self)
+            <string>event_inherited();
+
+team = 2;
 </string>
           </argument>
         </arguments>

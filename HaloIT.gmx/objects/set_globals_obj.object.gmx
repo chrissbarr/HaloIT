@@ -48,6 +48,8 @@ for(var i = 0; i &lt; 10; i++) {
 
 global.arena_hitime = 0;
 
+global.player_audio_level = 0.5;
+
 global.version =  "v0.2.1";
 
 randomize();

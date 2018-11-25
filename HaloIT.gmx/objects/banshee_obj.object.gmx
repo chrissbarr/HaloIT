@@ -5,7 +5,7 @@
   <visible>-1</visible>
   <depth>-10</depth>
   <persistent>0</persistent>
-  <parentName>&lt;undefined&gt;</parentName>
+  <parentName>obj_banshee_par</parentName>
   <maskName>&lt;undefined&gt;</maskName>
   <events>
     <event eventtype="0" enumb="0">
@@ -25,37 +25,19 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>maxspeed=4
+            <string>event_inherited();
+
+hp_max=100
+
+maxspeed=4
 minspeed=0
 turn_speed=3
 friction=0.02
 accel=.4
 deccel=.2
-shootspeed=room_speed/5
-canshoot=true
-b=1</string>
-          </argument>
-        </arguments>
-      </action>
-    </event>
-    <event eventtype="2" enumb="0">
-      <action>
-        <libid>1</libid>
-        <id>603</id>
-        <kind>7</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>2</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>1</kind>
-            <string>canshoot=true</string>
+
+b=1
+</string>
           </argument>
         </arguments>
       </action>
@@ -78,23 +60,12 @@ b=1</string>
           <argument>
             <kind>1</kind>
             <string>image_angle=direction
+
 if speed&gt;maxspeed
 speed=maxspeed
 
 if speed&lt;-minspeed
 speed=-minspeed
-
-
-varGunLength = point_distance(sprite_get_xoffset(sprite_index),sprite_get_yoffset(sprite_index),36,21);
-varGunDirection = point_direction(sprite_get_xoffset(sprite_index),sprite_get_yoffset(sprite_index),36,21);
-varshoot1X = x + lengthdir_x(varGunLength,image_angle + varGunDirection);
-varshoot1Y = y + lengthdir_y(varGunLength,image_angle + varGunDirection);
-
-varGunLength = point_distance(sprite_get_xoffset(sprite_index),sprite_get_yoffset(sprite_index),36,30);
-varGunDirection = point_direction(sprite_get_xoffset(sprite_index),sprite_get_yoffset(sprite_index),36,30);
-varshoot2X = x + lengthdir_x(varGunLength,image_angle + varGunDirection);
-varshoot2Y = y + lengthdir_y(varGunLength,image_angle + varGunDirection);
-
 </string>
           </argument>
         </arguments>
@@ -205,22 +176,8 @@ varshoot2Y = y + lengthdir_y(varGunLength,image_angle + varGunDirection);
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if canshoot=true{
-if b=1
-{
-instance_create(varshoot1X,varshoot1Y,banshee_bullet_obj)
-}
-else
-{
-instance_create(varshoot2X,varshoot2Y,banshee_bullet_obj)
-}
-canshoot=false
-alarm[0]=shootspeed
-
-if b=1
-b=2
-else
-b=1}</string>
+            <string>event_perform(ev_other, ev_user15);
+</string>
           </argument>
         </arguments>
       </action>
