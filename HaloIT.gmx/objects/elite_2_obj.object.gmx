@@ -92,7 +92,8 @@ alarm[4]=1</string>
             <kind>1</kind>
             <string>event_inherited();
 
-instance_create(x, y, elite_dead_obj);
+a = instance_create(x, y, elite_dead_obj);
+a.rank = rank;
 </string>
           </argument>
         </arguments>
