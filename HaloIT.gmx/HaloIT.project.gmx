@@ -369,6 +369,9 @@
       <script>scripts\gauss.gml</script>
     </scripts>
     <script>scripts\check_carrying_weapon.gml</script>
+    <scripts name="arena">
+      <script>scripts\arena_define_wave.gml</script>
+    </scripts>
   </scripts>
   <fonts name="fonts">
     <font>fonts\halofont</font>
