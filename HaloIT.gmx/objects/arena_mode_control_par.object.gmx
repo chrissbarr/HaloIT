@@ -37,50 +37,26 @@ time = 0;
 wave_index = 0;
 
 waves = ds_list_create();
-ds_list_add(waves, arena_define_wave(5,0,0));
-ds_list_add(waves, arena_define_wave(3,2,0));
-ds_list_add(waves, arena_define_wave(3,2,1));
 
-</string>
-          </argument>
-        </arguments>
-      </action>
-      <action>
-        <libid>1</libid>
-        <id>604</id>
-        <kind>0</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>0</useapplyto>
-        <exetype>1</exetype>
-        <functionname>action_inherited</functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-      </action>
-    </event>
-    <event eventtype="2" enumb="0">
-      <action>
-        <libid>1</libid>
-        <id>603</id>
-        <kind>7</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>2</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>1</kind>
-            <string>//ds_list_shuffle(spawnable_pickups);
-//instance_create(random(room_width), random(room_height), spawnable_pickups[| 0]);
+wave = arena_create_wave();
+ds_list_add(wave[? "squads"], arena_define_squad(5,0,0));
+ds_list_add(wave[? "squads"], arena_define_squad(0,5,0));
+ds_list_add(wave[? "squads"], arena_define_squad(0,0,5));
+ds_list_add(waves, wave);
 
-alarm[0]=room_speed*2+random(room_speed*6)
+wave = arena_create_wave();
+ds_list_add(wave[? "squads"], arena_define_squad(2,2,2));
+ds_list_add(waves, wave);
+
+wave = arena_create_wave();
+ds_list_add(wave[? "squads"], arena_define_squad(1,0,0));
+ds_list_add(wave[? "squads"], arena_define_squad(0,1,0));
+ds_list_add(wave[? "squads"], arena_define_squad(1,1,1));
+ds_list_add(waves, wave);
+
+
+event_inherited();
+
 </string>
           </argument>
         </arguments>
@@ -107,49 +83,69 @@ alarm[0]=room_speed*2+random(room_speed*6)
 
 if (paused == false) {
     if (instance_number(covenant_par) == 0) {
-        wave = waves[| wave_index];
+    
+        wave_index += 1;   
+
+        show_debug_message("Spawning new wave. Wave Index: " + string(wave_index));
         
-        // find a location outside of player's view to spawn the squad
-        var squadX, squadY;
-        var squadSpawnSafe = false;
+        var wave_index_spawn = min(wave_index, ds_list_size(waves))
         
-        while (squadSpawnSafe == false) {
-            squadX = random(room_width);
-            squadY = random(room_height);  
+        wave = waves[| wave_index_spawn - 1];
+        
+        var squadList = wave[? "squads"]        
+        var squadNum = ds_list_size(squadList)
+        
+        show_debug_message("Squads in wave: " + string(squadNum));
+        
+        for (i = 0; i &lt; squadNum; i++) {
+        
+            show_debug_message("Spawning Squad: " + string(i));
+        
+            squad = squadList[| i];        
+        
+            // find a location outside of player's view to spawn the squad
+            var squadX, squadY;
+            var squadSpawnSafe = false;
             
-            if (point_distance(player.x, player.y, squadX, squadY) &gt; 400) {
-                if (!collision_circle(squadX, squadY, 100, character_par_obj, false, false)) {
-                    squadSpawnSafe = true;
-                }
-            }            
-        }        
-        
-        // spawn each entity within the squad
-        for (i = 0; i &lt; ds_list_size(wave); i++) {
-            var squadRadius = 80;
-            var spawnX, spawnY;
-            var safeSpawn = false;
-            var spawnAttempts = 0;
-            
-            // find a non-colliding spawn location within the squad
-            while (safeSpawn == false) {            
-                spawnX = squadX + random(squadRadius) - squadRadius / 2;
-                spawnY = squadY + random(squadRadius) - squadRadius / 2;                
-                if (!collision_point(spawnX, spawnY, character_par_obj, false, false)) {
-                    safeSpawn = true;
-                }
-                spawnAttempts += 1;
-                if (spawnAttempts &gt; 50) {
-                    break;
-                }     
+            while (squadSpawnSafe == false) {
+                squadX = random(room_width);
+                squadY = random(room_height);  
+                
+                if (point_distance(player.x, player.y, squadX, squadY) &gt; 400) {
+                    if (!collision_circle(squadX, squadY, 100, character_par_obj, false, false)) {
+                        squadSpawnSafe = true;
+                    }
+                }            
             }
             
-            instance_create(spawnX, spawnY, wave[| i]);
+            show_debug_message("Squad Spawn Coordinates: x=" + string(squadX) + ", y=" + string(squadY));        
+            
+            // spawn each entity within the squad
+            for (j = 0; j &lt; ds_list_size(squad); j++) {
+            
+                show_debug_message("Spawning Entity in Squad: " + string(j))
+                
+                var squadRadius = 80;
+                var spawnX, spawnY;
+                var safeSpawn = false;
+                var spawnAttempts = 0;
+                
+                // find a non-colliding spawn location within the squad
+                while (safeSpawn == false) {            
+                    spawnX = squadX + random(squadRadius) - squadRadius / 2;
+                    spawnY = squadY + random(squadRadius) - squadRadius / 2;                
+                    if (!collision_point(spawnX, spawnY, character_par_obj, false, false)) {
+                        safeSpawn = true;
+                    }
+                    spawnAttempts += 1;
+                    if (spawnAttempts &gt; 50) {
+                        break;
+                    }     
+                }
+                
+                instance_create(spawnX, spawnY, squad[| j]);
+            }
         }
-        
-        if (wave_index &lt; ds_list_size(waves) - 1) {
-            wave_index += 1;
-        }           
     }
 }
 
@@ -177,11 +173,11 @@ if (paused == false) {
             <kind>1</kind>
             <string>// draw time
 draw_set_color(c_red);
-draw_text(view_xview + 340, view_yview + 455,'Time: ' + string(round(time/30)));
+draw_text(view_xview + 320, view_yview + 455,'Time: ' + string(round(time/30)));
 
 // draw wave
 draw_set_color(c_red);
-draw_text(view_xview + 400,view_yview + 455,'Wave: ' + string(wave_index+1));
+draw_text(view_xview + 400,view_yview + 455,'Wave: ' + string(wave_index));
 
 set_norm()
 
