@@ -39,19 +39,42 @@ wave_index = 0;
 waves = ds_list_create();
 
 wave = arena_create_wave();
+ds_list_add(wave[? "squads"], arena_define_squad(3,2,0));
+ds_list_add(wave[? "pickups"], healthpack_obj);
+ds_list_add(waves, wave);
+
+wave = arena_create_wave();
+ds_list_add(wave[? "squads"], arena_define_squad(4,0,1));
+ds_list_add(wave[? "squads"], arena_define_squad(0,2,0));
+ds_list_add(wave[? "pickups"], obj_weap_brifle);
+ds_list_add(waves, wave);
+
+wave = arena_create_wave();
+ds_list_add(wave[? "squads"], arena_define_squad(3,2,1));
+ds_list_add(wave[? "squads"], arena_define_squad(3,0,1));
+ds_list_add(wave[? "squads"], arena_define_squad(0,2,1));
+ds_list_add(wave[? "pickups"], obj_ammo_arifle, obj_ammo_pistol, obj_ammo_brifle, healthpack_obj);
+ds_list_add(waves, wave);
+
+wave = arena_create_wave();
+ds_list_add(wave[? "squads"], arena_define_squad(3,2,1));
+ds_list_add(wave[? "squads"], arena_define_squad(0,2,0));
+ds_list_add(wave[? "squads"], arena_define_squad(0,2,0));
+ds_list_add(wave[? "pickups"], obj_weap_shotgun);
+ds_list_add(waves, wave);
+
+wave = arena_create_wave();
 ds_list_add(wave[? "squads"], arena_define_squad(5,0,0));
-ds_list_add(wave[? "squads"], arena_define_squad(0,5,0));
-ds_list_add(wave[? "squads"], arena_define_squad(0,0,5));
+ds_list_add(wave[? "squads"], arena_define_squad(5,0,0));
+ds_list_add(wave[? "squads"], arena_define_squad(5,0,0));
+ds_list_add(wave[? "squads"], arena_define_squad(5,0,0));
 ds_list_add(waves, wave);
 
 wave = arena_create_wave();
-ds_list_add(wave[? "squads"], arena_define_squad(2,2,2));
-ds_list_add(waves, wave);
-
-wave = arena_create_wave();
-ds_list_add(wave[? "squads"], arena_define_squad(1,0,0));
-ds_list_add(wave[? "squads"], arena_define_squad(0,1,0));
-ds_list_add(wave[? "squads"], arena_define_squad(1,1,1));
+ds_list_add(wave[? "squads"], arena_define_squad(3,2,1));
+ds_list_add(wave[? "squads"], arena_define_squad(3,2,1));
+ds_list_add(wave[? "squads"], arena_define_squad(3,2,1));
+ds_list_add(wave[? "pickups"], obj_weap_shotgun, obj_ammo_arifle, obj_ammo_pistol, obj_ammo_brifle, healthpack_obj);
 ds_list_add(waves, wave);
 
 
@@ -91,6 +114,8 @@ if (paused == false) {
         var wave_index_spawn = min(wave_index, ds_list_size(waves))
         
         wave = waves[| wave_index_spawn - 1];
+        
+        // spawn squads in wave
         
         var squadList = wave[? "squads"]        
         var squadNum = ds_list_size(squadList)
@@ -141,10 +166,38 @@ if (paused == false) {
                     if (spawnAttempts &gt; 50) {
                         break;
                     }     
-                }
-                
+                }                
                 instance_create(spawnX, spawnY, squad[| j]);
             }
+        }
+        
+        // spawn pickups in wave        
+        var pickupList = wave[? "pickups"]        
+        var pickupNum = ds_list_size(pickupList)
+        
+        if (pickupNum &gt; 0) {
+        
+            // find a location outside of player's view to spawn the pickup
+            var spawnX, spawnY;
+            var spawnSafe = false;
+            
+            while (spawnSafe == false) {
+            
+                var spawnRad = 300;
+                
+                spawnX = random(room_width);
+                spawnY = random(room_height);
+                
+                if (point_distance(player.x, player.y, spawnX, spawnY) &gt; 400) {
+                    if (!collision_circle(spawnX, spawnY, 25, all, false, true)) {
+                        spawnSafe = true;
+                    }
+                }                          
+            }   
+                 
+            // spawn one of the pickups selected at random 
+            ds_list_shuffle(pickupList);   
+            instance_create(spawnX, spawnY, pickupList[| 0]);        
         }
     }
 }
