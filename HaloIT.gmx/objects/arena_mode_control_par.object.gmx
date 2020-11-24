@@ -32,10 +32,11 @@ audio_play_sound(arenabattle_music, 0, true);
 
 player = instance_create(spawnlocater_obj.x, spawnlocater_obj.y, obj_mc);
 
+spawn_player_min_dist = 500;
+spawn_squad_radius = 120;
+
 time = 0;
-
 wave_index = 0;
-
 waves = ds_list_create();
 
 wave = arena_create_wave();
@@ -136,8 +137,8 @@ if (paused == false) {
                 squadX = random(room_width);
                 squadY = random(room_height);  
                 
-                if (point_distance(player.x, player.y, squadX, squadY) &gt; 400) {
-                    if (!collision_circle(squadX, squadY, 100, character_par_obj, false, false)) {
+                if (point_distance(player.x, player.y, squadX, squadY) &gt; spawn_player_min_dist) {
+                    if (!collision_circle(squadX, squadY, spawn_squad_radius, character_par_obj, false, false)) {
                         squadSpawnSafe = true;
                     }
                 }            
@@ -150,15 +151,14 @@ if (paused == false) {
             
                 show_debug_message("Spawning Entity in Squad: " + string(j))
                 
-                var squadRadius = 80;
                 var spawnX, spawnY;
                 var safeSpawn = false;
                 var spawnAttempts = 0;
                 
                 // find a non-colliding spawn location within the squad
                 while (safeSpawn == false) {            
-                    spawnX = squadX + random(squadRadius) - squadRadius / 2;
-                    spawnY = squadY + random(squadRadius) - squadRadius / 2;                
+                    spawnX = squadX + random(spawn_squad_radius) - spawn_squad_radius / 2;
+                    spawnY = squadY + random(spawn_squad_radius) - spawn_squad_radius / 2;                
                     if (!collision_point(spawnX, spawnY, character_par_obj, false, false)) {
                         safeSpawn = true;
                     }
