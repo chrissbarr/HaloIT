@@ -657,6 +657,9 @@
       <object>objects\camera</object>
       <object>objects\banshee_fighter1_obj</object>
     </objects>
+    <objects name="effects">
+      <object>objects\obj_effect_healthflash</object>
+    </objects>
     <object>objects\obj_mc</object>
     <object>objects\human_par</object>
     <object>objects\health_obj</object>
