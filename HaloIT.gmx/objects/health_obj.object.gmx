@@ -114,7 +114,7 @@ if (obj_mc.overshield) {
 draw_percentage_bar(view_xview+10,view_yview+457,100,10,shieldval,shieldmax,shieldfcolor,true,shieldbcolor);
 
 if (obj_mc.camoflage) {
-    draw_percentage_bar(view_xview+10,view_yview+457+6,100,4,obj_mc.alarm[3],obj_mc.camomaxtime,c_white,false,c_blue);
+    draw_percentage_bar(view_xview+10,view_yview+457+6,100,4,obj_mc.camo_time_remain,obj_mc.camo_time_max,c_white,false,c_blue);
 }
 
 draw_percentage_bar(view_xview+116,view_yview+457,50,10,obj_mc.hp,obj_mc.hp_max,c_green,true,c_black);

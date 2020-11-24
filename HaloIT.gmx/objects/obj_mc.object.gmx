@@ -66,8 +66,15 @@ stealshields=false
 try_optimise=false
 draw=false
 laseron=false
-camoflage=false
-camomaxtime=room_speed*30
+
+// camoflage
+camoflage = false;
+camo_time_remain = 0;
+camo_time_max = room_speed * 30;
+camo_alpha = 0.30;
+camo_fade_rate = 0.01;
+camo_rise_rate = 0.03;
+
 overshield=false
 
 instance_create(x,y,health_obj)
@@ -425,29 +432,6 @@ a.ammo=create_ammo
         </arguments>
       </action>
     </event>
-    <event eventtype="2" enumb="3">
-      <action>
-        <libid>1</libid>
-        <id>603</id>
-        <kind>7</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>2</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>1</kind>
-            <string>camoflage=false
-</string>
-          </argument>
-        </arguments>
-      </action>
-    </event>
     <event eventtype="3" enumb="2">
       <action>
         <libid>1</libid>
@@ -562,7 +546,7 @@ if (curWeap.charges) {
 } else {
     if (mouse_check_button(mb_left)) {
         if (curWeap.can_shoot) {
-            camoflage = false;
+            camo_time_remain = 0;
             with curWeap { event_perform(ev_other, ev_user0); }
         } else {
             if (curWeap.needs_reloading and !curWeap.reloading) {
@@ -666,14 +650,25 @@ if (nearbyAmmo != noone) {
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if camoflage=true
-if image_alpha&gt;.3
-image_alpha-=.01
+            <string>// camoflage
+if (camo_time_remain &gt; 0) {
+    camo_time_remain -= 1;
+    camoflage = true;
+} else {
+    camoflage = false;
+}
 
-if camoflage=false
-if image_alpha&lt;1
-image_alpha+=.03
+if (camoflage) {
+    if (image_alpha &gt; camo_alpha) {
+        image_alpha -= camo_fade_rate;
+    }
+} else {
+    if (image_alpha &lt; 1.0) {
+        image_alpha += camo_rise_rate;
+    }
+}
 
+// overshield
 if (overshield) {
     if (shield &gt; shield_max) {
         shield -= .01;
@@ -966,12 +961,10 @@ alarm[1]=1
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if camoflage=false{
-camoflage=true
-alarm[3]=camomaxtime
-with other
-instance_destroy()
-}</string>
+            <string>camo_time_remain = camo_time_max;
+instance_destroy(other);
+
+</string>
           </argument>
         </arguments>
       </action>
