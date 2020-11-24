@@ -25,95 +25,62 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>time=120;//get_integer('How many seconds do you wish to spend in the arena?',120)
-dif=1;//show_message_ext('Please select a difficulty:','Easy','Normal','Heroic')
-//shieldskull=string(ini_GetValue(global.file_name,"CONFIG",string_encrypt("shieldskull", "199718")))
-//shieldskull=string_decrypt(shieldskull,"199718")
-//shieldskull=real(string(shieldskull))
-//if shieldskull=1
-//shieldbash=show_message_ext('Would you like to enable the Black Eye Skull?','Yes','','No')
-//else
-shieldbash=0
-weaponspawn=1;//show_message_ext('Would you like to enable weapon spawning?','Yes','','No')
-powerups=1;//show_message_ext('Would you like to enable powerups?','Yes','','No')
-if powerups=1
-powerups=true
-if powerups=2
-powerups=false
-time=time*30
-totaltime=time
-deadenemies=0
-alarm[0]=room_speed*6+random(60)
+            <string>deadenemies=0
+
 audio_stop_all();
-audio_play_sound(arenabattle_music, 0, true)
-ask=true
-number=1
-if time&gt;room_speed*60*25
-time=room_speed*60*25
-instance_create(spawnlocater_obj.x,spawnlocater_obj.y,obj_mc)
+audio_play_sound(arenabattle_music, 0, true);
 
-if shieldbash=1{
-obj_mc.recharge=false
-obj_mc.stealshields=true
-}
+player = instance_create(spawnlocater_obj.x, spawnlocater_obj.y, obj_mc);
 
-spawnable_enemies = ds_list_create();
-ds_list_add(spawnable_enemies, grunt_2_obj);
-ds_list_add(spawnable_enemies, grunt_2_obj);
-ds_list_add(spawnable_enemies, grunt_2_obj);
-ds_list_add(spawnable_enemies, grunt_2_obj);
-ds_list_add(spawnable_enemies, jackal_2_obj);
-ds_list_add(spawnable_enemies, jackal_2_obj);
-ds_list_add(spawnable_enemies, elite_2_obj);
+spawn_player_min_dist = 500;
+spawn_squad_radius = 120;
 
-spawnable_pickups = ds_list_create();
-ds_list_add(spawnable_pickups, obj_weap_pistol);
-ds_list_add(spawnable_pickups, obj_weap_arifle);
-ds_list_add(spawnable_pickups, obj_weap_brifle);
-ds_list_add(spawnable_pickups, obj_weap_shotgun);
-ds_list_add(spawnable_pickups, overshield_obj);
-ds_list_add(spawnable_pickups, camoflage_obj);
-ds_list_add(spawnable_pickups, healthpack_obj);
-</string>
-          </argument>
-        </arguments>
-      </action>
-      <action>
-        <libid>1</libid>
-        <id>604</id>
-        <kind>0</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>0</useapplyto>
-        <exetype>1</exetype>
-        <functionname>action_inherited</functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-      </action>
-    </event>
-    <event eventtype="2" enumb="0">
-      <action>
-        <libid>1</libid>
-        <id>603</id>
-        <kind>7</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>2</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>1</kind>
-            <string>ds_list_shuffle(spawnable_pickups);
-instance_create(random(room_width), random(room_height), spawnable_pickups[| 0]);
+time = 0;
+wave_index = 0;
+waves = ds_list_create();
 
-alarm[0]=room_speed*2+random(room_speed*6)
+wave = arena_create_wave();
+ds_list_add(wave[? "squads"], arena_define_squad(3,2,0));
+ds_list_add(wave[? "pickups"], healthpack_obj);
+ds_list_add(waves, wave);
+
+wave = arena_create_wave();
+ds_list_add(wave[? "squads"], arena_define_squad(4,0,1));
+ds_list_add(wave[? "squads"], arena_define_squad(0,2,0));
+ds_list_add(wave[? "pickups"], obj_weap_brifle);
+ds_list_add(waves, wave);
+
+wave = arena_create_wave();
+ds_list_add(wave[? "squads"], arena_define_squad(3,2,1));
+ds_list_add(wave[? "squads"], arena_define_squad(3,0,1));
+ds_list_add(wave[? "squads"], arena_define_squad(0,2,1));
+ds_list_add(wave[? "pickups"], obj_ammo_arifle, obj_ammo_pistol, obj_ammo_brifle, healthpack_obj);
+ds_list_add(waves, wave);
+
+wave = arena_create_wave();
+ds_list_add(wave[? "squads"], arena_define_squad(3,2,1));
+ds_list_add(wave[? "squads"], arena_define_squad(0,2,0));
+ds_list_add(wave[? "squads"], arena_define_squad(0,2,0));
+ds_list_add(wave[? "pickups"], obj_weap_shotgun);
+ds_list_add(waves, wave);
+
+wave = arena_create_wave();
+ds_list_add(wave[? "squads"], arena_define_squad(5,0,0));
+ds_list_add(wave[? "squads"], arena_define_squad(5,0,0));
+ds_list_add(wave[? "squads"], arena_define_squad(5,0,0));
+ds_list_add(wave[? "squads"], arena_define_squad(5,0,0));
+ds_list_add(waves, wave);
+
+wave = arena_create_wave();
+ds_list_add(wave[? "squads"], arena_define_squad(3,2,1));
+ds_list_add(wave[? "squads"], arena_define_squad(3,2,1));
+ds_list_add(wave[? "squads"], arena_define_squad(3,2,1));
+ds_list_add(wave[? "pickups"], obj_weap_shotgun, obj_ammo_arifle, obj_ammo_pistol, obj_ammo_brifle, healthpack_obj);
+ds_list_add(waves, wave);
+
+
+event_inherited();
+
 </string>
           </argument>
         </arguments>
@@ -136,78 +103,105 @@ alarm[0]=room_speed*2+random(room_speed*6)
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if (paused == false) {
-    time -= 1;
-    if (time == 0) {
-        room_goto(menu);
+            <string>time += 1;
+
+if (paused == false) {
+    if (instance_number(covenant_par) == 0) {
+    
+        wave_index += 1;   
+
+        show_debug_message("Spawning new wave. Wave Index: " + string(wave_index));
+        
+        var wave_index_spawn = min(wave_index, ds_list_size(waves))
+        
+        wave = waves[| wave_index_spawn - 1];
+        
+        // spawn squads in wave
+        
+        var squadList = wave[? "squads"]        
+        var squadNum = ds_list_size(squadList)
+        
+        show_debug_message("Squads in wave: " + string(squadNum));
+        
+        for (i = 0; i &lt; squadNum; i++) {
+        
+            show_debug_message("Spawning Squad: " + string(i));
+        
+            squad = squadList[| i];        
+        
+            // find a location outside of player's view to spawn the squad
+            var squadX, squadY;
+            var squadSpawnSafe = false;
+            
+            while (squadSpawnSafe == false) {
+                squadX = random(room_width);
+                squadY = random(room_height);  
+                
+                if (point_distance(player.x, player.y, squadX, squadY) &gt; spawn_player_min_dist) {
+                    if (!collision_circle(squadX, squadY, spawn_squad_radius, character_par_obj, false, false)) {
+                        squadSpawnSafe = true;
+                    }
+                }            
+            }
+            
+            show_debug_message("Squad Spawn Coordinates: x=" + string(squadX) + ", y=" + string(squadY));        
+            
+            // spawn each entity within the squad
+            for (j = 0; j &lt; ds_list_size(squad); j++) {
+            
+                show_debug_message("Spawning Entity in Squad: " + string(j))
+                
+                var spawnX, spawnY;
+                var safeSpawn = false;
+                var spawnAttempts = 0;
+                
+                // find a non-colliding spawn location within the squad
+                while (safeSpawn == false) {            
+                    spawnX = squadX + random(spawn_squad_radius) - spawn_squad_radius / 2;
+                    spawnY = squadY + random(spawn_squad_radius) - spawn_squad_radius / 2;                
+                    if (!collision_point(spawnX, spawnY, character_par_obj, false, false)) {
+                        safeSpawn = true;
+                    }
+                    spawnAttempts += 1;
+                    if (spawnAttempts &gt; 50) {
+                        break;
+                    }     
+                }                
+                instance_create(spawnX, spawnY, squad[| j]);
+            }
+        }
+        
+        // spawn pickups in wave        
+        var pickupList = wave[? "pickups"]        
+        var pickupNum = ds_list_size(pickupList)
+        
+        if (pickupNum &gt; 0) {
+        
+            // find a location outside of player's view to spawn the pickup
+            var spawnX, spawnY;
+            var spawnSafe = false;
+            
+            while (spawnSafe == false) {
+            
+                var spawnRad = 300;
+                
+                spawnX = random(room_width);
+                spawnY = random(room_height);
+                
+                if (point_distance(player.x, player.y, spawnX, spawnY) &gt; 400) {
+                    if (!collision_circle(spawnX, spawnY, 25, all, false, true)) {
+                        spawnSafe = true;
+                    }
+                }                          
+            }   
+                 
+            // spawn one of the pickups selected at random 
+            ds_list_shuffle(pickupList);   
+            instance_create(spawnX, spawnY, pickupList[| 0]);        
+        }
     }
-
-
-    if (instance_number(covenant_par) &lt; 10) {
-        ds_list_shuffle(spawnable_enemies);
-        var spawnSide = irandom(3);
-        
-        if (spawnSide == 0) {
-            var spawnX = random(room_width);
-            var spawnY = -25-random(100);
-        }
-        
-        if (spawnSide == 1) {
-            var spawnX = random(room_width);
-            var spawnY = room_height+25+random(100);
-        }
-        
-        if (spawnSide == 2) {
-            var spawnX = -25-random(100);
-            var spawnY = random(room_height);
-        }
-        
-        if (spawnSide == 3) {
-            var spawnX = room_width+25+random(100);
-            var spawnY = random(room_height);
-        }
-        
-        instance_create(spawnX, spawnY, spawnable_enemies[| 0]);
-    }
-
 }
 
-</string>
-          </argument>
-        </arguments>
-      </action>
-    </event>
-    <event eventtype="7" enumb="5">
-      <action>
-        <libid>1</libid>
-        <id>603</id>
-        <kind>7</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>2</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>1</kind>
-            <string>oldsurvivetime = global.arena_hitime;
-newsurvivetime = (totaltime - time)/30; 
-if newsurvivetime &gt; oldsurvivetime{
-    global.arena_hitime = newsurvivetime;
-    show_message('Congratulations, you beat your old hi-score for the arena! Your new score is ' + string(newsurvivetime) + ' seconds!')
-}
-
-if dif=1
-    pointstogive=round(newsurvivetime/30/100*deadenemies)
-if dif=2
-    pointstogive=round(newsurvivetime/30/100*deadenemies*1.2)
-if dif=3
-    pointstogive=round(newsurvivetime/30/100*deadenemies*1.4)
-give_points(pointstogive)
 </string>
           </argument>
         </arguments>
@@ -230,14 +224,24 @@ give_points(pointstogive)
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>draw_set_color(c_red)
-draw_text(view_xview+340,view_yview+455,string(round(time/30))+ ' Seconds Remaining')
+            <string>// draw time
+draw_set_color(c_red);
+draw_text(view_xview + 320, view_yview + 455,'Time: ' + string(round(time/30)));
+
+// draw wave
+draw_set_color(c_red);
+draw_text(view_xview + 400,view_yview + 455,'Wave: ' + string(wave_index));
+
 set_norm()
-if instance_exists(obj_mc)
-if deadenemies=1
-draw_text(obj_mc.x-20,obj_mc.y-30,string(deadenemies)+ ' Kill')
-else
-draw_text(obj_mc.x-20,obj_mc.y-30,string(deadenemies)+ ' Kills')
+
+// draw score
+if instance_exists(player) {
+    score_text = string(deadenemies)+ ' Kill';
+    if (deadenemies != 1) {
+        score_text += 's';
+    }
+    draw_text(player.x - 20, player.y - 30, score_text)
+}
 </string>
           </argument>
         </arguments>
