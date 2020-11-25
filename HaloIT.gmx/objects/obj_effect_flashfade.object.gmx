@@ -25,7 +25,8 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>flash_alpha = 1.0;
+            <string>flash_colour = c_white;
+flash_alpha = 1.0;
 flash_decay = 0.08;
 </string>
           </argument>
@@ -49,14 +50,14 @@ flash_decay = 0.08;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>draw_set_color(c_white);
+            <string>draw_set_color(flash_colour);
 draw_set_alpha(flash_alpha);
 draw_rectangle(view_xview[0],view_yview[0],view_xview[0]+view_wview[0],view_yview[0]+view_hview[0],false);
 draw_set_alpha(1.0);
 
 flash_alpha -= flash_decay;
 
-if (flash_alpha &lt; 0.1) {
+if (flash_alpha &lt;= 0) {
     instance_destroy();
 }
 </string>

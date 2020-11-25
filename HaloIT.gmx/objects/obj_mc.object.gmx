@@ -582,6 +582,12 @@ alarm[1]=recharge_speed</string>
     shield = shield_max * 2;
     overshield = true;
     instance_destroy(other);
+    
+    // flash screen w/fade
+    var effect = instance_create(x, y, obj_effect_flashfade);
+    effect.flash_colour = c_purple;
+    effect.flash_alpha = 0.6;
+    effect.flash_decay = 0.04;
 }
 </string>
           </argument>
@@ -605,9 +611,16 @@ alarm[1]=recharge_speed</string>
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>camo_time_remain = camo_time_max;
-instance_destroy(other);
-
+            <string>if (camo_time_remain &lt; camo_time_max / 2) {
+    camo_time_remain = camo_time_max;
+    instance_destroy(other);
+    
+    // flash screen w/fade
+    var effect = instance_create(x, y, obj_effect_flashfade);
+    effect.flash_colour = c_aqua;
+    effect.flash_alpha = 1.0;
+    effect.flash_decay = 0.08;
+}
 </string>
           </argument>
         </arguments>
@@ -633,7 +646,12 @@ instance_destroy(other);
             <string>if (hp &lt; hp_max) {
     hp = hp_max;
     instance_destroy(other);
-    instance_create(x, y, obj_effect_healthflash);
+    
+    // flash screen w/fade
+    var effect = instance_create(x, y, obj_effect_flashfade);
+    effect.flash_colour = c_white;
+    effect.flash_alpha = 1.0;
+    effect.flash_decay = 0.08;
 }
 </string>
           </argument>
@@ -1261,6 +1279,40 @@ frag_grenades-=1
 if (global.debug) {
     x = mouse_x;
     y = mouse_y;
+}
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="7" enumb="12">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>if global.drawblood {
+    repeat (lastHitSize/2) {
+        instance_create(lastHitX,lastHitY,red_blood_drop_obj)
+    }
+    
+    // flash screen white w/fade
+    var effect = instance_create(x, y, obj_effect_flashfade);
+    effect.flash_colour = c_red;
+    effect.flash_alpha = 0.3;
+    effect.flash_decay = 0.1;
+    
 }
 </string>
           </argument>
