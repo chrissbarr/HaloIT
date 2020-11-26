@@ -664,7 +664,6 @@
     <object>objects\human_par</object>
     <object>objects\health_obj</object>
     <object>objects\laserpointer</object>
-    <object>objects\object20</object>
     <object>objects\obj_parent_activate</object>
     <object>objects\obj_banshee_par</object>
     <object>objects\banshee_obj</object>
