@@ -566,15 +566,18 @@
         <object>objects\blue_circle_obj</object>
         <object>objects\halo_loading_obj</object>
       </objects>
+      <objects name="main_menu">
+        <object>objects\obj_menu_button_par</object>
+        <object>objects\obj_menu_button_newgame</object>
+        <object>objects\obj_menu_button_loadgame</object>
+        <object>objects\obj_menu_button_arena</object>
+        <object>objects\obj_menu_button_account</object>
+        <object>objects\obj_menu_button_quit</object>
+      </objects>
       <object>objects\halo_obj</object>
-      <object>objects\newgame_obj</object>
-      <object>objects\quitgame_obj</object>
-      <object>objects\loadgame_obj</object>
-      <object>objects\arena_start_menu_button_obj</object>
       <object>objects\multiplayer_menu_obj</object>
       <object>objects\view_points_obj</object>
       <object>objects\upgrade_center_obj</object>
-      <object>objects\account_tab_obj</object>
       <object>objects\send_score_obj</object>
       <object>objects\options_obj</object>
       <object>objects\login_menu_obj</object>
@@ -602,7 +605,6 @@
       <object>objects\mrelative_menu_obj</object>
       <object>objects\drawblood_obj</object>
       <object>objects\difficulty_obj</object>
-      <object>objects\object762</object>
       <object>objects\level_select_background_obj</object>
       <object>objects\return_to_menu_obj</object>
       <object>objects\account_room_stats_obj</object>
