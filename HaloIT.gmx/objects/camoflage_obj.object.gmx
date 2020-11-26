@@ -25,8 +25,9 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>image_alpha=.8
-ts=1</string>
+            <string>image_alpha = 0.8;
+rot_spd = 1.0;
+</string>
           </argument>
         </arguments>
       </action>
@@ -48,29 +49,8 @@ ts=1</string>
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>image_angle+=ts
-image_alpha=.5
-
-if ts&gt;1
-ts-=.2
-
-if ts&gt;20
-ts-=.2
-
-if ts&gt;40
-ts-=.2
-
-if ts&gt;60
-ts-=.2
-
-if ts&gt;80
-ts-=.2
-
-if ts&gt;90
-ts-=.1
-
-if ts&gt;100
-ts=100</string>
+            <string>image_angle += rot_spd;
+</string>
           </argument>
         </arguments>
       </action>
