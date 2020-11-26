@@ -1360,19 +1360,6 @@ y=yprevious</string>
           <argument>
             <kind>1</kind>
             <string>draw_sprite_ext(sprite_index,image_index,x,y,1,1,direction,c_white,image_alpha)
-
-if laseron=true
-if laser=true{
-with(instance_create(x,y,objLaser_messenger)){ //Create a messenger to find where the laser must end.
-        move_contact_solid(point_direction(x,y,mouse_x,mouse_y),600) //Make the messenger find where the laser "ends" (hitting walls, or larger than 800 pixels without walls)
-        other.laser_x=x; //Call back its X coordinate to the ball
-        other.laser_y=y; //Call back its Y coordinate to the ball
-        instance_destroy(); //Destroy yourself
-}
-draw_set_alpha(0.5); //The laser is 50% transparent
-draw_line_color(varshoot1X,varshoot1Y,laser_x,laser_y,c_red,c_red) //Draw the line from red to transparent (subtractive blend modes make black transparent)
-draw_set_alpha(1) //Reset the alpha
-}
 </string>
           </argument>
         </arguments>
