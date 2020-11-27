@@ -573,14 +573,12 @@
         <object>objects\obj_menu_button_arena</object>
         <object>objects\obj_menu_button_account</object>
         <object>objects\obj_menu_button_quit</object>
+        <object>objects\obj_menu_button_upgradecentre</object>
+        <object>objects\obj_menu_button_options</object>
+        <object>objects\obj_menu_button_scores</object>
       </objects>
       <object>objects\halo_obj</object>
-      <object>objects\multiplayer_menu_obj</object>
       <object>objects\view_points_obj</object>
-      <object>objects\upgrade_center_obj</object>
-      <object>objects\send_score_obj</object>
-      <object>objects\options_obj</object>
-      <object>objects\login_menu_obj</object>
       <object>objects\halo_writing_obj</object>
       <object>objects\level1_select</object>
       <object>objects\level2_select</object>
