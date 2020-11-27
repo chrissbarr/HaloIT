@@ -54,7 +54,7 @@
     <instance objName="level_select_background_obj" x="0" y="16" name="inst_AFB7DB05" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="cursor_normal_obj" x="0" y="0" name="inst_6CCCB2BB" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="return_to_menu_obj" x="320" y="456" name="inst_5B37E9A9" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="level1_select" x="16" y="48" name="inst_0901192F" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="obj_menu_levelselect_manager" x="624" y="0" name="inst_4DC6F55E" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
   </instances>
   <tiles/>
   <PhysicsWorld>0</PhysicsWorld>

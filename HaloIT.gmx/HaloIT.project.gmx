@@ -103,8 +103,14 @@
       <sprite>sprites\login_menu_spr</sprite>
       <sprite>sprites\options_spr</sprite>
       <sprite>sprites\quitgame_spr</sprite>
-      <sprite>sprites\level_select_box_spr</sprite>
       <sprite>sprites\new_halo_spr</sprite>
+      <sprites name="level_select">
+        <sprite>sprites\level_select_background_spr</sprite>
+        <sprite>sprites\spr_levelselect_lv1</sprite>
+        <sprite>sprites\spr_levelselect_lv2</sprite>
+        <sprite>sprites\spr_levelselect_lv3</sprite>
+        <sprite>sprites\spr_levelselect_blank</sprite>
+      </sprites>
     </sprites>
     <sprites name="weapons">
       <sprites name="ammunition">
@@ -267,11 +273,7 @@
     <sprite>sprites\infection_explode_spr</sprite>
     <sprite>sprites\flood_carrier_form_spr</sprite>
     <sprite>sprites\flood_carrier_form_explode_spr</sprite>
-    <sprite>sprites\level_select_background_spr</sprite>
     <sprite>sprites\account_room_stats_back_spr</sprite>
-    <sprite>sprites\level1_select_spr</sprite>
-    <sprite>sprites\level2_select_spr</sprite>
-    <sprite>sprites\level3_select_spr</sprite>
     <sprite>sprites\button_spr</sprite>
     <sprite>sprites\shelves_spr</sprite>
     <sprite>sprites\pelican_topdown_spr</sprite>
@@ -577,12 +579,14 @@
         <object>objects\obj_menu_button_options</object>
         <object>objects\obj_menu_button_scores</object>
       </objects>
+      <objects name="level_select">
+        <object>objects\level_select_background_obj</object>
+        <object>objects\obj_menu_levelcard</object>
+        <object>objects\obj_menu_levelselect_manager</object>
+      </objects>
       <object>objects\halo_obj</object>
       <object>objects\view_points_obj</object>
       <object>objects\halo_writing_obj</object>
-      <object>objects\level1_select</object>
-      <object>objects\level2_select</object>
-      <object>objects\level3_select</object>
       <object>objects\MjolnirMark6Upgrade_obj</object>
       <object>objects\MjolnirMark7Upgrade_obj</object>
       <object>objects\MjolnirMark8Upgrade_obj</object>
@@ -603,7 +607,6 @@
       <object>objects\mrelative_menu_obj</object>
       <object>objects\drawblood_obj</object>
       <object>objects\difficulty_obj</object>
-      <object>objects\level_select_background_obj</object>
       <object>objects\return_to_menu_obj</object>
       <object>objects\account_room_stats_obj</object>
       <object>objects\obj_draw_version</object>
