@@ -161,21 +161,7 @@ audio_listener_orientation(0,1,0,0,0,1);
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>image_angle = direction;
-
-var speed_max;
-
-if keyboard_check(vk_shift){
-    speed_max = speed_fwd_run;
-} else {
-    speed_max = speed_fwd_wlk;
-}
-
-speed = clamp(speed, -speed_rev_max, speed_max);
-
-direction=point_direction(x,y,cursor.x,cursor.y)
-
-switch (weapons[| weapons_index].object_index) {
+            <string>switch (weapons[| weapons_index].object_index) {
     case obj_weap_arifle:
         sprite_index = mc_arifle_spr;
         fireX = 33;
@@ -387,6 +373,80 @@ if (instance_exists(tank_obj)) {
         alarm[0] = 2;
     }
 }
+
+// movement controls
+
+keycontrol = global.controls;
+movement = global.movement;
+
+var keybinding_sprint = vk_shift;
+
+if keycontrol == "ARROW" {
+    var keybinding_left = vk_left;
+    var keybinding_right = vk_right;
+    var keybinding_forward = vk_up;
+    var keybinding_back = vk_down;
+} else {
+    var keybinding_left = ord("A");
+    var keybinding_right = ord("D");
+    var keybinding_forward = ord("W");
+    var keybinding_back = ord("S");
+}
+
+direction = point_direction(x, y, cursor.x, cursor.y);
+image_angle = direction;
+
+var speed_max;
+
+if keyboard_check(keybinding_sprint){
+    speed_max = speed_fwd_run;
+} else {
+    speed_max = speed_fwd_wlk;
+}
+
+if keyboard_check(keybinding_left) {
+    if movement == "0" {
+        x += lengthdir_x(1.5,image_angle-90);
+        y += lengthdir_y(1.5,image_angle-90);
+    }
+    else
+    {
+        x -= speed_max - dec;
+    }
+}
+
+if keyboard_check(keybinding_right) {
+    if movement == "0" {
+        x += lengthdir_x(1.5,image_angle+90);
+        y += lengthdir_y(1.5,image_angle+90);
+    }
+    else
+    {
+        x += speed_max - dec;
+    }
+}
+
+if keyboard_check(keybinding_forward) {
+    if movement == "0" {
+        speed += 1;
+    }
+    else
+    {
+        y -= speed_max - dec;
+    }
+}
+
+if keyboard_check(keybinding_back) {
+    if movement == "0" {
+        speed -= 0.6;
+    }
+    else
+    {
+        y += speed_max - dec;
+    }
+}
+
+speed = clamp(speed, -speed_rev_max, speed_max);
 </string>
           </argument>
         </arguments>
@@ -947,304 +1007,6 @@ speed = 0;
 }
 
 with (other) { instance_destroy(); }
-</string>
-          </argument>
-        </arguments>
-      </action>
-    </event>
-    <event eventtype="5" enumb="87">
-      <action>
-        <libid>1</libid>
-        <id>603</id>
-        <kind>7</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>2</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>1</kind>
-            <string>keycontrol = global.controls;
-movement = global.movement;
-
-if keycontrol == "WASD" {
-    if movement == "0" {
-        speed+=1
-    }
-    else
-    {
-        y-=ms-dec
-    }
-}
-</string>
-          </argument>
-        </arguments>
-      </action>
-    </event>
-    <event eventtype="5" enumb="83">
-      <action>
-        <libid>1</libid>
-        <id>603</id>
-        <kind>7</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>2</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>1</kind>
-            <string>keycontrol = global.controls;
-movement = global.movement;
-
-if keycontrol == "WASD" {
-    if movement == "0" {
-        speed -= 0.6;
-    }
-    else
-    {
-        y += ms-dec;
-    }
-}
-</string>
-          </argument>
-        </arguments>
-      </action>
-    </event>
-    <event eventtype="5" enumb="76">
-      <action>
-        <libid>1</libid>
-        <id>603</id>
-        <kind>7</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>2</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>1</kind>
-            <string></string>
-          </argument>
-        </arguments>
-      </action>
-    </event>
-    <event eventtype="5" enumb="68">
-      <action>
-        <libid>1</libid>
-        <id>603</id>
-        <kind>7</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>2</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>1</kind>
-            <string>keycontrol = global.controls;
-movement = global.movement;
-
-if keycontrol == "WASD" {
-    if movement == "0" {
-        x += lengthdir_x(1.5,image_angle+90);
-        y += lengthdir_y(1.5,image_angle+90);
-    }
-    else
-    {
-        x+=ms-dec;
-    }
-}
-</string>
-          </argument>
-        </arguments>
-      </action>
-    </event>
-    <event eventtype="5" enumb="65">
-      <action>
-        <libid>1</libid>
-        <id>603</id>
-        <kind>7</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>2</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>1</kind>
-            <string>keycontrol = global.controls;
-movement = global.movement;
-
-if keycontrol == "WASD" {
-    if movement == "0" {
-        x += lengthdir_x(1.5,image_angle-90);
-        y += lengthdir_y(1.5,image_angle-90);
-    }
-    else
-    {
-        x-=ms-dec;
-    }
-}
-</string>
-          </argument>
-        </arguments>
-      </action>
-    </event>
-    <event eventtype="5" enumb="40">
-      <action>
-        <libid>1</libid>
-        <id>603</id>
-        <kind>7</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>2</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>1</kind>
-            <string>keycontrol = global.controls;
-movement = global.movement;
-
-if keycontrol == "ARROW" {
-    if movement == "0" {
-        speed -= 0.6;
-    }
-    else
-    {
-        y += ms-dec;
-    }
-}
-</string>
-          </argument>
-        </arguments>
-      </action>
-    </event>
-    <event eventtype="5" enumb="39">
-      <action>
-        <libid>1</libid>
-        <id>603</id>
-        <kind>7</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>2</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>1</kind>
-            <string>keycontrol = global.controls;
-movement = global.movement;
-
-if keycontrol == "ARROW" {
-    if movement == "0" {
-        x += lengthdir_x(1.5,image_angle+90);
-        y += lengthdir_y(1.5,image_angle+90);
-    }
-    else
-    {
-        x+=ms-dec;
-    }
-}
-</string>
-          </argument>
-        </arguments>
-      </action>
-    </event>
-    <event eventtype="5" enumb="38">
-      <action>
-        <libid>1</libid>
-        <id>603</id>
-        <kind>7</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>2</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>1</kind>
-            <string>keycontrol = global.controls;
-movement = global.movement;
-
-if keycontrol == "ARROW" {
-    if movement == "0" {
-        speed += 1;
-    }
-    else
-    {
-        y -= ms-dec;
-    }
-}
-</string>
-          </argument>
-        </arguments>
-      </action>
-    </event>
-    <event eventtype="5" enumb="37">
-      <action>
-        <libid>1</libid>
-        <id>603</id>
-        <kind>7</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>2</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>1</kind>
-            <string>keycontrol = global.controls;
-movement = global.movement;
-
-if keycontrol == "ARROW" {
-    if movement == "0" {
-        x += lengthdir_x(1.5,image_angle-90);
-        y += lengthdir_y(1.5,image_angle-90);
-    }
-    else
-    {
-        x-=ms-dec;
-    }
-}
 </string>
           </argument>
         </arguments>
