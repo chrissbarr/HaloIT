@@ -358,7 +358,6 @@
     <script>scripts\getinput.gml</script>
     <script>scripts\set_norm.gml</script>
     <script>scripts\area.gml</script>
-    <script>scripts\godmode_scr.gml</script>
     <script>scripts\lvl_select_mouse_over_scr.gml</script>
     <script>scripts\font.gml</script>
     <script>scripts\level_get_done.gml</script>

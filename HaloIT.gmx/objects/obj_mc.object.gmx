@@ -46,7 +46,6 @@ if (audio_is_playing(shield_beep_snd)) {
 can_grenade=false
 grenade='frag'
 frag_grenades=40
-godmode=false
 
 // movement
 speed_fwd_wlk = room_speed * 0.1;
